@@ -58,6 +58,15 @@ public static class RuntimeBundleDEnvironmentAudit
                 "classic-silver-river-288-spell-753");
             Check(world.FindRoom(1, 2342) is { EnvironmentRoomSpellNativeVerified: true, EnvironmentRoomSpellId: 753 },
                 "classic-silver-river-2342-spell-753");
+            Check(world.FindRoom(1, 288) is { EnvironmentRoomSpellEntryOnChange: false, EnvironmentRoomPicklockSpellId: 0 }
+                && world.FindRoom(1, 2342) is { EnvironmentRoomSpellEntryOnChange: false, EnvironmentRoomPicklockSpellId: 0 },
+                "classic-silver-river-native-room-entry-flag-absent");
+            Check(world.FindRoom(1, 76) is { EnvironmentRoomSpellId: 918, EnvironmentRoomSpellEntryOnChange: true },
+                "classic-native-entry-flag-map1-room76");
+            Check(world.FindRoom(1, 215) is { EnvironmentRoomPicklockSpellId: 640 },
+                "classic-native-picklock-spell-map1-room215");
+            Check(checkedRooms.All(room => room.EnvironmentRoomPicklockSpellId >= 0),
+                "classic-native-picklock-spell-ids-nonnegative");
             var knownIds = RuntimeSpellCatalog.Load(projectRoot, worldId).Spells
                 .Select(spell => int.TryParse(spell.LegacyId, out var id) ? id : 0).ToHashSet();
             Check(checkedRooms.Where(room => room.EnvironmentRoomSpellId > 0)

@@ -168,15 +168,40 @@ public sealed class RuntimeCommandDispatcher
                     return trapResult;
                 }
 
+                var nativeExitBefore = _gameplay?.ApplyClassicNativeRoomExitSpell(
+                    session, previousRoom, command.Name, afterMovement: false) ?? string.Empty;
+                if (_gameplay is not null && _gameplay.ClassicTrapStoppedMovement(session, previousRoom))
+                {
+                    _state?.UpdateSessionLocation(session);
+                    return string.Join(Environment.NewLine, new[] { trapResult, nativeExitBefore }
+                        .Where(value => !string.IsNullOrWhiteSpace(value)));
+                }
+
                 var moved = session.TryMove(command.Name, out var movementResult);
                 if (moved)
                 {
+                    var enteredRoom = session.CurrentRoom;
+                    var nativeExitAfter = _gameplay?.ApplyClassicNativeRoomExitSpell(
+                        session, previousRoom, command.Name, afterMovement: true) ?? string.Empty;
+                    var nativeRoomEntry = _gameplay?.ApplyClassicNativeRoomEntrySpell(session, previousRoom)
+                        ?? string.Empty;
+                    if (!session.CurrentRoom.Id.Equals(enteredRoom.Id, StringComparison.OrdinalIgnoreCase))
+                    {
+                        _state?.UpdateSessionLocation(session);
+                        return string.Join(Environment.NewLine,
+                            new[] { trapResult, nativeExitBefore, nativeExitAfter, nativeRoomEntry }
+                                .Where(value => !string.IsNullOrWhiteSpace(value)));
+                    }
                     _gameplay?.BroadcastDeparture(session, previousRoom.Id, command.Name);
                     _gameplay?.CaptureClassicPracticeArenaEntry(session, previousRoom);
                     _gameplay?.BroadcastArrival(session, command.Name);
                     _gameplay?.AdmitClassicRoomEntryNpcRespawns(session);
                     movementResult = _gameplay?.RenderRoom(session) ?? movementResult;
-                    if (!string.IsNullOrWhiteSpace(trapResult)) movementResult = trapResult + Environment.NewLine + movementResult;
+                    var nativeSpellOutput = string.Join(Environment.NewLine,
+                        new[] { trapResult, nativeExitBefore, nativeExitAfter, nativeRoomEntry }
+                            .Where(value => !string.IsNullOrWhiteSpace(value)));
+                    if (nativeSpellOutput.Length > 0)
+                        movementResult = nativeSpellOutput + Environment.NewLine + movementResult;
                     _state?.UpdateSessionLocation(session);
                     _events?.Publish("movement", "completed", session.World.Definition.Id, session.Id, session.Actor.Id, $"{previousRoom.Id}->{session.CurrentRoom.Id}");
                     if (_gameplay is not null)
@@ -207,10 +232,34 @@ public sealed class RuntimeCommandDispatcher
                                 continue;
                             }
 
+                            var followerExitBefore = _gameplay.ApplyClassicNativeRoomExitSpell(
+                                follower, previousRoom, command.Name, afterMovement: false);
+                            if (_gameplay.ClassicTrapStoppedMovement(follower, previousRoom))
+                            {
+                                _gameplay.StopClassicPartyFollowAfterFailedMove(follower);
+                                follower.EnqueueMessage(string.Join(Environment.NewLine,
+                                    new[] { followerTrap, followerExitBefore }
+                                        .Where(value => !string.IsNullOrWhiteSpace(value))));
+                                _state?.UpdateSessionLocation(follower);
+                                continue;
+                            }
                             if (!follower.TryMove(command.Name, out followerResult))
                             {
                                 _gameplay.StopClassicPartyFollowAfterFailedMove(follower);
                                 follower.EnqueueMessage($"You cannot follow your party leader {command.Name}: {followerResult}");
+                                continue;
+                            }
+                            var followerEnteredRoom = follower.CurrentRoom;
+                            var followerExitAfter = _gameplay.ApplyClassicNativeRoomExitSpell(
+                                follower, previousRoom, command.Name, afterMovement: true);
+                            var followerRoomEntry = _gameplay.ApplyClassicNativeRoomEntrySpell(
+                                follower, previousRoom);
+                            if (!follower.CurrentRoom.Id.Equals(followerEnteredRoom.Id, StringComparison.OrdinalIgnoreCase))
+                            {
+                                _state?.UpdateSessionLocation(follower);
+                                follower.EnqueueMessage(string.Join(Environment.NewLine,
+                                    new[] { followerTrap, followerExitBefore, followerExitAfter, followerRoomEntry }
+                                        .Where(value => !string.IsNullOrWhiteSpace(value))));
                                 continue;
                             }
                             _gameplay.BroadcastDeparture(follower, previousRoom.Id, command.Name);
@@ -220,7 +269,8 @@ public sealed class RuntimeCommandDispatcher
                             var followerRoom = _gameplay.ShouldRenderClassicPartyFollowRoom(follower)
                                 ? _gameplay.RenderRoom(follower)
                                 : string.Empty;
-                            var followerDetails = string.Join(Environment.NewLine, new[] { followerTrap, followerRoom }
+                            var followerDetails = string.Join(Environment.NewLine,
+                                new[] { followerTrap, followerExitBefore, followerExitAfter, followerRoomEntry, followerRoom }
                                 .Where(value => !string.IsNullOrWhiteSpace(value)));
                             follower.EnqueueMessage($"-- Following your Party leader {command.Name} --" +
                                 (followerDetails.Length == 0 ? string.Empty : Environment.NewLine + followerDetails));

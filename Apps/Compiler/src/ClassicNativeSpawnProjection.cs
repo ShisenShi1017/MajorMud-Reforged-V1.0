@@ -19,6 +19,7 @@ internal static class ClassicNativeSpawnProjection
     private const string RoomCapRowsSha256 = "e45013fcca7350d9ff1561e17f780a1a116b53d58c345cb055b7fda1e760fe2b";
     private const string RoomRowsSha256 = "d51f51d17c36cdc6bb8212dfab6a6217b831f7401d0d4e473352888d3798dea1";
     private const string RoomSpellRowsSha256 = "797237c16c294e082197adecd132696c675d1fbc9409cf3bd3ca7901d0bf4fca";
+    private const string RoomSpellTriggerRowsSha256 = "59cca9ddbe76aca0d5d27611ed2dfcec68ced85457b38b0de179408fb4e1deb5";
     private const string MonsterRowsSha256 = "48ac6a8ac5b4df0edd2bf2288b0c20175c06a960ceb6b7f8c4cb40a5e7856cc5";
 
     internal sealed record ProjectionReport(
@@ -36,6 +37,7 @@ internal static class ClassicNativeSpawnProjection
         var roomRules = ReadRooms(repositoryRoot);
         var roomCaps = ReadRoomCaps(repositoryRoot);
         var roomSpells = ReadRoomSpells(repositoryRoot, roomRules);
+        var roomSpellTriggers = ReadRoomSpellTriggers(repositoryRoot, roomRules);
         var monsterRules = ReadMonsters(repositoryRoot);
         if (roomCaps.Count != roomRules.Count || roomRules.Keys.Any(key => !roomCaps.ContainsKey(key)))
             throw new InvalidDataException("Native room capacity keys do not match original room source.");
@@ -56,7 +58,8 @@ internal static class ClassicNativeSpawnProjection
             .Where(f => f.Name.Equals("spells", StringComparison.OrdinalIgnoreCase))
             .SelectMany(f => f.Records)
             .Select(r => Number(r, "legacy_id")).Where(id => id > 0).ToHashSet();
-        var missingSpellIds = roomSpells.Values.Distinct().Where(id => !spellLegacyIds.Contains(id)).ToArray();
+        var missingSpellIds = roomSpells.Values.Concat(roomSpellTriggers.Values.Select(v => v.PicklockSpellId))
+            .Distinct().Where(id => id > 0 && !spellLegacyIds.Contains(id)).ToArray();
         if (missingSpellIds.Length > 0)
             throw new InvalidDataException("Original rooms reference missing spell definitions: "
                 + string.Join(", ", missingSpellIds.OrderBy(id => id)));
@@ -118,6 +121,9 @@ internal static class ClassicNativeSpawnProjection
                     environment["room_spell_id"] = spellId;
                     // A native zero must survive every later environment overlay.
                     environment["native_room_spell_verified"] = true;
+                    var trigger = roomSpellTriggers.GetValueOrDefault((map, room));
+                    environment["native_room_spell_entry_on_change"] = trigger?.EntryOnChange ?? false;
+                    environment["native_room_picklock_spell_id"] = trigger?.PicklockSpellId ?? 0;
                     roomSpellRecordsProjected++;
                 }
             }
@@ -216,6 +222,30 @@ internal static class ClassicNativeSpawnProjection
             || spells.GetValueOrDefault((1, 2342)) != 753)
             throw new InvalidDataException("Original room spell evidence failed reconciliation.");
         return spells;
+    }
+
+    private sealed record RoomSpellTrigger(bool EntryOnChange, int PicklockSpellId);
+
+    private static Dictionary<(int Map, int Room), RoomSpellTrigger> ReadRoomSpellTriggers(
+        string root, IReadOnlyDictionary<(int Map, int Room), RoomRule> rooms)
+    {
+        var rows = LoadVerifiedLines(root, RoomRelativePath, RoomSpellTriggerRowsSha256, 2);
+        var result = new Dictionary<(int Map, int Room), RoomSpellTrigger>();
+        foreach (var line in rows)
+        {
+            var n = ParseNumbers(line, 4);
+            if (!rooms.ContainsKey((n[0], n[1])) || n[2] is not (0 or 1)
+                || n[3] < 0 || n[3] > ushort.MaxValue
+                || (n[2] == 0 && n[3] == 0)
+                || !result.TryAdd((n[0], n[1]), new(n[2] == 1, n[3])))
+                throw new InvalidDataException("Native room spell entry/picklock evidence is invalid.");
+        }
+        if (result.Count != 116 || result.Values.Count(x => x.EntryOnChange) != 97
+            || result.Values.Count(x => x.PicklockSpellId > 0) != 19
+            || result.GetValueOrDefault((1, 288)) is not null
+            || result.GetValueOrDefault((1, 2342)) is not null)
+            throw new InvalidDataException("Original room spell entry/picklock evidence disagrees with DLL.");
+        return result;
     }
 
     private static Dictionary<(int Map, int Room), int> ReadRoomCaps(string root)

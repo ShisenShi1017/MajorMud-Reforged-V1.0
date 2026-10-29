@@ -524,49 +524,185 @@ public sealed partial class RuntimeLiveGameplayFacade
         return changed ? state with { ActiveEffects = active } : state;
     }
 
-    private readonly HashSet<int> _unresolvedClassicRoomSpellEffects = new();
+    private readonly HashSet<string> _unresolvedClassicRoomSpellEffects = new(StringComparer.OrdinalIgnoreCase);
+
+    // The original _medium_update_characters toggles its room-spell enable bit
+    // once for the whole character sweep, not separately for each active player.
+    internal static bool NextClassicRoomSpellMediumPhase(bool previous) => !previous;
+
+    internal static bool ShouldTriggerClassicRoomEntrySpell(RuntimeRoom previous, RuntimeRoom destination) =>
+        destination.EnvironmentRoomSpellNativeVerified
+        && destination.EnvironmentRoomSpellEntryOnChange
+        && destination.EnvironmentRoomSpellId > 0
+        && previous.EnvironmentRoomSpellId != destination.EnvironmentRoomSpellId;
 
     private void TickClassicNativeRoomSpell(RuntimeSession session, DateTimeOffset nowUtc)
     {
         if (!session.World.Definition.Type.Equals("Classic", StringComparison.OrdinalIgnoreCase)
-            || session.Actor is not RuntimeCharacterActor actor
             || !session.CurrentRoom.EnvironmentRoomSpellNativeVerified
             || session.CurrentRoom.EnvironmentRoomSpellId <= 0)
             return;
+        var message = ApplyClassicNativeRoomSpell(session, session.CurrentRoom.EnvironmentRoomSpellId,
+            "ambient-medium", nowUtc);
+        if (!string.IsNullOrWhiteSpace(message)) session.EnqueueMessage(message);
+    }
 
-        var legacyId = session.CurrentRoom.EnvironmentRoomSpellId;
+    public string ApplyClassicNativeRoomEntrySpell(RuntimeSession session, RuntimeRoom previous)
+    {
+        if (!session.World.Definition.Type.Equals("Classic", StringComparison.OrdinalIgnoreCase)
+            || !ShouldTriggerClassicRoomEntrySpell(previous, session.CurrentRoom))
+            return string.Empty;
+        return ApplyClassicNativeRoomSpell(session, session.CurrentRoom.EnvironmentRoomSpellId,
+            "room-entry", DateTimeOffset.UtcNow);
+    }
+
+    public string ApplyClassicNativeRoomPicklockSpell(RuntimeSession session)
+    {
+        if (!session.World.Definition.Type.Equals("Classic", StringComparison.OrdinalIgnoreCase)
+            || !session.CurrentRoom.EnvironmentRoomSpellNativeVerified
+            || session.CurrentRoom.EnvironmentRoomPicklockSpellId <= 0)
+            return string.Empty;
+        // Native _cmd_picklock 0x454EA3..0x454ED4 invokes +0x5FA
+        // after its successful door-state transition, not on failure.
+        return ApplyClassicNativeRoomSpell(session,
+            session.CurrentRoom.EnvironmentRoomPicklockSpellId,
+            "successful-picklock", DateTimeOffset.UtcNow);
+    }
+
+    public string ApplyClassicNativeRoomExitSpell(
+        RuntimeSession session, RuntimeRoom sourceRoom, string direction, bool afterMovement)
+    {
+        if (!session.World.Definition.Type.Equals("Classic", StringComparison.OrdinalIgnoreCase))
+            return string.Empty;
+        var exit = session.World.FindExit(sourceRoom, direction);
+        if (exit is null) return string.Empty;
+        var nativeExits = RuntimeClassicRoomsWorldNativeAuthority.Load(
+            _characters.ProjectRoot, session.World.Definition.Id);
+        if (!nativeExits.TryGet(exit.Id, out var native) || native.RoomType != 22)
+            return string.Empty;
+        if (native.FromMapNumber != sourceRoom.MapId
+            || native.FromRoomNumber != sourceRoom.RoomNumber)
+            throw new InvalidDataException($"Classic source exit spell endpoints disagree: {exit.Id}");
+        var legacyId = afterMovement ? native.Para2 : native.Para1;
+        if (legacyId <= 0) return string.Empty;
+        return ApplyClassicNativeRoomSpell(session, legacyId,
+            afterMovement ? "exit-after-movement" : "exit-before-movement", DateTimeOffset.UtcNow);
+    }
+
+    private string ApplyClassicNativeRoomSpell(
+        RuntimeSession session, int legacySpellId, string invocation, DateTimeOffset nowUtc)
+    {
+        if (legacySpellId <= 0 || session.Actor is not RuntimeCharacterActor actor
+            || !session.World.Definition.Type.Equals("Classic", StringComparison.OrdinalIgnoreCase))
+            return string.Empty;
+
         var spell = NpcSpellCatalog(session.World.Definition.Id).Spells.FirstOrDefault(candidate =>
-            int.TryParse(candidate.LegacyId, out var parsed) && parsed == legacyId);
+            int.TryParse(candidate.LegacyId, out var id) && id == legacySpellId);
         if (spell is null)
-            throw new InvalidDataException(
-                $"Original room spell {legacyId} in {session.CurrentRoom.Id} is absent from compiled spells.");
+            throw new InvalidDataException($"Original room/exit spell {legacySpellId} is missing.");
 
-        // Native _room_cast_on_user has separate chance/resistance/effect gates.
-        // Only already-supported idempotent removal effects can be applied
-        // without inventing damage, teleport, item scatter, or textblock scripts.
+        var character = _characters.LoadCharacter(actor.Id);
+        if (character is null || character.HitPoints <= 0) return string.Empty;
+
+        // WCCMMUD.DLL:_room_cast_on_user at 0x47572F processes ten ordered
+        // ability slots. Its +0x474811 dispatcher treats abilities 122, 153,
+        // 115 and 144 as non-mutating in this direct-effect branch. In particular,
+        // do NOT call ApplyDecodedCureAndDispel for the room spell 515.
         var abilities = spell.DecodedAbilities;
-        var safeRemoval = abilities.Any(ability => ability.AbilityId is 122 or 153)
-            && abilities.All(ability => ability.AbilityId is 122 or 153 or 144 or 148 or 115);
-        if (!safeRemoval)
+        if (abilities.All(ability => ability.AbilityId is 115 or 122 or 144 or 153))
+            return string.Empty;
+
+        // The only currently promoted destructive branch is native ability 1:
+        // a single direct damage slot and metadata-only auxiliary abilities.
+        // All compound or scripted effects remain explicitly gated.
+        if (!IsVerifiedNativeRoomDirectDamage(spell))
         {
+            var warningKey = legacySpellId.ToString(CultureInfo.InvariantCulture) + ":" + invocation;
             lock (_livePowerGate)
             {
-                if (_unresolvedClassicRoomSpellEffects.Add(legacyId))
+                if (_unresolvedClassicRoomSpellEffects.Add(warningKey))
                     System.Diagnostics.Trace.TraceWarning(
-                        $"Native room spell {legacyId} ({spell.Name}) requires unverified execution gates; skipped unsafe ambient effects.");
+                        $"Classic room spell {legacySpellId} ({spell.Name}) from {invocation} " +
+                        "has compound or unverified native effects; no approximate cast was performed.");
             }
-            return;
+            return string.Empty;
         }
 
         lock (_livePowerGate)
         {
             EnsureLivePowers(session);
-            var target = new RuntimeSpellTarget("character", actor.Id);
-            var removed = ApplyDecodedCureAndDispel(session, spell, target);
-            if (removed <= 0) return;
-            SynchronizeCharacterSpellStatuses(target, nowUtc, "runtime.classic.native_room_spell");
-            PersistLivePowers(session.World.Definition.Id);
+            if (_liveSpellEngine!.EffectsFor(actor.Id).Any(effect =>
+                effect.SpellId.Equals(spell.Id, StringComparison.OrdinalIgnoreCase)))
+                return string.Empty;
+
+            // Native room_cast_on_user uses genrdn(1,100) and the maximum
+            // magnitude / 2 (capped at 97) for target type 2, or type 1 when
+            // user ability 51 is active. The host RNG scheduling remains a
+            // separate parity boundary; this uses the existing live random source.
+            if (int.TryParse(spell.TargetType, out var targetType)
+                && (targetType == 2 || targetType == 1 && ReadAbilityValue(character, 51) > 0))
+            {
+                var threshold = Math.Clamp(spell.MaximumEffect / 2, 0, 97);
+                if (Random.Shared.Next(1, 101) <= threshold)
+                    return string.Empty;
+            }
+
+            var resistance = ResolveClassicNativeRoomResistance(character, spell);
+            var magnitude = RollInclusive(spell.MinimumEffect, spell.MaximumEffect);
+            var applied = checked((100 - resistance) * magnitude) / 100;
+            if (applied == 0) return string.Empty;
+            // Native damage can become healing above 100% elemental resistance.
+            // The existing managed character model enforces maximum hit points.
+            if (applied < 0)
+            {
+                var healed = Math.Min(character.MaximumHitPoints,
+                    checked(character.HitPoints - applied));
+                _characters.SaveCharacter(character with
+                {
+                    HitPoints = healed, UpdatedAtUtc = nowUtc
+                }, "runtime.classic.room_spell.native_resistance_heal");
+                return string.Empty;
+            }
+
+            var nextHp = Math.Max(0, character.HitPoints - applied);
+            if (nextHp == 0)
+                return CompletePlayerDefeat(session, character);
+            _characters.SaveCharacter(character with
+            {
+                HitPoints = nextHp, UpdatedAtUtc = nowUtc
+            }, "runtime.classic.room_spell.native_direct_damage");
+            return string.Empty;
         }
+    }
+
+    internal static bool IsVerifiedNativeRoomDirectDamage(RuntimeSpellDefinition spell) =>
+        spell.Duration == 0
+        && spell.NativeResistAbilityRaw == 0
+        && int.TryParse(spell.AttackType, out var attackType)
+        && attackType is 1 or 2 or 6 or 8
+        && int.TryParse(spell.TargetType, out var targetType)
+        && targetType is 0 or 2 or 8
+        && spell.DecodedAbilities.Count(ability => ability.AbilityId == 1) == 1
+        && spell.DecodedAbilities.All(ability => ability.AbilityId is 1 or 115 or 144);
+
+    private static int ResolveClassicNativeRoomResistance(
+        RuntimeCharacterRecord character, RuntimeSpellDefinition spell)
+    {
+        // _get_spell_random_modifier at 0x43F608 is called for spell types 0..2.
+        // Resist type indexes 0..6 map to native ability 3/5/65/66,
+        // no modifier (4), 147, and 21 respectively.
+        if (!int.TryParse(spell.SpellType, out var spellType) || spellType is < 0 or > 2)
+            return 0;
+        return spell.NativeResistTypeRaw switch
+        {
+            0 => ReadElementalResistance(character, "cold"),
+            1 => ReadElementalResistance(character, "fire"),
+            2 => ReadElementalResistance(character, "stone"),
+            3 => ReadElementalResistance(character, "lightning"),
+            5 => ReadElementalResistance(character, "water"),
+            6 => ReadAbilityValue(character, 21),
+            _ => 0
+        };
     }
 
     private void TickClassicLiveStatuses(RuntimeSession session, DateTimeOffset nowUtc)
@@ -733,6 +869,39 @@ public sealed class RuntimeClassicLiveStatusEffectsSmokeReport
         try
         {
             var catalog = RuntimeClassicLiveStatusCatalog.Load(projectRoot, worldId);
+            if (worldId.Equals("Classic", StringComparison.OrdinalIgnoreCase))
+            {
+                var nativeSpells = RuntimeSpellCatalog.Load(projectRoot, worldId);
+                Require(RuntimeLiveGameplayFacade.IsVerifiedNativeRoomDirectDamage(
+                    nativeSpells.Require("spell.526")), "native-room-magma-heat-direct-ability");
+                report.Checks.Add("native-room-magma-heat-direct-ability");
+                Require(RuntimeLiveGameplayFacade.IsVerifiedNativeRoomDirectDamage(
+                    nativeSpells.Require("spell.485")), "native-room-swamp-poison-direct-ability");
+                report.Checks.Add("native-room-swamp-poison-direct-ability");
+                Require(!RuntimeLiveGameplayFacade.IsVerifiedNativeRoomDirectDamage(
+                    nativeSpells.Require("spell.753")), "native-silver-river-textblock-not-invented-damage");
+                report.Checks.Add("native-silver-river-textblock-not-invented-damage");
+                Require(!RuntimeLiveGameplayFacade.IsVerifiedNativeRoomDirectDamage(
+                    nativeSpells.Require("spell.515")), "native-stop-drowning-no-direct-cure-or-damage");
+                report.Checks.Add("native-stop-drowning-no-direct-cure-or-damage");
+                Require(RuntimeLiveGameplayFacade.NextClassicRoomSpellMediumPhase(false)
+                    && !RuntimeLiveGameplayFacade.NextClassicRoomSpellMediumPhase(true),
+                    "native-room-spell-alternating-medium-phase");
+                report.Checks.Add("native-room-spell-alternating-medium-phase");
+                var previous = new RuntimeRoom { EnvironmentRoomSpellId = 753,
+                    EnvironmentRoomSpellNativeVerified = true };
+                var next = new RuntimeRoom { EnvironmentRoomSpellId = 918,
+                    EnvironmentRoomSpellNativeVerified = true, EnvironmentRoomSpellEntryOnChange = true };
+                Require(RuntimeLiveGameplayFacade.ShouldTriggerClassicRoomEntrySpell(previous, next),
+                    "native-room-entry-on-spell-change");
+                report.Checks.Add("native-room-entry-on-spell-change");
+                Require(!RuntimeLiveGameplayFacade.ShouldTriggerClassicRoomEntrySpell(next, next)
+                    && !RuntimeLiveGameplayFacade.ShouldTriggerClassicRoomEntrySpell(
+                        previous, new RuntimeRoom { EnvironmentRoomSpellId = 918,
+                            EnvironmentRoomSpellNativeVerified = true }),
+                    "native-room-entry-no-repeat-without-native-flag");
+                report.Checks.Add("native-room-entry-no-repeat-without-native-flag");
+            }
             Require(catalog.Definitions.Any(x => x.IsPoison && x.DurationRounds > 0), "decoded-poison-policies"); report.Checks.Add("decoded-poison-policies");
             Require(catalog.Definitions.Any(x => x.CuresPoison), "decoded-cure-poison-policies"); report.Checks.Add("decoded-cure-poison-policies");
             var removesSpellOwners = catalog.Definitions.Where(x => x.Abilities.Any(ability => ability.AbilityId == 122)).ToArray();

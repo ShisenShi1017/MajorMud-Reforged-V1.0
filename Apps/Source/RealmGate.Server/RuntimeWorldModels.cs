@@ -65,6 +65,8 @@ public sealed class RuntimeRoom
     public int EnvironmentLightLevel { get; init; }
     public int EnvironmentRoomSpellId { get; init; }
     public bool EnvironmentRoomSpellNativeVerified { get; init; }
+    public bool EnvironmentRoomSpellEntryOnChange { get; init; }
+    public int EnvironmentRoomPicklockSpellId { get; init; }
     public int EnvironmentLairId { get; init; }
     public int EnvironmentDelay { get; init; }
     public int EnvironmentRoomType { get; init; }
@@ -91,7 +93,9 @@ public sealed class RuntimeRoom
             ObjectType = ObjectType, WorldScopes = WorldScopes, DeclaredExitIds = DeclaredExitIds,
             NpcDefinition = NpcDefinition, CommandDefinition = CommandDefinition, PlacedDefinition = PlacedDefinition,
             ImportedRoomType = ImportedRoomType, ImportedShopNumber = ImportedShopNumber, ImportedLightLevel = ImportedLightLevel,
-            EnvironmentLightLevel = EnvironmentLightLevel, EnvironmentRoomSpellId = EnvironmentRoomSpellId, EnvironmentRoomSpellNativeVerified = EnvironmentRoomSpellNativeVerified, EnvironmentLairId = EnvironmentLairId,
+            EnvironmentLightLevel = EnvironmentLightLevel, EnvironmentRoomSpellId = EnvironmentRoomSpellId, EnvironmentRoomSpellNativeVerified = EnvironmentRoomSpellNativeVerified,
+            EnvironmentRoomSpellEntryOnChange = EnvironmentRoomSpellEntryOnChange, EnvironmentRoomPicklockSpellId = EnvironmentRoomPicklockSpellId,
+            EnvironmentLairId = EnvironmentLairId,
             EnvironmentDelay = EnvironmentDelay, EnvironmentRoomType = EnvironmentRoomType, EnvironmentAttributes = EnvironmentAttributes,
             EnvironmentDeathRoomId = EnvironmentDeathRoomId, EnvironmentGangHouseId = EnvironmentGangHouseId, EnvironmentRespawnMinutes = EnvironmentRespawnMinutes,
             EnvironmentMaxAreaCap = EnvironmentMaxAreaCap, EnvironmentLinkedSpawnRoom = EnvironmentLinkedSpawnRoom, EnvironmentEvidence = EnvironmentEvidence,
@@ -114,6 +118,8 @@ public sealed class RuntimeRoom
             EnvironmentLightLevel = environment.LightLevel,
             EnvironmentRoomSpellId = EnvironmentRoomSpellNativeVerified ? EnvironmentRoomSpellId : environment.RoomSpellId,
             EnvironmentRoomSpellNativeVerified = EnvironmentRoomSpellNativeVerified,
+            EnvironmentRoomSpellEntryOnChange = EnvironmentRoomSpellEntryOnChange,
+            EnvironmentRoomPicklockSpellId = EnvironmentRoomPicklockSpellId,
             EnvironmentLairId = environment.LairId,
             EnvironmentDelay = environment.Delay, EnvironmentRoomType = environment.RoomType, EnvironmentAttributes = environment.Attributes,
             EnvironmentDeathRoomId = environment.DeathRoomId, EnvironmentGangHouseId = environment.GangHouseId, EnvironmentRespawnMinutes = environment.RespawnMinutes,
@@ -164,6 +170,10 @@ public sealed class RuntimeRoom
             EnvironmentRoomSpellId = environment.ValueKind == JsonValueKind.Object ? JsonValueReader.ReadInt(environment, "room_spell_id", 0) : 0,
             EnvironmentRoomSpellNativeVerified = environment.ValueKind == JsonValueKind.Object
                 && JsonValueReader.ReadBool(environment, "native_room_spell_verified", false),
+            EnvironmentRoomSpellEntryOnChange = environment.ValueKind == JsonValueKind.Object
+                && JsonValueReader.ReadBool(environment, "native_room_spell_entry_on_change", false),
+            EnvironmentRoomPicklockSpellId = environment.ValueKind == JsonValueKind.Object
+                ? JsonValueReader.ReadInt(environment, "native_room_picklock_spell_id", 0) : 0,
             EnvironmentLairId = environment.ValueKind == JsonValueKind.Object ? JsonValueReader.ReadInt(environment, "room_lair_id", 0) : 0,
             EnvironmentDelay = environment.ValueKind == JsonValueKind.Object ? JsonValueReader.ReadInt(environment, "room_delay", 0) : 0,
             EnvironmentRoomType = environment.ValueKind == JsonValueKind.Object ? JsonValueReader.ReadInt(environment, "room_type", 0) : 0,

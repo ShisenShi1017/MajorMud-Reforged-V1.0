@@ -1904,7 +1904,11 @@ public sealed partial class RuntimeLiveGameplayFacade
             if(Random.Shared.Next(0,100)>=checked(picklocks+modifier)){result="Your skill fails you this time.";return true;}
             var timer=native.RoomType==2?native.Para4:native.Para3;
             living.WriteClassicDoorExitStateWithNativeReset(exit.Id,1,Math.Max(1,timer),DateTimeOffset.UtcNow);
-            result=$"You successfully unlocked the {(native.RoomType==11?"gate":"door")}."; return true;
+            result=$"You successfully unlocked the {(native.RoomType==11?"gate":"door")}.";
+            var nativeRoomSpell = ApplyClassicNativeRoomPicklockSpell(session);
+            if (!string.IsNullOrWhiteSpace(nativeRoomSpell))
+                result += Environment.NewLine + nativeRoomSpell;
+            return true;
         }
 
         // Native door BASH handles RoomType 7/11 directly; combat Bash ability 31 is only the fallback branch.

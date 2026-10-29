@@ -33,7 +33,9 @@ public sealed record RuntimeSpellDefinition(
     string DescriptionLookMessage = "",
     string DescriptionStatusMessage = "",
     IReadOnlyList<RuntimeSpellDescriptionMessage>? DescriptionMessages = null,
-    RuntimeSpellStartMessage? StartMessage = null);
+    RuntimeSpellStartMessage? StartMessage = null,
+    int NativeResistTypeRaw = 0,
+    int NativeResistAbilityRaw = 0);
 
 public sealed record RuntimeKnownSpell(string CharacterId, string SpellId, DateTimeOffset LearnedAtUtc, IReadOnlyDictionary<string, string>? Metadata = null);
 public sealed record RuntimeSpellResources(int Mana, int Energy);
@@ -117,6 +119,8 @@ public sealed class RuntimeSpellCatalog
             var levelsForMaximumIncrease = 0;
             var maximumIncrease = 0;
             var levelCap = 0;
+            var nativeResistType = 0;
+            var nativeResistAbility = 0;
             var castMessageId = 0;
             var castMessage = string.Empty;
             var descriptionMessageId = 0;
@@ -146,6 +150,8 @@ public sealed class RuntimeSpellCatalog
                 levelsForMaximumIncrease = Integer(publicFields, "levels_for_max_increase");
                 maximumIncrease = Integer(publicFields, "max_increase");
                 levelCap = Integer(publicFields, "level_cap");
+                nativeResistType = Integer(publicFields, "resist_type");
+                nativeResistAbility = Integer(publicFields, "resist_ability");
                 if (publicFields.TryGetProperty("abilities_named", out var abilityArray)
                     && abilityArray.ValueKind == JsonValueKind.Array)
                 {
@@ -208,7 +214,8 @@ public sealed class RuntimeSpellCatalog
                 levelsForMinimumIncrease, minimumIncrease,
                 levelsForMaximumIncrease, maximumIncrease, levelCap,
                 castMessageId, castMessage, descriptionMessageId, descriptionMessage,
-                descriptionLookMessage, descriptionStatusMessage, descriptionMessages, startMessage)))
+                descriptionLookMessage, descriptionStatusMessage, descriptionMessages, startMessage,
+                nativeResistType, nativeResistAbility)))
                 throw new InvalidOperationException($"Duplicate generated spell id '{id}'.");
         }
         return catalog;

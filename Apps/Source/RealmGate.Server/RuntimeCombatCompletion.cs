@@ -8,19 +8,25 @@ public sealed partial class RuntimeLiveGameplayFacade
 {
     public const int ClassicCombatRoundMilliseconds = RuntimeClassicTimingAuthority.CombatRoundSeconds * 1000;
     public const int ClassicSpellSystemRoundMilliseconds = 3000;
+    private int _classicNativeRoomSpellMediumCycle;
 
     public async Task TickLiveStatusesAsync(CancellationToken cancellationToken)
     {
         var nowUtc = DateTimeOffset.UtcNow;
+        // Native _medium_update_characters flips a shared byte once per sweep.
+        // Its +0x600 ambient spells therefore run on alternating medium rounds.
+        var ambientRoomSpellPhase = (Interlocked.Increment(ref _classicNativeRoomSpellMediumCycle) & 1) != 0;
         var statusWorlds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
         foreach (var activeSession in _sessions.ActiveSessions)
         {
             cancellationToken.ThrowIfCancellationRequested();
+            // Native _medium_update_character evaluates the ambient room spell
+            // before duration/status upkeep for that character.
+            if (ambientRoomSpellPhase)
+                TickClassicNativeRoomSpell(activeSession, nowUtc);
+            // Reforged status upkeep owns one shared pass per world.
             if (statusWorlds.Add(activeSession.World.Definition.Id))
                 TickClassicLiveStatuses(activeSession, nowUtc);
-            // The native medium owner checks the current room for EACH player.
-            // Status expiration remains one pass per world, avoiding duplicated ticks.
-            TickClassicNativeRoomSpell(activeSession, nowUtc);
         }
         await Task.CompletedTask;
     }
