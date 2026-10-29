@@ -10,6 +10,12 @@ public sealed partial class RuntimeLivingWorldService
 {
     // These are native generated-population counters, not current-room occupancy.
     // The original SYSOP RESET commands can zero them without killing monsters.
+    // Source-equivalent Borland CRT bounded random draws for the native
+    // monster selector. The process-wide interleaving with other host gameplay
+    // RNG owners remains a separate parity boundary.
+    private readonly RuntimeClassicWorldgroupPrng _nativeSpawnPrng =
+        RuntimeClassicGlobalRngContractAuthority.CreateGameplayThreadStream(DateTimeOffset.Now);
+
     private readonly Dictionary<string, int> _nativeRoomGeneratedCounts = new(StringComparer.OrdinalIgnoreCase);
     private readonly Dictionary<string, int> _nativeAreaPopulationCounts = new(StringComparer.OrdinalIgnoreCase);
     private readonly Dictionary<string, DateTimeOffset> _nativeRoomLastKilledUtc = new(StringComparer.OrdinalIgnoreCase);
@@ -66,7 +72,7 @@ public sealed partial class RuntimeLivingWorldService
         // gate, as in WCCMMUD!_generate_monster. Never reroll a rejected
         // limited monster as an invented alternative.
         var selected = SelectNativeIndexedLairCandidate(
-            spawn.GroupDefinitions, () => Random.Shared.Next(1, 100));
+            spawn.GroupDefinitions, () => _nativeSpawnPrng.Genrdn(1, 100));
         if (selected is null)
             return null;
         if (selected.GameLimit > 0
