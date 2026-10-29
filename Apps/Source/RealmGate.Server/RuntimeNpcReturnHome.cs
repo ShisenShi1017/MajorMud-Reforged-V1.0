@@ -53,6 +53,11 @@ public sealed class RuntimeNpcReturnHomeService
         if (snapshot.WorldTick < 0) throw new ArgumentOutOfRangeException(nameof(snapshot.WorldTick));
 
         var rejections = new List<string>();
+        // Native dynamically generated monsters have an origin counter,
+        // not a behaviorally assigned home. Never admit teleport-home.
+        if (npc.Metadata.TryGetValue("native_classic_generated_monster", out var native)
+            && native.Equals("true", StringComparison.OrdinalIgnoreCase))
+            rejections.Add("native-generated-monsters-have-no-assigned-home");
         if (!npc.Alive) rejections.Add("npc-not-alive");
         if (!npc.RoomId.Equals(snapshot.CurrentRoomId, StringComparison.OrdinalIgnoreCase)) rejections.Add("current-room-mismatch");
         if (!snapshot.ReturnRequested) rejections.Add("return-home-not-explicitly-requested");
@@ -78,6 +83,11 @@ public sealed class RuntimeNpcReturnHomeMovementService
         if (snapshot.WorldTick < 0) throw new ArgumentOutOfRangeException(nameof(snapshot.WorldTick));
 
         var rejections = new List<string>();
+        // Native dynamically generated monsters have an origin counter,
+        // not a behaviorally assigned home. Never admit teleport-home.
+        if (npc.Metadata.TryGetValue("native_classic_generated_monster", out var native)
+            && native.Equals("true", StringComparison.OrdinalIgnoreCase))
+            rejections.Add("native-generated-monsters-have-no-assigned-home");
         if (!npc.Alive) rejections.Add("npc-not-alive");
         if (!npc.RoomId.Equals(snapshot.FromRoomId, StringComparison.OrdinalIgnoreCase)) rejections.Add("source-room-mismatch");
         if (!npc.Metadata.TryGetValue("npc_returning_home", out var returning) || !returning.Equals("true", StringComparison.OrdinalIgnoreCase))
