@@ -149,6 +149,9 @@ public sealed partial class RuntimeLivingWorldService
         if (worldTick is < 0) throw new ArgumentOutOfRangeException(nameof(worldTick));
         lock (_gate)
         {
+            var sourceSpawn = _world.FindSpawnById(spawnId);
+            if (sourceSpawn is not null && UsesNativeClassicGeneration(sourceSpawn))
+                return null; // Native generation has no fixed slots to reset.
             var members = _npcs.Values
                 .Where(x => x.SpawnId.Equals(spawnId, StringComparison.OrdinalIgnoreCase))
                 .OrderBy(x => x.InstanceId, StringComparer.OrdinalIgnoreCase)
