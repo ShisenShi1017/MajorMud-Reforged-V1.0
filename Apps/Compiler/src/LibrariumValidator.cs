@@ -61,6 +61,30 @@ public sealed class LibrariumValidator
         }
 
         if (record["spawn_model"] is not JsonObject model) return;
+
+        // A qualified native monster group must preserve its index range.
+        // Do not accept malformed qualifiers that could silently expand a lair
+        // into every member of its monster group.
+        var minIndex = GetInt(model, "monster_index_min");
+        var maxIndex = GetInt(model, "monster_index_max");
+        if ((minIndex == 0) != (maxIndex == 0)
+            || minIndex < 0 || maxIndex < minIndex)
+            diagnostics.Add(new(DiagnosticSeverity.Error, "SPN003", $"Spawn record {index} has an invalid monster index range.", sourceFile));
+
+        var groupIndex = GetString(model, "group_index");
+        if (!string.IsNullOrWhiteSpace(groupIndex))
+        {
+            var parts = groupIndex.Split('-', StringSplitOptions.TrimEntries);
+            if (parts.Length != 3
+                || !int.TryParse(parts[0], out var qualifiedGroup)
+                || !int.TryParse(parts[1], out var qualifiedMin)
+                || !int.TryParse(parts[2], out var qualifiedMax)
+                || qualifiedGroup != GetInt(model, "monster_type")
+                || qualifiedMin <= 0 || qualifiedMax < qualifiedMin
+                || (minIndex > 0 && (minIndex != qualifiedMin || maxIndex != qualifiedMax)))
+                diagnostics.Add(new(DiagnosticSeverity.Error, "SPN004", $"Spawn record {index} has an inconsistent or invalid native group_index.", sourceFile));
+        }
+
         var linkedRoom = GetInt(model, "linked_spawn_room");
         if (linkedRoom <= 0) return;
 
