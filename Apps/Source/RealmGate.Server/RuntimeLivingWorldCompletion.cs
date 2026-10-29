@@ -553,6 +553,16 @@ public sealed partial class RuntimeLivingWorldService
             }
             if(ai.Mode=="return-home")
             {
+                if (IsNativeClassicGeneratedNpc(npc))
+                {
+                    // Native ordinary monsters have a generating-room
+                    // counter reference, not a forced behavior home. Clearing
+                    // a target must never teleport a wandering monster.
+                    _npcAi[npc.InstanceId]=ai with{Mode="idle",
+                        CurrentRoomId=npc.RoomId,TargetActorId=null,LeashSteps=0,
+                        UpdatedAtUtc=nowUtc};
+                    continue;
+                }
                 _npcs[npc.InstanceId]=npc with{RoomId=npc.HomeRoomId};
                 _npcAi[npc.InstanceId]=ai with{Mode="idle",CurrentRoomId=npc.HomeRoomId,LeashSteps=0,UpdatedAtUtc=nowUtc};
                 results.Add("npc-return-home:"+npc.InstanceId); PublishLivingWorldEventLocked("npc-moved",npc.InstanceId,npc.HomeRoomId,nowUtc);
