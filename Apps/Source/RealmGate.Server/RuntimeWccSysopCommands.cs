@@ -736,6 +736,8 @@ public sealed class RuntimeWccSysopService
             return "Usage: SYSOP INITIALIZE|-1|<rate> [RECOVER]";
         if (arguments.Count == 2 && !arguments[1].Equals("recover", StringComparison.OrdinalIgnoreCase))
             return "Usage: SYSOP INITIALIZE <rate> RECOVER";
+        if (living.WorldId.Equals("Classic", StringComparison.OrdinalIgnoreCase))
+            return "Native INITIALIZE cannot safely be emulated by resetting fixed NPC slots; existing monsters were preserved. Use room-entry/background generation or native RESET ROOM/AREA.";
         var rate = arguments.Count == 0 ? "host-default" : arguments[0];
         var mode = arguments.Count == 2 ? "recovery" : "initialization";
         var now = DateTimeOffset.UtcNow;
