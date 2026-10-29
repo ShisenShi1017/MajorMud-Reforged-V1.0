@@ -51,6 +51,24 @@ public static class RuntimeClassicSpawnEligibilitySmokeReport
             // Expected: do not silently use another group's index range.
         }
 
+        // WCCMMUD native group-table scan: 29 replaces, 99 stops.
+        var drawIndex = 0;
+        var draws = new[] { 29, 99 };
+        var nativeChoice = RuntimeLivingWorldService.SelectNativeIndexedLairCandidate(
+            members, () => draws[drawIndex++]);
+        if (nativeChoice?.LegacyId != 265 || drawIndex != 2)
+            failures.Add("native-group-roll-29-replaces-99-stops");
+
+        var stopCount = 0;
+        var stopped = RuntimeLivingWorldService.SelectNativeIndexedLairCandidate(
+            members, () => { stopCount++; return 100; });
+        if (stopped?.LegacyId != 264 || stopCount != 1)
+            failures.Add("native-group-roll-100-stops-without-replacing");
+
+        var changed = RuntimeLivingWorldService.SelectNativeIndexedLairCandidate(members, () => 1);
+        if (changed?.LegacyId != 266)
+            failures.Add("native-group-roll-repeated-replacement");
+
         return failures;
     }
 }
