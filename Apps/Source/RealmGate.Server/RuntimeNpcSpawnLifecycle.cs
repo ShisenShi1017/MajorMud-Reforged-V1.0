@@ -315,6 +315,8 @@ public sealed partial class RuntimeLivingWorldService
             ClearTransientNpcExecutionMetadata(nativeMetadata);
             ClearRespawnBlockMetadata(nativeMetadata);
             ClearNpcTimedStatuses(nativeMetadata);
+            _ = ClearClassicNativeEnslaveOwnershipOnNpcDeath(nativeMetadata,
+                _world.Definition.Type.Equals("Classic", StringComparison.OrdinalIgnoreCase));
             nativeMetadata["npc_lifecycle_state"] = "native-generated-dead";
             nativeMetadata["npc_respawn_block_reason"] = "native-room-generation-replaces-fixed-slot";
             nativeMetadata["npc_last_death_at_utc"] = nowUtc.ToString("O");
@@ -337,6 +339,8 @@ public sealed partial class RuntimeLivingWorldService
         ClearTransientNpcExecutionMetadata(metadata);
         ClearRespawnBlockMetadata(metadata);
         ClearNpcTimedStatuses(metadata);
+        _ = ClearClassicNativeEnslaveOwnershipOnNpcDeath(metadata,
+            _world.Definition.Type.Equals("Classic", StringComparison.OrdinalIgnoreCase));
         var suppressed = IsSpawnSlotDisabled(metadata);
         var due = suppressed ? (DateTimeOffset?)null : ResolveNpcRespawnEligibilityUtc(current, nowUtc);
         metadata["npc_lifecycle_state"] = suppressed ? "respawn_suppressed" : "waiting_to_respawn";

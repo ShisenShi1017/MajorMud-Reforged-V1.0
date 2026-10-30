@@ -80,6 +80,27 @@ public sealed partial class RuntimeLivingWorldService
         }
     }
 
+    // WCCMMUD native monster death 0x44CCC8..0x44CD3F clears the
+    // enslaved owner's bit/state before removing the monster. Only the
+    // Classic Enslave bridge is owned here; ordinary pets, summons,
+    // quest escorts and custom-world companions keep their own lifecycles.
+    internal static bool ClearClassicNativeEnslaveOwnershipOnNpcDeath(
+        IDictionary<string, string> metadata, bool isClassicWorld)
+    {
+        if (!isClassicWorld
+            || !metadata.TryGetValue("npc_companion_authority", out var authority)
+            || !authority.StartsWith("classic.native.enslave:", StringComparison.OrdinalIgnoreCase)
+            || !metadata.TryGetValue("npc_companion_relationship_kind", out var relationship)
+            || !relationship.Equals("charmed", StringComparison.OrdinalIgnoreCase)
+            || !metadata.TryGetValue("npc_companion_owner_kind", out var ownerKind)
+            || !ownerKind.Equals("character", StringComparison.OrdinalIgnoreCase))
+            return false;
+
+        foreach (var key in metadata.Keys.Where(IsCompanionTransientMetadata).ToArray())
+            metadata.Remove(key);
+        return true;
+    }
+
     private static bool IsCompanionTransientMetadata(string key) =>
         key.StartsWith("npc_companion_owner_", StringComparison.OrdinalIgnoreCase) ||
         key.Equals("npc_companion_relationship_kind", StringComparison.OrdinalIgnoreCase) ||
@@ -102,6 +123,46 @@ public sealed class RuntimeNpcCompanionLifecycleCleanupSmokeReport
             var method = typeof(RuntimeLivingWorldService).GetMethod(nameof(RuntimeLivingWorldService.CleanupNpcCompanionLifecycle));
             Require(method is not null, "companion-lifecycle-cleanup-exposed");
             report.Checks.Add("companion-lifecycle-cleanup-exposed");
+            var nativeEnslave = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase)
+            {
+                ["npc_companion_owner_kind"] = "character",
+                ["npc_companion_owner_id"] = "enslave-caster",
+                ["npc_companion_relationship_kind"] = "charmed",
+                ["npc_companion_authority"] = "classic.native.enslave:spell.55",
+                ["npc_companion_assigned_at_utc"] = DateTimeOffset.UnixEpoch.ToString("O"),
+                ["npc_companion_follow_pending"] = "true",
+                ["npc_companion_last_combat_assist_target_id"] = "unrelated-target",
+                ["npc_lifecycle_state"] = "spawned",
+                ["unrelated_metadata"] = "retained"
+            };
+            var customNative = new Dictionary<string, string>(nativeEnslave, StringComparer.OrdinalIgnoreCase);
+            var questCompanion = new Dictionary<string, string>(nativeEnslave, StringComparer.OrdinalIgnoreCase)
+            {
+                ["npc_companion_authority"] = "custom.quest.charm"
+            };
+            var unrelatedPet = new Dictionary<string, string>(nativeEnslave, StringComparer.OrdinalIgnoreCase)
+            {
+                ["npc_companion_relationship_kind"] = "pet"
+            };
+            Require(RuntimeLivingWorldService.ClearClassicNativeEnslaveOwnershipOnNpcDeath(
+                    nativeEnslave, true)
+                && !nativeEnslave.ContainsKey("npc_companion_owner_id")
+                && !nativeEnslave.ContainsKey("npc_companion_authority")
+                && !nativeEnslave.ContainsKey("npc_companion_follow_pending")
+                && !nativeEnslave.ContainsKey("npc_companion_last_combat_assist_target_id")
+                && nativeEnslave["npc_lifecycle_state"] == "spawned"
+                && nativeEnslave["unrelated_metadata"] == "retained"
+                && !RuntimeLivingWorldService.ClearClassicNativeEnslaveOwnershipOnNpcDeath(
+                    customNative, false)
+                && customNative.ContainsKey("npc_companion_owner_id")
+                && !RuntimeLivingWorldService.ClearClassicNativeEnslaveOwnershipOnNpcDeath(
+                    questCompanion, true)
+                && questCompanion.ContainsKey("npc_companion_owner_id")
+                && !RuntimeLivingWorldService.ClearClassicNativeEnslaveOwnershipOnNpcDeath(
+                    unrelatedPet, true)
+                && unrelatedPet.ContainsKey("npc_companion_owner_id"),
+                "classic-native-enslave-death-clears-only-proven-owned-metadata");
+            report.Checks.Add("classic-native-enslave-death-clears-only-proven-owned-metadata");
         }
         catch (Exception ex) { report.Failures.Add(ex.Message); }
         return report;
