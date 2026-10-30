@@ -30,6 +30,40 @@ public static class RuntimeItemSmokeReport
         var equipDef = catalog.EquipmentDefinitions.First(x => x.Slot != "NONE" && !x.ClassRestricted && !x.RaceRestricted && x.MinimumLevel == 0 && x.MinimumStrength == 0 && string.IsNullOrWhiteSpace(x.Alignment) && string.IsNullOrWhiteSpace(x.Gender) && !catalog.Require(x.ItemId).RetainedOnDeath);
         var character = SmokeCharacter(owner, worldId);
 
+        Check("classic-saved-equipment-native-slot-migration", () =>
+        {
+            var definition = catalog.EquipmentDefinitions.First(x =>
+                x.Slot is not "NONE" and not "UNKNOWN");
+            var oldSlot = definition.Slot.Equals("BACK", StringComparison.OrdinalIgnoreCase)
+                ? "FEET" : "BACK";
+            var source = new RuntimeItemEngine(catalog);
+            var oldInstance = source.Create(definition.ItemId, RuntimeItemLocations.Character, owner, ownerId: owner);
+            var fixedInstance = source.Create(definition.ItemId, RuntimeItemLocations.Character, owner, ownerId: owner);
+            var savedOld = oldInstance with
+            {
+                LocationKind = RuntimeItemLocations.Equipment,
+                EquippedSlot = oldSlot
+            };
+            var savedCorrect = fixedInstance with
+            {
+                LocationKind = RuntimeItemLocations.Equipment,
+                EquippedSlot = definition.Slot
+            };
+            var single = RuntimeItemEngine.ReconcileSavedEquipmentSlots(new[] { savedOld }, catalog).Single();
+            if (single.InstanceId != savedOld.InstanceId || single.EquippedSlot != definition.Slot ||
+                single.Metadata?.GetValueOrDefault("classic_legacy_equipped_slot") != oldSlot)
+                throw new InvalidDataException("Legacy equipment position was not migrated and recorded.");
+
+            var conflict = RuntimeItemEngine.ReconcileSavedEquipmentSlots(
+                new[] { savedOld, savedCorrect }, catalog);
+            if (conflict.Count != 2 || conflict.Select(x => x.InstanceId).Distinct().Count() != 2 ||
+                conflict[1].EquippedSlot != definition.Slot ||
+                conflict[0].EquippedSlot is not null ||
+                conflict[0].LocationKind != RuntimeItemLocations.Character ||
+                conflict[0].Metadata?.GetValueOrDefault("classic_pending_equipped_slot") != definition.Slot)
+                throw new InvalidDataException("Legacy equipment conflict lost an item or displaced the native occupant.");
+        });
+
         Check("decoded-curse-remove-and-death-retention", () =>
         {
             var curseEngine = new RuntimeItemEngine(catalog);

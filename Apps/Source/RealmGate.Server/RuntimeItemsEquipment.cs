@@ -1504,10 +1504,98 @@ public sealed partial class RuntimeItemEngine
     {
         lock (_gate)
         {
-            _items = snapshot.Items.ToDictionary(item => item.InstanceId, StringComparer.OrdinalIgnoreCase);
-            _corpses = (snapshot.Corpses ?? Array.Empty<RuntimeCorpseState>()).ToDictionary(corpse => corpse.CorpseId, StringComparer.OrdinalIgnoreCase);
-            EnsureValid();
+            // Reconcile persisted legacy equipment positions against the currently
+            // generated Classic catalog before normal state validation. Never
+            // delete an item or silently overwrite another occupied position.
+            var restored = ReconcileSavedEquipmentSlots(snapshot.Items, _catalog);
+            var previousItems = _items;
+            var previousCorpses = _corpses;
+            try
+            {
+                _items = restored.ToDictionary(item => item.InstanceId, StringComparer.OrdinalIgnoreCase);
+                _corpses = (snapshot.Corpses ?? Array.Empty<RuntimeCorpseState>())
+                    .ToDictionary(corpse => corpse.CorpseId, StringComparer.OrdinalIgnoreCase);
+                EnsureValid();
+            }
+            catch
+            {
+                _items = previousItems;
+                _corpses = previousCorpses;
+                throw;
+            }
         }
+    }
+
+    internal static IReadOnlyList<RuntimeItemInstance> ReconcileSavedEquipmentSlots(
+        IEnumerable<RuntimeItemInstance> savedItems, RuntimeItemCatalog catalog)
+    {
+        var entries = savedItems.ToArray();
+        var reconciled = new RuntimeItemInstance[entries.Length];
+        var occupied = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+
+        // Reserve already correct positions first. A legacy slot must not
+        // displace an item which is already in its authoritative native slot.
+        foreach (var item in entries)
+        {
+            if (!item.LocationKind.Equals(RuntimeItemLocations.Equipment, StringComparison.OrdinalIgnoreCase)
+                || item.EquippedSlot is null) continue;
+            var relationship = catalog.Equipment(item.CanonicalItemId);
+            if (relationship is not null && string.Equals(item.EquippedSlot, relationship.Slot,
+                    StringComparison.OrdinalIgnoreCase))
+                occupied.Add((item.OwnerId ?? item.LocationId) + "\0" + item.EquippedSlot);
+        }
+
+        for (var index = 0; index < entries.Length; index++)
+        {
+            var item = entries[index];
+            if (!item.LocationKind.Equals(RuntimeItemLocations.Equipment, StringComparison.OrdinalIgnoreCase)
+                || item.EquippedSlot is null)
+            {
+                reconciled[index] = item;
+                continue;
+            }
+
+            var relationship = catalog.Equipment(item.CanonicalItemId);
+            if (relationship is null || string.Equals(item.EquippedSlot, relationship.Slot,
+                    StringComparison.OrdinalIgnoreCase))
+            {
+                reconciled[index] = item;
+                continue;
+            }
+
+            var metadata = item.Metadata is null
+                ? new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase)
+                : new Dictionary<string, string>(item.Metadata, StringComparer.OrdinalIgnoreCase);
+            metadata.TryAdd("classic_legacy_equipped_slot", item.EquippedSlot);
+            var key = (item.OwnerId ?? item.LocationId) + "\0" + relationship.Slot;
+            if (occupied.Add(key))
+            {
+                reconciled[index] = item with { EquippedSlot = relationship.Slot, Metadata = metadata };
+            }
+            else
+            {
+                // Occupied native position: preserve the physical item in its
+                // owner's inventory, retaining the old slot and desired slot
+                // for a later deliberate equip operation. NPC resets must
+                // reconstruct their own equipment rather than be converted
+                // to player inventory.
+                if (item.Metadata?.ContainsKey("npc_reset_equipped_slot") == true)
+                    throw new InvalidDataException(
+                        $"NPC saved equipment slot conflict for {item.InstanceId} at {relationship.Slot}.");
+                if (string.IsNullOrWhiteSpace(item.OwnerId))
+                    throw new InvalidDataException(
+                        $"Ownerless saved equipment slot conflict for {item.InstanceId}.");
+                metadata["classic_pending_equipped_slot"] = relationship.Slot;
+                reconciled[index] = item with
+                {
+                    LocationKind = RuntimeItemLocations.Character,
+                    LocationId = item.OwnerId!,
+                    EquippedSlot = null,
+                    Metadata = metadata
+                };
+            }
+        }
+        return reconciled;
     }
     public RuntimeItemValidationReport Validate() { lock (_gate) return RuntimeItemValidator.Validate(_catalog, _items.Values, _corpses.Values); }
 
