@@ -137,6 +137,61 @@ public sealed class RuntimeClassicLiveStatusCatalog
     }
 }
 
+// Original WCCMMUD +0xBE is a signed 16-bit poison/illness severity.
+// Ability 19 takes max (0x475184), Cure Poison (20) subtracts and clamps
+// zero (0x4751F8), and slow update (0x4221FA) applies severity as HP loss.
+public static class RuntimeClassicNativePoisonAuthority
+{
+    public const string SeverityKey = "classic.native.poison_severity";
+
+    public static bool HasState(RuntimeCharacterRecord character) =>
+        character.Conditions.ContainsKey(SeverityKey);
+
+    public static int Read(RuntimeCharacterRecord character) =>
+        character.Conditions.TryGetValue(SeverityKey, out var raw)
+        && int.TryParse(raw, NumberStyles.Integer, CultureInfo.InvariantCulture, out var severity)
+            ? Math.Clamp(severity, 0, short.MaxValue) : 0;
+
+    public static int ApplyPoison(int current, int incoming) =>
+        Math.Clamp(Math.Max(Math.Max(0, current), Math.Max(0, incoming)), 0, short.MaxValue);
+
+    public static int CurePoison(int current, int magnitude) =>
+        Math.Clamp(checked(Math.Max(0, current) - magnitude), 0, short.MaxValue);
+
+    public static int ApplySlowDamage(int hitPoints, int severity) =>
+        Math.Max(0, hitPoints - Math.Max(0, severity));
+
+    public static RuntimeCharacterRecord Set(
+        RuntimeCharacterRecord character, int severity, DateTimeOffset nowUtc)
+    {
+        var conditions = new Dictionary<string, string>(character.Conditions, StringComparer.OrdinalIgnoreCase)
+        {
+            [SeverityKey] = Math.Clamp(severity, 0, short.MaxValue).ToString(CultureInfo.InvariantCulture)
+        };
+        return character with { Conditions = conditions, UpdatedAtUtc = nowUtc };
+    }
+
+    public static int? ResolvedRoll(RuntimeActiveSpellEffect effect)
+    {
+        if (effect.Metadata is not null && effect.Metadata.TryGetValue("effect_roll", out var raw)
+            && int.TryParse(raw, NumberStyles.Integer, CultureInfo.InvariantCulture, out var value))
+            return value;
+        return effect.MinimumEffect == effect.MaximumEffect
+            ? effect.MinimumEffect : null;
+    }
+
+    public static int ReadOrDerive(RuntimeCharacterRecord character,
+        IEnumerable<RuntimeActiveSpellEffect> effects)
+    {
+        if (HasState(character)) return Read(character);
+        return effects.Where(effect => effect.Metadata is not null
+                && effect.Metadata.TryGetValue("effect_kind", out var kind)
+                && kind.Equals("poison", StringComparison.OrdinalIgnoreCase))
+            .Select(ResolvedRoll).Where(value => value.HasValue)
+            .Select(value => value!.Value).DefaultIfEmpty(0).Max();
+    }
+}
+
 public static class RuntimeClassicStatusProjection
 {
     public const string Prefix = "combat.status.";
@@ -279,6 +334,13 @@ public static class RuntimeClassicStatusProjection
         if (isOriginalClassicWorld && nativeAccuracy22Maximum != 0)
             Add(numeric, "accuracy", nativeAccuracy22Maximum);
 
+        if (character.WorldId.Equals("Classic", StringComparison.OrdinalIgnoreCase)
+            && RuntimeClassicNativePoisonAuthority.HasState(character))
+        {
+            flags.Remove("poisoned");
+            if (RuntimeClassicNativePoisonAuthority.Read(character) > 0)
+                flags.Add("poisoned");
+        }
         foreach (var pair in numeric)
             conditions[Prefix + pair.Key] = pair.Value.ToString(CultureInfo.InvariantCulture);
         foreach (var flag in flags)
@@ -306,6 +368,8 @@ public static class RuntimeClassicStatusProjection
         var maximumMana = Math.Max(0, checked(character.MaximumMana - Numeric(character, "maximum_mana")));
         foreach (var key in conditions.Keys.Where(x => x.StartsWith(Prefix, StringComparison.OrdinalIgnoreCase)).ToArray())
             conditions.Remove(key);
+        if (character.WorldId.Equals("Classic", StringComparison.OrdinalIgnoreCase))
+            conditions[RuntimeClassicNativePoisonAuthority.SeverityKey] = "0";
         conditions[Prefix + "active_count"] = "0";
         conditions[Prefix + "source"] = sourceRecordId;
         return character with
@@ -500,7 +564,10 @@ public sealed partial class RuntimeLiveGameplayFacade
             ["persist_across_logout"] = "1",
             ["non_magical"] = definition.NonMagical ? "1" : "0"
         };
-        if (definition.HasPeriodicDamage)
+        if (definition.HasPeriodicDamage
+            && (!session.World.Definition.Type.Equals("Classic", StringComparison.OrdinalIgnoreCase)
+                || !definition.Abilities.Any(ability => ability.AbilityId == 19)
+                || definition.Abilities.Any(ability => ability.AbilityId is 1 or 17)))
         {
             metadata["periodic_operation"] = "damage";
             metadata["tick_interval_rounds"] = "1";
@@ -780,7 +847,12 @@ public sealed partial class RuntimeLiveGameplayFacade
                 {
                     var metadata = new Dictionary<string, string>(effect.Metadata, StringComparer.OrdinalIgnoreCase);
                     var tickCount = 0;
-                    while ((isClassic
+                    // Native Poison (19) increases +0xBE and damages on the slow
+                    // character cycle, not as repeated medium spell-roll damage.
+                    var nativePoisonOnly = isClassic
+                        && definition.Abilities.Any(ability => ability.AbilityId == 19)
+                        && !definition.Abilities.Any(ability => ability.AbilityId is 1 or 17);
+                    while (!nativePoisonOnly && (isClassic
                         ? ShouldApplyClassicPeriodicTick(nextTick, nowUtc, effect.ExpiresAtUtc)
                         : nextTick <= nowUtc && (effect.ExpiresAtUtc is null || nextTick < effect.ExpiresAtUtc))
                         && tickCount < 1024)
@@ -862,14 +934,70 @@ public sealed partial class RuntimeLiveGameplayFacade
         return low == high ? low : Random.Shared.Next(low, checked(high + 1));
     }
 
-    private int ApplyDecodedCureAndDispel(RuntimeSession session, RuntimeSpellDefinition castSpell, RuntimeSpellTarget target)
+    private void ApplyClassicNativePoisonOnApplication(
+        RuntimeSession session, RuntimeActiveSpellEffect effect, DateTimeOffset nowUtc)
+    {
+        if (!session.World.Definition.Type.Equals("Classic", StringComparison.OrdinalIgnoreCase)
+            || !effect.Target.Kind.Equals("character", StringComparison.OrdinalIgnoreCase))
+            return;
+        var catalog = ClassicLiveStatusCatalog(session);
+        if (!catalog.TryGet(effect.SpellId, out var definition)
+            || !definition.Abilities.Any(ability => ability.AbilityId == 19))
+            return;
+        var roll = RuntimeClassicNativePoisonAuthority.ResolvedRoll(effect);
+        if (!roll.HasValue) return; // Missing native magnitude is not guessed.
+        var character = _characters.LoadCharacter(effect.Target.Id);
+        if (character is null) return;
+        var prior = _liveSpellEngine!.EffectsFor(effect.Target.Id)
+            .Where(active => !active.EffectId.Equals(effect.EffectId, StringComparison.OrdinalIgnoreCase));
+        var severity = RuntimeClassicNativePoisonAuthority.ReadOrDerive(character, prior);
+        var updated = RuntimeClassicNativePoisonAuthority.Set(
+            character, RuntimeClassicNativePoisonAuthority.ApplyPoison(severity, roll.Value), nowUtc);
+        _characters.SaveCharacter(updated);
+    }
+
+    private void ApplyClassicNativePoisonOnTermination(
+        RuntimeSession session, RuntimeActiveSpellEffect effect, DateTimeOffset nowUtc)
+    {
+        if (!session.World.Definition.Type.Equals("Classic", StringComparison.OrdinalIgnoreCase)
+            || effect.Duration <= 0
+            || !effect.Target.Kind.Equals("character", StringComparison.OrdinalIgnoreCase))
+            return;
+        var catalog = ClassicLiveStatusCatalog(session);
+        if (!catalog.TryGet(effect.SpellId, out var definition)
+            || !definition.Abilities.Any(ability => ability.AbilityId == 19))
+            return;
+        var roll = RuntimeClassicNativePoisonAuthority.ResolvedRoll(effect);
+        if (!roll.HasValue) return;
+        var character = _characters.LoadCharacter(effect.Target.Id);
+        if (character is null) return;
+        var prior = RuntimeClassicNativePoisonAuthority.ReadOrDerive(character,
+            _liveSpellEngine!.EffectsFor(effect.Target.Id));
+        _characters.SaveCharacter(RuntimeClassicNativePoisonAuthority.Set(character,
+            RuntimeClassicNativePoisonAuthority.CurePoison(prior, roll.Value), nowUtc));
+    }
+
+    private int ApplyDecodedCureAndDispel(RuntimeSession session, RuntimeSpellDefinition castSpell,
+        RuntimeSpellTarget target, int? effectRoll = null)
     {
         var catalog = ClassicLiveStatusCatalog(session);
         if (!catalog.TryGet(castSpell.Id, out var definition)) return 0;
         var effects = _liveSpellEngine!.EffectsFor(target.Id);
         var remove = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
-        if (definition.CuresPoison)
+        var nativeClassicCure = session.World.Definition.Type.Equals("Classic", StringComparison.OrdinalIgnoreCase)
+            && definition.CuresPoison;
+        if (definition.CuresPoison && !nativeClassicCure)
             foreach (var effect in effects.Where(IsPoisonEffect)) remove.Add(effect.EffectId);
+        if (nativeClassicCure)
+        {
+            // Native Cure Poison helper 0x43FCA7 clears the FIRST active
+            // spell whose native spell type is 6; it does not indiscriminately
+            // delete all active poison spells of type 1.
+            var firstTypeSix = effects.FirstOrDefault(effect =>
+                catalog.TryGet(effect.SpellId, out var typeDefinition)
+                && typeDefinition.SpellTypeRaw == 6);
+            if (firstTypeSix is not null) remove.Add(firstTypeSix.EffectId);
+        }
         foreach (var legacyId in definition.RemovedLegacySpellIds)
             if (catalog.TryGetLegacy(legacyId.ToString(CultureInfo.InvariantCulture), out var removedSpell))
                 foreach (var effect in effects.Where(x => x.SpellId.Equals(removedSpell.SpellId, StringComparison.OrdinalIgnoreCase)))
@@ -911,12 +1039,35 @@ public sealed partial class RuntimeLiveGameplayFacade
         var removedCount = 0;
         foreach (var effect in effects.Where(effect => remove.Contains(effect.EffectId)))
         {
-            if (nativeTermination && effect.Duration > 0
+            var nativeCureTypeSix = nativeClassicCure && catalog.TryGet(effect.SpellId,
+                out var cureRemovedDefinition) && cureRemovedDefinition.SpellTypeRaw == 6;
+            if ((nativeTermination || nativeCureTypeSix) && effect.Duration > 0
                 && effect.Target.Kind.Equals("character", StringComparison.OrdinalIgnoreCase))
                 ExecuteImmediateDecodedEndCast(session, effect, DateTimeOffset.UtcNow);
             else
                 _liveSpellEngine.RemoveEffect(effect.EffectId);
             removedCount++;
+        }
+        if (nativeClassicCure && target.Kind.Equals("character", StringComparison.OrdinalIgnoreCase))
+        {
+            var character = _characters.LoadCharacter(target.Id);
+            if (character is not null)
+            {
+                // Cure Poison reduces the +0xBE accumulator by each authored
+                // ability-20 magnitude. A missing variable roll remains unknown.
+                var severity = RuntimeClassicNativePoisonAuthority.ReadOrDerive(character, effects);
+                var changed = false;
+                foreach (var ability in definition.Abilities.Where(ability => ability.AbilityId == 20))
+                {
+                    var magnitude = ability.Value != 0 ? ability.Value : effectRoll;
+                    if (!magnitude.HasValue) continue;
+                    severity = RuntimeClassicNativePoisonAuthority.CurePoison(severity, magnitude.Value);
+                    changed = true;
+                }
+                if (changed)
+                    _characters.SaveCharacter(RuntimeClassicNativePoisonAuthority.Set(
+                        character, severity, DateTimeOffset.UtcNow));
+            }
         }
         return removedCount;
     }
@@ -1121,6 +1272,16 @@ public sealed class RuntimeClassicLiveStatusEffectsSmokeReport
                     "native-room-entry-no-repeat-without-native-flag");
                 report.Checks.Add("native-room-entry-no-repeat-without-native-flag");
             }
+            Require(RuntimeClassicNativePoisonAuthority.ApplyPoison(12, 8) == 12
+                && RuntimeClassicNativePoisonAuthority.ApplyPoison(12, 20) == 20
+                && RuntimeClassicNativePoisonAuthority.ApplyPoison(0, 40000) == short.MaxValue
+                && RuntimeClassicNativePoisonAuthority.CurePoison(20, 8) == 12
+                && RuntimeClassicNativePoisonAuthority.CurePoison(12, 99) == 0
+                && RuntimeClassicNativePoisonAuthority.CurePoison(12, -3) == 15
+                && RuntimeClassicNativePoisonAuthority.ApplySlowDamage(90, 12) == 78
+                && RuntimeClassicNativePoisonAuthority.ApplySlowDamage(6, 12) == 0,
+                "native-poison-max-cure-clamp-slow-damage");
+            report.Checks.Add("native-poison-max-cure-clamp-slow-damage");
             Require(catalog.Definitions.Any(x => x.IsPoison && x.DurationRounds > 0), "decoded-poison-policies"); report.Checks.Add("decoded-poison-policies");
             Require(catalog.Definitions.Any(x => x.CuresPoison), "decoded-cure-poison-policies"); report.Checks.Add("decoded-cure-poison-policies");
             var removesSpellOwners = catalog.Definitions.Where(x => x.Abilities.Any(ability => ability.AbilityId == 122)).ToArray();

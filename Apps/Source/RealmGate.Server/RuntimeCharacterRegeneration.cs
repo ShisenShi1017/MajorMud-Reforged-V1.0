@@ -124,7 +124,10 @@ public static class RuntimeClassicRegenerationCommandAuthority
     public const string MeditateSuccessMessage = "You are now meditating.";
 
     public static bool IsTooSick(RuntimeCharacterRecord character) =>
-        RuntimeClassicStatusProjection.Flag(character, "poisoned");
+        character.WorldId.Equals("Classic", StringComparison.OrdinalIgnoreCase)
+        && RuntimeClassicNativePoisonAuthority.HasState(character)
+            ? RuntimeClassicNativePoisonAuthority.Read(character) > 0
+            : RuntimeClassicStatusProjection.Flag(character, "poisoned");
 
     public static bool MeditationWillNotHelp(RuntimeCharacterRecord character) =>
         character.Mana >= character.MaximumMana;
@@ -234,6 +237,36 @@ public sealed partial class RuntimeLiveGameplayFacade
             // passive HP/MP before same-cycle REST/MEDITATE fast-counter work.
             if (schedulerStep.SlowDue)
             {
+                if (updated.WorldId.Equals("Classic", StringComparison.OrdinalIgnoreCase))
+                {
+                    // WCCMMUD _slow_update_character 0x4221FA..0x422250:
+                    // +0xBE severity damages once per 30-second slow cycle.
+                    // Historical saves without the new scalar derive its initial
+                    // value from the existing spell effects when available.
+                    var nativeEffects = _liveSpellEngine?.EffectsFor(actor.Id)
+                        ?? Array.Empty<RuntimeActiveSpellEffect>();
+                    var severity = RuntimeClassicNativePoisonAuthority.ReadOrDerive(updated, nativeEffects);
+                    if (!RuntimeClassicNativePoisonAuthority.HasState(updated) && severity > 0)
+                        updated = RuntimeClassicNativePoisonAuthority.Set(updated, severity, nowUtc);
+                    if (severity > 0)
+                    {
+                        session.EnqueueMessage("You feel ill.");
+                        if (RuntimeClassicNativePoisonAuthority.ApplySlowDamage(updated.HitPoints, severity) == 0)
+                        {
+                            // Reuse the established Classic defeat/auto-respawn
+                            // path and clear illness as original death reset does.
+                            var defeated = RuntimeClassicNativePoisonAuthority.Set(updated, 0, nowUtc);
+                            session.EnqueueMessage(CompletePlayerDefeat(session, defeated));
+                            continue;
+                        }
+                        updated = updated with
+                        {
+                            HitPoints = RuntimeClassicNativePoisonAuthority.ApplySlowDamage(
+                                updated.HitPoints, severity),
+                            UpdatedAtUtc = nowUtc
+                        };
+                    }
+                }
                 updated = RuntimeCharacterRegenerationAuthority.ApplyPassiveTick(updated, definition, nowUtc).Character;
                 // Native slow-character update decrements the two persistent EAT/DRINK
                 // fallback words at user +0xCE/+0xD0 once per 30-fast-tick generation.

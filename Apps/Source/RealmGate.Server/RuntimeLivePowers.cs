@@ -69,6 +69,10 @@ public sealed partial class RuntimeLiveGameplayFacade
         int AfterMessageId,
         string Output);
     private readonly object _livePowerGate = new();
+    // Isolated Classic cure magnitude stream. Exact native per-thread callback
+    // assignment remains an explicit parity boundary, not a global RNG claim.
+    private readonly RuntimeClassicWorldgroupPrng _classicCureMagnitudeRandom =
+        RuntimeClassicGlobalRngContractAuthority.CreateGameplayThreadStream(DateTimeOffset.Now);
     // Borland native range behavior; CRT callback/thread sharing is still
     // unverified, so this deliberately does not claim one process-global stream.
     private readonly RuntimeClassicWorldgroupPrng _classicTerminationRandom =
@@ -292,10 +296,29 @@ public sealed partial class RuntimeLiveGameplayFacade
                 .Where(effect => effect is not null).Cast<RuntimeActiveSpellEffect>().ToArray();
             foreach (var characterTarget in appliedEffects.Where(effect => effect.Target.Kind.Equals("character", StringComparison.OrdinalIgnoreCase)).Select(effect => effect.Target.Id).Distinct(StringComparer.OrdinalIgnoreCase))
                 SynchronizeDecodedTemporarySpells(characterTarget);
+            // An immediate or lasting native poison 19 updates the target's
+            // +0xBE severity only when the spell effect was actually admitted.
+            if (session.World.Definition.Type.Equals("Classic", StringComparison.OrdinalIgnoreCase))
+                foreach (var appliedEffect in normalizedEffects)
+                    if (_liveSpellEngine!.EffectsFor(appliedEffect.Target.Id)
+                        .Any(active => active.EffectId.Equals(appliedEffect.EffectId, StringComparison.OrdinalIgnoreCase))
+                        && !result.Events.Any(evt => evt.Target.Id.Equals(appliedEffect.Target.Id, StringComparison.OrdinalIgnoreCase)
+                            && evt.Operation.Equals("immune", StringComparison.OrdinalIgnoreCase)))
+                        ApplyClassicNativePoisonOnApplication(session, appliedEffect, now);
+            // Apply native direct effects before an instantaneous EndCast may
+            // consume its temporary effect slot (including poison +0xBE).
             if (spell.Duration <= 0 && spell.DecodedAbilities.Any(ability => ability.AbilityId == 151 && ability.Value > 0)
                 && normalizedEffects.Length > 0)
                 foreach (var normalizedEffect in normalizedEffects) ExecuteImmediateDecodedEndCast(session, normalizedEffect, now);
-            foreach (var appliedTarget in (partyTargets ?? [target])) _ = ApplyDecodedCureAndDispel(session, spell, appliedTarget);
+            foreach (var appliedTarget in (partyTargets ?? [target]))
+            {
+                var castEffect = normalizedEffects.FirstOrDefault(effect =>
+                    effect.Target.Kind.Equals(appliedTarget.Kind, StringComparison.OrdinalIgnoreCase)
+                    && effect.Target.Id.Equals(appliedTarget.Id, StringComparison.OrdinalIgnoreCase));
+                var effectRoll = castEffect is null
+                    ? null : RuntimeClassicNativePoisonAuthority.ResolvedRoll(castEffect);
+                _ = ApplyDecodedCureAndDispel(session, spell, appliedTarget, effectRoll);
+            }
             if (ShouldDiscardDecodedRemovalHelper(spell) && normalizedEffects.Length > 0)
             {
                 foreach (var normalizedEffect in normalizedEffects)
@@ -658,6 +681,11 @@ public sealed partial class RuntimeLiveGameplayFacade
         {
             _liveSpellEngine.Expire(nowUtc);
             foreach (var expired in due) ExecuteDecodedEndCastChain(session, expired, nowUtc, sink, applied, 0);
+            // Native poison termination lowers +0xBE by the stored magnitude.
+            // Process after successful EndCast application to preserve existing
+            // managed rollback behavior if a nested follow-up fails.
+            foreach (var expired in due)
+                ApplyClassicNativePoisonOnTermination(session, expired, nowUtc);
             foreach (var characterId in due.Where(effect => effect.Target.Kind.Equals("character", StringComparison.OrdinalIgnoreCase))
                          .Select(effect => effect.Target.Id).Distinct(StringComparer.OrdinalIgnoreCase))
                 SynchronizeDecodedTemporarySpells(characterId);
@@ -765,6 +793,7 @@ public sealed partial class RuntimeLiveGameplayFacade
         {
             try { _liveSpellEngine.RemoveEffect(sourceEffect.EffectId); } catch (InvalidOperationException) { }
             ExecuteDecodedEndCastChain(session, sourceEffect, nowUtc, sink, applied, 0);
+            ApplyClassicNativePoisonOnTermination(session, sourceEffect, nowUtc);
         }
         catch
         {
@@ -1126,6 +1155,10 @@ public sealed partial class RuntimeLiveGameplayFacade
                     _liveSpellEngine.EffectsFor(character.CharacterId), "character",
                     character.CharacterId, spell.CanonicalSpellId, nowUtc))
                 return resolution with { Applied = false, Reason = "native-player-active-spell-slots-full" };
+            var effectRoll = spell.MinimumEffect == spell.MaximumEffect
+                ? spell.MinimumEffect
+                : Random.Shared.Next(Math.Min(spell.MinimumEffect, spell.MaximumEffect),
+                    checked(Math.Max(spell.MinimumEffect, spell.MaximumEffect) + 1));
             var snapshot = _liveSpellEngine.Snapshot();
             var active = snapshot.ActiveEffects
                 .Where(effect => !existing.Any(old => old.EffectId.Equals(effect.EffectId, StringComparison.OrdinalIgnoreCase)))
@@ -1141,12 +1174,10 @@ public sealed partial class RuntimeLiveGameplayFacade
                         spell.DurationRaw,
                         nowUtc,
                         nowUtc.AddSeconds(checked((long)spell.DurationRaw * RuntimeClassicLiveStatusCatalog.SpellRoundSeconds)),
-                        BuildClassicStatusMetadata(definition, spell, nowUtc,
-                            spell.MinimumEffect == spell.MaximumEffect
-                                ? spell.MinimumEffect
-                                : Random.Shared.Next(Math.Min(spell.MinimumEffect, spell.MaximumEffect), checked(Math.Max(spell.MinimumEffect, spell.MaximumEffect) + 1))))
+                        BuildClassicStatusMetadata(definition, spell, nowUtc, effectRoll))
                 }).ToArray();
             _liveSpellEngine.RestoreSnapshot(snapshot with { ActiveEffects = active });
+            ApplyClassicNativePoisonOnApplication(session, active[^1], nowUtc);
             SynchronizeCharacterSpellStatuses(new RuntimeSpellTarget("character", character.CharacterId), nowUtc, "runtime.live_combat.npc_hit_spell");
             PersistLivePowers(session.World.Definition.Id);
             return resolution;
@@ -1241,7 +1272,22 @@ public sealed partial class RuntimeLiveGameplayFacade
                     new Dictionary<string, string> { ["spell_level"] = spell.SpellLevel.ToString(), ["spell_immunity_level"] = immunityLevel.ToString() }) };
             }
             if (IsCurePoisonSpell(spell))
-                return new[] { new RuntimeSpellExecutionEvent(Guid.NewGuid().ToString("N"), spell.Id, request.CasterId, request.Target, "cure_poison", 0, request.RequestedAtUtc, effect.EffectId, effect.Metadata) };
+            {
+                var cureMetadata = new Dictionary<string, string>(
+                    effect.Metadata ?? new Dictionary<string, string>(), StringComparer.OrdinalIgnoreCase);
+                if (_session.World.Definition.Type.Equals("Classic", StringComparison.OrdinalIgnoreCase)
+                    && spell.DecodedAbilities.Any(ability => ability.AbilityId == 20))
+                {
+                    var casterLevel = _owner._characters.LoadCharacter(request.CasterId)?.Level ?? 0;
+                    var cureRoll = RollClassicNativeCureEffectMagnitude(
+                        spell, casterLevel, _owner._classicCureMagnitudeRandom);
+                    cureMetadata["effect_roll"] = cureRoll.ToString(System.Globalization.CultureInfo.InvariantCulture);
+                    cureMetadata["operation_authority"] = "native_ability20_magnitude";
+                }
+                return new[] { new RuntimeSpellExecutionEvent(Guid.NewGuid().ToString("N"),
+                    spell.Id, request.CasterId, request.Target, "cure_poison", 0,
+                    request.RequestedAtUtc, effect.EffectId, cureMetadata) };
+            }
             var teleportRoom = spell.DecodedAbilities.FirstOrDefault(ability => ability.AbilityId == 140)?.Value ?? 0;
             var teleportMap = spell.DecodedAbilities.FirstOrDefault(ability => ability.AbilityId == 141)?.Value ?? 0;
             if (teleportRoom > 0 && teleportMap > 0)
@@ -1475,6 +1521,23 @@ public sealed partial class RuntimeLiveGameplayFacade
     // WCCMMUD _cast_user_target direct ability 17 at 0x474E3D..0x474E64:
     // (magnitude * max(25, 150 - zero-extended target +0xC2 MR)) / 100.
     // The native signed division truncates toward zero; the target MR field is UInt16.
+    internal static int RollClassicNativeCureEffectMagnitude(
+        RuntimeSpellDefinition spell, int casterLevel, RuntimeClassicWorldgroupPrng rng)
+    {
+        var level = Math.Max(0, casterLevel);
+        if (spell.LevelCap > 0) level = Math.Min(level, spell.LevelCap);
+        var scaledMin = spell.LevelsForMinimumIncrease > 0
+            ? checked(spell.MinimumEffect + (level / spell.LevelsForMinimumIncrease) * spell.MinimumIncrease)
+            : spell.MinimumEffect;
+        var scaledMax = spell.LevelsForMaximumIncrease > 0
+            ? checked(spell.MaximumEffect + (level / spell.LevelsForMaximumIncrease) * spell.MaximumIncrease)
+            : spell.MaximumEffect;
+        var low = Math.Min(scaledMin, scaledMax);
+        var high = Math.Max(scaledMin, scaledMax);
+        // Native _genrdn(0,max-min+1) draws even when min == max.
+        return checked(low + rng.Genrdn(0, checked(high - low + 1)));
+    }
+
     internal static int ResolveNativeUserDamageMinusMr(int magnitude, int targetMagicResistance)
     {
         if (magnitude < 0) throw new ArgumentOutOfRangeException(nameof(magnitude));
@@ -1561,6 +1624,16 @@ public sealed class RuntimeLivePowersSmokeReport
             var curePoison = spells.Spells.Single(x => x.LegacyId == "222");
             Check(RuntimeLiveGameplayFacade.IsCurePoisonSpell(antidote), "cure-poison-antidote-classification", r);
             Check(RuntimeLiveGameplayFacade.IsCurePoisonSpell(curePoison), "cure-poison-healer-classification", r);
+            var nativeCureRng = new RuntimeClassicWorldgroupPrng(1234u);
+            var fixedCure = antidote with { MinimumEffect = 7, MaximumEffect = 7 };
+            Check(RuntimeLiveGameplayFacade.RollClassicNativeCureEffectMagnitude(fixedCure, 0, nativeCureRng) == 7
+                && nativeCureRng.Sequence == 1,
+                "classic-cure-fixed-effect-consumes-native-rng-draw", r);
+            nativeCureRng.Srand(1234u);
+            var variableCure = antidote with { MinimumEffect = 10, MaximumEffect = 12 };
+            Check(RuntimeLiveGameplayFacade.RollClassicNativeCureEffectMagnitude(variableCure, 0, nativeCureRng) == 10
+                && nativeCureRng.Sequence == 1,
+                "classic-cure-variable-native-range", r);
             var cureDisease = spells.Require("spell.150");
             var bless = spells.Require("spell.14");
             Check(RuntimeLiveGameplayFacade.ShouldDiscardDecodedRemovalHelper(cureDisease), "instant-removes-spell-helper-discarded-even-without-match", r);
