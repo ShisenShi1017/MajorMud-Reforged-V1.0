@@ -62,6 +62,43 @@ public sealed record RuntimeClassicDeathExperienceSmokeReport(
         Check(transition.Character.SemanticState?.RuntimeMarkers.GetValueOrDefault(RuntimeCharacterDeathMarkers.ExperienceLost) == "0",
             "live-ordinary-death-records-zero-loss");
 
+        // A worn item must stop contributing to the character immediately
+        // after it is moved to the corpse. Recovery never auto-equips it.
+        var wornDefinition = catalog.EquipmentDefinitions.FirstOrDefault(e =>
+            !catalog.Require(e.ItemId).RetainedOnDeath
+            && !catalog.Require(e.ItemId).DestroyOnDeath
+            && (catalog.Require(e.ItemId).ArmorClassBonus != 0
+                || catalog.Require(e.ItemId).AccuracyBonus != 0
+                || catalog.Require(e.ItemId).EquipmentAbilityModifiers.Count > 0));
+        if (wornDefinition is not null)
+        {
+            var item = new RuntimeItemInstance("smoke:death-equipment", wornDefinition.ItemId,
+                character.CharacterId, RuntimeItemLocations.Equipment, character.CharacterId,
+                wornDefinition.Slot, 0, 1, null);
+            var wornEngine = new RuntimeItemEngine(catalog, new[] { item });
+            var wornCharacter = RuntimeCharacterCombatStatisticProjector.Recalculate(
+                character with { ItemState = wornEngine.Snapshot(0, new Dictionary<string, string>()) },
+                wornEngine.EquipmentModifierTotals(character.CharacterId), projectedAtUtc: DateTimeOffset.UnixEpoch);
+            var deathWithEquipment = RuntimeCharacterDeathResolver.Defeat(
+                wornCharacter, catalog, character.RoomId, DateTimeOffset.UnixEpoch.AddHours(2));
+            var deathStats = RuntimeCharacterCombatStatisticProjector.Snapshot(deathWithEquipment.Character);
+            Check(!deathStats.EquipmentSourceInstanceIds.Contains(item.InstanceId),
+                "death-clears-removed-equipment-stat-source");
+            Check(deathWithEquipment.Character.SemanticState?.DerivedStats.GetValueOrDefault("armor_class_bonus") == 0
+                && deathWithEquipment.Character.SemanticState?.DerivedStats.GetValueOrDefault("accuracy_bonus") == 0,
+                "death-removes-worn-armor-and-accuracy-bonuses");
+
+            var respawn = RuntimeCharacterDeathResolver.Respawn(
+                deathWithEquipment.Character, "room.map1.2140", 2140, DateTimeOffset.UnixEpoch.AddHours(3));
+            var recovered = RuntimeCharacterDeathResolver.RecoverCorpse(
+                respawn, catalog, character.RoomId, DateTimeOffset.UnixEpoch.AddHours(4), out _);
+            var recoveredStats = RuntimeCharacterCombatStatisticProjector.Snapshot(recovered);
+            Check(!recoveredStats.EquipmentSourceInstanceIds.Contains(item.InstanceId)
+                && recovered.ItemState?.Items.Any(x => x.InstanceId == item.InstanceId
+                    && x.LocationKind == RuntimeItemLocations.Character && x.EquippedSlot is null) == true,
+                "recovered-item-is-carried-without-reapplying-equipment-bonuses");
+        }
+
         return new(failures.Count == 0, checks, failures);
     }
 

@@ -160,6 +160,12 @@ public static class RuntimeCharacterDeathResolver
             RuntimeCharacterFlagIds.Dead,
             "runtime.character.death.defeat");
 
+        // Equipment may have moved into the corpse. Reproject from surviving
+        // owned equipment, not the pre-death bonuses persisted on the player.
+        var deathModifiers = engine.EquipmentModifierTotals(
+            character.CharacterId, snapshot.ActiveItemState);
+        defeated = RuntimeCharacterCombatStatisticProjector.Recalculate(
+            defeated, deathModifiers, projectedAtUtc: nowUtc);
         Validate(defeated);
         return new RuntimeCharacterDeathTransition(defeated, corpse, dropped, retainedIds.Count, gold, eventId, nowUtc);
     }
@@ -236,6 +242,12 @@ public static class RuntimeCharacterDeathResolver
             SemanticState = semantic with { RuntimeMarkers = markers },
             UpdatedAtUtc = nowUtc
         };
+        // Recovered items are carried, not automatically re-equipped.
+        // Rebuild bonuses from actual surviving equipment and readiness.
+        updated = RuntimeCharacterCombatStatisticProjector.Recalculate(
+            updated,
+            engine.EquipmentModifierTotals(character.CharacterId, updated.ItemState!.ActiveItemState),
+            projectedAtUtc: nowUtc);
         Validate(updated);
         return updated;
     }
