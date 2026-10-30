@@ -166,6 +166,15 @@ public static class ClassicDecodeExhaustionAudit
         var evidenceTexts = evidenceFiles.Select(path => new SourceText(path, SafeReadAllText(path))).ToArray();
         var fieldConsumerCache = new Dictionary<string, IReadOnlyList<string>>(StringComparer.OrdinalIgnoreCase);
         var evidenceReferenceCache = new Dictionary<string, int>(StringComparer.OrdinalIgnoreCase);
+        // Original WCCMP002-derived room/spawn snapshots live outside
+        // Librarium/Objects. Track their checksum verification separately
+        // rather than treating compiler output as independent source evidence.
+        var nativeProjectionSourcePath = Path.Combine(projectRoot, "Apps", "Compiler",
+            "src", "ClassicNativeSpawnProjection.cs");
+        var nativeProjectionSource = File.Exists(nativeProjectionSourcePath)
+            ? File.ReadAllText(nativeProjectionSourcePath) : string.Empty;
+        var nativeEvidenceChecksumCache = new Dictionary<string, bool>(
+            StringComparer.OrdinalIgnoreCase);
 
         var families = new List<ClassicDecodeFamilyCoverage>();
         var fields = new List<ClassicDecodeFieldCoverage>();
@@ -229,6 +238,10 @@ public static class ClassicDecodeExhaustionAudit
                 var fieldEvidenceAliases = ExplicitEvidenceAliases(family, field.JsonPath);
                 if (evidenceReferenceCount == 0 && fieldEvidenceAliases.Count > 0)
                     evidenceReferenceCount = CountEvidenceReferences(evidenceTexts, fieldEvidenceAliases);
+                var verifiedNativeProjection = evidenceReferenceCount == 0
+                    && HasVerifiedNativeProjectionEvidence(projectRoot, nativeProjectionSource,
+                        family, field.JsonPath, nativeEvidenceChecksumCache);
+                if (verifiedNativeProjection) evidenceReferenceCount = 1;
                 var fieldDiagnostics = new List<string>();
                 var structural = StructuralFields.Contains(field.FieldName) ||
                                  IsNumericObjectKey(field.FieldName) ||
@@ -239,6 +252,8 @@ public static class ClassicDecodeExhaustionAudit
                 if (!structural && consumerFiles.Count == 0) fieldDiagnostics.Add("No live runtime consumer was found for this generated field.");
                 if (explicitRuntimeProof.Count > 0) fieldDiagnostics.Add("Exact runtime consumer proof overrides the generic field-name scanner.");
                 if (fieldEvidenceAliases.Count > 0 && evidenceReferenceCount > 0) fieldDiagnostics.Add("Exact compiler-source evidence alias overrides the generated field-name scanner.");
+                if (verifiedNativeProjection)
+                    fieldDiagnostics.Add("Source field assignment traced to the original WCCMP002-derived native snapshot, whose Brotli payload SHA-256 matches the compiler's pinned checksum.");
 
                 var fieldStatus = structural
                     ? "structural-metadata"
@@ -569,6 +584,98 @@ public static class ClassicDecodeExhaustionAudit
             return source.Text.Contains(quoted, StringComparison.OrdinalIgnoreCase) ||
                    (pascal.Length >= 3 && source.Text.Contains(pascal, StringComparison.OrdinalIgnoreCase));
         }));
+    }
+
+    // There are exactly nine native room/spawn fields whose authoritative
+    // evidence is a checksum-pinned binary snapshot under Librarium/NativeEvidence,
+    // not a text field inside Librarium/Objects. Verify the precise native
+    // section and the assignment in the compiler before granting coverage.
+    // Do not add compiler .cs files to the generic evidence scanner: doing
+    // that would count a generator as proof for unrelated fields.
+    private static bool HasVerifiedNativeProjectionEvidence(
+        string projectRoot, string compilerSource, string family, string jsonPath,
+        IDictionary<string, bool> checksumCache)
+    {
+        (string FieldName, string SnapshotConstant, string HashConstant, int Section, string Target) field =
+            (family, jsonPath) switch
+        {
+            ("rooms", "$.records[*].environment.native_room_spell_verified")
+                => ("native_room_spell_verified", "RoomRelativePath", "RoomRowsSha256", 0, "environment"),
+            ("rooms", "$.records[*].environment.native_room_spell_entry_on_change")
+                => ("native_room_spell_entry_on_change", "RoomRelativePath", "RoomSpellTriggerRowsSha256", 2, "environment"),
+            ("rooms", "$.records[*].environment.native_room_picklock_spell_id")
+                => ("native_room_picklock_spell_id", "RoomRelativePath", "RoomSpellTriggerRowsSha256", 2, "environment"),
+            ("spawns", "$.records[*].spawn_model.group_index")
+                => ("group_index", "RoomRelativePath", "RoomRowsSha256", 0, "model"),
+            ("spawns", "$.records[*].spawn_model.monster_index_min")
+                => ("monster_index_min", "RoomRelativePath", "RoomRowsSha256", 0, "model"),
+            ("spawns", "$.records[*].spawn_model.monster_index_max")
+                => ("monster_index_max", "RoomRelativePath", "RoomRowsSha256", 0, "model"),
+            ("spawns", "$.records[*].spawn_model.native_area_controller_cap")
+                => ("native_area_controller_cap", "RoomRelativePath", "RoomRowsSha256", 0, "model"),
+            ("spawns", "$.records[*].spawn_model.native_area_controller_resolved")
+                => ("native_area_controller_resolved", "RoomRelativePath", "RoomRowsSha256", 0, "model"),
+            ("spawns", "$.records[*].spawn_model.native_room_generation_cap")
+                => ("native_room_generation_cap", "RoomCapRelativePath", "RoomCapRowsSha256", 0, "model"),
+            _ => default
+        };
+        if (field.Item1 is null || string.IsNullOrWhiteSpace(compilerSource))
+            return false;
+        if (!compilerSource.Contains(field.Item5 + "[\"" + field.Item1 + "\"] = ",
+                StringComparison.Ordinal))
+            return false;
+        var verifiedLoader = "LoadVerifiedLines(root, " + field.Item2 + ", "
+            + field.Item3 + (field.Item4 == 2 ? ", 2" : "") + ")";
+        if (!compilerSource.Contains(verifiedLoader, StringComparison.Ordinal))
+            return false;
+        var snapshotRelative = ReadCompilerStringConstant(compilerSource, field.Item2);
+        var expectedHash = ReadCompilerStringConstant(compilerSource, field.Item3);
+        if (string.IsNullOrWhiteSpace(snapshotRelative) || expectedHash?.Length != 64
+            || !snapshotRelative.StartsWith("Librarium/NativeEvidence/", StringComparison.Ordinal)
+            || !snapshotRelative.EndsWith(".br64", StringComparison.Ordinal)
+            || !compilerSource.Contains("SHA256.HashData(raw)", StringComparison.Ordinal))
+            return false;
+
+        var cacheKey = snapshotRelative + "#" + field.Item4 + "#" + expectedHash;
+        if (checksumCache.TryGetValue(cacheKey, out var verified)) return verified;
+        verified = false;
+        try
+        {
+            var absolute = Path.Combine(projectRoot,
+                snapshotRelative.Replace('/', Path.DirectorySeparatorChar));
+            var lines = File.ReadAllLines(absolute)
+                .Where(line => !string.IsNullOrWhiteSpace(line)).ToArray();
+            if (field.Item4 < lines.Length)
+            {
+                var compressed = Convert.FromBase64String(lines[field.Item4].Trim());
+                using var input = new MemoryStream(compressed);
+                using var brotli = new System.IO.Compression.BrotliStream(input,
+                    System.IO.Compression.CompressionMode.Decompress);
+                using var decoded = new MemoryStream();
+                brotli.CopyTo(decoded);
+                var actualHash = Convert.ToHexString(
+                    System.Security.Cryptography.SHA256.HashData(decoded.ToArray()));
+                verified = actualHash.Equals(expectedHash, StringComparison.OrdinalIgnoreCase);
+            }
+        }
+        catch (Exception exception) when (exception is IOException
+            or UnauthorizedAccessException or FormatException
+            or InvalidDataException or ArgumentException)
+        {
+            verified = false;
+        }
+        checksumCache[cacheKey] = verified;
+        return verified;
+    }
+
+    private static string? ReadCompilerStringConstant(string source, string name)
+    {
+        var prefix = "private const string " + name + " = \"";
+        var start = source.IndexOf(prefix, StringComparison.Ordinal);
+        if (start < 0) return null;
+        start += prefix.Length;
+        var end = source.IndexOf('"', start);
+        return end < 0 ? null : source[start..end];
     }
 
     private static IReadOnlyList<string> ExplicitEvidenceAliases(string family, string jsonPath)

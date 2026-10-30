@@ -79,14 +79,14 @@ public static class RuntimeClassicSpellEffectCoverageAudit
             AddFamily(abilityIds,Eligibility,"eligibility_or_affinity",families);
             AddFamily(abilityIds,Presentation,"native_presentation",families);
             AddFamily(abilityIds,WorldDispatch,"world_dispatch",families);
-            if(abilityIds.Count==0)families.Add("structural_control");
+            if(abilityIds.Length==0)families.Add("structural_control");
             var consumers=new List<string>{"RuntimeSpellCatalog","RuntimeSpellEngine","RuntimeClassicPlayerSpellCombat"};
             if(families.Contains("direct_magnitude"))consumers.Add("RuntimeLivePowers.GeneratedLiveSpellOperationPolicy");
             if(families.Contains("persistent_status"))consumers.Add("RuntimeClassicStatusProjection");
             if(families.Contains("eligibility_or_affinity"))consumers.Add("RuntimeClassicLiveStatusCatalog");
             if(families.Contains("native_presentation"))consumers.Add("RuntimeCombatSpellMessageRendering");
             if(families.Contains("world_dispatch"))consumers.Add("RuntimeQuestDialogueExecution/native-dispatch boundary");
-            var disposition=abilityIds.Count==0
+            var disposition=abilityIds.Length==0
                 ?"decoded_structural_control_no_direct_effect"
                 :unknown.Length==0&&KnownTargetTypes.Contains(target)
                     ?"decoded_family_classified"
