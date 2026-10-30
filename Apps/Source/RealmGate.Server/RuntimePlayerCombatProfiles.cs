@@ -100,6 +100,8 @@ public sealed class RuntimePlayerCombatProfileResolver
         if (incapacitated) dodgeBonus = 0;
         var equipped = new List<string>();
         var weaponProfiles = new List<RuntimeItemCombatProfile>();
+        var readiedWeaponId = RuntimeEquipmentRuntimeAuthority.ResolveReadiedWeaponInstanceId(
+            character.ItemState, character.CharacterId);
 
         foreach (var item in character.ItemState?.Items ?? Array.Empty<RuntimeItemInstance>())
         {
@@ -112,7 +114,13 @@ public sealed class RuntimePlayerCombatProfileResolver
             equippedAccuracy = checked(equippedAccuracy + profile.Accuracy);
             equippedBackstabAccuracyBonus = checked(equippedBackstabAccuracyBonus + profile.BackstabAccuracyBonus);
             equipmentHitMagicRank = checked(equipmentHitMagicRank + profile.HitMagicRank);
-            if (profile.MaximumDamage > 0) weaponProfiles.Add(profile);
+            // Only the readied instance supplies the weapon damage profile.
+            // Old saves without an explicit readiness key still resolve their
+            // WIELD instance through the compatibility reader.
+            if (profile.MaximumDamage > 0
+                && (readiedWeaponId is null ||
+                    item.InstanceId.Equals(readiedWeaponId, StringComparison.OrdinalIgnoreCase)))
+                weaponProfiles.Add(profile);
         }
         damageResistance = ApplyDamageResistancePercent(
             damageResistance, RuntimeClassicStatusProjection.Numeric(character, "damage_resistance_percent"));

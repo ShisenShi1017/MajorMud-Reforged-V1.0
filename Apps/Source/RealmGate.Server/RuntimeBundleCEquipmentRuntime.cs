@@ -41,6 +41,29 @@ public static class RuntimeEquipmentRuntimeAuthority
         return next;
     }
 
+    // Read the authoritative readiness reference only when it identifies a
+    // real item owned by this character. Legacy WIELD remains a fallback for
+    // saves which predate explicit readiness references.
+    internal static string? ResolveReadiedWeaponInstanceId(RuntimeItemState? state, string ownerId)
+    {
+        if (state is null) return null;
+        var equipped = state.Items.Where(item =>
+            string.Equals(item.OwnerId, ownerId, StringComparison.OrdinalIgnoreCase)
+            && item.LocationKind.Equals(RuntimeItemLocations.Equipment, StringComparison.OrdinalIgnoreCase)
+            && item.EquippedSlot is not null).ToArray();
+
+        if (state.ActiveItemState.TryGetValue(ReadyWeaponKey, out var saved)
+            && !string.IsNullOrWhiteSpace(saved))
+        {
+            var selected = equipped.FirstOrDefault(item =>
+                item.InstanceId.Equals(saved, StringComparison.OrdinalIgnoreCase)
+                && item.EquippedSlot!.Equals("WIELD", StringComparison.OrdinalIgnoreCase));
+            if (selected is not null) return selected.InstanceId;
+        }
+        return equipped.FirstOrDefault(item =>
+            item.EquippedSlot!.Equals("WIELD", StringComparison.OrdinalIgnoreCase))?.InstanceId;
+    }
+
     public static RuntimeEquipmentRuntimeCommit Commit(
         RuntimeCharacterRecord character,
         RuntimeItemEngine engine,

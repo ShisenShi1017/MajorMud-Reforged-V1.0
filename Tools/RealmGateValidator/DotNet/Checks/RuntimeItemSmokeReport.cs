@@ -57,6 +57,35 @@ public static class RuntimeItemSmokeReport
                 throw new InvalidDataException("Removing readiness left stale item state or erased unrelated state.");
         });
 
+        Check("classic-weapon-readiness-reads-saved-instance-id", () =>
+        {
+            var one = new RuntimeItemInstance("readied-first", "item.1", owner,
+                RuntimeItemLocations.Equipment, owner, "WIELD", 0, 1, null);
+            var two = new RuntimeItemInstance("readied-second", "item.2", owner,
+                RuntimeItemLocations.Character, owner, null, 0, 1, null);
+            var state = new RuntimeItemState(new[] { one, two }, 0,
+                new Dictionary<string, string>
+                {
+                    [RuntimeEquipmentRuntimeAuthority.ReadyWeaponKey] = one.InstanceId
+                });
+            if (RuntimeEquipmentRuntimeAuthority.ResolveReadiedWeaponInstanceId(state, owner)
+                != one.InstanceId)
+                throw new InvalidDataException("Saved weapon instance was not selected.");
+            var stale = state with
+            {
+                ActiveItemState = new Dictionary<string, string>
+                {
+                    [RuntimeEquipmentRuntimeAuthority.ReadyWeaponKey] = "missing-instance"
+                }
+            };
+            if (RuntimeEquipmentRuntimeAuthority.ResolveReadiedWeaponInstanceId(stale, owner)
+                != one.InstanceId)
+                throw new InvalidDataException("Legacy wield fallback was not retained.");
+            var removed = state with { Items = new[] { two } };
+            if (RuntimeEquipmentRuntimeAuthority.ResolveReadiedWeaponInstanceId(removed, owner) is not null)
+                throw new InvalidDataException("Orphaned weapon readiness was accepted.");
+        });
+
         Check("classic-light-command-uses-item-runtime", () =>
         {
             if (RuntimeCommandRuntimeRouteCatalog.Require("light").Kind != RuntimeCommandRouteKind.ItemRuntime)
