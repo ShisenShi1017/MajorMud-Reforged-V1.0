@@ -307,7 +307,10 @@ public sealed partial class RuntimeLiveGameplayFacade
                         .Any(active => active.EffectId.Equals(appliedEffect.EffectId, StringComparison.OrdinalIgnoreCase))
                         && !result.Events.Any(evt => evt.Target.Id.Equals(appliedEffect.Target.Id, StringComparison.OrdinalIgnoreCase)
                             && evt.Operation.Equals("immune", StringComparison.OrdinalIgnoreCase)))
+                    {
                         ApplyClassicNativePoisonOnApplication(session, appliedEffect, now);
+                        ApplyClassicNativeEnslaveOnApplication(session, appliedEffect, now);
+                    }
             // Apply native direct effects before an instantaneous EndCast may
             // consume its temporary effect slot (including poison +0xBE).
             if (spell.Duration <= 0 && spell.DecodedAbilities.Any(ability => ability.AbilityId == 151 && ability.Value > 0)
@@ -696,7 +699,10 @@ public sealed partial class RuntimeLiveGameplayFacade
             // Process after successful EndCast application to preserve existing
             // managed rollback behavior if a nested follow-up fails.
             foreach (var expired in due)
+            {
                 ApplyClassicNativePoisonOnTermination(session, expired, nowUtc);
+                ApplyClassicNativeEnslaveOnTermination(session, expired, nowUtc);
+            }
             // Native player termination ability 160 removes the granted spell
             // from the complete learned-spell array, including preexisting knowledge.
             foreach (var expired in due)
@@ -815,6 +821,7 @@ public sealed partial class RuntimeLiveGameplayFacade
                     session.World.Definition.Type, sourceEffect.Target.Kind))
                 ExecuteDecodedEndCastChain(session, sourceEffect, nowUtc, sink, applied, 0);
             ApplyClassicNativePoisonOnTermination(session, sourceEffect, nowUtc);
+            ApplyClassicNativeEnslaveOnTermination(session, sourceEffect, nowUtc);
             ApplyClassicNativeGiveTempSpellTermination(session, sourceEffect, nowUtc);
         }
         catch

@@ -1014,6 +1014,71 @@ public sealed partial class RuntimeLiveGameplayFacade
         return low == high ? low : Random.Shared.Next(low, checked(high + 1));
     }
 
+    // WCCMMUD ability 6 application at 0x448823..0x4488AC copies the
+    // caster name into monster +0x1A and sets +0x116 and bit 0 of +0x128.
+    // Monster termination 0x44A555..0x44A56E clears those three fields.
+    // Link only successful, active, player-to-NPC Classic effects to the
+    // existing charmed-ownership boundary; no new follow/AI rules are inferred.
+    private static string ClassicNativeEnslaveAuthority(RuntimeActiveSpellEffect effect) =>
+        "classic.native.enslave:" + effect.SpellId;
+
+    internal static bool MatchesClassicNativeEnslaveOwnership(
+        RuntimeNpcCompanionOwnershipView? owner, RuntimeActiveSpellEffect effect) =>
+        owner is not null
+        && effect.Target.Kind.Equals("npc", StringComparison.OrdinalIgnoreCase)
+        && owner.NpcInstanceId.Equals(effect.Target.Id, StringComparison.OrdinalIgnoreCase)
+        && owner.OwnerKind.Equals("character", StringComparison.OrdinalIgnoreCase)
+        && owner.OwnerId.Equals(effect.CasterId, StringComparison.Ordinal)
+        && owner.RelationshipKind.Equals("charmed", StringComparison.OrdinalIgnoreCase)
+        && owner.Authority.Equals(ClassicNativeEnslaveAuthority(effect), StringComparison.OrdinalIgnoreCase);
+
+    private void ApplyClassicNativeEnslaveOnApplication(
+        RuntimeSession session, RuntimeActiveSpellEffect effect, DateTimeOffset nowUtc)
+    {
+        if (!session.World.Definition.Type.Equals("Classic", StringComparison.OrdinalIgnoreCase)
+            || !effect.Target.Kind.Equals("npc", StringComparison.OrdinalIgnoreCase)
+            || effect.Duration <= 0)
+            return;
+        var catalog = ClassicLiveStatusCatalog(session);
+        if (!catalog.TryGet(effect.SpellId, out var definition)
+            || !definition.Abilities.Any(ability => ability.AbilityId == 6))
+            return;
+        var caster = _characters.LoadCharacter(effect.CasterId);
+        if (caster is null) return;
+        var living = Living(session);
+        var npc = living.InspectNpc(effect.Target.Id);
+        if (npc is null || !npc.Alive) return;
+        var current = living.InspectNpcCompanionOwnership(effect.Target.Id);
+        // Recasting the same native spell refreshes its active monster slot.
+        // Its owner relation is already correct; do not reject as a duplicate.
+        if (MatchesClassicNativeEnslaveOwnership(current, effect)) return;
+        // A different existing owner is not an authorized overwrite. The
+        // native contender/owner replacement rules still need separate proof.
+        if (current is not null) return;
+        _ = living.AssignNpcCompanionOwnership(new RuntimeNpcCompanionOwnershipRequest(
+            effect.Target.Id, "character", caster.CharacterId, "charmed",
+            ClassicNativeEnslaveAuthority(effect), nowUtc));
+    }
+
+    private void ApplyClassicNativeEnslaveOnTermination(
+        RuntimeSession session, RuntimeActiveSpellEffect effect, DateTimeOffset nowUtc)
+    {
+        if (!session.World.Definition.Type.Equals("Classic", StringComparison.OrdinalIgnoreCase)
+            || !effect.Target.Kind.Equals("npc", StringComparison.OrdinalIgnoreCase)
+            || effect.Duration <= 0)
+            return;
+        var catalog = ClassicLiveStatusCatalog(session);
+        if (!catalog.TryGet(effect.SpellId, out var definition)
+            || !definition.Abilities.Any(ability => ability.AbilityId == 6))
+            return;
+        var living = Living(session);
+        if (!MatchesClassicNativeEnslaveOwnership(
+                living.InspectNpcCompanionOwnership(effect.Target.Id), effect))
+            return;
+        _ = living.ReleaseNpcCompanionOwnership(effect.Target.Id,
+            "character", effect.CasterId, ClassicNativeEnslaveAuthority(effect), nowUtc);
+    }
+
     private void ApplyClassicNativePoisonOnApplication(
         RuntimeSession session, RuntimeActiveSpellEffect effect, DateTimeOffset nowUtc)
     {
@@ -1181,6 +1246,7 @@ public sealed partial class RuntimeLiveGameplayFacade
                 // the +0x14 accumulator when this spell is removed.
                 _liveSpellEngine.RemoveEffect(effect.EffectId);
                 ApplyClassicNativePoisonOnTermination(session, effect, DateTimeOffset.UtcNow);
+                ApplyClassicNativeEnslaveOnTermination(session, effect, DateTimeOffset.UtcNow);
             }
             else
                 _liveSpellEngine.RemoveEffect(effect.EffectId);
@@ -1516,6 +1582,35 @@ public sealed class RuntimeClassicLiveStatusEffectsSmokeReport
                 RuntimeClassicNativePoisonAuthority.CurePoison(20, 4), 5);
             Require(combinedCure == 11, "native-cure-repeated-slots-each-subtract");
             report.Checks.Add("native-cure-repeated-slots-each-subtract");
+            var nativeEnslaveDefinitions = catalog.Definitions
+                .Where(definition => definition.Abilities.Any(ability => ability.AbilityId == 6))
+                .Select(definition => definition.SpellId)
+                .ToHashSet(StringComparer.OrdinalIgnoreCase);
+            Require(nativeEnslaveDefinitions.SetEquals(
+                    new[] { "spell.49", "spell.55", "spell.88", "spell.92" }),
+                "classic-native-enslave-four-authored-monster-target-spells");
+            report.Checks.Add("classic-native-enslave-four-authored-monster-target-spells");
+            var nativeEnslaveEffect = new RuntimeActiveSpellEffect(
+                "native-enslave-effect-old", "spell.55", "caster-one",
+                new RuntimeSpellTarget("npc", "native-enslave-monster"),
+                1, 1, 60, DateTimeOffset.UnixEpoch, DateTimeOffset.UnixEpoch.AddDays(1));
+            var nativeEnslaveOwner = new RuntimeNpcCompanionOwnershipView(
+                "native-enslave-monster", "character", "caster-one", "charmed",
+                "classic.native.enslave:spell.55", DateTimeOffset.UnixEpoch);
+            Require(RuntimeLiveGameplayFacade.MatchesClassicNativeEnslaveOwnership(
+                    nativeEnslaveOwner, nativeEnslaveEffect)
+                && RuntimeLiveGameplayFacade.MatchesClassicNativeEnslaveOwnership(
+                    nativeEnslaveOwner, nativeEnslaveEffect with { EffectId = "native-enslave-effect-refreshed" })
+                && !RuntimeLiveGameplayFacade.MatchesClassicNativeEnslaveOwnership(
+                    nativeEnslaveOwner, nativeEnslaveEffect with { CasterId = "other-caster" })
+                && !RuntimeLiveGameplayFacade.MatchesClassicNativeEnslaveOwnership(
+                    nativeEnslaveOwner, nativeEnslaveEffect with { SpellId = "spell.49" })
+                && !RuntimeLiveGameplayFacade.MatchesClassicNativeEnslaveOwnership(
+                    nativeEnslaveOwner with { RelationshipKind = "pet" }, nativeEnslaveEffect)
+                && !RuntimeLiveGameplayFacade.MatchesClassicNativeEnslaveOwnership(
+                    nativeEnslaveOwner with { Authority = "quest.owner" }, nativeEnslaveEffect),
+                "classic-native-enslave-owner-provenance-refresh-and-unrelated-ownership");
+            report.Checks.Add("classic-native-enslave-owner-provenance-refresh-and-unrelated-ownership");
             var monsterPoison = RuntimeClassicNativePoisonAuthority.SetMonster(
                 new Dictionary<string, string>(), 17);
             Require(RuntimeClassicNativePoisonAuthority.ReadMonster(monsterPoison) == 17

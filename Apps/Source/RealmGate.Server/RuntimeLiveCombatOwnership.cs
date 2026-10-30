@@ -101,6 +101,11 @@ public sealed partial class RuntimeLiveGameplayFacade
         }
     }
 
+    internal static bool CanUseReforgedCompanionAutoAssist(
+        string worldType, RuntimeNpcCompanionOwnershipView ownership) =>
+        !worldType.Equals("Classic", StringComparison.OrdinalIgnoreCase)
+        || !ownership.Authority.StartsWith("classic.native.enslave:", StringComparison.OrdinalIgnoreCase);
+
     private void AuthorizeOwnedCompanionAssistance(RuntimeSession session, RuntimeLiveCombatEncounter encounter)
     {
         foreach (var companion in LivingNpcsInRoom(session))
@@ -109,6 +114,11 @@ public sealed partial class RuntimeLiveGameplayFacade
             if (ownership is null
                 || !ownership.OwnerKind.Equals("character", StringComparison.OrdinalIgnoreCase)
                 || !ownership.OwnerId.Equals(session.Actor.Id, StringComparison.Ordinal)) continue;
+            // Native Enslave proves a monster owner link, but not the Reforged
+            // automatic companion-combat-assist rule. Keep that added behavior
+            // isolated until the original NPC assistance branch is recovered.
+            if (!CanUseReforgedCompanionAutoAssist(session.World.Definition.Type, ownership))
+                continue;
 
             Living(session).ApplyNpcCompanionCombatAssist(new RuntimeNpcCompanionCombatAssistRequest(
                 companion.InstanceId,
@@ -215,8 +225,18 @@ public sealed class RuntimeLiveCombatOwnershipSmokeReport
             Require(type.GetMethod("PruneInactiveCombatOwnership", System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.NonPublic) is not null, "disconnect-combat-cleanup-connected");
             Require(typeof(RuntimeLivingWorldService).GetMethod(nameof(RuntimeLivingWorldService.ApplyNpcThreatGenerationSnapshot)) is not null, "threat-generation-authority-connected");
             Require(typeof(RuntimeLivingWorldService).GetMethod(nameof(RuntimeLivingWorldService.ApplyNpcCompanionCombatAssist)) is not null, "companion-assist-authority-connected");
+            var nativeEnslaveOwner = new RuntimeNpcCompanionOwnershipView(
+                "native-enslave-npc", "character", "caster", "charmed",
+                "classic.native.enslave:spell.55", DateTimeOffset.UnixEpoch);
+            Require(!RuntimeLiveGameplayFacade.CanUseReforgedCompanionAutoAssist(
+                    "Classic", nativeEnslaveOwner)
+                && RuntimeLiveGameplayFacade.CanUseReforgedCompanionAutoAssist(
+                    "Custom1", nativeEnslaveOwner)
+                && RuntimeLiveGameplayFacade.CanUseReforgedCompanionAutoAssist(
+                    "Classic", nativeEnslaveOwner with { Authority = "custom.quest.charm" }),
+                "classic-native-enslave-does-not-invent-companion-auto-assist");
             Require(typeof(RuntimeLivingWorldService).GetMethod(nameof(RuntimeLivingWorldService.ApplyNpcAssistSnapshot)) is not null, "explicit-guard-assist-authority-connected");
-            report.Checks.AddRange(["assist-live-combat-connected", "damage-threat-connected", "disconnect-combat-cleanup-connected", "threat-generation-authority-connected", "companion-assist-authority-connected", "explicit-guard-assist-authority-connected"]);
+            report.Checks.AddRange(["assist-live-combat-connected", "damage-threat-connected", "disconnect-combat-cleanup-connected", "threat-generation-authority-connected", "companion-assist-authority-connected", "explicit-guard-assist-authority-connected", "classic-native-enslave-does-not-invent-companion-auto-assist"]);
         }
         catch (Exception ex) { report.Failures.Add(ex.Message); }
         return report;
