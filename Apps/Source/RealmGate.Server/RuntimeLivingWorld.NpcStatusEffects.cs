@@ -12,6 +12,46 @@ public sealed record RuntimeNpcTimedStatusResult(
 public sealed partial class RuntimeLivingWorldService
 {
     private const string NpcStatusPrefix = "combat.status.";
+    private DateTimeOffset? _lastNativeMonsterPoisonSlowUtc;
+
+    // Original _slow_update_monster (0x421C69..0x421C7F) subtracts
+    // monster +0x14 illness severity from monster +0x18 current HP on each
+    // slow tick. Caller uses the existing Classic 30-fast-tick scheduler.
+    public int TickNativeClassicMonsterPoison(DateTimeOffset nowUtc)
+    {
+        if (!_world.Definition.Type.Equals("Classic", StringComparison.OrdinalIgnoreCase))
+            return 0;
+        lock (_gate)
+        {
+            if (_lastNativeMonsterPoisonSlowUtc == nowUtc) return 0;
+            _lastNativeMonsterPoisonSlowUtc = nowUtc;
+            var changed = 0;
+            foreach (var monster in _npcs.Values.ToArray())
+            {
+                if (!monster.Alive) continue;
+                var severity = RuntimeClassicNativePoisonAuthority.ReadMonster(monster.Metadata);
+                if (severity <= 0) continue;
+                var hp = RuntimeClassicNativePoisonAuthority.ApplySlowDamage(
+                    monster.CurrentHitPoints, severity);
+                if (hp == 0)
+                {
+                    EnterNpcRespawnWaitLocked(monster.InstanceId, nowUtc,
+                        "native-monster-poison-slow", null);
+                    PublishLivingWorldEventLocked("npc-died", monster.InstanceId,
+                        monster.RoomId, nowUtc);
+                }
+                else
+                {
+                    _npcs[monster.InstanceId] = monster with { CurrentHitPoints = hp };
+                    PublishLivingWorldEventLocked("npc-poison-damage", monster.InstanceId,
+                        monster.RoomId, nowUtc);
+                }
+                changed++;
+            }
+            if (changed > 0) { Save(); SaveLivingWorldCompletionLocked(); }
+            return changed;
+        }
+    }
 
     public RuntimeNpcTimedStatusResult ApplyNpcTimedStatus(
         string instanceId,
@@ -98,5 +138,7 @@ public sealed partial class RuntimeLivingWorldService
     {
         foreach (var key in metadata.Keys.Where(key => key.StartsWith(NpcStatusPrefix, StringComparison.OrdinalIgnoreCase)).ToArray())
             metadata.Remove(key);
+        // Monster death/respawn clears the native +0x14 illness accumulator.
+        metadata.Remove(RuntimeClassicNativePoisonAuthority.MonsterSeverityKey);
     }
 }

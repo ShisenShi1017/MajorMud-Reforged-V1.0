@@ -278,7 +278,10 @@ public sealed partial class RuntimeLiveGameplayFacade
         {
             var partyTargets = spell.TargetType == "13" ? ResolveClassicPartySpellTargets(session) : null;
             var result = partyTargets is null
-                ? execution.Cast(new RuntimeSpellCastRequest(actor.Id, spell.Id, target, now))
+                // Original direct user-cast caller 0x44595A passes refresh=1.
+                // CastMany constructs default-true requests for every target.
+                ? execution.Cast(new RuntimeSpellCastRequest(actor.Id, spell.Id, target, now,
+                    AllowClassicPlayerRefresh: true))
                 : execution.CastMany(actor.Id, spell.Id, partyTargets, now);
             if (!result.Succeeded) return result.FailureMessage ?? result.FailureCode ?? "The spell failed.";
             if (wizardKnockDoor is not null) Living(session).SetWizardKnockDoorState(wizardKnockDoor, opened: true);
@@ -680,7 +683,15 @@ public sealed partial class RuntimeLiveGameplayFacade
         try
         {
             _liveSpellEngine.Expire(nowUtc);
-            foreach (var expired in due) ExecuteDecodedEndCastChain(session, expired, nowUtc, sink, applied, 0);
+            foreach (var expired in due)
+            {
+                // WCCMMUD monster termination (0x44A45D) has no EndCast
+                // handler. Player EndCast (151/164) is a distinct routine.
+                if (IsNativeClassicMonsterTermination(
+                        session.World.Definition.Type, expired.Target.Kind))
+                    continue;
+                ExecuteDecodedEndCastChain(session, expired, nowUtc, sink, applied, 0);
+            }
             // Native poison termination lowers +0xBE by the stored magnitude.
             // Process after successful EndCast application to preserve existing
             // managed rollback behavior if a nested follow-up fails.
@@ -755,6 +766,10 @@ public sealed partial class RuntimeLiveGameplayFacade
         }
     }
 
+    internal static bool IsNativeClassicMonsterTermination(string worldType, string targetKind) =>
+        worldType.Equals("Classic", StringComparison.OrdinalIgnoreCase)
+        && targetKind.Equals("npc", StringComparison.OrdinalIgnoreCase);
+
     internal static (int LegacySpellId, int ChancePercent, bool UnresolvedFallback)
         ResolveClassicEndCastSelection(
             IReadOnlyList<RuntimeClassicLiveStatusAbility> orderedAbilities, int? storedMagnitude)
@@ -792,7 +807,9 @@ public sealed partial class RuntimeLiveGameplayFacade
         try
         {
             try { _liveSpellEngine.RemoveEffect(sourceEffect.EffectId); } catch (InvalidOperationException) { }
-            ExecuteDecodedEndCastChain(session, sourceEffect, nowUtc, sink, applied, 0);
+            if (!IsNativeClassicMonsterTermination(
+                    session.World.Definition.Type, sourceEffect.Target.Kind))
+                ExecuteDecodedEndCastChain(session, sourceEffect, nowUtc, sink, applied, 0);
             ApplyClassicNativePoisonOnTermination(session, sourceEffect, nowUtc);
         }
         catch
@@ -1377,6 +1394,11 @@ public sealed partial class RuntimeLiveGameplayFacade
                 var manaMagnitude = ResolveHealManaMagnitude(healMana.Value, resolution);
                 events.Add(new RuntimeSpellExecutionEvent(Guid.NewGuid().ToString("N"), spell.Id, request.CasterId, request.Target, "mana", manaMagnitude, request.RequestedAtUtc, effect.EffectId, metadata));
             }
+            if (_session.World.Definition.Type.Equals("Classic", StringComparison.OrdinalIgnoreCase)
+                && events.Count == 2
+                && events[1].Operation.Equals("mana", StringComparison.OrdinalIgnoreCase)
+                && ClassicNativeManaBeforeHitPointEffect(spell))
+                events.Reverse();
             return events;
         }
     }
@@ -1521,6 +1543,23 @@ public sealed partial class RuntimeLiveGameplayFacade
     // WCCMMUD _cast_user_target direct ability 17 at 0x474E3D..0x474E64:
     // (magnitude * max(25, 150 - zero-extended target +0xC2 MR)) / 100.
     // The native signed division truncates toward zero; the target MR field is UInt16.
+    // Native WCCMMUD iterates ten ability positions in original record order.
+    // The managed policy emits one HP and one mana event for the subset of
+    // compound spells containing both. Preserve their relative native order
+    // without claiming that unimplemented intervening abilities are executed.
+    internal static bool ClassicNativeManaBeforeHitPointEffect(RuntimeSpellDefinition spell)
+    {
+        var firstHp = -1;
+        var firstMana = -1;
+        for (var index = 0; index < spell.DecodedAbilities.Count; index++)
+        {
+            var id = spell.DecodedAbilities[index].AbilityId;
+            if (firstHp < 0 && (id is 1 or 17 or 18)) firstHp = index;
+            if (firstMana < 0 && id == 150) firstMana = index;
+        }
+        return firstMana >= 0 && firstHp >= 0 && firstMana < firstHp;
+    }
+
     internal static int RollClassicNativeCureEffectMagnitude(
         RuntimeSpellDefinition spell, int casterLevel, RuntimeClassicWorldgroupPrng rng)
     {
@@ -1679,6 +1718,10 @@ public sealed class RuntimeLivePowersSmokeReport
             }, null);
             Check(defaultChance.LegacySpellId == 31 && defaultChance.ChancePercent == 100,
                 "classic-termination-default-chance-100-percent", r);
+            Check(RuntimeLiveGameplayFacade.IsNativeClassicMonsterTermination("Classic", "npc")
+                && !RuntimeLiveGameplayFacade.IsNativeClassicMonsterTermination("Classic", "character")
+                && !RuntimeLiveGameplayFacade.IsNativeClassicMonsterTermination("Custom", "npc"),
+                "classic-monster-termination-does-not-dispatch-player-endcast", r);
             Check(RuntimeLiveGameplayFacade.ResolveNativeUserDamageMinusMr(100, 0) == 150
                 && RuntimeLiveGameplayFacade.ResolveNativeUserDamageMinusMr(100, 50) == 100
                 && RuntimeLiveGameplayFacade.ResolveNativeUserDamageMinusMr(100, 100) == 50

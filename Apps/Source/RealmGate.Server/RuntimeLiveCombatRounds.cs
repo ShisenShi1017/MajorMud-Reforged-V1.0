@@ -1694,6 +1694,31 @@ public sealed class RuntimeLiveCombatRoundSmokeReport
                 var livingStatusAudit = new RuntimeLivingWorldService(projectRoot, classicWorld, npcStatusRoot);
                 var hoodedMan = livingStatusAudit.Capture().Npcs.Single(living => living.NpcId.Equals("npc.1000", StringComparison.OrdinalIgnoreCase));
                 var statusNow = new DateTimeOffset(2026, 8, 9, 13, 0, 0, TimeSpan.Zero);
+                // Exercise the actual living-world NPC poison path, not just
+                // the scalar helper. The same slow instant must not damage twice.
+                if (hoodedMan.CurrentHitPoints > 1)
+                {
+                    var poisonedMetadata = RuntimeClassicNativePoisonAuthority.SetMonster(
+                        hoodedMan.Metadata, 1);
+                    Require(livingStatusAudit.ReplaceNpcMetadata(
+                            hoodedMan.InstanceId, poisonedMetadata),
+                        "native-monster-poison-metadata-persisted");
+                    report.Checks.Add("native-monster-poison-metadata-persisted");
+                    var poisonedCount = livingStatusAudit.TickNativeClassicMonsterPoison(statusNow);
+                    var afterPoison = livingStatusAudit.Capture().Npcs.Single(npc =>
+                        npc.InstanceId.Equals(hoodedMan.InstanceId, StringComparison.OrdinalIgnoreCase));
+                    Require(poisonedCount == 1
+                        && afterPoison.CurrentHitPoints == hoodedMan.CurrentHitPoints - 1
+                        && livingStatusAudit.TickNativeClassicMonsterPoison(statusNow) == 0
+                        && livingStatusAudit.Capture().Npcs.Single(npc =>
+                            npc.InstanceId.Equals(hoodedMan.InstanceId, StringComparison.OrdinalIgnoreCase))
+                            .CurrentHitPoints == afterPoison.CurrentHitPoints,
+                        "native-monster-poison-30-second-slow-tick-once");
+                    report.Checks.Add("native-monster-poison-30-second-slow-tick-once");
+                    Require(livingStatusAudit.ApplyNpcHealing(hoodedMan.InstanceId, 1, statusNow),
+                        "native-monster-poison-audit-restore-health");
+                    report.Checks.Add("native-monster-poison-audit-restore-health");
+                }
                 var appliedStatus = livingStatusAudit.ApplyNpcTimedStatus(
                     hoodedMan.InstanceId, blacknightStatus.SpellId, blacknightStatus.DurationRounds,
                     blacknightStatus.Abilities.ToDictionary(ability => ability.AbilityId, ability => ability.Value), statusNow);
@@ -1708,7 +1733,10 @@ public sealed class RuntimeLiveCombatRoundSmokeReport
                     hoodedMan.InstanceId, blacknightStatus.SpellId, blacknightStatus.DurationRounds,
                     blacknightStatus.Abilities.ToDictionary(ability => ability.AbilityId, ability => ability.Value), statusNow.AddMinutes(2));
                 Require(livingStatusAudit.ApplyNpcDamage(hoodedMan.InstanceId, hoodedMan.MaximumHitPoints, statusNow.AddMinutes(2)) &&
-                    livingStatusAudit.ResolveNpcTimedAbilityModifier(hoodedMan.InstanceId, 37, statusNow.AddMinutes(2)) == 0,
+                    livingStatusAudit.ResolveNpcTimedAbilityModifier(hoodedMan.InstanceId, 37, statusNow.AddMinutes(2)) == 0
+                    && !livingStatusAudit.Capture().Npcs.Single(npc =>
+                        npc.InstanceId.Equals(hoodedMan.InstanceId, StringComparison.OrdinalIgnoreCase))
+                        .Metadata.ContainsKey(RuntimeClassicNativePoisonAuthority.MonsterSeverityKey),
                     "npc-blacknight-self-status-cleared-on-death"); report.Checks.Add("npc-blacknight-self-status-cleared-on-death");
             }
             finally

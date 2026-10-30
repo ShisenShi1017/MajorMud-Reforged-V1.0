@@ -212,6 +212,17 @@ public sealed partial class RuntimeLiveGameplayFacade
     private void TickActiveCharacterRegeneration(DateTimeOffset nowUtc, RuntimeClassicSchedulerStep schedulerStep)
     {
         if (!schedulerStep.FastDue) return;
+        if (schedulerStep.SlowDue)
+        {
+            // Share the verified 30-fast-tick callback boundary with native
+            // _slow_update_monster. Distinct world service instances each
+            // process their living monsters only once per scheduler instant.
+            foreach (var worldSession in _sessions.ActiveSessions
+                .Where(active => active.World.Definition.Type.Equals(
+                    "Classic", StringComparison.OrdinalIgnoreCase))
+                .DistinctBy(active => active.World.Definition.Id))
+                Living(worldSession).TickNativeClassicMonsterPoison(nowUtc);
+        }
         foreach (var session in _sessions.ActiveSessions)
         {
             if (session.Actor is not RuntimeCharacterActor actor) continue;

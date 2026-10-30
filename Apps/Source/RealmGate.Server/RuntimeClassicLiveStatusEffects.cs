@@ -143,6 +143,21 @@ public sealed class RuntimeClassicLiveStatusCatalog
 public static class RuntimeClassicNativePoisonAuthority
 {
     public const string SeverityKey = "classic.native.poison_severity";
+    // Original WCCMMUD monster +0x14 is an illness/poison accumulator.
+    public const string MonsterSeverityKey = "classic.native.monster_poison_severity";
+    public static int ReadMonster(IReadOnlyDictionary<string, string> metadata) =>
+        metadata.TryGetValue(MonsterSeverityKey, out var raw)
+        && int.TryParse(raw, NumberStyles.Integer, CultureInfo.InvariantCulture, out var severity)
+            ? Math.Clamp(severity, 0, short.MaxValue) : 0;
+    public static IReadOnlyDictionary<string, string> SetMonster(
+        IReadOnlyDictionary<string, string> metadata, int severity)
+    {
+        var next = new Dictionary<string, string>(metadata, StringComparer.OrdinalIgnoreCase);
+        next[MonsterSeverityKey] = Math.Clamp(severity, 0, short.MaxValue)
+            .ToString(CultureInfo.InvariantCulture);
+        return next;
+    }
+
 
     public static bool HasState(RuntimeCharacterRecord character) =>
         character.Conditions.ContainsKey(SeverityKey);
@@ -982,8 +997,10 @@ public sealed partial class RuntimeLiveGameplayFacade
     private void ApplyClassicNativePoisonOnApplication(
         RuntimeSession session, RuntimeActiveSpellEffect effect, DateTimeOffset nowUtc)
     {
-        if (!session.World.Definition.Type.Equals("Classic", StringComparison.OrdinalIgnoreCase)
-            || !effect.Target.Kind.Equals("character", StringComparison.OrdinalIgnoreCase))
+        if (!session.World.Definition.Type.Equals("Classic", StringComparison.OrdinalIgnoreCase))
+            return;
+        var isMonster = effect.Target.Kind.Equals("npc", StringComparison.OrdinalIgnoreCase);
+        if (!isMonster && !effect.Target.Kind.Equals("character", StringComparison.OrdinalIgnoreCase))
             return;
         var catalog = ClassicLiveStatusCatalog(session);
         if (!catalog.TryGet(effect.SpellId, out var definition)
@@ -992,23 +1009,41 @@ public sealed partial class RuntimeLiveGameplayFacade
         var magnitudes = RuntimeClassicNativePoisonAuthority.ResolveOrderedAbilityMagnitudes(
             definition.Abilities, 19, RuntimeClassicNativePoisonAuthority.ResolvedRoll(effect));
         if (magnitudes is null || magnitudes.Count == 0) return;
+
+        if (isMonster)
+        {
+            var living = Living(session);
+            var monster = living.Capture().Npcs.FirstOrDefault(npc =>
+                npc.InstanceId.Equals(effect.Target.Id, StringComparison.OrdinalIgnoreCase)
+                && npc.Alive);
+            if (monster is null) return;
+            var severity = RuntimeClassicNativePoisonAuthority.ReadMonster(monster.Metadata);
+            foreach (var magnitude in magnitudes)
+                severity = RuntimeClassicNativePoisonAuthority.ApplyPoison(severity, magnitude);
+            living.ReplaceNpcMetadata(effect.Target.Id,
+                RuntimeClassicNativePoisonAuthority.SetMonster(monster.Metadata, severity));
+            return;
+        }
+
         var character = _characters.LoadCharacter(effect.Target.Id);
         if (character is null) return;
         var prior = _liveSpellEngine!.EffectsFor(effect.Target.Id)
             .Where(active => !active.EffectId.Equals(effect.EffectId, StringComparison.OrdinalIgnoreCase));
-        var severity = RuntimeClassicNativePoisonAuthority.ReadOrDerive(character, prior, catalog);
+        var playerSeverity = RuntimeClassicNativePoisonAuthority.ReadOrDerive(character, prior, catalog);
         foreach (var magnitude in magnitudes)
-            severity = RuntimeClassicNativePoisonAuthority.ApplyPoison(severity, magnitude);
+            playerSeverity = RuntimeClassicNativePoisonAuthority.ApplyPoison(playerSeverity, magnitude);
         _characters.SaveCharacter(RuntimeClassicNativePoisonAuthority.Set(
-            character, severity, nowUtc));
+            character, playerSeverity, nowUtc));
     }
 
     private void ApplyClassicNativePoisonOnTermination(
         RuntimeSession session, RuntimeActiveSpellEffect effect, DateTimeOffset nowUtc)
     {
         if (!session.World.Definition.Type.Equals("Classic", StringComparison.OrdinalIgnoreCase)
-            || effect.Duration <= 0
-            || !effect.Target.Kind.Equals("character", StringComparison.OrdinalIgnoreCase))
+            || effect.Duration <= 0)
+            return;
+        var isMonster = effect.Target.Kind.Equals("npc", StringComparison.OrdinalIgnoreCase);
+        if (!isMonster && !effect.Target.Kind.Equals("character", StringComparison.OrdinalIgnoreCase))
             return;
         var catalog = ClassicLiveStatusCatalog(session);
         if (!catalog.TryGet(effect.SpellId, out var definition)
@@ -1017,21 +1052,36 @@ public sealed partial class RuntimeLiveGameplayFacade
         var magnitudes = RuntimeClassicNativePoisonAuthority.ResolveOrderedAbilityMagnitudes(
             definition.Abilities, 19, RuntimeClassicNativePoisonAuthority.ResolvedRoll(effect));
         if (magnitudes is null || magnitudes.Count == 0) return;
+
+        if (isMonster)
+        {
+            // WCCMMUD monster termination 0x44A570 subtracts signed poison
+            // severity from monster +0x14 and clamps negative results to zero.
+            var living = Living(session);
+            var monster = living.Capture().Npcs.FirstOrDefault(npc =>
+                npc.InstanceId.Equals(effect.Target.Id, StringComparison.OrdinalIgnoreCase)
+                && npc.Alive);
+            if (monster is null) return;
+            var severity = RuntimeClassicNativePoisonAuthority.ReadMonster(monster.Metadata);
+            foreach (var magnitude in magnitudes)
+                severity = RuntimeClassicNativePoisonAuthority.CurePoison(severity, magnitude);
+            living.ReplaceNpcMetadata(effect.Target.Id,
+                RuntimeClassicNativePoisonAuthority.SetMonster(monster.Metadata, severity));
+            return;
+        }
+
         var character = _characters.LoadCharacter(effect.Target.Id);
         if (character is null) return;
-        // Native +0xBE exists independently of active slots. When migrating a
-        // pre-scalar save, reconstruct the value as it stood BEFORE this spell
-        // terminated; expiration and dispel have already removed its slot.
         var preTerminationEffects = _liveSpellEngine!.EffectsFor(effect.Target.Id)
             .Where(active => !active.EffectId.Equals(
                 effect.EffectId, StringComparison.OrdinalIgnoreCase))
             .Append(effect);
-        var severity = RuntimeClassicNativePoisonAuthority.ReadOrDerive(
+        var playerSeverity = RuntimeClassicNativePoisonAuthority.ReadOrDerive(
             character, preTerminationEffects, catalog);
         foreach (var magnitude in magnitudes)
-            severity = RuntimeClassicNativePoisonAuthority.CurePoison(severity, magnitude);
+            playerSeverity = RuntimeClassicNativePoisonAuthority.CurePoison(playerSeverity, magnitude);
         _characters.SaveCharacter(RuntimeClassicNativePoisonAuthority.Set(
-            character, severity, nowUtc));
+            character, playerSeverity, nowUtc));
     }
 
     private int ApplyDecodedCureAndDispel(RuntimeSession session, RuntimeSpellDefinition castSpell,
@@ -1101,6 +1151,15 @@ public sealed partial class RuntimeLiveGameplayFacade
             if ((nativeTermination || nativeCureTypeSix) && effect.Duration > 0
                 && effect.Target.Kind.Equals("character", StringComparison.OrdinalIgnoreCase))
                 ExecuteImmediateDecodedEndCast(session, effect, DateTimeOffset.UtcNow);
+            else if ((nativeTermination || nativeCureTypeSix) && effect.Duration > 0
+                && effect.Target.Kind.Equals("npc", StringComparison.OrdinalIgnoreCase))
+            {
+                // Native monster termination is distinct: do not dispatch the
+                // player EndCast chain. Its verified poison handler reverses
+                // the +0x14 accumulator when this spell is removed.
+                _liveSpellEngine.RemoveEffect(effect.EffectId);
+                ApplyClassicNativePoisonOnTermination(session, effect, DateTimeOffset.UtcNow);
+            }
             else
                 _liveSpellEngine.RemoveEffect(effect.EffectId);
             removedCount++;
@@ -1162,6 +1221,21 @@ public sealed class RuntimeClassicLiveStatusEffectsSmokeReport
                 Require(nativeSpells.Spells.Sum(spell => spell.DecodedAbilities.Count) == 3889,
                     "classic-3889-populated-ability-positions");
                 report.Checks.Add("classic-3889-populated-ability-positions");
+                var mixedHpMana = nativeSpells.Spells.Where(spell =>
+                    spell.DecodedAbilities.Any(ability => ability.AbilityId is 1 or 17 or 18)
+                    && spell.DecodedAbilities.Any(ability => ability.AbilityId == 150)).ToArray();
+                Require(mixedHpMana.Length == 13
+                    && mixedHpMana.Count(RuntimeLiveGameplayFacade.ClassicNativeManaBeforeHitPointEffect) == 2,
+                    "classic-thirteen-hp-mana-compounds-two-mana-first");
+                report.Checks.Add("classic-thirteen-hp-mana-compounds-two-mana-first");
+                Require(RuntimeLiveGameplayFacade.ClassicNativeManaBeforeHitPointEffect(
+                        nativeSpells.Require("spell.1114"))
+                    && RuntimeLiveGameplayFacade.ClassicNativeManaBeforeHitPointEffect(
+                        nativeSpells.Require("spell.1129"))
+                    && !RuntimeLiveGameplayFacade.ClassicNativeManaBeforeHitPointEffect(
+                        nativeSpells.Require("spell.313")),
+                    "classic-original-ten-slot-direct-hp-mana-ordering");
+                report.Checks.Add("classic-original-ten-slot-direct-hp-mana-ordering");
                 Require(nativeSpells.Require("spell.4").DecodedAbilities.Select(ability => ability.AbilityId)
                     .SequenceEqual(new[] { 10, 115, 122, 7, 122, 122, 122 }),
                     "classic-ordered-repeated-ability-vector");
@@ -1218,6 +1292,63 @@ public sealed class RuntimeClassicLiveStatusEffectsSmokeReport
                     && classicSlots.Snapshot().Resources[slotCaster] == startingResources,
                     "classic-full-active-slots-rejected-without-resource-cost");
                 report.Checks.Add("classic-full-active-slots-rejected-without-resource-cost");
+                // Original direct player CAST passes native refresh=1; the
+                // caller-dependent refresh=0 path returns -2 instead of -1.
+                var fullSlotNoRefresh = new RuntimeSpellEngine(nativeSpells,
+                    initial: slotState, enforceClassicNativeActiveSlots: true);
+                var noRefresh = fullSlotNoRefresh.Cast(new RuntimeSpellCastRequest(slotCaster,
+                    timedSpells[0].Id, new RuntimeSpellTarget("character", "classic-slot-target"),
+                    slotNow, AllowClassicPlayerRefresh: false));
+                Require(!noRefresh.Succeeded && noRefresh.FailureCode == "SPELL_ALREADY_ACTIVE"
+                    && fullSlotNoRefresh.EffectsFor("classic-slot-target").Count == 10
+                    && fullSlotNoRefresh.Snapshot().Resources[slotCaster] == startingResources,
+                    "classic-player-duplicate-refresh-disabled-returns-native-minus-two");
+                report.Checks.Add("classic-player-duplicate-refresh-disabled-returns-native-minus-two");
+                var fullSlotRefresh = new RuntimeSpellEngine(nativeSpells, initial: slotState,
+                    enforceClassicNativeActiveSlots: true);
+                var refreshedPlayer = fullSlotRefresh.Cast(new RuntimeSpellCastRequest(slotCaster,
+                    timedSpells[0].Id, new RuntimeSpellTarget("character", "classic-slot-target"),
+                    slotNow.AddSeconds(3), AllowClassicPlayerRefresh: true));
+                Require(refreshedPlayer.Succeeded && refreshedPlayer.Effect is not null
+                    && fullSlotRefresh.EffectsFor("classic-slot-target").Count == 10
+                    && fullSlotRefresh.EffectsFor("classic-slot-target")
+                        .Count(effect => effect.SpellId.Equals(timedSpells[0].Id,
+                            StringComparison.OrdinalIgnoreCase)) == 1
+                    && refreshedPlayer.Effect.AppliedAtUtc == slotNow.AddSeconds(3),
+                    "classic-player-duplicate-refresh-enabled-overwrites-existing-slot");
+                report.Checks.Add("classic-player-duplicate-refresh-enabled-overwrites-existing-slot");
+                var additionalNoRefresh = false;
+                try
+                {
+                    fullSlotNoRefresh.AddAdditionalTarget(new RuntimeSpellCastRequest(slotCaster,
+                        timedSpells[0].Id, new RuntimeSpellTarget("character", "classic-slot-target"),
+                        slotNow, AllowClassicPlayerRefresh: false));
+                }
+                catch (InvalidOperationException ex)
+                {
+                    additionalNoRefresh = ex.Message == "SPELL_ALREADY_ACTIVE";
+                }
+                Require(additionalNoRefresh
+                    && fullSlotNoRefresh.EffectsFor("classic-slot-target").Count == 10,
+                    "classic-player-additional-target-no-refresh-refused-atomically");
+                report.Checks.Add("classic-player-additional-target-no-refresh-refused-atomically");
+                var refreshedAdditionalPlayer = fullSlotRefresh.AddAdditionalTarget(
+                    new RuntimeSpellCastRequest(slotCaster, timedSpells[0].Id,
+                        new RuntimeSpellTarget("character", "classic-slot-target"),
+                        slotNow.AddSeconds(6), AllowClassicPlayerRefresh: true));
+                Require(fullSlotRefresh.EffectsFor("classic-slot-target").Count == 10
+                    && refreshedAdditionalPlayer.AppliedAtUtc == slotNow.AddSeconds(6),
+                    "classic-player-additional-target-refresh-overwrites-existing-slot");
+                report.Checks.Add("classic-player-additional-target-refresh-overwrites-existing-slot");
+                var customPlayerNoRefresh = new RuntimeSpellEngine(nativeSpells, initial: slotState);
+                var customDuplicate = customPlayerNoRefresh.Cast(new RuntimeSpellCastRequest(
+                    slotCaster, timedSpells[0].Id,
+                    new RuntimeSpellTarget("character", "classic-slot-target"),
+                    slotNow, AllowClassicPlayerRefresh: false));
+                Require(customDuplicate.Succeeded
+                    && customPlayerNoRefresh.EffectsFor("classic-slot-target").Count == 11,
+                    "custom-player-duplicate-refresh-flag-is-ignored");
+                report.Checks.Add("custom-player-duplicate-refresh-flag-is-ignored");
                 Require(!RuntimeSpellEngine.ClassicNativeCanAdmitDurationSpell(
                         startingSlots, "character", "classic-slot-target", timedSpells[10].Id, slotNow)
                     && RuntimeSpellEngine.ClassicNativeCanAdmitDurationSpell(
@@ -1363,6 +1494,13 @@ public sealed class RuntimeClassicLiveStatusEffectsSmokeReport
                 RuntimeClassicNativePoisonAuthority.CurePoison(20, 4), 5);
             Require(combinedCure == 11, "native-cure-repeated-slots-each-subtract");
             report.Checks.Add("native-cure-repeated-slots-each-subtract");
+            var monsterPoison = RuntimeClassicNativePoisonAuthority.SetMonster(
+                new Dictionary<string, string>(), 17);
+            Require(RuntimeClassicNativePoisonAuthority.ReadMonster(monsterPoison) == 17
+                && RuntimeClassicNativePoisonAuthority.CurePoison(17, 12) == 5
+                && RuntimeClassicNativePoisonAuthority.ApplySlowDamage(36, 17) == 19,
+                "classic-monster-native-poison-accumulator-termination-slow-damage");
+            report.Checks.Add("classic-monster-native-poison-accumulator-termination-slow-damage");
             Require(RuntimeClassicNativePoisonAuthority.ApplyPoison(12, 8) == 12
                 && RuntimeClassicNativePoisonAuthority.ApplyPoison(12, 20) == 20
                 && RuntimeClassicNativePoisonAuthority.ApplyPoison(0, 40000) == short.MaxValue
