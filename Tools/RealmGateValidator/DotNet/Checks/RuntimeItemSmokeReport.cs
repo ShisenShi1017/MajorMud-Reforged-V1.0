@@ -60,6 +60,20 @@ public static class RuntimeItemSmokeReport
                 single.Metadata?.GetValueOrDefault("classic_legacy_equipped_slot") != oldSlot)
                 throw new InvalidDataException("Legacy equipment position was not migrated and recorded.");
 
+            // Live command initialization is the primary save-load path. It must
+            // reconcile the very same source state, not just RestoreSnapshot.
+            var liveLoaded = new RuntimeItemEngine(catalog, new[] { savedOld });
+            var liveItem = liveLoaded.RequireInstance(savedOld.InstanceId);
+            if (liveItem.EquippedSlot != definition.Slot ||
+                liveItem.Metadata?.GetValueOrDefault("classic_legacy_equipped_slot") != oldSlot)
+                throw new InvalidDataException("Live engine constructor did not reconcile the old equipment slot.");
+
+            var snapshotLoaded = new RuntimeItemEngine(catalog);
+            snapshotLoaded.RestoreSnapshot(new RuntimeItemState(
+                new[] { savedOld }, 0, new Dictionary<string, string>()));
+            if (snapshotLoaded.RequireInstance(savedOld.InstanceId).EquippedSlot != definition.Slot)
+                throw new InvalidDataException("RestoreSnapshot did not reconcile the old equipment slot.");
+
             var conflict = RuntimeItemEngine.ReconcileSavedEquipmentSlots(
                 new[] { savedOld, savedCorrect }, catalog);
             if (conflict.Count != 2 || conflict.Select(x => x.InstanceId).Distinct().Count() != 2 ||
@@ -68,6 +82,12 @@ public static class RuntimeItemSmokeReport
                 conflict[0].LocationKind != RuntimeItemLocations.Character ||
                 conflict[0].Metadata?.GetValueOrDefault("classic_pending_equipped_slot") != definition.Slot)
                 throw new InvalidDataException("Legacy equipment conflict lost an item or displaced the native occupant.");
+
+            var liveConflict = new RuntimeItemEngine(catalog, new[] { savedOld, savedCorrect });
+            if (liveConflict.RequireInstance(savedOld.InstanceId).LocationKind != RuntimeItemLocations.Character ||
+                liveConflict.RequireInstance(savedCorrect.InstanceId).EquippedSlot != definition.Slot ||
+                liveConflict.Items.Count != 2)
+                throw new InvalidDataException("Live migration lost an equipment item or overwrote native occupancy.");
         });
 
         Check("decoded-curse-remove-and-death-retention", () =>

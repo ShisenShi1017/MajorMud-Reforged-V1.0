@@ -423,7 +423,11 @@ public sealed partial class RuntimeItemEngine
     {
         _catalog = catalog;
         _characterAuthority = characterAuthority;
-        foreach (var item in initial ?? Array.Empty<RuntimeItemInstance>()) AddUnique(item);
+        // Normal live commands construct the engine from the character save.
+        // Run the same native-slot migration as RestoreSnapshot before checking
+        // invariants; otherwise old saves fail before their first command.
+        foreach (var item in ReconcileSavedEquipmentSlots(
+                     initial ?? Array.Empty<RuntimeItemInstance>(), catalog)) AddUnique(item);
         foreach (var corpse in corpses ?? Array.Empty<RuntimeCorpseState>()) _corpses.Add(corpse.CorpseId, corpse);
         EnsureValid();
     }

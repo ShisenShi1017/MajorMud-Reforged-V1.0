@@ -541,7 +541,7 @@ public sealed partial class RuntimeLiveGameplayFacade
         // not a fabricated "current/maximum" equipment durability meter.
         var definition = catalog.Require(item.CanonicalItemId);
         var remaining = item.Charges < 0 ? Math.Max(0, definition.MaximumUses) : Math.Max(0, item.Charges);
-        return $"Readied/{remaining}";
+        return $"readied/{remaining}";
     }
 
     public string Save(RuntimeSession session)
