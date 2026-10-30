@@ -1233,12 +1233,26 @@ public sealed partial class RuntimeLiveGameplayFacade
             metadata["operation_authority"]=(hasDecodedDamage||hasDecodedHeal)?"decoded_ability_vector":"decoded_target_and_attack_type";
             var finalOperation = decodedOperation;
             var finalMagnitude = resolution.Magnitude;
+            // Apply the verified native ability-17 handler only to an isolated
+            // player-target direct effect. Cast admission, general saves, and
+            // compound ability dispatch remain separate native parity questions.
+            if (_session.World.Definition.Type.Equals("Classic", StringComparison.OrdinalIgnoreCase)
+                && targetCharacter is not null
+                && IsVerifiedNativeUserDamageMinusMrSpell(spell)
+                && !resolution.Resisted && !resolution.Reflected && !resolution.Absorbed)
+            {
+                finalMagnitude = ResolveNativeUserDamageMinusMr(finalMagnitude, targetMr);
+                metadata["native_direct_damage_ability"] = "17";
+                metadata["native_direct_damage_formula"] = "WCCMMUD.474E3D-474E64";
+                metadata["native_direct_damage_mr"] = Math.Clamp(targetMr, 0, ushort.MaxValue)
+                    .ToString(System.Globalization.CultureInfo.InvariantCulture);
+            }
             if (targetCharacter is not null && decodedOperation.Equals("damage", StringComparison.OrdinalIgnoreCase) &&
-                !resolution.Resisted && !resolution.Reflected && !resolution.Absorbed && resolution.Magnitude > 0)
+                !resolution.Resisted && !resolution.Reflected && !resolution.Absorbed && finalMagnitude > 0)
             {
                 var elementalResistance = ReadElementalResistance(targetCharacter, resolution.Element);
                 var poisonImmune = ReadAbilityValue(targetCharacter, 21) > 0;
-                var signedDamage = ResolveElementalSpellDamage(resolution.Magnitude, resolution.Element, elementalResistance, poisonImmune);
+                var signedDamage = ResolveElementalSpellDamage(finalMagnitude, resolution.Element, elementalResistance, poisonImmune);
                 finalOperation = signedDamage < 0 ? "heal" : "damage";
                 finalMagnitude = signedDamage < 0 ? checked(-signedDamage) : signedDamage;
                 metadata["elemental_resistance_percent"] = elementalResistance.ToString(System.Globalization.CultureInfo.InvariantCulture);
@@ -1397,6 +1411,26 @@ public sealed partial class RuntimeLiveGameplayFacade
         _characters.SaveCharacter(character with { HitPoints = hp2, UpdatedAtUtc = DateTimeOffset.UtcNow });
     }
 
+    // WCCMMUD _cast_user_target direct ability 17 at 0x474E3D..0x474E64:
+    // (magnitude * max(25, 150 - zero-extended target +0xC2 MR)) / 100.
+    // The native signed division truncates toward zero; the target MR field is UInt16.
+    internal static int ResolveNativeUserDamageMinusMr(int magnitude, int targetMagicResistance)
+    {
+        if (magnitude < 0) throw new ArgumentOutOfRangeException(nameof(magnitude));
+        var mrWord = Math.Clamp(targetMagicResistance, 0, ushort.MaxValue);
+        var percent = Math.Max(25, 150 - mrWord);
+        return checked((int)(((long)magnitude * percent) / 100));
+    }
+
+    // Only promote the isolated, duration-zero native user-target direct effect.
+    // Companion message markers (115/120) and non-magical marker (144) do not
+    // carry another executable effect here. Compound effects stay on the
+    // existing guarded resolver until their full native slot order is traced.
+    internal static bool IsVerifiedNativeUserDamageMinusMrSpell(RuntimeSpellDefinition spell) =>
+        spell.Duration == 0
+        && spell.DecodedAbilities.Count(ability => ability.AbilityId == 17) == 1
+        && spell.DecodedAbilities.All(ability => ability.AbilityId is 17 or 115 or 120 or 144);
+
     internal static int ResolveHealManaMagnitude(int decodedValue, RuntimeClassicPlayerSpellResolution resolution)
     {
         ArgumentNullException.ThrowIfNull(resolution);
@@ -1474,6 +1508,17 @@ public sealed class RuntimeLivePowersSmokeReport
             Check(RuntimeLiveGameplayFacade.ResolveNpcSpellImmunityLevel("10", 20) == 20, "npc-active-spell-immunity-stacks-by-maximum", r);
             Check(RuntimeLiveGameplayFacade.ShouldExecuteCastOnEnd(20, 20) && !RuntimeLiveGameplayFacade.ShouldExecuteCastOnEnd(20, 21), "cast-on-end-inclusive-percent-boundary", r);
             Check(RuntimeLiveGameplayFacade.ShouldExecuteCastOnEnd(100, 100) && !RuntimeLiveGameplayFacade.ShouldExecuteCastOnEnd(0, 1), "cast-on-end-default-and-zero-boundaries", r);
+            Check(RuntimeLiveGameplayFacade.ResolveNativeUserDamageMinusMr(100, 0) == 150
+                && RuntimeLiveGameplayFacade.ResolveNativeUserDamageMinusMr(100, 50) == 100
+                && RuntimeLiveGameplayFacade.ResolveNativeUserDamageMinusMr(100, 100) == 50
+                && RuntimeLiveGameplayFacade.ResolveNativeUserDamageMinusMr(100, 125) == 25
+                && RuntimeLiveGameplayFacade.ResolveNativeUserDamageMinusMr(100, 65535) == 25
+                && RuntimeLiveGameplayFacade.ResolveNativeUserDamageMinusMr(7, 101) == 3,
+                "native-user-damage-minus-mr-percent-floor-and-integer-truncation", r);
+            Check(RuntimeLiveGameplayFacade.IsVerifiedNativeUserDamageMinusMrSpell(spells.Require("spell.95"))
+                && !RuntimeLiveGameplayFacade.IsVerifiedNativeUserDamageMinusMrSpell(spells.Require("spell.805"))
+                && !RuntimeLiveGameplayFacade.IsVerifiedNativeUserDamageMinusMrSpell(spells.Require("spell.526")),
+                "native-user-damage-minus-mr-isolated-handler-only", r);
             var poisonEffect = new RuntimeActiveSpellEffect("poison", "spell.poison", "npc.1", new RuntimeSpellTarget("character", "character.1"), 1, 2, 10, DateTimeOffset.UtcNow, DateTimeOffset.UtcNow.AddSeconds(10), new Dictionary<string,string> { ["effect_kind"] = "poison" });
             var statusEffect = poisonEffect with { EffectId = "status", Metadata = new Dictionary<string,string> { ["effect_kind"] = "status" } };
             Check(RuntimeLiveGameplayFacade.IsPoisonEffect(poisonEffect), "cure-poison-removes-poison", r);

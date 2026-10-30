@@ -157,6 +157,10 @@ public static class RuntimeClassicStatusProjection
             conditions.Remove(key);
 
         var numeric = new Dictionary<string, int>(StringComparer.OrdinalIgnoreCase);
+        var isOriginalClassicWorld = character.WorldId.Equals("Classic", StringComparison.OrdinalIgnoreCase);
+        // Native _get_spell_ability_value combines ability 22 by maximum,
+        // independently of additive accuracy abilities 105/106.
+        var nativeAccuracy22Maximum = 0;
         var flags = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
         var effects = activeEffects
             .Where(effect => effect.Target.Kind.Equals("character", StringComparison.OrdinalIgnoreCase)
@@ -197,6 +201,10 @@ public static class RuntimeClassicStatusProjection
                     case 5: Add(numeric, "resist_fire", resolved); break;
                     case 7: Add(numeric, "damage_resistance", resolved); break;
                     case 22:
+                        if (isOriginalClassicWorld)
+                            nativeAccuracy22Maximum = Math.Max(nativeAccuracy22Maximum, resolved);
+                        else Add(numeric, "accuracy", resolved);
+                        break;
                     case 105:
                     case 106: Add(numeric, "accuracy", resolved); break;
                     case 24: Add(numeric, "protection_from_evil", resolved); break;
@@ -217,7 +225,10 @@ public static class RuntimeClassicStatusProjection
                     case 69: Add(numeric, "maximum_mana", resolved); break;
                     case 72: Add(numeric, "damage_shield", resolved); break;
                     case 77: Add(numeric, "perception", resolved); break;
-                    case 87: Add(numeric, "speed", resolved); break;
+                    case 87:
+                        if (isOriginalClassicWorld) Maximum(numeric, "speed", resolved);
+                        else Add(numeric, "speed", resolved);
+                        break;
                     case 88: Add(numeric, "maximum_hit_points", resolved); break;
                     case 89: Add(numeric, "punch_accuracy", resolved); break;
                     case 90: Add(numeric, "kick_accuracy", resolved); break;
@@ -261,6 +272,9 @@ public static class RuntimeClassicStatusProjection
             }
             if (definition.IsPoison) flags.Add("poisoned");
         }
+
+        if (isOriginalClassicWorld && nativeAccuracy22Maximum != 0)
+            Add(numeric, "accuracy", nativeAccuracy22Maximum);
 
         foreach (var pair in numeric)
             conditions[Prefix + pair.Key] = pair.Value.ToString(CultureInfo.InvariantCulture);
@@ -355,6 +369,16 @@ public static class RuntimeClassicStatusProjection
             return roll;
         return checked((effect.MinimumEffect + effect.MaximumEffect) / 2);
     }
+
+    // Recovered _get_spell_ability_value: unlike additive modifiers, native
+    // ability 87 uses the highest active value. Other maximum-only abilities
+    // are flags/controls in this projection and are not summed here.
+    internal static int NativeMaximumAbilityValue(int current, int incoming)
+        => Math.Max(current, incoming);
+
+    private static void Maximum(IDictionary<string, int> values, string key, int value)
+        => values[key] = NativeMaximumAbilityValue(
+            values.TryGetValue(key, out var current) ? current : 0, value);
 
     private static void Add(IDictionary<string, int> values, string key, int amount)
         => values[key] = checked(values.TryGetValue(key, out var current) ? current + amount : amount);
@@ -928,6 +952,11 @@ public sealed class RuntimeClassicLiveStatusEffectsSmokeReport
                     .SequenceEqual(new[] { 10, 115, 122, 7, 122, 122, 122 }),
                     "classic-ordered-repeated-ability-vector");
                 report.Checks.Add("classic-ordered-repeated-ability-vector");
+                Require(RuntimeClassicStatusProjection.NativeMaximumAbilityValue(35, 20) == 35
+                    && RuntimeClassicStatusProjection.NativeMaximumAbilityValue(35, 55) == 55
+                    && RuntimeClassicStatusProjection.NativeMaximumAbilityValue(0, 30) == 30,
+                    "native-maximum-modifier-ability22-and87");
+                report.Checks.Add("native-maximum-modifier-ability22-and87");
                 Require(RuntimeSpellEngine.ClassicNativeActiveSlotLimit("character") == 10
                     && RuntimeSpellEngine.ClassicNativeActiveSlotLimit("npc") == 5
                     && RuntimeSpellEngine.ClassicNativeActiveSlotLimit("world_object") == 0,
