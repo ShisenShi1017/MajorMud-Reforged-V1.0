@@ -66,7 +66,12 @@ internal static class RuntimeItemProjectionWriter
                 ? ReadInt(nativeProperties, "worn_on")
                 : ReadInt(equipmentData, "worn_on");
             var weaponType = ReadWeaponType(sourceRecord);
-            var slot = Slots.TryGetValue(wornOn, out var mappedSlot) ? mappedSlot : "UNKNOWN";
+            // Never emit an unrecognized native worn position as an
+            // apparently usable runtime slot. Such a value needs fresh
+            // DLL/database evidence before assigning equipment semantics.
+            if (!Slots.TryGetValue(wornOn, out var slot))
+                throw new InvalidDataException(
+                    $"Item '{id}' has unknown native worn_on code {wornOn}.");
             // Transitional compatibility: ready weapons and light sources are
             // NOT native body slots. Keep their existing runtime relationships
             // until readiness and active-light state are migrated atomically.

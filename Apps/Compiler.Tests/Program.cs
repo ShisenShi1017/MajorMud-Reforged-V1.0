@@ -86,7 +86,35 @@ using (var equipmentDocument = JsonDocument.Parse(File.ReadAllText(Path.Combine(
             throw new Exception("Runtime equipment projection contains a record without item_id.");
         if (!record.TryGetProperty("slot", out var slot) || string.IsNullOrWhiteSpace(slot.GetString()))
             throw new Exception("Runtime equipment projection contains a record without slot.");
+        if (slot.GetString() == "UNKNOWN")
+            throw new Exception("Unrecognized native worn_on code leaked into runtime equipment.");
     }
+}
+
+// These are the 20 original worn_on codes, including two unresolved
+// special WORN states. Synthetic WIELD/LIGHT are transitional relationships,
+// never physical slots in the native equipment_slots projection.
+using (var slotDocument = JsonDocument.Parse(File.ReadAllText(Path.Combine(result.OutputRoot, "equipment_slots.json"))))
+{
+    var nativeSlotNames = new[]
+    {
+        "NONE", "WORN_1", "HEAD", "HANDS", "FINGER_1",
+        "FEET", "ARMS", "BACK", "NECK", "LEGS",
+        "WAIST", "TORSO", "OFF_HAND", "FINGER_2", "WRIST_1",
+        "EARS", "WORN_16", "WRIST_2", "EYES", "FACE"
+    };
+    var records = slotDocument.RootElement.GetProperty("records").EnumerateArray().ToArray();
+    if (records.Length != nativeSlotNames.Length)
+        throw new Exception("Classic runtime equipment slots no longer match the 20 native worn_on codes.");
+    for (var code = 0; code < nativeSlotNames.Length; code++)
+    {
+        var matches = records.Where(record => record.GetProperty("code").GetInt32() == code).ToArray();
+        if (matches.Length != 1 || !ReadString(matches[0], "id").Equals(nativeSlotNames[code],
+                StringComparison.Ordinal))
+            throw new Exception($"Classic native worn_on code {code} is misidentified.");
+    }
+    if (records.Any(record => ReadString(record, "id") is "WIELD" or "LIGHT" or "UNKNOWN"))
+        throw new Exception("Synthetic readiness or unknown positions leaked into native body slots.");
 }
 
 using (var npcDocument = JsonDocument.Parse(File.ReadAllText(Path.Combine(result.OutputRoot, "npcs.json"))))
