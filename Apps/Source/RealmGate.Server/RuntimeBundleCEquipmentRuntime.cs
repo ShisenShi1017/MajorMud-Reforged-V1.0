@@ -18,6 +18,27 @@ public static class RuntimeEquipmentRuntimeAuthority
     internal const string ReadyWeaponKey = "classic.readiness.weapon_instance_id";
     internal const string ReadyLightKey = "classic.readiness.light_instance_id";
 
+    // Capture legacy readiness BEFORE RuntimeItemEngine migrates old WIELD
+    // and LIGHT equipment records into carried items.
+    internal static IReadOnlyDictionary<string, string> SeedLegacyReadinessState(
+        IEnumerable<RuntimeItemInstance> items,
+        string ownerId,
+        IReadOnlyDictionary<string, string> prior)
+    {
+        var next = new Dictionary<string, string>(prior, StringComparer.OrdinalIgnoreCase);
+        var owned = items.Where(item => string.Equals(item.OwnerId, ownerId, StringComparison.OrdinalIgnoreCase)
+            && item.LocationKind.Equals(RuntimeItemLocations.Equipment, StringComparison.OrdinalIgnoreCase)).ToArray();
+        foreach (var (key, slot) in new[] { (ReadyWeaponKey, "WIELD"), (ReadyLightKey, "LIGHT") })
+        {
+            if (next.ContainsKey(key)) continue;
+            var oldItems = owned.Where(item => string.Equals(item.EquippedSlot, slot, StringComparison.OrdinalIgnoreCase)).ToArray();
+            if (oldItems.Length > 1)
+                throw new InvalidDataException($"Ambiguous legacy {slot} readiness for {ownerId}.");
+            if (oldItems.Length == 1) next[key] = oldItems[0].InstanceId;
+        }
+        return next;
+    }
+
     internal static bool IsOwnedReadinessCandidate(RuntimeItemInstance item, string ownerId) =>
         string.Equals(item.OwnerId, ownerId, StringComparison.OrdinalIgnoreCase)
         && (item.LocationKind.Equals(RuntimeItemLocations.Character, StringComparison.OrdinalIgnoreCase)

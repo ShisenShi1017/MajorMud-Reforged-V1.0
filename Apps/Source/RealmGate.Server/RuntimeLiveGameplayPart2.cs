@@ -93,8 +93,10 @@ public sealed partial class RuntimeLiveGameplayFacade
         state = state with { Items = state.Items.Where(item => !RuntimeClassicRoomCurrencyStore.IsLegacyCurrency(item)).ToArray() };
         var catalog = RuntimeItemCatalog.Load(_characters.ProjectRoot, session.World.Definition.Id);
         var characterAuthority = RuntimeCharacterBundleCatalog.Load(_characters.ProjectRoot, session.World.Definition.Id);
+        var activeItemState = new Dictionary<string, string>(
+            RuntimeEquipmentRuntimeAuthority.SeedLegacyReadinessState(
+                state.Items, actor.Id, state.ActiveItemState), StringComparer.OrdinalIgnoreCase);
         var engine = new RuntimeItemEngine(catalog, state.Items, state.Corpses, characterAuthority);
-        var activeItemState = new Dictionary<string, string>(state.ActiveItemState, StringComparer.OrdinalIgnoreCase);
         string result;
         string? roomObserverMessage = null;
         RuntimeClassicRoomMessagePriority roomObserverPriority = RuntimeClassicRoomMessagePriority.High;
@@ -219,10 +221,15 @@ public sealed partial class RuntimeLiveGameplayFacade
             }
             case "remove":
             {
+                var migratedState = state with
+                {
+                    Items = engine.Items.ToArray(),
+                    ActiveItemState = activeItemState
+                };
                 var readyWeaponId = RuntimeEquipmentRuntimeAuthority.ResolveReadiedWeaponInstanceId(
-                    state, actor.Id);
+                    migratedState, actor.Id);
                 var readyLightId = RuntimeEquipmentRuntimeAuthority.ResolveReadiedLightInstanceId(
-                    state, actor.Id);
+                    migratedState, actor.Id);
                 var candidates = engine.Inventory(actor.Id)
                     .Where(i => i.InstanceId.Equals(readyWeaponId, StringComparison.OrdinalIgnoreCase)
                         || i.InstanceId.Equals(readyLightId, StringComparison.OrdinalIgnoreCase))

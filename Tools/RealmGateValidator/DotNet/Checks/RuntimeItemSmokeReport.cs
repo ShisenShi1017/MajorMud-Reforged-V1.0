@@ -65,9 +65,10 @@ public static class RuntimeItemSmokeReport
 
         Check("classic-carried-readiness-state-survives-and-clears", () =>
         {
-            var weaponDef = catalog.EquipmentDefinitions.First(x => x.Slot == "WIELD");
+            var weaponDef = catalog.Items.First(x =>
+                x.ItemType.Equals("weapon", StringComparison.OrdinalIgnoreCase) && x.Gettable);
             var weapon = new RuntimeItemEngine(catalog).Create(
-                weaponDef.ItemId, RuntimeItemLocations.Character, owner, ownerId: owner);
+                weaponDef.Id, RuntimeItemLocations.Character, owner, ownerId: owner);
             var saved = new RuntimeItemState(new[] { weapon }, 0,
                 new Dictionary<string, string>
                 {
@@ -169,6 +170,58 @@ public static class RuntimeItemSmokeReport
         {
             if (RuntimeCommandRuntimeRouteCatalog.Require("light").Kind != RuntimeCommandRouteKind.ItemRuntime)
                 throw new InvalidDataException("LIGHT command must route through the item runtime.");
+        });
+
+        Check("classic-legacy-ready-state-seeding", () =>
+        {
+            var legacyWeapon = new RuntimeItemInstance("legacy-ready-weapon", "item.1", owner,
+                RuntimeItemLocations.Equipment, owner, "WIELD", 0, 1, null);
+            var legacyLight = new RuntimeItemInstance("legacy-ready-light", "item.2", owner,
+                RuntimeItemLocations.Equipment, owner, "LIGHT", 50, 1, null);
+            var seeded = RuntimeEquipmentRuntimeAuthority.SeedLegacyReadinessState(
+                new[] { legacyWeapon, legacyLight }, owner,
+                new Dictionary<string, string> { ["bank"] = "keep" });
+            if (seeded.GetValueOrDefault(RuntimeEquipmentRuntimeAuthority.ReadyWeaponKey)
+                    != legacyWeapon.InstanceId ||
+                seeded.GetValueOrDefault(RuntimeEquipmentRuntimeAuthority.ReadyLightKey)
+                    != legacyLight.InstanceId || seeded.GetValueOrDefault("bank") != "keep")
+                throw new InvalidDataException("Legacy weapon/light readiness was not captured before migration.");
+
+            var carried = new[]
+            {
+                legacyWeapon with { LocationKind = RuntimeItemLocations.Character, EquippedSlot = null },
+                legacyLight with { LocationKind = RuntimeItemLocations.Character, EquippedSlot = null }
+            };
+            var preserved = RuntimeEquipmentRuntimeAuthority.ReconcileReadinessState(carried, owner, seeded);
+            if (RuntimeEquipmentRuntimeAuthority.ResolveReadiedWeaponInstanceId(
+                    new RuntimeItemState(carried, 0, preserved), owner) != legacyWeapon.InstanceId ||
+                RuntimeEquipmentRuntimeAuthority.ResolveReadiedLightInstanceId(
+                    new RuntimeItemState(carried, 0, preserved), owner) != legacyLight.InstanceId)
+                throw new InvalidDataException("Readiness pointers were lost after synthetic equipment removal.");
+        });
+
+        Check("classic-synthetic-relationship-removal-save-migration", () =>
+        {
+            // This branch runs after the compiler no longer emits synthetic
+            // WIELD/LIGHT relationships; it is dormant in old generated data.
+            foreach (var (itemType, oldSlot) in new[]
+                     {
+                         ("weapon", "WIELD"), ("light_source", "LIGHT")
+                     })
+            {
+                var definition = catalog.Items.FirstOrDefault(item =>
+                    item.ItemType.Equals(itemType, StringComparison.OrdinalIgnoreCase)
+                    && catalog.Equipment(item.Id) is null);
+                if (definition is null) continue;
+                var legacy = new RuntimeItemInstance("legacy." + oldSlot, definition.Id, owner,
+                    RuntimeItemLocations.Equipment, owner, oldSlot, 50, 1, null);
+                var migrated = new RuntimeItemEngine(catalog, new[] { legacy }).Items.Single();
+                if (migrated.InstanceId != legacy.InstanceId ||
+                    migrated.LocationKind != RuntimeItemLocations.Character ||
+                    migrated.EquippedSlot is not null || migrated.Charges != legacy.Charges ||
+                    migrated.Metadata?.GetValueOrDefault("classic_legacy_equipped_slot") != oldSlot)
+                    throw new InvalidDataException("Native readiness migration did not preserve original item state.");
+            }
         });
 
         Check("classic-saved-equipment-native-slot-migration", () =>

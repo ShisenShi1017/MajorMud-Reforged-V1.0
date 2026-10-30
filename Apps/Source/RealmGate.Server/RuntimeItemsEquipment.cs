@@ -1560,6 +1560,41 @@ public sealed partial class RuntimeItemEngine
             }
 
             var relationship = catalog.Equipment(item.CanonicalItemId);
+            // WIELD and LIGHT were Reforged-only body positions. When their
+            // generated relationships disappear, move the original item back
+            // to carried inventory. Never discard its instance, charges or
+            // previous position evidence.
+            if (relationship is null &&
+                (item.EquippedSlot.Equals("WIELD", StringComparison.OrdinalIgnoreCase)
+                    || item.EquippedSlot.Equals("LIGHT", StringComparison.OrdinalIgnoreCase)))
+            {
+                var isWeapon = item.EquippedSlot.Equals("WIELD", StringComparison.OrdinalIgnoreCase);
+                var definition = catalog.Require(item.CanonicalItemId);
+                if (!(isWeapon
+                        ? definition.ItemType.Equals("weapon", StringComparison.OrdinalIgnoreCase)
+                        : definition.ItemType.Equals("light_source", StringComparison.OrdinalIgnoreCase)))
+                    throw new InvalidDataException($"Unexpected legacy readiness slot on {item.CanonicalItemId}.");
+                // NPC reset equipment must be migrated by the NPC runtime,
+                // never silently converted into a player's inventory.
+                if (item.Metadata?.ContainsKey("npc_reset_key") == true
+                    || item.Metadata?.ContainsKey("npc_reset_equipped_slot") == true)
+                    throw new InvalidDataException(
+                        $"NPC legacy readiness migration requires NPC reset conversion: {item.InstanceId}.");
+                if (string.IsNullOrWhiteSpace(item.OwnerId))
+                    throw new InvalidDataException($"Ownerless legacy ready item {item.InstanceId}.");
+                var oldMetadata = item.Metadata is null
+                    ? new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase)
+                    : new Dictionary<string, string>(item.Metadata, StringComparer.OrdinalIgnoreCase);
+                oldMetadata.TryAdd("classic_legacy_equipped_slot", item.EquippedSlot);
+                reconciled[index] = item with
+                {
+                    LocationKind = RuntimeItemLocations.Character,
+                    LocationId = item.OwnerId!,
+                    EquippedSlot = null,
+                    Metadata = oldMetadata
+                };
+                continue;
+            }
             if (relationship is null || string.Equals(item.EquippedSlot, relationship.Slot,
                     StringComparison.OrdinalIgnoreCase))
             {
