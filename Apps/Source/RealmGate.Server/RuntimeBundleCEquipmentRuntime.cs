@@ -60,8 +60,12 @@ public static class RuntimeEquipmentRuntimeAuthority
                 && item.EquippedSlot!.Equals("WIELD", StringComparison.OrdinalIgnoreCase));
             if (selected is not null) return selected.InstanceId;
         }
+        // MAIN_HAND is retained only for old saves and combat test fixtures.
+        // Never infer a primary weapon from OFF_HAND or a generic worn item.
         return equipped.FirstOrDefault(item =>
-            item.EquippedSlot!.Equals("WIELD", StringComparison.OrdinalIgnoreCase))?.InstanceId;
+            item.EquippedSlot!.Equals("WIELD", StringComparison.OrdinalIgnoreCase))?.InstanceId
+            ?? equipped.FirstOrDefault(item =>
+                item.EquippedSlot!.Equals("MAIN_HAND", StringComparison.OrdinalIgnoreCase))?.InstanceId;
     }
 
     // Consume a persisted light source only while the referenced instance is

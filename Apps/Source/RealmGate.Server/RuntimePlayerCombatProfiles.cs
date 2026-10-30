@@ -117,9 +117,8 @@ public sealed class RuntimePlayerCombatProfileResolver
             // Only the readied instance supplies the weapon damage profile.
             // Old saves without an explicit readiness key still resolve their
             // WIELD instance through the compatibility reader.
-            if (profile.MaximumDamage > 0
-                && (readiedWeaponId is null ||
-                    item.InstanceId.Equals(readiedWeaponId, StringComparison.OrdinalIgnoreCase)))
+            if (profile.MaximumDamage > 0 && readiedWeaponId is not null
+                && item.InstanceId.Equals(readiedWeaponId, StringComparison.OrdinalIgnoreCase))
                 weaponProfiles.Add(profile);
         }
         damageResistance = ApplyDamageResistancePercent(

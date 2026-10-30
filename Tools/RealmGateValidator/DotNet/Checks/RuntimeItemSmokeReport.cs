@@ -84,6 +84,20 @@ public static class RuntimeItemSmokeReport
             var removed = state with { Items = new[] { two } };
             if (RuntimeEquipmentRuntimeAuthority.ResolveReadiedWeaponInstanceId(removed, owner) is not null)
                 throw new InvalidDataException("Orphaned weapon readiness was accepted.");
+
+            var offhand = one with { EquippedSlot = "OFF_HAND" };
+            var noMainHand = state with { Items = new[] { offhand, two } };
+            if (RuntimeEquipmentRuntimeAuthority.ResolveReadiedWeaponInstanceId(noMainHand, owner) is not null)
+                throw new InvalidDataException("Off-hand item was mistaken for primary weapon.");
+
+            var legacyMain = state with
+            {
+                Items = new[] { one with { EquippedSlot = "MAIN_HAND" }, two },
+                ActiveItemState = new Dictionary<string, string>()
+            };
+            if (RuntimeEquipmentRuntimeAuthority.ResolveReadiedWeaponInstanceId(legacyMain, owner)
+                != one.InstanceId)
+                throw new InvalidDataException("Legacy MAIN_HAND combat fixture lost its weapon.");
         });
 
         Check("classic-light-readiness-reads-saved-instance-id", () =>
