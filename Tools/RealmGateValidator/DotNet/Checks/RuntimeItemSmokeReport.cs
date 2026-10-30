@@ -414,6 +414,72 @@ public static class RuntimeItemSmokeReport
                 throw new InvalidOperationException("Removing resource equipment did not restore base maxima and clamp current resources.");
         });
 
+        Check("player-combat-equipment-reprojection-does-not-stack-on-switch", () =>
+        {
+            var baseline = character with
+            {
+                HitPoints = 80, MaximumHitPoints = 100,
+                Mana = 35, MaximumMana = 50,
+                SemanticState = RuntimeCharacterSemanticState.Empty
+            };
+            var weaponA = new RuntimeEquipmentModifierTotals(3, 4, 5, 6, new[] { "switch.a" })
+            {
+                AbilityModifiers = new Dictionary<int, int>
+                {
+                    [4] = 7, [34] = 9, [88] = 25
+                }
+            };
+            var weaponB = new RuntimeEquipmentModifierTotals(11, 12, 13, 14, new[] { "switch.b" })
+            {
+                AbilityModifiers = new Dictionary<int, int>
+                {
+                    [4] = 2, [34] = 3, [88] = 10
+                }
+            };
+            var first = RuntimeCharacterCombatStatisticProjector.Recalculate(
+                baseline, weaponA, projectedAtUtc: DateTimeOffset.UnixEpoch);
+            var repeated = RuntimeCharacterCombatStatisticProjector.Recalculate(
+                first, weaponA, projectedAtUtc: DateTimeOffset.UnixEpoch.AddSeconds(1));
+            var switched = RuntimeCharacterCombatStatisticProjector.Recalculate(
+                repeated, weaponB, projectedAtUtc: DateTimeOffset.UnixEpoch.AddSeconds(2));
+            var firstAgain = RuntimeCharacterCombatStatisticProjector.Recalculate(
+                switched, weaponA, projectedAtUtc: DateTimeOffset.UnixEpoch.AddSeconds(3));
+            var unready = RuntimeCharacterCombatStatisticProjector.Recalculate(
+                firstAgain, new RuntimeEquipmentModifierTotals(0, 0, 0, 0,
+                    Array.Empty<string>()), projectedAtUtc: DateTimeOffset.UnixEpoch.AddSeconds(4));
+            var a = first.SemanticState!.DerivedStats;
+            var re = repeated.SemanticState!.DerivedStats;
+            var b = switched.SemanticState!.DerivedStats;
+            var again = firstAgain.SemanticState!.DerivedStats;
+            var none = unready.SemanticState!.DerivedStats;
+            if (first.MaximumHitPoints != 125 || repeated.MaximumHitPoints != 125 ||
+                switched.MaximumHitPoints != 110 || firstAgain.MaximumHitPoints != 125 ||
+                unready.MaximumHitPoints != 100 || unready.HitPoints > 100)
+                throw new InvalidDataException("Switching weapon equipment accumulated maximum HP bonuses.");
+            foreach (var key in new[] { "armor_class_bonus", "damage_resistance_bonus",
+                "accuracy_bonus", "speed_bonus", "maximum_damage_bonus", "dodge_bonus" })
+            {
+                if (a.GetValueOrDefault(key) != re.GetValueOrDefault(key)
+                    || a.GetValueOrDefault(key) != again.GetValueOrDefault(key))
+                    throw new InvalidDataException("Repeated weapon readiness duplicated " + key);
+            }
+            if (b.GetValueOrDefault("accuracy_bonus") != 13 ||
+                b.GetValueOrDefault("armor_class_bonus") != 11 ||
+                b.GetValueOrDefault("damage_resistance_bonus") != 12 ||
+                b.GetValueOrDefault("maximum_damage_bonus") !=
+                    none.GetValueOrDefault("maximum_damage_bonus") + 2 ||
+                none.GetValueOrDefault("armor_class_bonus") != 0 ||
+                none.GetValueOrDefault("accuracy_bonus") != 0 ||
+                none.GetValueOrDefault("damage_resistance_bonus") != 0)
+                throw new InvalidDataException("Unready or switched weapon retained the previous combat bonuses.");
+
+            var firstSources = RuntimeCharacterCombatStatisticProjector.Snapshot(first).EquipmentSourceInstanceIds;
+            var lastSources = RuntimeCharacterCombatStatisticProjector.Snapshot(unready).EquipmentSourceInstanceIds;
+            if (firstSources.Count != 1 || firstSources[0] != "switch.a"
+                || lastSources.Count != 0)
+                throw new InvalidDataException("Readied equipment source IDs accumulated or remained after unready.");
+        });
+
         Check("decoded-passive-regeneration-cadence-and-equipment-percentages", () =>
         {
             if (RuntimeCharacterRegenerationAuthority.PassiveCadence != TimeSpan.FromSeconds(30))
