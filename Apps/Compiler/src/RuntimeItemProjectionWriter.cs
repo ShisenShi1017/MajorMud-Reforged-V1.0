@@ -4,25 +4,32 @@ namespace RealmGate.Compiler;
 
 internal static class RuntimeItemProjectionWriter
 {
+    // WCCMMUD native worn position codes. Repeated Finger/Wrist positions are
+    // separate native locations, not fabricated Reforged equipment slots.
+    // Native codes 1 and 16 are special WORN states; preserve their code
+    // identity pending runtime treatment instead of guessing a body part.
     private static readonly IReadOnlyDictionary<int, string> Slots = new Dictionary<int, string>
     {
         [0] = "NONE",
+        [1] = "WORN_1",
         [2] = "HEAD",
-        [3] = "FACE",
-        [4] = "NECK",
-        [5] = "BACK",
-        [6] = "TORSO",
-        [7] = "ARMS",
-        [8] = "HANDS",
-        [9] = "WAIST",
-        [10] = "LEGS",
-        [11] = "FEET",
-        [12] = "WIELD",
-        [13] = "OFF_HAND",
-        [14] = "FINGER",
-        [15] = "WRIST",
-        [16] = "SHIELD",
-        [19] = "LIGHT"
+        [3] = "HANDS",
+        [4] = "FINGER_1",
+        [5] = "FEET",
+        [6] = "ARMS",
+        [7] = "BACK",
+        [8] = "NECK",
+        [9] = "LEGS",
+        [10] = "WAIST",
+        [11] = "TORSO",
+        [12] = "OFF_HAND",
+        [13] = "FINGER_2",
+        [14] = "WRIST_1",
+        [15] = "EARS",
+        [16] = "WORN_16",
+        [17] = "WRIST_2",
+        [18] = "EYES",
+        [19] = "FACE"
     };
 
     public static int Write(
@@ -51,11 +58,23 @@ internal static class RuntimeItemProjectionWriter
             var flags = sourceRecord["flags"] as JsonObject;
 
             var itemType = ReadString(classification, "type") ?? "misc";
-            var wornOn = ReadInt(equipmentData, "worn_on");
+            // The copied Librarium equipment.worn_on was decoded through an
+            // incorrect positional table. The retained original MMExplorer
+            // property is authoritative when present (including a zero value).
+            var nativeProperties = sourceRecord["public_reference_0139"]?["fields"]?["properties"] as JsonObject;
+            var wornOn = nativeProperties?["worn_on"] is not null
+                ? ReadInt(nativeProperties, "worn_on")
+                : ReadInt(equipmentData, "worn_on");
             var weaponType = ReadWeaponType(sourceRecord);
-            if (wornOn == 0 && itemType.Equals("weapon", StringComparison.OrdinalIgnoreCase)) wornOn = 12;
-            if (wornOn == 0 && itemType.Equals("light_source", StringComparison.OrdinalIgnoreCase)) wornOn = 19;
             var slot = Slots.TryGetValue(wornOn, out var mappedSlot) ? mappedSlot : "UNKNOWN";
+            // Transitional compatibility: ready weapons and light sources are
+            // NOT native body slots. Keep their existing runtime relationships
+            // until readiness and active-light state are migrated atomically.
+            // They are deliberately absent from equipment_slots.json.
+            var legacyReadyState = wornOn == 0 && itemType.Equals("weapon", StringComparison.OrdinalIgnoreCase);
+            var legacyLightState = wornOn == 0 && itemType.Equals("light_source", StringComparison.OrdinalIgnoreCase);
+            if (legacyReadyState) slot = "WIELD";
+            if (legacyLightState) slot = "LIGHT";
             if (slotOverrides.TryGetValue(id, out var overrideSlot))
             {
                 slot = overrideSlot;
@@ -95,7 +114,7 @@ internal static class RuntimeItemProjectionWriter
 
             items.Add(projected);
 
-            if (wornOn == 0) continue;
+            if (wornOn == 0 && !legacyReadyState && !legacyLightState) continue;
             equipment.Add(new JsonObject
             {
                 ["item_id"] = id,
