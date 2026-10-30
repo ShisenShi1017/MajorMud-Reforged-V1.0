@@ -58,10 +58,10 @@ public sealed class RuntimeCombatTerminalSmokeReport
         // NPC defeat output must keep the combat-off marker on its own line even
         // when the defeated NPC drops currency or items. The client recognizes
         // this marker by its leading text and must not mistake loot for part of it.
-        var npcRewardWithLoot = "You gain 120 experience. 5 gold fall to the ground. It also drops a dagger.\\n*Combat Off*";
+        var npcRewardWithLoot = "You gain 120 experience. 5 gold fall to the ground. It also drops a dagger.\n*Combat Off*";
         var lootOutput = RuntimeTerminalOutputFormatter.ComposeAsynchronousOutput(
             new[] { npcRewardWithLoot }, prompt, promptAlreadyVisible: true);
-        Require(lootOutput.Contains("dagger.\\r\\n*Combat Off*\\r\\n" + prompt, StringComparison.Ordinal),
+        Require(lootOutput.Contains("dagger.\r\n*Combat Off*\r\n" + prompt, StringComparison.Ordinal),
             "npc-loot-before-standalone-combat-off-and-prompt");
         Require(!lootOutput.Contains("*Combat Off* 5 gold", StringComparison.Ordinal),
             "npc-loot-not-appended-to-combat-off-marker");
