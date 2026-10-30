@@ -69,6 +69,10 @@ public sealed partial class RuntimeLiveGameplayFacade
         int AfterMessageId,
         string Output);
     private readonly object _livePowerGate = new();
+    // Borland native range behavior; CRT callback/thread sharing is still
+    // unverified, so this deliberately does not claim one process-global stream.
+    private readonly RuntimeClassicWorldgroupPrng _classicTerminationRandom =
+        RuntimeClassicGlobalRngContractAuthority.CreateGameplayThreadStream(DateTimeOffset.Now);
     private readonly Dictionary<string, RuntimeActorAbilityState> _liveAbilityStates = new(StringComparer.OrdinalIgnoreCase);
     private readonly Dictionary<string, DateTimeOffset> _liveSpellCooldowns = new(StringComparer.OrdinalIgnoreCase);
     private RuntimeSpellEngine? _liveSpellEngine;
@@ -673,18 +677,38 @@ public sealed partial class RuntimeLiveGameplayFacade
     {
         if (depth >= 32) throw new InvalidOperationException("Decoded EndCast chain exceeded the safe maximum depth.");
         var source = _liveSpellCatalog!.Require(expired.SpellId);
-        var endCastIds = source.DecodedAbilities.Where(ability => ability.AbilityId == 151 && ability.Value > 0)
-            .Select(ability => ability.Value).Distinct().ToArray();
         var isClassic = session.World.Definition.Type.Equals("Classic", StringComparison.OrdinalIgnoreCase);
-        // Native termination only enters the EndCast roll when an EndCast target
-        // exists. The former generic termination path drew RNG for every expired
-        // effect, including effects with no EndCast action.
-        if (isClassic && endCastIds.Length == 0) return;
-        var chanceAbility = source.DecodedAbilities.FirstOrDefault(ability => ability.AbilityId == 164);
-        var castOnEndChance = chanceAbility?.Value ?? 100;
-        if ((!isClassic || chanceAbility is not null)
-            && !ShouldExecuteCastOnEnd(castOnEndChance, Random.Shared.Next(1, 101)))
-            return;
+        IReadOnlyList<int> endCastIds;
+        if (isClassic)
+        {
+            // WCCMMUD!_perform_spell_termination_player_upkeep (0x449FD2..0x44A220):
+            // ten ordered slots write one EndCast (151) destination and one
+            // CastOnEnd (164) chance. A zero authored value uses the effect's
+            // stored magnitude. Only the LAST assignments survive the loop.
+            // If a variable magnitude was never persisted, do not invent it.
+            int? storedMagnitude = null;
+            if (expired.Metadata is not null
+                && expired.Metadata.TryGetValue("effect_roll", out var rawMagnitude)
+                && int.TryParse(rawMagnitude, out var parsedMagnitude))
+                storedMagnitude = parsedMagnitude;
+            else if (expired.MinimumEffect == expired.MaximumEffect)
+                storedMagnitude = expired.MinimumEffect;
+            var selection = ResolveClassicEndCastSelection(source.DecodedAbilities, storedMagnitude);
+            if (selection.UnresolvedFallback || selection.LegacySpellId == 0) return;
+
+            // The original always consumes genrdn(0,100) for a nonzero EndCast
+            // target, including default 100% chance; compare native roll < chance.
+            if (_classicTerminationRandom.Genrdn(0, 100) >= selection.ChancePercent) return;
+            endCastIds = new[] { selection.LegacySpellId };
+        }
+        else
+        {
+            // Preserve Custom/AI behavior, including its existing per-effect roll.
+            var chance = source.DecodedAbilities.FirstOrDefault(ability => ability.AbilityId == 164)?.Value ?? 100;
+            if (!ShouldExecuteCastOnEnd(chance, Random.Shared.Next(1, 101))) return;
+            endCastIds = source.DecodedAbilities.Where(ability => ability.AbilityId == 151 && ability.Value > 0)
+                .Select(ability => ability.Value).Distinct().ToArray();
+        }
         foreach (var legacyId in endCastIds)
         {
             var followup = _liveSpellCatalog.Spells.SingleOrDefault(spell => spell.LegacyId.Equals(legacyId.ToString(), StringComparison.OrdinalIgnoreCase))
@@ -701,6 +725,35 @@ public sealed partial class RuntimeLiveGameplayFacade
                 ExecuteDecodedEndCastChain(session, effect, nowUtc, sink, applied, depth + 1);
             }
         }
+    }
+
+    internal static (int LegacySpellId, int ChancePercent, bool UnresolvedFallback)
+        ResolveClassicEndCastSelection(
+            IReadOnlyList<RuntimeClassicLiveStatusAbility> orderedAbilities, int? storedMagnitude)
+    {
+        var legacySpellId = 0;
+        var chancePercent = 100;
+        var unresolvedTarget = false;
+        var unresolvedChance = false;
+        foreach (var ability in orderedAbilities)
+        {
+            if (ability.AbilityId is not (151 or 164)) continue;
+            var unknown = ability.Value == 0 && !storedMagnitude.HasValue;
+            var resolved = unknown ? 0 : ability.Value != 0 ? ability.Value : storedMagnitude!.Value;
+            if (ability.AbilityId == 151)
+            {
+                legacySpellId = unchecked((ushort)resolved);
+                unresolvedTarget = unknown;
+            }
+            else
+            {
+                chancePercent = resolved;
+                unresolvedChance = unknown;
+            }
+        }
+        // Only the last write to each native register matters. An earlier
+        // unresolved zero slot can be overwritten by a later explicit value.
+        return (legacySpellId, chancePercent, unresolvedTarget || unresolvedChance);
     }
 
     private void ExecuteImmediateDecodedEndCast(RuntimeSession session, RuntimeActiveSpellEffect sourceEffect, DateTimeOffset nowUtc)
@@ -1065,6 +1118,14 @@ public sealed partial class RuntimeLiveGameplayFacade
                     0, spell.MinimumEffect, spell.MaximumEffect, "negate-ability-immunity");
             var resolution = ResolveNpcHitSpellStatusDelivery(spell, poisonImmune, existing.Length > 0, definition.HasCombatModifiers);
             if (!resolution.Applied) return resolution;
+            // NPC on-hit status delivery writes the effect snapshot directly.
+            // Enforce the same ten native player slots as ordinary Classic casts
+            // before replacing the snapshot (duplicate refresh remains supported).
+            if (session.World.Definition.Type.Equals("Classic", StringComparison.OrdinalIgnoreCase)
+                && !RuntimeSpellEngine.ClassicNativeCanAdmitDurationSpell(
+                    _liveSpellEngine.EffectsFor(character.CharacterId), "character",
+                    character.CharacterId, spell.CanonicalSpellId, nowUtc))
+                return resolution with { Applied = false, Reason = "native-player-active-spell-slots-full" };
             var snapshot = _liveSpellEngine.Snapshot();
             var active = snapshot.ActiveEffects
                 .Where(effect => !existing.Any(old => old.EffectId.Equals(effect.EffectId, StringComparison.OrdinalIgnoreCase)))
@@ -1508,6 +1569,43 @@ public sealed class RuntimeLivePowersSmokeReport
             Check(RuntimeLiveGameplayFacade.ResolveNpcSpellImmunityLevel("10", 20) == 20, "npc-active-spell-immunity-stacks-by-maximum", r);
             Check(RuntimeLiveGameplayFacade.ShouldExecuteCastOnEnd(20, 20) && !RuntimeLiveGameplayFacade.ShouldExecuteCastOnEnd(20, 21), "cast-on-end-inclusive-percent-boundary", r);
             Check(RuntimeLiveGameplayFacade.ShouldExecuteCastOnEnd(100, 100) && !RuntimeLiveGameplayFacade.ShouldExecuteCastOnEnd(0, 1), "cast-on-end-default-and-zero-boundaries", r);
+            var orderedTermination = new[]
+            {
+                new RuntimeClassicLiveStatusAbility(151, "EndCast", 17),
+                new RuntimeClassicLiveStatusAbility(164, "CastOnEnd", 30),
+                new RuntimeClassicLiveStatusAbility(151, "EndCast", 31),
+                new RuntimeClassicLiveStatusAbility(164, "CastOnEnd", 65)
+            };
+            var nativeTermination = RuntimeLiveGameplayFacade.ResolveClassicEndCastSelection(orderedTermination, null);
+            Check(nativeTermination.LegacySpellId == 31 && nativeTermination.ChancePercent == 65
+                && !nativeTermination.UnresolvedFallback, "classic-termination-last-ordered-151-and-164-wins", r);
+            var fallbackTermination = RuntimeLiveGameplayFacade.ResolveClassicEndCastSelection(new[]
+            {
+                new RuntimeClassicLiveStatusAbility(151, "EndCast", 0),
+                new RuntimeClassicLiveStatusAbility(164, "CastOnEnd", 0)
+            }, 42);
+            Check(fallbackTermination.LegacySpellId == 42 && fallbackTermination.ChancePercent == 42
+                && !fallbackTermination.UnresolvedFallback, "classic-termination-zero-authored-value-uses-stored-effect-roll", r);
+            Check(RuntimeLiveGameplayFacade.ResolveClassicEndCastSelection(new[]
+            {
+                new RuntimeClassicLiveStatusAbility(151, "EndCast", 0)
+            }, null).UnresolvedFallback, "classic-termination-unknown-effect-roll-fails-closed", r);
+            var overwrittenUnknown = RuntimeLiveGameplayFacade.ResolveClassicEndCastSelection(new[]
+            {
+                new RuntimeClassicLiveStatusAbility(151, "EndCast", 0),
+                new RuntimeClassicLiveStatusAbility(151, "EndCast", 31),
+                new RuntimeClassicLiveStatusAbility(164, "CastOnEnd", 0),
+                new RuntimeClassicLiveStatusAbility(164, "CastOnEnd", 100)
+            }, null);
+            Check(!overwrittenUnknown.UnresolvedFallback && overwrittenUnknown.LegacySpellId == 31
+                && overwrittenUnknown.ChancePercent == 100,
+                "classic-termination-last-slot-overwrites-earlier-unknown-fallback", r);
+            var defaultChance = RuntimeLiveGameplayFacade.ResolveClassicEndCastSelection(new[]
+            {
+                new RuntimeClassicLiveStatusAbility(151, "EndCast", 31)
+            }, null);
+            Check(defaultChance.LegacySpellId == 31 && defaultChance.ChancePercent == 100,
+                "classic-termination-default-chance-100-percent", r);
             Check(RuntimeLiveGameplayFacade.ResolveNativeUserDamageMinusMr(100, 0) == 150
                 && RuntimeLiveGameplayFacade.ResolveNativeUserDamageMinusMr(100, 50) == 100
                 && RuntimeLiveGameplayFacade.ResolveNativeUserDamageMinusMr(100, 100) == 50

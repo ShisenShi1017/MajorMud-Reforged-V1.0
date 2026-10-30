@@ -255,19 +255,47 @@ public sealed class RuntimeSpellEngine
         targetKind.Equals("character", StringComparison.OrdinalIgnoreCase) ? 10 :
         targetKind.Equals("npc", StringComparison.OrdinalIgnoreCase) ? 5 : 0;
 
+    // Shared native admission rule, including NPC on-hit status delivery,
+    // which bypasses the normal RuntimeSpellEngine.Cast entry point.
+    internal static bool ClassicNativeCanAdmitDurationSpell(
+        IEnumerable<RuntimeActiveSpellEffect> effects,
+        string targetKind, string targetId, string spellId, DateTimeOffset nowUtc)
+    {
+        var limit = ClassicNativeActiveSlotLimit(targetKind);
+        if (limit == 0) return true;
+        var active = effects.Where(effect =>
+            Same(effect.Target.Kind, targetKind) &&
+            Same(effect.Target.Id, targetId) &&
+            effect.Duration > 0 &&
+            (effect.ExpiresAtUtc is null || effect.ExpiresAtUtc > nowUtc)).ToArray();
+        // Existing same-spell candidates can refresh via the separately gated
+        // native caller path; a genuinely new spell needs a free slot.
+        return active.Length < limit || active.Any(effect => Same(effect.SpellId, spellId));
+    }
+
+    // Original WCCMMUD _add_cast_spell_to_monster at 0x43ED64 refreshes the
+    // existing same-spell slot with its new duration and magnitude. Player
+    // refresh is caller-flag-dependent and is intentionally not promoted here.
+    private void RefreshClassicNativeMonsterDuplicate(
+        RuntimeSpellDefinition spell, RuntimeSpellTarget target, DateTimeOffset nowUtc)
+    {
+        if (!_enforceClassicNativeActiveSlots || spell.Duration <= 0
+            || !Same(target.Kind, "npc")) return;
+        var duplicateIds = _effects.Values.Where(effect =>
+                Same(effect.Target.Kind, target.Kind)
+                && Same(effect.Target.Id, target.Id)
+                && Same(effect.SpellId, spell.Id)
+                && effect.Duration > 0
+                && (effect.ExpiresAtUtc is null || effect.ExpiresAtUtc > nowUtc))
+            .Select(effect => effect.EffectId).ToArray();
+        foreach (var duplicateId in duplicateIds) _effects.Remove(duplicateId);
+    }
+
     private bool HasClassicNativeActiveSlot(RuntimeSpellDefinition spell, RuntimeSpellTarget target, DateTimeOffset nowUtc)
     {
         if (!_enforceClassicNativeActiveSlots || spell.Duration <= 0) return true;
-        var limit = ClassicNativeActiveSlotLimit(target.Kind);
-        if (limit == 0) return true;
-        var active = _effects.Values.Where(effect =>
-            Same(effect.Target.Kind, target.Kind) &&
-            Same(effect.Target.Id, target.Id) &&
-            effect.Duration > 0 &&
-            (effect.ExpiresAtUtc is null || effect.ExpiresAtUtc > nowUtc)).ToArray();
-        // An already-present spell may be refreshed through the existing
-        // normalization path; the native user refresh flag is a separate gate.
-        return active.Length < limit || active.Any(effect => Same(effect.SpellId, spell.Id));
+        return ClassicNativeCanAdmitDurationSpell(
+            _effects.Values, target.Kind, target.Id, spell.Id, nowUtc);
     }
 
     public RuntimeSpellEngine(RuntimeSpellCatalog catalog, IRuntimeSpellEffectResolver? resolver = null,
@@ -328,6 +356,7 @@ public sealed class RuntimeSpellEngine
         var remaining = new RuntimeSpellResources(resources.Mana - spell.ManaCost, resources.Energy - spell.EnergyCost);
         _resources[request.CasterId] = remaining;
         var effect = _resolver.Resolve(spell, request);
+        RefreshClassicNativeMonsterDuplicate(spell, request.Target, request.RequestedAtUtc);
         if (!_effects.TryAdd(effect.EffectId, effect)) throw new InvalidOperationException("Duplicate spell effect id.");
         return new RuntimeSpellCastResult(true, null, null, remaining, effect);
     });
@@ -339,6 +368,7 @@ public sealed class RuntimeSpellEngine
         if (!HasClassicNativeActiveSlot(spell, request.Target, request.RequestedAtUtc))
             throw new InvalidOperationException("SPELL_ACTIVE_SLOTS_FULL");
         var effect = _resolver.Resolve(spell, request);
+        RefreshClassicNativeMonsterDuplicate(spell, request.Target, request.RequestedAtUtc);
         if (!_effects.TryAdd(effect.EffectId, effect)) throw new InvalidOperationException("Duplicate spell effect id.");
         return effect;
     });

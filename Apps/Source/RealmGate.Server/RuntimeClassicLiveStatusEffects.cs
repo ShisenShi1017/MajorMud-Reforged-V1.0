@@ -26,7 +26,10 @@ public sealed record RuntimeClassicLiveStatusDefinition(
         .Distinct()
         .ToArray();
     public bool GrantsFreedom => Abilities.Any(x => x.AbilityId == 81);
+    // Historic Custom/AI mapping is retained below; native Classic Freedom
+    // checks only spell ability IDs 74 (Hold) and 75 at WCCMMUD 0x474BD0.
     public bool RemovedByFreedom => Abilities.Any(x => x.AbilityId is 68 or 74 or 87);
+    public bool RemovedByNativeClassicFreedom => Abilities.Any(x => x.AbilityId is 74 or 75);
     public bool CausesFear => Abilities.Any(x => x.AbilityId == 60);
     public bool NonMagical => Abilities.Any(x => x.AbilityId == 144);
     public IReadOnlyList<int> TextblockIds => Abilities.Where(x => x.AbilityId == 148 && x.Value > 0).Select(x => x.Value).Distinct().ToArray();
@@ -892,8 +895,12 @@ public sealed partial class RuntimeLiveGameplayFacade
         }
         if (definition.GrantsFreedom)
         {
+            var isClassicFreedom = session.World.Definition.Type.Equals("Classic", StringComparison.OrdinalIgnoreCase);
             foreach (var effect in effects)
-                if (catalog.TryGet(effect.SpellId, out var activeDefinition) && activeDefinition.RemovedByFreedom)
+                if (catalog.TryGet(effect.SpellId, out var activeDefinition)
+                    && (isClassicFreedom
+                        ? activeDefinition.RemovedByNativeClassicFreedom
+                        : activeDefinition.RemovedByFreedom))
                     remove.Add(effect.EffectId);
         }
         // Native DispelMagic (73) and Freedom (81) clear the active slot and
@@ -952,6 +959,22 @@ public sealed class RuntimeClassicLiveStatusEffectsSmokeReport
                     .SequenceEqual(new[] { 10, 115, 122, 7, 122, 122, 122 }),
                     "classic-ordered-repeated-ability-vector");
                 report.Checks.Add("classic-ordered-repeated-ability-vector");
+                var freedomHold = new RuntimeClassicLiveStatusDefinition(
+                    "spell.test-hold", "90001", "native hold", 0, 0, 1, 0, 0,
+                    new[] { new RuntimeClassicLiveStatusAbility(74, "Hold", 1) });
+                var freedom75 = freedomHold with { Abilities =
+                    new[] { new RuntimeClassicLiveStatusAbility(75, "NativeFreedomTarget", 1) } };
+                var freedomSlow = freedomHold with { Abilities =
+                    new[] { new RuntimeClassicLiveStatusAbility(68, "Slow", 1) } };
+                var freedomSpeed = freedomHold with { Abilities =
+                    new[] { new RuntimeClassicLiveStatusAbility(87, "Speed", 1) } };
+                Require(freedomHold.RemovedByNativeClassicFreedom
+                    && freedom75.RemovedByNativeClassicFreedom
+                    && !freedomSlow.RemovedByNativeClassicFreedom
+                    && !freedomSpeed.RemovedByNativeClassicFreedom
+                    && freedomSlow.RemovedByFreedom && freedomSpeed.RemovedByFreedom,
+                    "classic-freedom-only-native-ability-74-and75");
+                report.Checks.Add("classic-freedom-only-native-ability-74-and75");
                 Require(RuntimeClassicStatusProjection.NativeMaximumAbilityValue(35, 20) == 35
                     && RuntimeClassicStatusProjection.NativeMaximumAbilityValue(35, 55) == 55
                     && RuntimeClassicStatusProjection.NativeMaximumAbilityValue(0, 30) == 30,
@@ -988,6 +1011,14 @@ public sealed class RuntimeClassicLiveStatusEffectsSmokeReport
                     && classicSlots.Snapshot().Resources[slotCaster] == startingResources,
                     "classic-full-active-slots-rejected-without-resource-cost");
                 report.Checks.Add("classic-full-active-slots-rejected-without-resource-cost");
+                Require(!RuntimeSpellEngine.ClassicNativeCanAdmitDurationSpell(
+                        startingSlots, "character", "classic-slot-target", timedSpells[10].Id, slotNow)
+                    && RuntimeSpellEngine.ClassicNativeCanAdmitDurationSpell(
+                        startingSlots, "character", "classic-slot-target", timedSpells[0].Id, slotNow)
+                    && RuntimeSpellEngine.ClassicNativeCanAdmitDurationSpell(
+                        startingSlots, "character", "different-target", timedSpells[10].Id, slotNow),
+                    "classic-npc-hit-status-shares-ten-slot-and-duplicate-admission");
+                report.Checks.Add("classic-npc-hit-status-shares-ten-slot-and-duplicate-admission");
                 var monsterSlots = timedSpells.Take(5).Select((spell, index) =>
                     new RuntimeActiveSpellEffect($"classic-monster-slot-{index}", spell.Id, slotCaster,
                         new RuntimeSpellTarget("npc", "classic-npc-slot-target"),
@@ -1002,6 +1033,36 @@ public sealed class RuntimeClassicLiveStatusEffectsSmokeReport
                     && classicMonsterSlots.Snapshot().Resources[slotCaster] == startingResources,
                     "classic-monster-five-slots-rejected-without-resource-cost");
                 report.Checks.Add("classic-monster-five-slots-rejected-without-resource-cost");
+                // Native monster duplicate admission refreshes the occupied
+                // spell slot instead of consuming a sixth slot. Custom worlds
+                // retain their previous independent-effect behavior.
+                var nativeRefresh = new RuntimeSpellEngine(nativeSpells, initial: monsterState,
+                    enforceClassicNativeActiveSlots: true);
+                var refreshed = nativeRefresh.Cast(new RuntimeSpellCastRequest(slotCaster,
+                    timedSpells[0].Id, new RuntimeSpellTarget("npc", "classic-npc-slot-target"),
+                    slotNow.AddSeconds(3)));
+                Require(refreshed.Succeeded && refreshed.Effect is not null
+                    && nativeRefresh.EffectsFor("classic-npc-slot-target").Count == 5
+                    && nativeRefresh.EffectsFor("classic-npc-slot-target")
+                        .Count(effect => effect.SpellId.Equals(timedSpells[0].Id, StringComparison.OrdinalIgnoreCase)) == 1
+                    && refreshed.Effect.AppliedAtUtc == slotNow.AddSeconds(3),
+                    "classic-monster-duplicate-replaces-slot-and-refreshes-timing");
+                report.Checks.Add("classic-monster-duplicate-replaces-slot-and-refreshes-timing");
+                var refreshedAdditional = nativeRefresh.AddAdditionalTarget(
+                    new RuntimeSpellCastRequest(slotCaster, timedSpells[0].Id,
+                        new RuntimeSpellTarget("npc", "classic-npc-slot-target"),
+                        slotNow.AddSeconds(6)));
+                Require(nativeRefresh.EffectsFor("classic-npc-slot-target").Count == 5
+                    && refreshedAdditional.AppliedAtUtc == slotNow.AddSeconds(6),
+                    "classic-monster-multitarget-duplicate-refresh");
+                report.Checks.Add("classic-monster-multitarget-duplicate-refresh");
+                var customMonsterRefresh = new RuntimeSpellEngine(nativeSpells, initial: monsterState);
+                Require(customMonsterRefresh.Cast(new RuntimeSpellCastRequest(slotCaster,
+                        timedSpells[0].Id, new RuntimeSpellTarget("npc", "classic-npc-slot-target"),
+                        slotNow.AddSeconds(3))).Succeeded
+                    && customMonsterRefresh.EffectsFor("classic-npc-slot-target").Count == 6,
+                    "custom-monster-duplicate-effects-remain-independent");
+                report.Checks.Add("custom-monster-duplicate-effects-remain-independent");
                 // Immediate spells do not occupy native active slots even when
                 // the target's ten duration-bearing slots are already full.
                 var instant = nativeSpells.Spells.First(spell => spell.Duration <= 0);
