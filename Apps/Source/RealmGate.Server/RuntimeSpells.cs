@@ -246,10 +246,36 @@ public sealed class RuntimeSpellEngine
     private Dictionary<string, RuntimeActiveSpellEffect> _effects = new(StringComparer.OrdinalIgnoreCase);
     private Dictionary<string, RuntimeSpellResources> _resources = new(StringComparer.OrdinalIgnoreCase);
     private readonly object _gate = new();
+    private readonly bool _enforceClassicNativeActiveSlots;
 
-    public RuntimeSpellEngine(RuntimeSpellCatalog catalog, IRuntimeSpellEffectResolver? resolver = null, IEnumerable<IRuntimeSpellPolicy>? policies = null, RuntimeSpellState? initial = null)
+    // Native _add_cast_spell_to_user holds ten active spells; the corresponding
+    // monster routine holds five. This admission check applies only to Classic
+    // duration-bearing effects, not immediate spells or Custom/AI rules.
+    public static int ClassicNativeActiveSlotLimit(string targetKind) =>
+        targetKind.Equals("character", StringComparison.OrdinalIgnoreCase) ? 10 :
+        targetKind.Equals("npc", StringComparison.OrdinalIgnoreCase) ? 5 : 0;
+
+    private bool HasClassicNativeActiveSlot(RuntimeSpellDefinition spell, RuntimeSpellTarget target, DateTimeOffset nowUtc)
+    {
+        if (!_enforceClassicNativeActiveSlots || spell.Duration <= 0) return true;
+        var limit = ClassicNativeActiveSlotLimit(target.Kind);
+        if (limit == 0) return true;
+        var active = _effects.Values.Where(effect =>
+            Same(effect.Target.Kind, target.Kind) &&
+            Same(effect.Target.Id, target.Id) &&
+            effect.Duration > 0 &&
+            (effect.ExpiresAtUtc is null || effect.ExpiresAtUtc > nowUtc)).ToArray();
+        // An already-present spell may be refreshed through the existing
+        // normalization path; the native user refresh flag is a separate gate.
+        return active.Length < limit || active.Any(effect => Same(effect.SpellId, spell.Id));
+    }
+
+    public RuntimeSpellEngine(RuntimeSpellCatalog catalog, IRuntimeSpellEffectResolver? resolver = null,
+        IEnumerable<IRuntimeSpellPolicy>? policies = null, RuntimeSpellState? initial = null,
+        bool enforceClassicNativeActiveSlots = false)
     {
         _catalog = catalog;
+        _enforceClassicNativeActiveSlots = enforceClassicNativeActiveSlots;
         _resolver = resolver ?? new GeneratedSpellEffectResolver();
         _policies = (policies ?? Array.Empty<IRuntimeSpellPolicy>()).ToArray();
         if (initial is not null) Restore(initial);
@@ -291,6 +317,8 @@ public sealed class RuntimeSpellEngine
         if (!Knows(request.CasterId, spell.Id)) return Failure("SPELL_NOT_KNOWN", "Caster does not know this spell.", resources);
         if (resources.Mana < spell.ManaCost) return Failure("INSUFFICIENT_MANA", "Caster does not have enough mana.", resources);
         if (resources.Energy < spell.EnergyCost) return Failure("INSUFFICIENT_ENERGY", "Caster does not have enough energy.", resources);
+        if (!HasClassicNativeActiveSlot(spell, request.Target, request.RequestedAtUtc))
+            return Failure("SPELL_ACTIVE_SLOTS_FULL", "Target has no free active spell slot.", resources);
         var state = SnapshotCore();
         foreach (var policy in _policies)
         {
@@ -308,6 +336,8 @@ public sealed class RuntimeSpellEngine
     {
         var spell = _catalog.Require(request.SpellId);
         if (!Knows(request.CasterId, spell.Id)) throw new InvalidOperationException("SPELL_NOT_KNOWN");
+        if (!HasClassicNativeActiveSlot(spell, request.Target, request.RequestedAtUtc))
+            throw new InvalidOperationException("SPELL_ACTIVE_SLOTS_FULL");
         var effect = _resolver.Resolve(spell, request);
         if (!_effects.TryAdd(effect.EffectId, effect)) throw new InvalidOperationException("Duplicate spell effect id.");
         return effect;

@@ -806,7 +806,12 @@ public sealed partial class RuntimeLiveGameplayFacade
                     affectedTargets.Add(effect.Target.Id);
                 }
                 if (hasExpired) affectedTargets.Add(effect.Target.Id);
-                if (!hasExpired && !deadTargets.Contains(effect.Target.Id)) updatedEffects.Add(current);
+                // Keep expired Classic effects just long enough for the existing
+                // ExpireAndExecuteDecodedEndCast routine to clear their slots and
+                // execute termination after final-tick upkeep. Previously the
+                // effects disappeared from the snapshot before EndCast could run.
+                if ((!hasExpired || isClassic) && !deadTargets.Contains(effect.Target.Id))
+                    updatedEffects.Add(current);
             }
 
             if (deadTargets.Count > 0)
@@ -867,8 +872,22 @@ public sealed partial class RuntimeLiveGameplayFacade
                 if (catalog.TryGet(effect.SpellId, out var activeDefinition) && activeDefinition.RemovedByFreedom)
                     remove.Add(effect.EffectId);
         }
-        foreach (var effectId in remove) _liveSpellEngine.RemoveEffect(effectId);
-        return remove.Count;
+        // Native DispelMagic (73) and Freedom (81) clear the active slot and
+        // invoke its termination routine. Retain the existing other removal
+        // semantics until their separate native branches are verified.
+        var nativeTermination = session.World.Definition.Type.Equals("Classic", StringComparison.OrdinalIgnoreCase)
+            && (definition.DispelsMagic || definition.GrantsFreedom);
+        var removedCount = 0;
+        foreach (var effect in effects.Where(effect => remove.Contains(effect.EffectId)))
+        {
+            if (nativeTermination && effect.Duration > 0
+                && effect.Target.Kind.Equals("character", StringComparison.OrdinalIgnoreCase))
+                ExecuteImmediateDecodedEndCast(session, effect, DateTimeOffset.UtcNow);
+            else
+                _liveSpellEngine.RemoveEffect(effect.EffectId);
+            removedCount++;
+        }
+        return removedCount;
     }
 
     private void RemoveCharacterLiveStatusEffects(string characterId, DateTimeOffset nowUtc, string sourceRecordId)
@@ -909,6 +928,68 @@ public sealed class RuntimeClassicLiveStatusEffectsSmokeReport
                     .SequenceEqual(new[] { 10, 115, 122, 7, 122, 122, 122 }),
                     "classic-ordered-repeated-ability-vector");
                 report.Checks.Add("classic-ordered-repeated-ability-vector");
+                Require(RuntimeSpellEngine.ClassicNativeActiveSlotLimit("character") == 10
+                    && RuntimeSpellEngine.ClassicNativeActiveSlotLimit("npc") == 5
+                    && RuntimeSpellEngine.ClassicNativeActiveSlotLimit("world_object") == 0,
+                    "classic-native-player-ten-monster-five-active-spell-slots");
+                report.Checks.Add("classic-native-player-ten-monster-five-active-spell-slots");
+                // Exercise the actual admission path, not just its constants:
+                // full Classic slots must reject a new duration spell without
+                // debiting mana or energy; Custom/AI must remain unaffected.
+                var timedSpells = nativeSpells.Spells.Where(spell => spell.Duration > 0)
+                    .OrderBy(spell => spell.Id, StringComparer.Ordinal).Take(11).ToArray();
+                Require(timedSpells.Length == 11, "classic-active-slot-test-spell-inventory");
+                const string slotCaster = "classic-native-slot-caster";
+                var slotNow = DateTimeOffset.UnixEpoch;
+                var known = timedSpells.Select(spell =>
+                    new RuntimeKnownSpell(slotCaster, spell.Id, slotNow)).ToArray();
+                var startingResources = new RuntimeSpellResources(1000000, 1000000);
+                var startingSlots = timedSpells.Take(10).Select((spell, index) =>
+                    new RuntimeActiveSpellEffect($"classic-slot-{index}", spell.Id, slotCaster,
+                        new RuntimeSpellTarget("character", "classic-slot-target"),
+                        spell.MinimumEffect, spell.MaximumEffect, spell.Duration,
+                        slotNow, slotNow.AddDays(1))).ToArray();
+                var slotState = new RuntimeSpellState(known, startingSlots,
+                    new Dictionary<string, RuntimeSpellResources> { [slotCaster] = startingResources });
+                var classicSlots = new RuntimeSpellEngine(nativeSpells, initial: slotState,
+                    enforceClassicNativeActiveSlots: true);
+                var rejected = classicSlots.Cast(new RuntimeSpellCastRequest(slotCaster,
+                    timedSpells[10].Id, new RuntimeSpellTarget("character", "classic-slot-target"), slotNow));
+                Require(!rejected.Succeeded && rejected.FailureCode == "SPELL_ACTIVE_SLOTS_FULL"
+                    && classicSlots.Snapshot().Resources[slotCaster] == startingResources,
+                    "classic-full-active-slots-rejected-without-resource-cost");
+                report.Checks.Add("classic-full-active-slots-rejected-without-resource-cost");
+                var monsterSlots = timedSpells.Take(5).Select((spell, index) =>
+                    new RuntimeActiveSpellEffect($"classic-monster-slot-{index}", spell.Id, slotCaster,
+                        new RuntimeSpellTarget("npc", "classic-npc-slot-target"),
+                        spell.MinimumEffect, spell.MaximumEffect, spell.Duration,
+                        slotNow, slotNow.AddDays(1))).ToArray();
+                var monsterState = slotState with { ActiveEffects = monsterSlots };
+                var classicMonsterSlots = new RuntimeSpellEngine(nativeSpells, initial: monsterState,
+                    enforceClassicNativeActiveSlots: true);
+                var rejectedMonster = classicMonsterSlots.Cast(new RuntimeSpellCastRequest(slotCaster,
+                    timedSpells[5].Id, new RuntimeSpellTarget("npc", "classic-npc-slot-target"), slotNow));
+                Require(!rejectedMonster.Succeeded && rejectedMonster.FailureCode == "SPELL_ACTIVE_SLOTS_FULL"
+                    && classicMonsterSlots.Snapshot().Resources[slotCaster] == startingResources,
+                    "classic-monster-five-slots-rejected-without-resource-cost");
+                report.Checks.Add("classic-monster-five-slots-rejected-without-resource-cost");
+                // Immediate spells do not occupy native active slots even when
+                // the target's ten duration-bearing slots are already full.
+                var instant = nativeSpells.Spells.First(spell => spell.Duration <= 0);
+                var instantKnown = slotState with { KnownSpells = known.Append(
+                    new RuntimeKnownSpell(slotCaster, instant.Id, slotNow)).DistinctBy(
+                        spell => spell.SpellId).ToArray() };
+                var instantEngine = new RuntimeSpellEngine(nativeSpells, initial: instantKnown,
+                    enforceClassicNativeActiveSlots: true);
+                Require(instantEngine.Cast(new RuntimeSpellCastRequest(slotCaster,
+                    instant.Id, new RuntimeSpellTarget("character", "classic-slot-target"), slotNow)).Succeeded,
+                    "classic-immediate-spell-bypasses-active-slot-capacity");
+                report.Checks.Add("classic-immediate-spell-bypasses-active-slot-capacity");
+                var customSlots = new RuntimeSpellEngine(nativeSpells, initial: slotState);
+                Require(customSlots.Cast(new RuntimeSpellCastRequest(slotCaster,
+                    timedSpells[10].Id, new RuntimeSpellTarget("character", "classic-slot-target"), slotNow)).Succeeded,
+                    "custom-active-slots-unrestricted");
+                report.Checks.Add("custom-active-slots-unrestricted");
                 Require(RuntimeLiveGameplayFacade.ClassicNativeRoomResistanceThreshold(100) == 50
                     && RuntimeLiveGameplayFacade.ClassicNativeRoomResistanceThreshold(250) == 97
                     && RuntimeLiveGameplayFacade.ClassicNativeRoomResistanceThreshold(0) == 0,

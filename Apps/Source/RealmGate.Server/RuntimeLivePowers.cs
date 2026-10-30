@@ -188,7 +188,9 @@ public sealed partial class RuntimeLiveGameplayFacade
         _liveQuestAbilityCatalog = RuntimeCharacterQuestAbilityCatalog.Load(_characters.ProjectRoot, session.World.Definition.Id);
         _liveWorldRewardCatalog = new RuntimeCharacterWorldRewardCatalog();
         var persisted = new RuntimeLivePowerStateRepository(_characters.ProjectRoot, session.World.Definition.Id).Load();
-        _liveSpellEngine = new RuntimeSpellEngine(_liveSpellCatalog, initial: persisted.Spells);
+        _liveSpellEngine = new RuntimeSpellEngine(_liveSpellCatalog, initial: persisted.Spells,
+            enforceClassicNativeActiveSlots:
+                session.World.Definition.Type.Equals("Classic", StringComparison.OrdinalIgnoreCase));
         var classicStatusCatalog = ClassicLiveStatusCatalog(session);
         _liveSpellEngine.RestoreSnapshot(NormalizeClassicStatusDurations(_liveSpellEngine.Snapshot(), classicStatusCatalog));
         _liveSpellCooldowns.Clear(); foreach (var pair in persisted.SpellCooldowns) _liveSpellCooldowns[pair.Key] = pair.Value;
@@ -293,7 +295,15 @@ public sealed partial class RuntimeLiveGameplayFacade
             if (ShouldDiscardDecodedRemovalHelper(spell) && normalizedEffects.Length > 0)
             {
                 foreach (var normalizedEffect in normalizedEffects)
-                    try { _liveSpellEngine.RemoveEffect(normalizedEffect.EffectId); } catch (KeyNotFoundException) { }
+                    try { _liveSpellEngine.RemoveEffect(normalizedEffect.EffectId); } catch (InvalidOperationException) { }
+            }
+            // Instantaneous Classic operations are not native active-spell slots.
+            // EndCast and removal helpers have already executed before disposal.
+            if (session.World.Definition.Type.Equals("Classic", StringComparison.OrdinalIgnoreCase)
+                && spell.Duration <= 0)
+            {
+                foreach (var appliedEffect in appliedEffects)
+                    try { _liveSpellEngine.RemoveEffect(appliedEffect.EffectId); } catch (InvalidOperationException) { }
             }
             foreach (var appliedTarget in appliedEffects.Select(effect => effect.Target).DistinctBy(appliedTarget => (appliedTarget.Kind, appliedTarget.Id)))
                 SynchronizeCharacterSpellStatuses(appliedTarget, now, "runtime.live_powers.cast");
@@ -663,10 +673,18 @@ public sealed partial class RuntimeLiveGameplayFacade
     {
         if (depth >= 32) throw new InvalidOperationException("Decoded EndCast chain exceeded the safe maximum depth.");
         var source = _liveSpellCatalog!.Require(expired.SpellId);
-        var castOnEndChance = source.DecodedAbilities.FirstOrDefault(ability => ability.AbilityId == 164)?.Value ?? 100;
-        if (!ShouldExecuteCastOnEnd(castOnEndChance, Random.Shared.Next(1, 101))) return;
         var endCastIds = source.DecodedAbilities.Where(ability => ability.AbilityId == 151 && ability.Value > 0)
             .Select(ability => ability.Value).Distinct().ToArray();
+        var isClassic = session.World.Definition.Type.Equals("Classic", StringComparison.OrdinalIgnoreCase);
+        // Native termination only enters the EndCast roll when an EndCast target
+        // exists. The former generic termination path drew RNG for every expired
+        // effect, including effects with no EndCast action.
+        if (isClassic && endCastIds.Length == 0) return;
+        var chanceAbility = source.DecodedAbilities.FirstOrDefault(ability => ability.AbilityId == 164);
+        var castOnEndChance = chanceAbility?.Value ?? 100;
+        if ((!isClassic || chanceAbility is not null)
+            && !ShouldExecuteCastOnEnd(castOnEndChance, Random.Shared.Next(1, 101)))
+            return;
         foreach (var legacyId in endCastIds)
         {
             var followup = _liveSpellCatalog.Spells.SingleOrDefault(spell => spell.LegacyId.Equals(legacyId.ToString(), StringComparison.OrdinalIgnoreCase))
