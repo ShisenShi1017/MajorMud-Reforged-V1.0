@@ -138,7 +138,7 @@ public sealed partial class RuntimeLiveGameplayFacade
             player.DamageResistance,
             player.DodgeBonus,
             0,
-            isMartialAttack ? Math.Max(0, player.CriticalChance - player.QuickAndDeadlyCriticalBonus) : player.CriticalChance);
+            isMartialAttack ? player.CriticalChanceWithoutQuickAndDeadly : player.CriticalChance);
         var npcStats = encounter.PlayerAttackType == ClassicAttackType.Backstab
             ? new ClassicCombatantStats(
                 0,

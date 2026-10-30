@@ -43,6 +43,10 @@ public sealed record RuntimePlayerCombatProfile(
     IReadOnlyList<string> Blockers)
 {
     public bool Ready => Blockers.Count == 0;
+    // Reduced before weapon-only Quick and Deadly is added. Martial attacks
+    // must use this value rather than subtracting an unreduced bonus from a
+    // final reduced chance.
+    public int CriticalChanceWithoutQuickAndDeadly { get; init; }
 }
 
 public sealed class RuntimePlayerCombatProfileResolver
@@ -198,8 +202,10 @@ public sealed class RuntimePlayerCombatProfileResolver
             ? 0
             : RuntimeClassicPhysicalFormulaCalculator.CalculateQuickAndDeadlyCriticalBonus(
                 AdjustedStat(character, "agility", "agi", "agl"), attackEnergyCost, encumbrancePercent);
-        criticalChance = checked(criticalChance + quickAndDeadlyCriticalBonus);
-        criticalChance = RuntimeClassicPhysicalFormulaCalculator.CalculateFinalCriticalChance(criticalChance);
+        var criticalChanceWithoutQuickAndDeadly =
+            RuntimeClassicPhysicalFormulaCalculator.CalculateFinalCriticalChance(criticalChance);
+        criticalChance = RuntimeClassicPhysicalFormulaCalculator.CalculateFinalCriticalChance(
+            checked(criticalChance + quickAndDeadlyCriticalBonus));
 
         return new RuntimePlayerCombatProfile(
             character.CharacterId,
@@ -239,7 +245,10 @@ public sealed class RuntimePlayerCombatProfileResolver
                 + equipmentHitMagicRank + RuntimeClassicStatusProjection.Numeric(character, "hit_magic")),
             weaponOnHitSpells,
             equipped,
-            blockers.Distinct(StringComparer.OrdinalIgnoreCase).ToArray());
+            blockers.Distinct(StringComparer.OrdinalIgnoreCase).ToArray())
+        {
+            CriticalChanceWithoutQuickAndDeadly = criticalChanceWithoutQuickAndDeadly
+        };
     }
 
     internal static int ResolveModifiedStealth(RuntimeCharacterRecord character)
@@ -507,6 +516,29 @@ public sealed class RuntimePlayerCombatProfileSmokeReport
             });
             Require(profile.ClassCombatAccuracy == 0 && profile.AbilityAccuracyModifier == 4, "ability-22-live-consumer"); report.Checks.Add("ability-22-live-consumer");
             Require(profile.NaturalCriticalChance == 1, "natural-critical-live-consumer"); report.Checks.Add("natural-critical-live-consumer");
+
+            // Critical reduction is nonlinear above 40. Do not subtract the
+            // unreduced weapon-only Q&D bonus from the reduced final chance.
+            var highCriticalConditions = new Dictionary<string, string>(character.Conditions,
+                StringComparer.OrdinalIgnoreCase) { ["combat.critical_chance"] = "90" };
+            var highCritical = new RuntimePlayerCombatProfileResolver(catalog).Resolve(
+                character with { Conditions = highCriticalConditions });
+            var withoutQnd = highCritical.CriticalChanceWithoutQuickAndDeadly;
+            var reducedWithQnd = highCritical.CriticalChance;
+            Require(withoutQnd >= 0 && withoutQnd <= reducedWithQnd,
+                "martial-critical-removes-qnd-before-reduction");
+            if (highCritical.QuickAndDeadlyCriticalBonus > 0 && reducedWithQnd < 99)
+                Require(withoutQnd != Math.Max(0, reducedWithQnd - highCritical.QuickAndDeadlyCriticalBonus),
+                    "martial-critical-nonlinear-qnd-not-subtracted-from-final");
+            Require(RuntimeClassicPhysicalFormulaCalculator.CalculateFinalCriticalChance(60) == 46
+                && RuntimeClassicPhysicalFormulaCalculator.CalculateFinalCriticalChance(80) == 53
+                && RuntimeClassicPhysicalFormulaCalculator.CalculateFinalCriticalChance(80) - 20 == 33,
+                "martial-critical-diminishing-returns-known-vector");
+            report.Checks.AddRange(new[] {
+                "martial-critical-removes-qnd-before-reduction",
+                "martial-critical-nonlinear-qnd-not-subtracted-from-final",
+                "martial-critical-diminishing-returns-known-vector"
+            });
             Require(profile.QuestMaximumDamageBonus == 3 && profile.QuestArmorClassBonus == 2 && profile.QuestDodgeBonus == 5 && profile.QuestCriticalBonus == 6, "quest-combat-bonus-consumers"); report.Checks.Add("quest-combat-bonus-consumers");
             Require(profile.DodgeBonus == 15, "stock-character-raw-dodge-consumer"); report.Checks.Add("stock-character-raw-dodge-consumer");
             var equipmentDerived = new Dictionary<string, int>(StringComparer.OrdinalIgnoreCase)
