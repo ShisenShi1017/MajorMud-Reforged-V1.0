@@ -508,6 +508,47 @@ public sealed class RuntimePlayerCombatProfileSmokeReport
                 && unready.WeaponAccuracyModifier == 0
                 && unready.EquippedCombatItems.Count == 0,
                 "unready-does-not-retain-previous-weapon");
+
+            // The combat-start gate and round scheduler must consume the
+            // *currently selected* weapon, not the previous active item.
+            var firstBackstab = ClassicAttackPreparationPolicy.PrepareBackstab(
+                true, false, firstReadied.Barehanded,
+                firstReadied.WeaponSupportsBackstab, firstReadied.WeaponIsTwoHanded);
+            var switchedBackstab = ClassicAttackPreparationPolicy.PrepareBackstab(
+                true, false, switched.Barehanded,
+                switched.WeaponSupportsBackstab, switched.WeaponIsTwoHanded);
+            var unreadyBackstab = ClassicAttackPreparationPolicy.PrepareBackstab(
+                true, false, unready.Barehanded,
+                unready.WeaponSupportsBackstab, unready.WeaponIsTwoHanded);
+            Require(firstBackstab.BackstabQualified ==
+                    (!firstReadied.WeaponIsTwoHanded && firstReadied.WeaponSupportsBackstab)
+                && switchedBackstab.BackstabQualified ==
+                    (!switched.WeaponIsTwoHanded && switched.WeaponSupportsBackstab)
+                && unreadyBackstab.BackstabQualified,
+                "weapon-switch-backstab-gate-uses-selected-weapon");
+
+            var firstSchedule = RuntimeClassicPhysicalFormulaCalculator.ResolvePhysicalAttackSchedule(
+                ClassicAttackType.NormalWeapon, 0, firstReadied.AttackEnergyCost);
+            var switchedSchedule = RuntimeClassicPhysicalFormulaCalculator.ResolvePhysicalAttackSchedule(
+                ClassicAttackType.NormalWeapon, 0, switched.AttackEnergyCost);
+            Require(firstSchedule.Swings ==
+                    RuntimeClassicPhysicalFormulaCalculator.ResolveNormalWeaponAttackSchedule(
+                        0, firstReadied.AttackEnergyCost).Swings
+                && switchedSchedule.Swings ==
+                    RuntimeClassicPhysicalFormulaCalculator.ResolveNormalWeaponAttackSchedule(
+                        0, switched.AttackEnergyCost).Swings,
+                "weapon-switch-energy-schedule-uses-selected-cost");
+            Require(RuntimeClassicPhysicalFormulaCalculator.ResolvePhysicalAttackSchedule(
+                    ClassicAttackType.Backstab, 275, switched.AttackEnergyCost).Swings == 1
+                && RuntimeClassicPhysicalFormulaCalculator.ResolvePhysicalAttackSchedule(
+                    ClassicAttackType.Backstab, 275, switched.AttackEnergyCost).RemainingEnergy == 0,
+                "switched-weapon-backstab-remains-single-full-round");
+            report.Checks.AddRange(new[]
+            {
+                "weapon-switch-backstab-gate-uses-selected-weapon",
+                "weapon-switch-energy-schedule-uses-selected-cost",
+                "switched-weapon-backstab-remains-single-full-round"
+            });
             report.Checks.AddRange(new[]
             {
                 "first-carried-weapon-combat-profile",
