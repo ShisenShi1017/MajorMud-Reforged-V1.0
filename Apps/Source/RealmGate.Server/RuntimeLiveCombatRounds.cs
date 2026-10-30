@@ -166,7 +166,8 @@ public sealed partial class RuntimeLiveGameplayFacade
             var unarmedMaximum = checked(Math.Max(2, 2 + (strength / 25)) +
                 player.StrengthMaximumDamageBonus + player.QuestMaximumDamageBonus +
                 RuntimeClassicStatusProjection.Numeric(before, "maximum_damage") +
-                ReadDerivedStat(before, "maximum_damage_bonus") + martialDamageBonus);
+                RuntimeClassicCharacterFormulaCalculator.ResolveProjectedEquipmentContribution(
+                    before, "maximum_damage_bonus", player.QuestMaximumDamageBonus) + martialDamageBonus);
             playerMinimumDamage = unarmedMinimum;
             playerMaximumDamage = Math.Max(unarmedMinimum, unarmedMaximum);
         }

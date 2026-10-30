@@ -414,6 +414,33 @@ public static class RuntimeItemSmokeReport
                 throw new InvalidOperationException("Removing resource equipment did not restore base maxima and clamp current resources.");
         });
 
+        Check("martial-max-damage-projection-excludes-duplicate-quest-bonus", () =>
+        {
+            // The combat round adds QuestMaximumDamageBonus separately. The
+            // projector retains quest + item ability 4 in its derived field.
+            var quest = new Dictionary<string, string>(character.Conditions,
+                StringComparer.OrdinalIgnoreCase) { ["quest.ability.4"] = "3" };
+            var withQuest = character with { Conditions = quest,
+                SemanticState = RuntimeCharacterSemanticState.Empty };
+            var itemModifiers = new RuntimeEquipmentModifierTotals(0, 0, 0, 0,
+                new[] { "martial:gear" })
+            {
+                AbilityModifiers = new Dictionary<int, int> { [4] = 7 }
+            };
+            var projected = RuntimeCharacterCombatStatisticProjector.Recalculate(
+                withQuest, itemModifiers, projectedAtUtc: DateTimeOffset.UnixEpoch);
+            var itemOnly = RuntimeClassicCharacterFormulaCalculator.ResolveProjectedEquipmentContribution(
+                projected, "maximum_damage_bonus", 3);
+            if (itemOnly != 7 || projected.SemanticState!.DerivedStats["maximum_damage_bonus"] != 10)
+                throw new InvalidDataException("Martial damage double-counted quest maximum-damage bonus.");
+            var unequipped = RuntimeCharacterCombatStatisticProjector.Recalculate(
+                projected, new RuntimeEquipmentModifierTotals(0, 0, 0, 0, Array.Empty<string>()),
+                projectedAtUtc: DateTimeOffset.UnixEpoch.AddSeconds(1));
+            if (RuntimeClassicCharacterFormulaCalculator.ResolveProjectedEquipmentContribution(
+                    unequipped, "maximum_damage_bonus", 3) != 0)
+                throw new InvalidDataException("Unready martial damage retained removed equipment ability 4.");
+        });
+
         Check("player-combat-equipment-reprojection-does-not-stack-on-switch", () =>
         {
             var baseline = character with
