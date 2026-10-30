@@ -86,6 +86,39 @@ public static class RuntimeItemSmokeReport
                 throw new InvalidDataException("Orphaned weapon readiness was accepted.");
         });
 
+        Check("classic-light-readiness-reads-saved-instance-id", () =>
+        {
+            var light = new RuntimeItemInstance("lit-lantern", "item.2", owner,
+                RuntimeItemLocations.Equipment, owner, "LIGHT", 50, 1, null);
+            var unlit = new RuntimeItemInstance("spare-lantern", "item.2", owner,
+                RuntimeItemLocations.Character, owner, null, 50, 1, null);
+            var active = new RuntimeItemState(new[] { light, unlit }, 0,
+                new Dictionary<string, string>
+                {
+                    [RuntimeEquipmentRuntimeAuthority.ReadyLightKey] = light.InstanceId
+                });
+            if (RuntimeEquipmentRuntimeAuthority.ResolveReadiedLightInstanceId(active, owner)
+                != light.InstanceId)
+                throw new InvalidDataException("Saved lantern instance was not resolved.");
+            var stale = active with
+            {
+                ActiveItemState = new Dictionary<string, string>
+                {
+                    [RuntimeEquipmentRuntimeAuthority.ReadyLightKey] = "nonexistent"
+                }
+            };
+            if (RuntimeEquipmentRuntimeAuthority.ResolveReadiedLightInstanceId(stale, owner)
+                != light.InstanceId)
+                throw new InvalidDataException("Older saved lantern fallback did not work.");
+            var removed = active with { Items = new[] { unlit } };
+            if (RuntimeEquipmentRuntimeAuthority.ResolveReadiedLightInstanceId(removed, owner) is not null)
+                throw new InvalidDataException("Stale light pointer resolved after light removal.");
+            var cleanup = RuntimeEquipmentRuntimeAuthority.ReconcileReadinessState(
+                removed.Items, owner, active.ActiveItemState);
+            if (cleanup.ContainsKey(RuntimeEquipmentRuntimeAuthority.ReadyLightKey))
+                throw new InvalidDataException("A removed lantern retained its active-state pointer.");
+        });
+
         Check("classic-light-command-uses-item-runtime", () =>
         {
             if (RuntimeCommandRuntimeRouteCatalog.Require("light").Kind != RuntimeCommandRouteKind.ItemRuntime)

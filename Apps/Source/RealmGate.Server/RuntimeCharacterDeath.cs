@@ -104,7 +104,8 @@ public static class RuntimeCharacterDeathResolver
 
         var corpse = engine.CreateCorpse(character.CharacterId, roomId, gold);
         var dropped = rootsBefore.Length - retainedIds.Count;
-        var snapshot = engine.Snapshot(0, state.ActiveItemState);
+        var snapshot = engine.Snapshot(0, RuntimeEquipmentRuntimeAuthority.ReconcileReadinessState(
+            engine.Items, character.CharacterId, state.ActiveItemState));
         var eventId = "death." + Guid.NewGuid().ToString("N");
         var semantic = character.SemanticState ?? RuntimeCharacterSemanticState.Empty;
         var currentLives = RuntimeClassicCharacterProgressionFormula.ReadLives(character);
@@ -230,7 +231,8 @@ public static class RuntimeCharacterDeathResolver
         };
         var updated = character with
         {
-            ItemState = engine.Snapshot(gold, state.ActiveItemState),
+            ItemState = engine.Snapshot(gold, RuntimeEquipmentRuntimeAuthority.ReconcileReadinessState(
+                engine.Items, character.CharacterId, state.ActiveItemState)),
             SemanticState = semantic with { RuntimeMarkers = markers },
             UpdatedAtUtc = nowUtc
         };

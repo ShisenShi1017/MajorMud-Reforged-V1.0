@@ -64,6 +64,26 @@ public static class RuntimeEquipmentRuntimeAuthority
             item.EquippedSlot!.Equals("WIELD", StringComparison.OrdinalIgnoreCase))?.InstanceId;
     }
 
+    // Consume a persisted light source only while the referenced instance is
+    // actually owned and readied. Older saves without this key continue to
+    // resolve their transitional LIGHT equipment instance.
+    internal static string? ResolveReadiedLightInstanceId(RuntimeItemState? state, string ownerId)
+    {
+        if (state is null) return null;
+        var readied = state.Items.Where(item =>
+            string.Equals(item.OwnerId, ownerId, StringComparison.OrdinalIgnoreCase)
+            && item.LocationKind.Equals(RuntimeItemLocations.Equipment, StringComparison.OrdinalIgnoreCase)
+            && string.Equals(item.EquippedSlot, "LIGHT", StringComparison.OrdinalIgnoreCase)).ToArray();
+        if (state.ActiveItemState.TryGetValue(ReadyLightKey, out var saved)
+            && !string.IsNullOrWhiteSpace(saved))
+        {
+            var selected = readied.FirstOrDefault(item =>
+                item.InstanceId.Equals(saved, StringComparison.OrdinalIgnoreCase));
+            if (selected is not null) return selected.InstanceId;
+        }
+        return readied.FirstOrDefault()?.InstanceId;
+    }
+
     public static RuntimeEquipmentRuntimeCommit Commit(
         RuntimeCharacterRecord character,
         RuntimeItemEngine engine,

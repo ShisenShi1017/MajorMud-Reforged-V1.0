@@ -417,6 +417,8 @@ public sealed partial class RuntimeLiveGameplayFacade
                     || string.Equals(item.LocationKind, RuntimeItemLocations.Equipment, StringComparison.OrdinalIgnoreCase)))
             .ToArray();
 
+        var readiedLightId = RuntimeEquipmentRuntimeAuthority.ResolveReadiedLightInstanceId(
+            state, session.Actor.Id);
         var currency = RuntimeBundleCInventoryAuthority.ReadCurrency(state);
         var carriedParts = new List<string>();
         var currencyText = RuntimeMajorMudCompatibility.FormatInventoryCurrency(currency);
@@ -428,7 +430,9 @@ public sealed partial class RuntimeLiveGameplayFacade
             var quantity = item.StackQuantity > 1 ? $"{item.StackQuantity} {definition.Name}" : definition.Name;
             carriedParts.Add(item.EquippedSlot is null
                 ? quantity
-                : $"{quantity} ({ClassicDisplaySlot(catalog, item)})");
+                : string.Equals(item.InstanceId, readiedLightId, StringComparison.OrdinalIgnoreCase)
+                    ? $"{quantity} ({ClassicLightReadiness(catalog, item)})"
+                    : $"{quantity} ({ClassicDisplaySlot(catalog, item)})");
         }
 
         var lines = new List<string>
