@@ -454,6 +454,57 @@ public sealed class RuntimePlayerCombatProfileSmokeReport
             Require(profile.StrengthMaximumDamageBonus == -5, "classic-strength-maximum-damage-bonus"); report.Checks.Add("classic-strength-maximum-damage-bonus");
             Require(profile.WeaponSpeed == weapon.Speed, "weapon-speed-consumer"); report.Checks.Add("weapon-speed-consumer");
             Require(profile.WeaponAccuracyModifier == weapon.Accuracy, "generated-weapon-accuracy"); report.Checks.Add("generated-weapon-accuracy");
+
+            // Verify a live-ready state transition using two *carried* weapons,
+            // not the old synthetic WIELD or MAIN_HAND equipment position.
+            // Selecting the second weapon must replace, never stack, the first.
+            var otherWeapon = catalog.Profiles.FirstOrDefault(candidate =>
+                candidate.MaximumDamage > 0 && candidate.ItemId != weapon.ItemId);
+            Require(otherWeapon is not null, "weapon-switch-second-weapon-available");
+            var carriedWeapons = new[]
+            {
+                new RuntimeItemInstance("instance.weapon.a", weapon.ItemId, character.CharacterId,
+                    RuntimeItemLocations.Character, character.CharacterId, null, 0, 1, null),
+                new RuntimeItemInstance("instance.weapon.b", otherWeapon!.ItemId, character.CharacterId,
+                    RuntimeItemLocations.Character, character.CharacterId, null, 0, 1, null)
+            };
+            RuntimeCharacterRecord ReadyCharacter(string? instanceId) => character with
+            {
+                ItemState = new RuntimeItemState(carriedWeapons, 0,
+                    instanceId is null
+                        ? new Dictionary<string, string>()
+                        : new Dictionary<string, string>
+                        {
+                            [RuntimeEquipmentRuntimeAuthority.ReadyWeaponKey] = instanceId
+                        })
+            };
+            var combatResolver = new RuntimePlayerCombatProfileResolver(catalog);
+            var firstReadied = combatResolver.Resolve(ReadyCharacter(carriedWeapons[0].InstanceId));
+            var switched = combatResolver.Resolve(ReadyCharacter(carriedWeapons[1].InstanceId));
+            var unready = combatResolver.Resolve(ReadyCharacter(null));
+            Require(!firstReadied.Barehanded && firstReadied.WeaponSpeed == weapon.Speed
+                && firstReadied.WeaponAccuracyModifier == weapon.Accuracy
+                && firstReadied.MinimumDamage == weapon.MinimumDamage
+                && firstReadied.MaximumDamage == weapon.MaximumDamage - 5 + 3
+                && firstReadied.EquippedCombatItems.Count(x => x == weapon.ItemId) == 1,
+                "first-carried-weapon-combat-profile");
+            Require(!switched.Barehanded && switched.WeaponSpeed == otherWeapon.Speed
+                && switched.WeaponAccuracyModifier == otherWeapon.Accuracy
+                && switched.MinimumDamage == otherWeapon.MinimumDamage
+                && switched.MaximumDamage == Math.Max(otherWeapon.MinimumDamage, otherWeapon.MaximumDamage - 5 + 3)
+                && switched.EquippedCombatItems.Count == 1
+                && switched.EquippedCombatItems[0] == otherWeapon.ItemId,
+                "weapon-switch-replaces-damage-speed-and-accuracy");
+            Require(unready.Barehanded && unready.WeaponSpeed == 0
+                && unready.WeaponAccuracyModifier == 0
+                && unready.EquippedCombatItems.Count == 0,
+                "unready-does-not-retain-previous-weapon");
+            report.Checks.AddRange(new[]
+            {
+                "first-carried-weapon-combat-profile",
+                "weapon-switch-replaces-damage-speed-and-accuracy",
+                "unready-does-not-retain-previous-weapon"
+            });
             Require(profile.ClassCombatAccuracy == 0 && profile.AbilityAccuracyModifier == 4, "ability-22-live-consumer"); report.Checks.Add("ability-22-live-consumer");
             Require(profile.NaturalCriticalChance == 1, "natural-critical-live-consumer"); report.Checks.Add("natural-critical-live-consumer");
             Require(profile.QuestMaximumDamageBonus == 3 && profile.QuestArmorClassBonus == 2 && profile.QuestDodgeBonus == 5 && profile.QuestCriticalBonus == 6, "quest-combat-bonus-consumers"); report.Checks.Add("quest-combat-bonus-consumers");
