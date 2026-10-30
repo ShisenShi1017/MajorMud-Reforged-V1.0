@@ -30,6 +30,33 @@ public static class RuntimeItemSmokeReport
         var equipDef = catalog.EquipmentDefinitions.First(x => x.Slot != "NONE" && !x.ClassRestricted && !x.RaceRestricted && x.MinimumLevel == 0 && x.MinimumStrength == 0 && string.IsNullOrWhiteSpace(x.Alignment) && string.IsNullOrWhiteSpace(x.Gender) && !catalog.Require(x.ItemId).RetainedOnDeath);
         var character = SmokeCharacter(owner, worldId);
 
+        Check("classic-readiness-persists-independent-instance-ids", () =>
+        {
+            var weapon = new RuntimeItemInstance("ready-weapon", "item.1", owner,
+                RuntimeItemLocations.Equipment, owner, "WIELD", 0, 1, null);
+            var light = new RuntimeItemInstance("ready-light", "item.2", owner,
+                RuntimeItemLocations.Equipment, owner, "LIGHT", 50, 1, null);
+            var prior = new Dictionary<string, string>
+            {
+                ["bank.test"] = "preserved",
+                [RuntimeEquipmentRuntimeAuthority.ReadyWeaponKey] = "stale"
+            };
+            var active = RuntimeEquipmentRuntimeAuthority.ReconcileReadinessState(
+                new[] { weapon, light }, owner, prior);
+            if (active.GetValueOrDefault(RuntimeEquipmentRuntimeAuthority.ReadyWeaponKey) != weapon.InstanceId
+                || active.GetValueOrDefault(RuntimeEquipmentRuntimeAuthority.ReadyLightKey) != light.InstanceId
+                || active.GetValueOrDefault("bank.test") != "preserved")
+                throw new InvalidDataException("Ready instance IDs were not persisted independently.");
+
+            var removed = RuntimeEquipmentRuntimeAuthority.ReconcileReadinessState(
+                new[] { weapon with { LocationKind = RuntimeItemLocations.Character, EquippedSlot = null } },
+                owner, active);
+            if (removed.ContainsKey(RuntimeEquipmentRuntimeAuthority.ReadyWeaponKey)
+                || removed.ContainsKey(RuntimeEquipmentRuntimeAuthority.ReadyLightKey)
+                || removed.GetValueOrDefault("bank.test") != "preserved")
+                throw new InvalidDataException("Removing readiness left stale item state or erased unrelated state.");
+        });
+
         Check("classic-light-command-uses-item-runtime", () =>
         {
             if (RuntimeCommandRuntimeRouteCatalog.Require("light").Kind != RuntimeCommandRouteKind.ItemRuntime)

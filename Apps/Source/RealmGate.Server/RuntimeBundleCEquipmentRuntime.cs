@@ -15,6 +15,32 @@ public static class RuntimeEquipmentRuntimeAuthority
     public const string ContractVersion = "0004";
     public const string WeightMarker = "inventory.total_weight";
 
+    internal const string ReadyWeaponKey = "classic.readiness.weapon_instance_id";
+    internal const string ReadyLightKey = "classic.readiness.light_instance_id";
+
+    internal static IReadOnlyDictionary<string, string> ReconcileReadinessState(
+        IEnumerable<RuntimeItemInstance> items,
+        string ownerId,
+        IReadOnlyDictionary<string, string> prior)
+    {
+        var next = new Dictionary<string, string>(prior, StringComparer.OrdinalIgnoreCase);
+        next.Remove(ReadyWeaponKey);
+        next.Remove(ReadyLightKey);
+        var equipped = items
+            .Where(item => string.Equals(item.OwnerId, ownerId, StringComparison.OrdinalIgnoreCase)
+                && item.LocationKind.Equals(RuntimeItemLocations.Equipment, StringComparison.OrdinalIgnoreCase))
+            .ToArray();
+        var weapons = equipped.Where(item =>
+            string.Equals(item.EquippedSlot, "WIELD", StringComparison.OrdinalIgnoreCase)).ToArray();
+        var lights = equipped.Where(item =>
+            string.Equals(item.EquippedSlot, "LIGHT", StringComparison.OrdinalIgnoreCase)).ToArray();
+        if (weapons.Length > 1 || lights.Length > 1)
+            throw new InvalidDataException("Duplicate legacy ready item state cannot be persisted.");
+        if (weapons.Length == 1) next[ReadyWeaponKey] = weapons[0].InstanceId;
+        if (lights.Length == 1) next[ReadyLightKey] = lights[0].InstanceId;
+        return next;
+    }
+
     public static RuntimeEquipmentRuntimeCommit Commit(
         RuntimeCharacterRecord character,
         RuntimeItemEngine engine,
@@ -25,7 +51,12 @@ public static class RuntimeEquipmentRuntimeAuthority
         ArgumentNullException.ThrowIfNull(character);
         ArgumentNullException.ThrowIfNull(engine);
 
-        var snapshot = engine.Snapshot(gold, activeItemState);
+        // Persist readiness independently from the transitional synthetic
+        // equipment positions. The old EquippedSlot representation is retained
+        // only until combat, inventory and corpse recovery consumers migrate.
+        // Rebuild these keys from real item instance IDs on each transaction.
+        var snapshot = engine.Snapshot(gold, ReconcileReadinessState(
+            engine.Items, character.CharacterId, activeItemState));
         var equipped = snapshot.Items
             .Where(item => string.Equals(item.OwnerId, character.CharacterId, StringComparison.OrdinalIgnoreCase) &&
                            item.LocationKind.Equals(RuntimeItemLocations.Equipment, StringComparison.OrdinalIgnoreCase) &&
