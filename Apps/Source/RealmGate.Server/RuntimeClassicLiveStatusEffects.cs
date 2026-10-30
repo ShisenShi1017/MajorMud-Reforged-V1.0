@@ -170,6 +170,21 @@ public static class RuntimeClassicNativePoisonAuthority
     public static int ApplyPoison(int current, int incoming) =>
         Math.Clamp(Math.Max(Math.Max(0, current), Math.Max(0, incoming)), 0, short.MaxValue);
 
+    // WCCMMUD user-target Poison (19) at 0x475165..0x475174 queries
+    // _get_ability (21) BEFORE changing the +0xBE poison accumulator.
+    // Native immunity rejects the new poison magnitude; it does not cure
+    // an already-stored illness severity.
+    internal static int ApplyCharacterPoisonIfVulnerable(
+        RuntimeCharacterRecord character, int current, IReadOnlyList<int> magnitudes)
+    {
+        if (RuntimeClassicStatusProjection.IsPoisonImmune(character))
+            return current;
+        var next = current;
+        foreach (var magnitude in magnitudes)
+            next = ApplyPoison(next, magnitude);
+        return next;
+    }
+
     public static int CurePoison(int current, int magnitude) =>
         Math.Clamp(checked(Math.Max(0, current) - magnitude), 0, short.MaxValue);
 
@@ -1030,8 +1045,10 @@ public sealed partial class RuntimeLiveGameplayFacade
         var prior = _liveSpellEngine!.EffectsFor(effect.Target.Id)
             .Where(active => !active.EffectId.Equals(effect.EffectId, StringComparison.OrdinalIgnoreCase));
         var playerSeverity = RuntimeClassicNativePoisonAuthority.ReadOrDerive(character, prior, catalog);
-        foreach (var magnitude in magnitudes)
-            playerSeverity = RuntimeClassicNativePoisonAuthority.ApplyPoison(playerSeverity, magnitude);
+        // The player-only native immunity gate happens before the Poison (19)
+        // accumulator write. Keep the previously stored severity unchanged.
+        playerSeverity = RuntimeClassicNativePoisonAuthority.ApplyCharacterPoisonIfVulnerable(
+            character, playerSeverity, magnitudes);
         _characters.SaveCharacter(RuntimeClassicNativePoisonAuthority.Set(
             character, playerSeverity, nowUtc));
     }
@@ -1501,6 +1518,29 @@ public sealed class RuntimeClassicLiveStatusEffectsSmokeReport
                 && RuntimeClassicNativePoisonAuthority.ApplySlowDamage(36, 17) == 19,
                 "classic-monster-native-poison-accumulator-termination-slow-damage");
             report.Checks.Add("classic-monster-native-poison-accumulator-termination-slow-damage");
+            var poisonImmunityFixture = new RuntimeCharacterRecord(
+                "classic-native-poison-fixture", "poison-audit-account", "Poison Audit",
+                "Classic", "race.audit", "Audit", "class.audit", "Audit",
+                10, 0, 90, 90, 20, 20, "room.map1.2140", 2140,
+                new Dictionary<string, int>(), new Dictionary<string, int>(),
+                Array.Empty<string>(), Array.Empty<string>(),
+                new Dictionary<string, string?>(), new Dictionary<string, string>(),
+                DateTimeOffset.UnixEpoch, DateTimeOffset.UnixEpoch);
+            var poisonImmunityStatuses = poisonImmunityFixture with
+            {
+                Conditions = new Dictionary<string, string>
+                {
+                    [RuntimeClassicStatusProjection.Prefix + "poison_immune"] = "1"
+                }
+            };
+            Require(RuntimeClassicNativePoisonAuthority.ApplyCharacterPoisonIfVulnerable(
+                    poisonImmunityFixture, 4, new[] { 9, 17 }) == 17
+                && RuntimeClassicNativePoisonAuthority.ApplyCharacterPoisonIfVulnerable(
+                    poisonImmunityStatuses, 4, new[] { 9, 17 }) == 4
+                && RuntimeClassicNativePoisonAuthority.ApplyCharacterPoisonIfVulnerable(
+                    poisonImmunityStatuses, 0, new[] { 17 }) == 0,
+                "native-player-ability21-immunity-blocks-poison-without-curing-existing");
+            report.Checks.Add("native-player-ability21-immunity-blocks-poison-without-curing-existing");
             Require(RuntimeClassicNativePoisonAuthority.ApplyPoison(12, 8) == 12
                 && RuntimeClassicNativePoisonAuthority.ApplyPoison(12, 20) == 20
                 && RuntimeClassicNativePoisonAuthority.ApplyPoison(0, 40000) == short.MaxValue
