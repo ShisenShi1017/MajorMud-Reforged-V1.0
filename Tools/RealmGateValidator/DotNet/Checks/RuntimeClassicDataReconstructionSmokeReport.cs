@@ -23,7 +23,7 @@ public sealed record RuntimeClassicDataReconstructionSmokeReport(bool Passed, IR
             "decode-families-all-connected:" + (decode.ConnectedFamilyCount == decode.FamilyCount),
             "decode-families-zero-disconnected:" + (decode.DisconnectedFamilyCount == 0),
             "decode-families-zero-pending:" + (decode.PendingFamilyCount == 0),
-            "decode-fields-2332:" + (decode.TotalFields == 2332),
+            "decode-fields-2341:" + (decode.TotalFields == 2341),
             "decode-fields-all-connected:" + (decode.ConnectedFieldCount == decode.TotalFields),
             "decode-fields-zero-disconnected:" + (decode.DisconnectedFieldCount == 0),
             "decode-explicit-empty-count-2:" + (explicitEmpty.Length == 2),
