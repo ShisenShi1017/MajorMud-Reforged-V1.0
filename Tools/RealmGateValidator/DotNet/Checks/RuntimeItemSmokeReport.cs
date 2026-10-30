@@ -30,6 +30,12 @@ public static class RuntimeItemSmokeReport
         var equipDef = catalog.EquipmentDefinitions.First(x => x.Slot != "NONE" && !x.ClassRestricted && !x.RaceRestricted && x.MinimumLevel == 0 && x.MinimumStrength == 0 && string.IsNullOrWhiteSpace(x.Alignment) && string.IsNullOrWhiteSpace(x.Gender) && !catalog.Require(x.ItemId).RetainedOnDeath);
         var character = SmokeCharacter(owner, worldId);
 
+        Check("classic-light-command-uses-item-runtime", () =>
+        {
+            if (RuntimeCommandRuntimeRouteCatalog.Require("light").Kind != RuntimeCommandRouteKind.ItemRuntime)
+                throw new InvalidDataException("LIGHT command must route through the item runtime.");
+        });
+
         Check("classic-saved-equipment-native-slot-migration", () =>
         {
             var definition = catalog.EquipmentDefinitions.First(x =>

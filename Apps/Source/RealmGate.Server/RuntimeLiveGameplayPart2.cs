@@ -66,8 +66,8 @@ public sealed partial class RuntimeLiveGameplayFacade
             "ARMS" => "Arms",
             "TORSO" or "BODY" or "CHEST" => "Torso",
             "BACK" => "Back",
-            "WRIST" or "WRISTS" => "Wrist",
-            "FINGER" or "RING" => "Finger",
+            "WRIST" or "WRISTS" or "WRIST_1" or "WRIST_2" => "Wrist",
+            "FINGER" or "RING" or "FINGER_1" or "FINGER_2" => "Finger",
             "WAIST" or "BELT" => "Waist",
             "FEET" or "BOOTS" => "Feet",
             "HANDS" or "GLOVES" => "Hands",
@@ -166,17 +166,28 @@ public sealed partial class RuntimeLiveGameplayFacade
             case "wear":
             case "wield":
             case "ready":
+            case "light":
             {
                 var item = ResolveClassicEquipmentCandidate(engine.Inventory(actor.Id), catalog, command.ArgumentText);
                 var forcedSlot = catalog.ResolveClassicEquipmentSlot(item.CanonicalItemId);
                 var relationship = catalog.Equipment(item.CanonicalItemId)
                     ?? throw new InvalidOperationException("Item has no generated equipment relationship.");
-                if (command.Name.Equals("wield", StringComparison.OrdinalIgnoreCase) && !IsClassicWeaponSlot(forcedSlot ?? relationship.Slot))
-                    throw new InvalidOperationException($"{catalog.Require(item.CanonicalItemId).Name} is worn, not wielded.");
-                if (command.Name.Equals("wear", StringComparison.OrdinalIgnoreCase) && IsClassicWeaponSlot(forcedSlot ?? relationship.Slot))
-                    throw new InvalidOperationException($"{catalog.Require(item.CanonicalItemId).Name} must be wielded.");
+                var definition = catalog.Require(item.CanonicalItemId);
+                var lightSource = definition.ItemType.Equals("light_source", StringComparison.OrdinalIgnoreCase)
+                    && relationship.Slot.Equals("LIGHT", StringComparison.OrdinalIgnoreCase);
+                if (command.Name.Equals("light", StringComparison.OrdinalIgnoreCase) && !lightSource)
+                    throw new InvalidOperationException($"{definition.Name} is not a usable light source.");
+                if (command.Name.Equals("wield", StringComparison.OrdinalIgnoreCase) &&
+                    (!IsClassicWeaponSlot(forcedSlot ?? relationship.Slot) ||
+                     !definition.ItemType.Equals("weapon", StringComparison.OrdinalIgnoreCase)))
+                    throw new InvalidOperationException($"{definition.Name} is worn, not wielded.");
+                if (command.Name.Equals("wear", StringComparison.OrdinalIgnoreCase) &&
+                    (IsClassicWeaponSlot(forcedSlot ?? relationship.Slot) || lightSource))
+                    throw new InvalidOperationException($"{definition.Name} must be readied rather than worn.");
                 var moved = engine.Equip(item.InstanceId, actor.Id, character, forcedSlot);
-                result = $"You equip {catalog.Require(moved.CanonicalItemId).Name} ({ClassicEquipmentSlot(catalog, moved)}).";
+                result = command.Name.Equals("light", StringComparison.OrdinalIgnoreCase)
+                    ? $"You light {definition.Name}."
+                    : $"You equip {definition.Name} ({ClassicEquipmentSlot(catalog, moved)}).";
                 break;
             }
             case "remove":

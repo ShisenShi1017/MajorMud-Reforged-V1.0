@@ -370,7 +370,7 @@ public sealed class RuntimeCommandDispatcher
             "create" or "broadgang" or "disband" or "promote" or "demote" or "topten" => _gameplay?.ExecuteGangCommand(session, command) ?? "Live gameplay facade is not attached.",
             var nativeEvidenceCommand when route.Kind is RuntimeCommandRouteKind.NativeEvidenceGate => ExecuteEvidenceGatedNativeCommand(session, command),
             "audit" => _gameplay?.ExecuteAuditCommand(session, command) ?? "Live gameplay facade is not attached.",
-            "get" or "drop" or "put" or "give" or "equip" or "wear" or "wield" or "ready" or "remove" => ExecuteItem(session, command),
+            "get" or "drop" or "put" or "give" or "equip" or "wear" or "wield" or "ready" or "light" or "remove" => ExecuteItem(session, command),
             "open" or "close" or "lock" or "unlock" or "pull" or "push" or "activate" or "picklock" or "disarm" => _gameplay?.ExecuteLivingWorldCommand(session, command) ?? "Live gameplay facade is not attached.",
             "worldstate" => _gameplay?.RenderLivingWorldState(session) ?? "Live gameplay facade is not attached.",
             "services" or "list" => _gameplay?.ExecuteLiveServicesBundleCommand(session, command) ?? "Live gameplay facade is not attached.",

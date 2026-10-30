@@ -518,8 +518,8 @@ public sealed partial class RuntimeLiveGameplayFacade
             "ARMS" => "Arms",
             "TORSO" or "BODY" or "CHEST" => "Torso",
             "BACK" => "Back",
-            "WRIST" or "WRISTS" => "Wrist",
-            "FINGER" or "RING" => "Finger",
+            "WRIST" or "WRISTS" or "WRIST_1" or "WRIST_2" => "Wrist",
+            "FINGER" or "RING" or "FINGER_1" or "FINGER_2" => "Finger",
             "WAIST" or "BELT" => "Waist",
             "FEET" or "BOOTS" => "Feet",
             "HANDS" or "GLOVES" => "Hands",
@@ -537,10 +537,11 @@ public sealed partial class RuntimeLiveGameplayFacade
 
     private static string ClassicLightReadiness(RuntimeItemCatalog catalog, RuntimeItemInstance item)
     {
+        // Original inventory shows the remaining fuel with the readied marker,
+        // not a fabricated "current/maximum" equipment durability meter.
         var definition = catalog.Require(item.CanonicalItemId);
-        var maximum = definition.MaximumUses > 0 ? definition.MaximumUses : Math.Max(item.Charges, 100);
-        var remaining = item.Charges < 0 ? maximum : Math.Clamp(item.Charges, 0, maximum);
-        return $"Readied {remaining}/{maximum}";
+        var remaining = item.Charges < 0 ? Math.Max(0, definition.MaximumUses) : Math.Max(0, item.Charges);
+        return $"Readied/{remaining}";
     }
 
     public string Save(RuntimeSession session)
