@@ -18,24 +18,11 @@ public sealed partial class RuntimeLiveGameplayFacade
 
     public string EquipFromEquipmentCommand(RuntimeSession session, string target)
     {
-        if (session.Actor is not RuntimeCharacterActor actor) return "A persistent character is required.";
         if (string.IsNullOrWhiteSpace(target)) return RenderEquipment(session);
-
-        var character = _characters.LoadCharacter(actor.Id) ?? throw new InvalidOperationException("Character save was not found.");
-        var state = character.ItemState ?? new RuntimeItemState(Array.Empty<RuntimeItemInstance>(), 0, new Dictionary<string, string>(), Array.Empty<RuntimeCorpseState>());
-        var catalog = RuntimeItemCatalog.Load(_characters.ProjectRoot, session.World.Definition.Id);
-        var characterAuthority = RuntimeCharacterBundleCatalog.Load(_characters.ProjectRoot, session.World.Definition.Id);
-        var engine = new RuntimeItemEngine(catalog, state.Items, state.Corpses, characterAuthority);
-        var item = ResolveClassicEquipmentCandidate(engine.Inventory(actor.Id), catalog, target);
-        var definition = catalog.Require(item.CanonicalItemId);
-        var forcedSlot = catalog.ResolveClassicEquipmentSlot(item.CanonicalItemId);
-        var moved = engine.Equip(item.InstanceId, actor.Id, character, forcedSlot);
-        var nowUtc = DateTimeOffset.UtcNow;
-        var commit = RuntimeEquipmentRuntimeAuthority.Commit(character, engine, state.Gold, state.ActiveItemState, nowUtc);
-        _characters.SaveCharacter(commit.Character);
-        return $"You equip {catalog.Require(moved.CanonicalItemId).Name} ({ClassicEquipmentSlot(catalog, moved)}).";
+        // EQUIPMENT <item> and EQUIP <item> must share one implementation;
+        // otherwise one path can recreate legacy WIELD/LIGHT slot occupancy.
+        return ExecuteItemCommand(session, RuntimeCommand.Parse("equip " + target));
     }
-
 
     private static string? ClassicForcedEquipmentSlot(string itemName)
     {
@@ -107,6 +94,7 @@ public sealed partial class RuntimeLiveGameplayFacade
         var catalog = RuntimeItemCatalog.Load(_characters.ProjectRoot, session.World.Definition.Id);
         var characterAuthority = RuntimeCharacterBundleCatalog.Load(_characters.ProjectRoot, session.World.Definition.Id);
         var engine = new RuntimeItemEngine(catalog, state.Items, state.Corpses, characterAuthority);
+        var activeItemState = new Dictionary<string, string>(state.ActiveItemState, StringComparer.OrdinalIgnoreCase);
         string result;
         string? roomObserverMessage = null;
         RuntimeClassicRoomMessagePriority roomObserverPriority = RuntimeClassicRoomMessagePriority.High;
@@ -169,31 +157,98 @@ public sealed partial class RuntimeLiveGameplayFacade
             case "light":
             {
                 var item = ResolveClassicEquipmentCandidate(engine.Inventory(actor.Id), catalog, command.ArgumentText);
-                var forcedSlot = catalog.ResolveClassicEquipmentSlot(item.CanonicalItemId);
-                var relationship = catalog.Equipment(item.CanonicalItemId)
-                    ?? throw new InvalidOperationException("Item has no generated equipment relationship.");
                 var definition = catalog.Require(item.CanonicalItemId);
-                var lightSource = definition.ItemType.Equals("light_source", StringComparison.OrdinalIgnoreCase)
-                    && relationship.Slot.Equals("LIGHT", StringComparison.OrdinalIgnoreCase);
-                if (command.Name.Equals("light", StringComparison.OrdinalIgnoreCase) && !lightSource)
+                var relationship = catalog.Equipment(item.CanonicalItemId);
+                var light = definition.ItemType.Equals("light_source", StringComparison.OrdinalIgnoreCase);
+                var weapon = definition.ItemType.Equals("weapon", StringComparison.OrdinalIgnoreCase);
+                var ready = weapon || light;
+
+                if (command.Name == "light" && !light)
                     throw new InvalidOperationException($"{definition.Name} is not a usable light source.");
-                if (command.Name.Equals("wield", StringComparison.OrdinalIgnoreCase) &&
-                    (!IsClassicWeaponSlot(forcedSlot ?? relationship.Slot) ||
-                     !definition.ItemType.Equals("weapon", StringComparison.OrdinalIgnoreCase)))
-                    throw new InvalidOperationException($"{definition.Name} is worn, not wielded.");
-                if (command.Name.Equals("wear", StringComparison.OrdinalIgnoreCase) &&
-                    (IsClassicWeaponSlot(forcedSlot ?? relationship.Slot) || lightSource))
+                if (command.Name == "wield" && !weapon)
+                    throw new InvalidOperationException($"{definition.Name} is not a weapon.");
+                if (command.Name == "wear" && ready)
                     throw new InvalidOperationException($"{definition.Name} must be readied rather than worn.");
-                var moved = engine.Equip(item.InstanceId, actor.Id, character, forcedSlot);
-                result = command.Name.Equals("light", StringComparison.OrdinalIgnoreCase)
-                    ? $"You light {definition.Name}."
-                    : $"You equip {definition.Name} ({ClassicEquipmentSlot(catalog, moved)}).";
+                if (command.Name == "light" && item.Charges == 0)
+                    throw new InvalidOperationException($"{definition.Name} has no fuel remaining.");
+
+                if (ready)
+                {
+                    if (weapon && relationship?.TwoHanded == true &&
+                        engine.Equipment(actor.Id).Any(e => e.EquippedSlot is not null &&
+                            (e.EquippedSlot.Equals("OFF_HAND", StringComparison.OrdinalIgnoreCase)
+                                || e.EquippedSlot.Equals("SHIELD", StringComparison.OrdinalIgnoreCase))))
+                        throw new InvalidOperationException("Two-handed weapon conflicts with the off-hand item.");
+
+                    // Old saves may still have a synthetic WIELD/LIGHT occupant.
+                    // Unready that legacy instance before selecting a carried one.
+                    var legacySlot = weapon ? "WIELD" : "LIGHT";
+                    foreach (var legacy in engine.Equipment(actor.Id)
+                                 .Where(e => e.EquippedSlot is not null &&
+                                     e.EquippedSlot.Equals(legacySlot, StringComparison.OrdinalIgnoreCase))
+                                 .ToArray())
+                        engine.Unequip(legacy.InstanceId, actor.Id);
+
+                    var key = weapon
+                        ? RuntimeEquipmentRuntimeAuthority.ReadyWeaponKey
+                        : RuntimeEquipmentRuntimeAuthority.ReadyLightKey;
+                    activeItemState[key] = item.InstanceId;
+                    result = light
+                        ? $"You light {definition.Name}."
+                        : $"You ready {definition.Name}.";
+                    break;
+                }
+
+                if (relationship is null)
+                    throw new InvalidOperationException("Item has no generated equipment relationship.");
+                if (command.Name == "light" || command.Name == "wield")
+                    throw new InvalidOperationException($"{definition.Name} cannot be readied.");
+                if (relationship.Slot.Equals("OFF_HAND", StringComparison.OrdinalIgnoreCase)
+                    || relationship.Slot.Equals("SHIELD", StringComparison.OrdinalIgnoreCase))
+                {
+                    var selectedId = RuntimeEquipmentRuntimeAuthority.ResolveReadiedWeaponInstanceId(
+                        state with { ActiveItemState = activeItemState }, actor.Id);
+                    var selected = selectedId is null ? null : engine.Find(selectedId);
+                    if (selected is not null &&
+                        catalog.Equipment(selected.CanonicalItemId)?.TwoHanded == true)
+                        throw new InvalidOperationException("Off-hand item conflicts with readied two-handed weapon.");
+                }
+                var moved = engine.Equip(item.InstanceId, actor.Id, character, relationship.Slot);
+                result = $"You equip {definition.Name} ({ClassicEquipmentSlot(catalog, moved)}).";
                 break;
             }
             case "remove":
             {
+                var readyWeaponId = RuntimeEquipmentRuntimeAuthority.ResolveReadiedWeaponInstanceId(
+                    state, actor.Id);
+                var readyLightId = RuntimeEquipmentRuntimeAuthority.ResolveReadiedLightInstanceId(
+                    state, actor.Id);
+                var candidates = engine.Inventory(actor.Id)
+                    .Where(i => i.InstanceId.Equals(readyWeaponId, StringComparison.OrdinalIgnoreCase)
+                        || i.InstanceId.Equals(readyLightId, StringComparison.OrdinalIgnoreCase))
+                    .ToArray();
+                var query = command.ArgumentText.Trim();
+                var carried = candidates.FirstOrDefault(i =>
+                    i.InstanceId.Equals(query, StringComparison.OrdinalIgnoreCase)
+                    || i.CanonicalItemId.Equals(query, StringComparison.OrdinalIgnoreCase)
+                    || catalog.Require(i.CanonicalItemId).Name.Equals(query, StringComparison.OrdinalIgnoreCase)
+                    || catalog.Require(i.CanonicalItemId).Name.StartsWith(query, StringComparison.OrdinalIgnoreCase));
+                if (carried is not null && query.Length > 0)
+                {
+                    if (carried.InstanceId.Equals(readyWeaponId, StringComparison.OrdinalIgnoreCase))
+                        activeItemState.Remove(RuntimeEquipmentRuntimeAuthority.ReadyWeaponKey);
+                    if (carried.InstanceId.Equals(readyLightId, StringComparison.OrdinalIgnoreCase))
+                        activeItemState.Remove(RuntimeEquipmentRuntimeAuthority.ReadyLightKey);
+                    result = $"You unready {catalog.Require(carried.CanonicalItemId).Name}.";
+                    break;
+                }
+
                 var item = Resolve(engine.Equipment(actor.Id), catalog, command.ArgumentText);
                 var moved = engine.Unequip(item.InstanceId, actor.Id);
+                if (item.InstanceId.Equals(readyWeaponId, StringComparison.OrdinalIgnoreCase))
+                    activeItemState.Remove(RuntimeEquipmentRuntimeAuthority.ReadyWeaponKey);
+                if (item.InstanceId.Equals(readyLightId, StringComparison.OrdinalIgnoreCase))
+                    activeItemState.Remove(RuntimeEquipmentRuntimeAuthority.ReadyLightKey);
                 result = $"You remove {catalog.Require(moved.CanonicalItemId).Name}.";
                 break;
             }
@@ -212,7 +267,7 @@ public sealed partial class RuntimeLiveGameplayFacade
                 throw new InvalidOperationException("Unsupported item command.");
         }
         var nowUtc = DateTimeOffset.UtcNow;
-        var commit = RuntimeEquipmentRuntimeAuthority.Commit(character, engine, state.Gold, state.ActiveItemState, nowUtc);
+        var commit = RuntimeEquipmentRuntimeAuthority.Commit(character, engine, state.Gold, activeItemState, nowUtc);
         _characters.SaveCharacter(commit.Character);
         if (!string.IsNullOrWhiteSpace(roomObserverMessage))
             _sessions.BroadcastRoom(session, roomObserverMessage, includeSource: false, priority: roomObserverPriority);

@@ -18,75 +18,69 @@ public static class RuntimeEquipmentRuntimeAuthority
     internal const string ReadyWeaponKey = "classic.readiness.weapon_instance_id";
     internal const string ReadyLightKey = "classic.readiness.light_instance_id";
 
+    internal static bool IsOwnedReadinessCandidate(RuntimeItemInstance item, string ownerId) =>
+        string.Equals(item.OwnerId, ownerId, StringComparison.OrdinalIgnoreCase)
+        && (item.LocationKind.Equals(RuntimeItemLocations.Character, StringComparison.OrdinalIgnoreCase)
+            && item.EquippedSlot is null
+            || item.LocationKind.Equals(RuntimeItemLocations.Equipment, StringComparison.OrdinalIgnoreCase)
+            && item.EquippedSlot is not null);
+
     internal static IReadOnlyDictionary<string, string> ReconcileReadinessState(
         IEnumerable<RuntimeItemInstance> items,
         string ownerId,
         IReadOnlyDictionary<string, string> prior)
     {
         var next = new Dictionary<string, string>(prior, StringComparer.OrdinalIgnoreCase);
-        next.Remove(ReadyWeaponKey);
-        next.Remove(ReadyLightKey);
-        var equipped = items
-            .Where(item => string.Equals(item.OwnerId, ownerId, StringComparison.OrdinalIgnoreCase)
-                && item.LocationKind.Equals(RuntimeItemLocations.Equipment, StringComparison.OrdinalIgnoreCase))
-            .ToArray();
-        var weapons = equipped.Where(item =>
-            string.Equals(item.EquippedSlot, "WIELD", StringComparison.OrdinalIgnoreCase)).ToArray();
-        var lights = equipped.Where(item =>
-            string.Equals(item.EquippedSlot, "LIGHT", StringComparison.OrdinalIgnoreCase)).ToArray();
-        if (weapons.Length > 1 || lights.Length > 1)
-            throw new InvalidDataException("Duplicate legacy ready item state cannot be persisted.");
-        if (weapons.Length == 1) next[ReadyWeaponKey] = weapons[0].InstanceId;
-        if (lights.Length == 1) next[ReadyLightKey] = lights[0].InstanceId;
+        var owned = items.Where(item => IsOwnedReadinessCandidate(item, ownerId)).ToArray();
+        foreach (var (key, legacySlot) in new[]
+                 {
+                     (ReadyWeaponKey, "WIELD"),
+                     (ReadyLightKey, "LIGHT")
+                 })
+        {
+            if (next.TryGetValue(key, out var instanceId)
+                && owned.Any(item => item.InstanceId.Equals(instanceId, StringComparison.OrdinalIgnoreCase)
+                    && (item.EquippedSlot is null
+                        || item.EquippedSlot.Equals(legacySlot, StringComparison.OrdinalIgnoreCase))))
+                continue;
+
+            next.Remove(key);
+            var legacy = owned.Where(item =>
+                item.EquippedSlot is not null
+                && item.EquippedSlot.Equals(legacySlot, StringComparison.OrdinalIgnoreCase)).ToArray();
+            if (legacy.Length > 1)
+                throw new InvalidDataException($"Duplicate legacy {legacySlot} readiness cannot be persisted.");
+            if (legacy.Length == 1) next[key] = legacy[0].InstanceId;
+        }
         return next;
     }
 
-    // Read the authoritative readiness reference only when it identifies a
-    // real item owned by this character. Legacy WIELD remains a fallback for
-    // saves which predate explicit readiness references.
-    internal static string? ResolveReadiedWeaponInstanceId(RuntimeItemState? state, string ownerId)
+    private static string? ResolveReadyItem(
+        RuntimeItemState? state, string ownerId, string key, string legacySlot,
+        params string[] acceptedLegacySlots)
     {
         if (state is null) return null;
-        var equipped = state.Items.Where(item =>
-            string.Equals(item.OwnerId, ownerId, StringComparison.OrdinalIgnoreCase)
-            && item.LocationKind.Equals(RuntimeItemLocations.Equipment, StringComparison.OrdinalIgnoreCase)
-            && item.EquippedSlot is not null).ToArray();
-
-        if (state.ActiveItemState.TryGetValue(ReadyWeaponKey, out var saved)
-            && !string.IsNullOrWhiteSpace(saved))
+        var owned = state.Items.Where(item => IsOwnedReadinessCandidate(item, ownerId)).ToArray();
+        if (state.ActiveItemState.TryGetValue(key, out var id) && !string.IsNullOrWhiteSpace(id))
         {
-            var selected = equipped.FirstOrDefault(item =>
-                item.InstanceId.Equals(saved, StringComparison.OrdinalIgnoreCase)
-                && item.EquippedSlot!.Equals("WIELD", StringComparison.OrdinalIgnoreCase));
+            var selected = owned.FirstOrDefault(item =>
+                item.InstanceId.Equals(id, StringComparison.OrdinalIgnoreCase)
+                && (item.EquippedSlot is null
+                    || item.EquippedSlot.Equals(legacySlot, StringComparison.OrdinalIgnoreCase)));
             if (selected is not null) return selected.InstanceId;
         }
-        // MAIN_HAND is retained only for old saves and combat test fixtures.
-        // Never infer a primary weapon from OFF_HAND or a generic worn item.
-        return equipped.FirstOrDefault(item =>
-            item.EquippedSlot!.Equals("WIELD", StringComparison.OrdinalIgnoreCase))?.InstanceId
-            ?? equipped.FirstOrDefault(item =>
-                item.EquippedSlot!.Equals("MAIN_HAND", StringComparison.OrdinalIgnoreCase))?.InstanceId;
+
+        return owned.FirstOrDefault(item => item.EquippedSlot is not null
+            && (item.EquippedSlot.Equals(legacySlot, StringComparison.OrdinalIgnoreCase)
+                || acceptedLegacySlots.Any(slot =>
+                    item.EquippedSlot.Equals(slot, StringComparison.OrdinalIgnoreCase))))?.InstanceId;
     }
 
-    // Consume a persisted light source only while the referenced instance is
-    // actually owned and readied. Older saves without this key continue to
-    // resolve their transitional LIGHT equipment instance.
-    internal static string? ResolveReadiedLightInstanceId(RuntimeItemState? state, string ownerId)
-    {
-        if (state is null) return null;
-        var readied = state.Items.Where(item =>
-            string.Equals(item.OwnerId, ownerId, StringComparison.OrdinalIgnoreCase)
-            && item.LocationKind.Equals(RuntimeItemLocations.Equipment, StringComparison.OrdinalIgnoreCase)
-            && string.Equals(item.EquippedSlot, "LIGHT", StringComparison.OrdinalIgnoreCase)).ToArray();
-        if (state.ActiveItemState.TryGetValue(ReadyLightKey, out var saved)
-            && !string.IsNullOrWhiteSpace(saved))
-        {
-            var selected = readied.FirstOrDefault(item =>
-                item.InstanceId.Equals(saved, StringComparison.OrdinalIgnoreCase));
-            if (selected is not null) return selected.InstanceId;
-        }
-        return readied.FirstOrDefault()?.InstanceId;
-    }
+    internal static string? ResolveReadiedWeaponInstanceId(RuntimeItemState? state, string ownerId) =>
+        ResolveReadyItem(state, ownerId, ReadyWeaponKey, "WIELD", "MAIN_HAND");
+
+    internal static string? ResolveReadiedLightInstanceId(RuntimeItemState? state, string ownerId) =>
+        ResolveReadyItem(state, ownerId, ReadyLightKey, "LIGHT");
 
     public static RuntimeEquipmentRuntimeCommit Commit(
         RuntimeCharacterRecord character,
@@ -122,7 +116,7 @@ public static class RuntimeEquipmentRuntimeAuthority
             .OrderBy(item => item.InstanceId, StringComparer.OrdinalIgnoreCase)
             .Select(item => item.InstanceId)
             .ToArray();
-        var modifiers = engine.EquipmentModifierTotals(character.CharacterId);
+        var modifiers = engine.EquipmentModifierTotals(character.CharacterId, snapshot.ActiveItemState);
         var weight = engine.InventoryWeight(character.CharacterId);
 
         var conditions = new Dictionary<string, string>(character.Conditions, StringComparer.OrdinalIgnoreCase)

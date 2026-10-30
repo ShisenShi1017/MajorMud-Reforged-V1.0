@@ -105,7 +105,14 @@ public sealed class RuntimePlayerCombatProfileResolver
 
         foreach (var item in character.ItemState?.Items ?? Array.Empty<RuntimeItemInstance>())
         {
-            if (!string.Equals(item.OwnerId, character.CharacterId, StringComparison.OrdinalIgnoreCase) || item.EquippedSlot is null) continue;
+            if (!string.Equals(item.OwnerId, character.CharacterId, StringComparison.OrdinalIgnoreCase)) continue;
+            var worn = item.LocationKind.Equals(RuntimeItemLocations.Equipment, StringComparison.OrdinalIgnoreCase)
+                && item.EquippedSlot is not null;
+            var carriedReadyWeapon = readiedWeaponId is not null
+                && item.InstanceId.Equals(readiedWeaponId, StringComparison.OrdinalIgnoreCase)
+                && item.LocationKind.Equals(RuntimeItemLocations.Character, StringComparison.OrdinalIgnoreCase)
+                && item.EquippedSlot is null;
+            if (!worn && !carriedReadyWeapon) continue;
             if (!_items.TryGet(item.CanonicalItemId, out var profile)) continue;
             equipped.Add(item.CanonicalItemId);
             armorClass = checked(armorClass + profile.ArmorClassBonus);

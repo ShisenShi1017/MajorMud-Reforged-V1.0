@@ -419,6 +419,8 @@ public sealed partial class RuntimeLiveGameplayFacade
 
         var readiedLightId = RuntimeEquipmentRuntimeAuthority.ResolveReadiedLightInstanceId(
             state, session.Actor.Id);
+        var readiedWeaponId = RuntimeEquipmentRuntimeAuthority.ResolveReadiedWeaponInstanceId(
+            state, session.Actor.Id);
         var currency = RuntimeBundleCInventoryAuthority.ReadCurrency(state);
         var carriedParts = new List<string>();
         var currencyText = RuntimeMajorMudCompatibility.FormatInventoryCurrency(currency);
@@ -428,11 +430,14 @@ public sealed partial class RuntimeLiveGameplayFacade
         {
             var definition = catalog.Require(item.CanonicalItemId);
             var quantity = item.StackQuantity > 1 ? $"{item.StackQuantity} {definition.Name}" : definition.Name;
-            carriedParts.Add(item.EquippedSlot is null
-                ? quantity
-                : string.Equals(item.InstanceId, readiedLightId, StringComparison.OrdinalIgnoreCase)
-                    ? $"{quantity} ({ClassicLightReadiness(catalog, item)})"
-                    : $"{quantity} ({ClassicDisplaySlot(catalog, item)})");
+            carriedParts.Add(string.Equals(item.InstanceId, readiedLightId, StringComparison.OrdinalIgnoreCase)
+                ? $"{quantity} ({ClassicLightReadiness(catalog, item)})"
+                : string.Equals(item.InstanceId, readiedWeaponId, StringComparison.OrdinalIgnoreCase)
+                    && item.EquippedSlot is null
+                    ? $"{quantity} (readied)"
+                    : item.EquippedSlot is null
+                        ? quantity
+                        : $"{quantity} ({ClassicDisplaySlot(catalog, item)})");
         }
 
         var lines = new List<string>

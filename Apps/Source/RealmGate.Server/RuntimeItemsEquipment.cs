@@ -2753,11 +2753,21 @@ public static class RuntimeCharacterGold
 
 public sealed partial class RuntimeItemEngine
 {
-    public RuntimeEquipmentModifierTotals EquipmentModifierTotals(string ownerId)
+    public RuntimeEquipmentModifierTotals EquipmentModifierTotals(
+        string ownerId, IReadOnlyDictionary<string, string>? activeItemState = null)
     {
         lock (_gate)
         {
-            var equipped = _items.Values.Where(x => Same(x.OwnerId, ownerId) && x.EquippedSlot is not null).OrderBy(x => x.InstanceId, StringComparer.OrdinalIgnoreCase).ToArray();
+            var readiedWeaponId = activeItemState is null
+                ? null
+                : RuntimeEquipmentRuntimeAuthority.ResolveReadiedWeaponInstanceId(
+                    new RuntimeItemState(_items.Values.ToArray(), 0, activeItemState), ownerId);
+            var equipped = _items.Values.Where(x =>
+                Same(x.OwnerId, ownerId)
+                && (x.EquippedSlot is not null
+                    || x.LocationKind.Equals(RuntimeItemLocations.Character, StringComparison.OrdinalIgnoreCase)
+                        && x.InstanceId.Equals(readiedWeaponId, StringComparison.OrdinalIgnoreCase)))
+                .OrderBy(x => x.InstanceId, StringComparer.OrdinalIgnoreCase).ToArray();
             var armorClass = 0;
             var damageResistance = 0;
             var accuracy = 0;

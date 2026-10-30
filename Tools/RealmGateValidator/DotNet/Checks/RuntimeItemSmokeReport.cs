@@ -48,13 +48,45 @@ public static class RuntimeItemSmokeReport
                 || active.GetValueOrDefault("bank.test") != "preserved")
                 throw new InvalidDataException("Ready instance IDs were not persisted independently.");
 
-            var removed = RuntimeEquipmentRuntimeAuthority.ReconcileReadinessState(
+            var carried = RuntimeEquipmentRuntimeAuthority.ReconcileReadinessState(
                 new[] { weapon with { LocationKind = RuntimeItemLocations.Character, EquippedSlot = null } },
                 owner, active);
+            if (carried.GetValueOrDefault(RuntimeEquipmentRuntimeAuthority.ReadyWeaponKey) != weapon.InstanceId
+                || carried.ContainsKey(RuntimeEquipmentRuntimeAuthority.ReadyLightKey)
+                || carried.GetValueOrDefault("bank.test") != "preserved")
+                throw new InvalidDataException("Carried readied weapon was lost or stale light was retained.");
+
+            var removed = RuntimeEquipmentRuntimeAuthority.ReconcileReadinessState(
+                Array.Empty<RuntimeItemInstance>(), owner, carried);
             if (removed.ContainsKey(RuntimeEquipmentRuntimeAuthority.ReadyWeaponKey)
-                || removed.ContainsKey(RuntimeEquipmentRuntimeAuthority.ReadyLightKey)
                 || removed.GetValueOrDefault("bank.test") != "preserved")
-                throw new InvalidDataException("Removing readiness left stale item state or erased unrelated state.");
+                throw new InvalidDataException("Missing weapon failed to clear readiness or erased bank data.");
+        });
+
+        Check("classic-carried-readiness-state-survives-and-clears", () =>
+        {
+            var weaponDef = catalog.EquipmentDefinitions.First(x => x.Slot == "WIELD");
+            var weapon = new RuntimeItemEngine(catalog).Create(
+                weaponDef.ItemId, RuntimeItemLocations.Character, owner, ownerId: owner);
+            var saved = new RuntimeItemState(new[] { weapon }, 0,
+                new Dictionary<string, string>
+                {
+                    [RuntimeEquipmentRuntimeAuthority.ReadyWeaponKey] = weapon.InstanceId
+                });
+            if (RuntimeEquipmentRuntimeAuthority.ResolveReadiedWeaponInstanceId(saved, owner)
+                != weapon.InstanceId)
+                throw new InvalidDataException("Carried readied weapon was not resolved.");
+
+            var modifiers = new RuntimeItemEngine(catalog, new[] { weapon })
+                .EquipmentModifierTotals(owner, saved.ActiveItemState);
+            if (!modifiers.SourceInstanceIds.Contains(weapon.InstanceId))
+                throw new InvalidDataException("Carried readied weapon was omitted from equipment modifiers.");
+
+            var dropped = RuntimeEquipmentRuntimeAuthority.ReconcileReadinessState(
+                new[] { weapon with { LocationKind = RuntimeItemLocations.Room,
+                    LocationId = room, OwnerId = null } }, owner, saved.ActiveItemState);
+            if (dropped.ContainsKey(RuntimeEquipmentRuntimeAuthority.ReadyWeaponKey))
+                throw new InvalidDataException("Dropped ready weapon retained its active pointer.");
         });
 
         Check("classic-weapon-readiness-reads-saved-instance-id", () =>
