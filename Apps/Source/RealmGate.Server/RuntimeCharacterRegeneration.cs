@@ -245,7 +245,14 @@ public sealed partial class RuntimeLiveGameplayFacade
                     // value from the existing spell effects when available.
                     var nativeEffects = _liveSpellEngine?.EffectsFor(actor.Id)
                         ?? Array.Empty<RuntimeActiveSpellEffect>();
-                    var severity = RuntimeClassicNativePoisonAuthority.ReadOrDerive(updated, nativeEffects);
+                    // Legacy saves without a scalar must use authored per-ability
+                    // values, not blindly treat the spell roll as poison severity.
+                    // Resolve the catalog only when a recovery is necessary.
+                    var legacyPoisonCatalog = !RuntimeClassicNativePoisonAuthority.HasState(updated)
+                        && nativeEffects.Count > 0
+                        ? ClassicLiveStatusCatalog(session) : null;
+                    var severity = RuntimeClassicNativePoisonAuthority.ReadOrDerive(
+                        updated, nativeEffects, legacyPoisonCatalog);
                     if (!RuntimeClassicNativePoisonAuthority.HasState(updated) && severity > 0)
                         updated = RuntimeClassicNativePoisonAuthority.Set(updated, severity, nowUtc);
                     if (severity > 0)

@@ -180,15 +180,60 @@ public static class RuntimeClassicNativePoisonAuthority
             ? effect.MinimumEffect : null;
     }
 
+    // The original user-target dispatcher evaluates all ten ability slots in
+    // order. An authored nonzero ability value overrides the effect's stored
+    // magnitude; a zero value falls back to that stored magnitude. Do not
+    // manufacture the missing magnitude for a variable-range legacy save.
+    internal static IReadOnlyList<int>? ResolveOrderedAbilityMagnitudes(
+        IEnumerable<RuntimeClassicLiveStatusAbility> abilities, int abilityId, int? storedMagnitude)
+    {
+        var magnitudes = new List<int>();
+        foreach (var ability in abilities)
+        {
+            if (ability.AbilityId != abilityId) continue;
+            if (ability.Value != 0) magnitudes.Add(ability.Value);
+            else if (storedMagnitude.HasValue) magnitudes.Add(storedMagnitude.Value);
+            else return null;
+        }
+        return magnitudes;
+    }
+
     public static int ReadOrDerive(RuntimeCharacterRecord character,
-        IEnumerable<RuntimeActiveSpellEffect> effects)
+        IEnumerable<RuntimeActiveSpellEffect> effects,
+        RuntimeClassicLiveStatusCatalog? catalog = null)
     {
         if (HasState(character)) return Read(character);
-        return effects.Where(effect => effect.Metadata is not null
-                && effect.Metadata.TryGetValue("effect_kind", out var kind)
-                && kind.Equals("poison", StringComparison.OrdinalIgnoreCase))
-            .Select(ResolvedRoll).Where(value => value.HasValue)
-            .Select(value => value!.Value).DefaultIfEmpty(0).Max();
+        var severity = 0;
+        foreach (var effect in effects)
+        {
+            if (effect.Metadata is null
+                || !effect.Metadata.TryGetValue("effect_kind", out var kind)
+                || !kind.Equals("poison", StringComparison.OrdinalIgnoreCase))
+                continue;
+
+            var storedMagnitude = ResolvedRoll(effect);
+            if (catalog is not null && catalog.TryGet(effect.SpellId, out var definition)
+                && definition.Abilities.Any(ability => ability.AbilityId == 19))
+            {
+                var magnitudes = ResolveOrderedAbilityMagnitudes(
+                    definition.Abilities, 19, storedMagnitude);
+                if (magnitudes is not null)
+                    foreach (var magnitude in magnitudes)
+                        severity = ApplyPoison(severity, magnitude);
+                continue;
+            }
+
+            // Backward-compatible fallback for pre-scalar saves without a
+            // resolvable catalog. Existing metadata retains the last authored
+            // value, but cannot reconstruct earlier repeated positions.
+            if (effect.Metadata.TryGetValue("ability.19", out var authored)
+                && int.TryParse(authored, NumberStyles.Integer, CultureInfo.InvariantCulture,
+                    out var authoredMagnitude) && authoredMagnitude != 0)
+                severity = ApplyPoison(severity, authoredMagnitude);
+            else if (storedMagnitude.HasValue)
+                severity = ApplyPoison(severity, storedMagnitude.Value);
+        }
+        return severity;
     }
 }
 
@@ -944,16 +989,18 @@ public sealed partial class RuntimeLiveGameplayFacade
         if (!catalog.TryGet(effect.SpellId, out var definition)
             || !definition.Abilities.Any(ability => ability.AbilityId == 19))
             return;
-        var roll = RuntimeClassicNativePoisonAuthority.ResolvedRoll(effect);
-        if (!roll.HasValue) return; // Missing native magnitude is not guessed.
+        var magnitudes = RuntimeClassicNativePoisonAuthority.ResolveOrderedAbilityMagnitudes(
+            definition.Abilities, 19, RuntimeClassicNativePoisonAuthority.ResolvedRoll(effect));
+        if (magnitudes is null || magnitudes.Count == 0) return;
         var character = _characters.LoadCharacter(effect.Target.Id);
         if (character is null) return;
         var prior = _liveSpellEngine!.EffectsFor(effect.Target.Id)
             .Where(active => !active.EffectId.Equals(effect.EffectId, StringComparison.OrdinalIgnoreCase));
-        var severity = RuntimeClassicNativePoisonAuthority.ReadOrDerive(character, prior);
-        var updated = RuntimeClassicNativePoisonAuthority.Set(
-            character, RuntimeClassicNativePoisonAuthority.ApplyPoison(severity, roll.Value), nowUtc);
-        _characters.SaveCharacter(updated);
+        var severity = RuntimeClassicNativePoisonAuthority.ReadOrDerive(character, prior, catalog);
+        foreach (var magnitude in magnitudes)
+            severity = RuntimeClassicNativePoisonAuthority.ApplyPoison(severity, magnitude);
+        _characters.SaveCharacter(RuntimeClassicNativePoisonAuthority.Set(
+            character, severity, nowUtc));
     }
 
     private void ApplyClassicNativePoisonOnTermination(
@@ -967,14 +1014,24 @@ public sealed partial class RuntimeLiveGameplayFacade
         if (!catalog.TryGet(effect.SpellId, out var definition)
             || !definition.Abilities.Any(ability => ability.AbilityId == 19))
             return;
-        var roll = RuntimeClassicNativePoisonAuthority.ResolvedRoll(effect);
-        if (!roll.HasValue) return;
+        var magnitudes = RuntimeClassicNativePoisonAuthority.ResolveOrderedAbilityMagnitudes(
+            definition.Abilities, 19, RuntimeClassicNativePoisonAuthority.ResolvedRoll(effect));
+        if (magnitudes is null || magnitudes.Count == 0) return;
         var character = _characters.LoadCharacter(effect.Target.Id);
         if (character is null) return;
-        var prior = RuntimeClassicNativePoisonAuthority.ReadOrDerive(character,
-            _liveSpellEngine!.EffectsFor(effect.Target.Id));
-        _characters.SaveCharacter(RuntimeClassicNativePoisonAuthority.Set(character,
-            RuntimeClassicNativePoisonAuthority.CurePoison(prior, roll.Value), nowUtc));
+        // Native +0xBE exists independently of active slots. When migrating a
+        // pre-scalar save, reconstruct the value as it stood BEFORE this spell
+        // terminated; expiration and dispel have already removed its slot.
+        var preTerminationEffects = _liveSpellEngine!.EffectsFor(effect.Target.Id)
+            .Where(active => !active.EffectId.Equals(
+                effect.EffectId, StringComparison.OrdinalIgnoreCase))
+            .Append(effect);
+        var severity = RuntimeClassicNativePoisonAuthority.ReadOrDerive(
+            character, preTerminationEffects, catalog);
+        foreach (var magnitude in magnitudes)
+            severity = RuntimeClassicNativePoisonAuthority.CurePoison(severity, magnitude);
+        _characters.SaveCharacter(RuntimeClassicNativePoisonAuthority.Set(
+            character, severity, nowUtc));
     }
 
     private int ApplyDecodedCureAndDispel(RuntimeSession session, RuntimeSpellDefinition castSpell,
@@ -1055,18 +1112,17 @@ public sealed partial class RuntimeLiveGameplayFacade
             {
                 // Cure Poison reduces the +0xBE accumulator by each authored
                 // ability-20 magnitude. A missing variable roll remains unknown.
-                var severity = RuntimeClassicNativePoisonAuthority.ReadOrDerive(character, effects);
-                var changed = false;
-                foreach (var ability in definition.Abilities.Where(ability => ability.AbilityId == 20))
+                var magnitudes = RuntimeClassicNativePoisonAuthority.ResolveOrderedAbilityMagnitudes(
+                    definition.Abilities, 20, effectRoll);
+                if (magnitudes is not null && magnitudes.Count > 0)
                 {
-                    var magnitude = ability.Value != 0 ? ability.Value : effectRoll;
-                    if (!magnitude.HasValue) continue;
-                    severity = RuntimeClassicNativePoisonAuthority.CurePoison(severity, magnitude.Value);
-                    changed = true;
-                }
-                if (changed)
+                    var severity = RuntimeClassicNativePoisonAuthority.ReadOrDerive(
+                        character, effects, catalog);
+                    foreach (var magnitude in magnitudes)
+                        severity = RuntimeClassicNativePoisonAuthority.CurePoison(severity, magnitude);
                     _characters.SaveCharacter(RuntimeClassicNativePoisonAuthority.Set(
                         character, severity, DateTimeOffset.UtcNow));
+                }
             }
         }
         return removedCount;
@@ -1272,6 +1328,41 @@ public sealed class RuntimeClassicLiveStatusEffectsSmokeReport
                     "native-room-entry-no-repeat-without-native-flag");
                 report.Checks.Add("native-room-entry-no-repeat-without-native-flag");
             }
+            // Preserve authored nonzero magnitudes and repeated ten-slot
+            // Poison/Cure entries independently of the fallback spell roll.
+            var mixedPoisonAbilities = new[]
+            {
+                new RuntimeClassicLiveStatusAbility(19, "Poison", 11),
+                new RuntimeClassicLiveStatusAbility(115, "DescMsg", 101),
+                new RuntimeClassicLiveStatusAbility(19, "Poison", 0),
+                new RuntimeClassicLiveStatusAbility(19, "Poison", 7),
+                new RuntimeClassicLiveStatusAbility(20, "CurePoison", 4),
+                new RuntimeClassicLiveStatusAbility(20, "CurePoison", 0)
+            };
+            var authoredPoisonMagnitudes = RuntimeClassicNativePoisonAuthority.ResolveOrderedAbilityMagnitudes(
+                mixedPoisonAbilities, 19, 5);
+            Require(authoredPoisonMagnitudes is not null
+                && authoredPoisonMagnitudes.SequenceEqual(new[] { 11, 5, 7 }),
+                "native-poison-ten-slot-authored-value-and-fallback-order");
+            report.Checks.Add("native-poison-ten-slot-authored-value-and-fallback-order");
+            var authoredCureMagnitudes = RuntimeClassicNativePoisonAuthority.ResolveOrderedAbilityMagnitudes(
+                mixedPoisonAbilities, 20, 5);
+            Require(authoredCureMagnitudes is not null
+                && authoredCureMagnitudes.SequenceEqual(new[] { 4, 5 }),
+                "native-cure-ten-slot-authored-value-and-fallback-order");
+            report.Checks.Add("native-cure-ten-slot-authored-value-and-fallback-order");
+            var authoredWithoutFallback = RuntimeClassicNativePoisonAuthority.ResolveOrderedAbilityMagnitudes(
+                new[] { new RuntimeClassicLiveStatusAbility(19, "Poison", 9) }, 19, null);
+            Require(RuntimeClassicNativePoisonAuthority.ResolveOrderedAbilityMagnitudes(
+                    mixedPoisonAbilities, 19, null) is null
+                && authoredWithoutFallback is not null
+                && authoredWithoutFallback.SequenceEqual(new[] { 9 }),
+                "native-poison-unknown-magnitude-only-blocks-zero-fallback");
+            report.Checks.Add("native-poison-unknown-magnitude-only-blocks-zero-fallback");
+            var combinedCure = RuntimeClassicNativePoisonAuthority.CurePoison(
+                RuntimeClassicNativePoisonAuthority.CurePoison(20, 4), 5);
+            Require(combinedCure == 11, "native-cure-repeated-slots-each-subtract");
+            report.Checks.Add("native-cure-repeated-slots-each-subtract");
             Require(RuntimeClassicNativePoisonAuthority.ApplyPoison(12, 8) == 12
                 && RuntimeClassicNativePoisonAuthority.ApplyPoison(12, 20) == 20
                 && RuntimeClassicNativePoisonAuthority.ApplyPoison(0, 40000) == short.MaxValue
