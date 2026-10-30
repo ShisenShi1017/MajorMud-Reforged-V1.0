@@ -236,14 +236,11 @@ public static class RuntimeClassicNativePoisonAuthority
         var severity = 0;
         foreach (var effect in effects)
         {
-            if (effect.Metadata is null
-                || !effect.Metadata.TryGetValue("effect_kind", out var kind)
-                || !kind.Equals("poison", StringComparison.OrdinalIgnoreCase))
-                continue;
-
             var storedMagnitude = ResolvedRoll(effect);
-            if (catalog is not null && catalog.TryGet(effect.SpellId, out var definition)
-                && definition.Abilities.Any(ability => ability.AbilityId == 19))
+            // The original spell's ordered ability vector is authoritative.
+            // Older saved active effects can lack effect_kind (or carry a
+            // generic status marker), even though ability 19 is present.
+            if (catalog is not null && catalog.TryGet(effect.SpellId, out var definition))
             {
                 var magnitudes = ResolveOrderedAbilityMagnitudes(
                     definition.Abilities, 19, storedMagnitude);
@@ -252,6 +249,14 @@ public static class RuntimeClassicNativePoisonAuthority
                         severity = ApplyPoison(severity, magnitude);
                 continue;
             }
+
+            // Only use metadata heuristics when the original catalog entry
+            // cannot be found. A known non-poison spell must not be inferred
+            // to poison solely because its legacy metadata says so.
+            if (effect.Metadata is null
+                || !effect.Metadata.TryGetValue("effect_kind", out var kind)
+                || !kind.Equals("poison", StringComparison.OrdinalIgnoreCase))
+                continue;
 
             // Backward-compatible fallback for pre-scalar saves without a
             // resolvable catalog. Existing metadata retains the last authored
@@ -1526,6 +1531,28 @@ public sealed class RuntimeClassicLiveStatusEffectsSmokeReport
                 Array.Empty<string>(), Array.Empty<string>(),
                 new Dictionary<string, string?>(), new Dictionary<string, string>(),
                 DateTimeOffset.UnixEpoch, DateTimeOffset.UnixEpoch);
+            // Reconstruct legacy active poison using the authoritative spell
+            // abilities even when old saves lack the effect_kind metadata.
+            var authoredPoisonSpell = catalog.Definitions.First(definition =>
+                definition.Abilities.Any(ability => ability.AbilityId == 19));
+            var authoredPoisonMagnitude = RuntimeClassicNativePoisonAuthority
+                .ResolveOrderedAbilityMagnitudes(authoredPoisonSpell.Abilities, 19, 7)!
+                .Aggregate(0, RuntimeClassicNativePoisonAuthority.ApplyPoison);
+            var legacyPoisonEffect = new RuntimeActiveSpellEffect(
+                "classic-poison-legacy-effect", authoredPoisonSpell.SpellId,
+                poisonImmunityFixture.CharacterId,
+                new RuntimeSpellTarget("character", poisonImmunityFixture.CharacterId),
+                7, 7, 10, DateTimeOffset.UnixEpoch, DateTimeOffset.UnixEpoch.AddDays(1));
+            var genericMetadataPoison = legacyPoisonEffect with
+            {
+                Metadata = new Dictionary<string, string> { ["effect_kind"] = "status" }
+            };
+            Require(RuntimeClassicNativePoisonAuthority.ReadOrDerive(
+                    poisonImmunityFixture, new[] { legacyPoisonEffect }, catalog) == authoredPoisonMagnitude
+                && RuntimeClassicNativePoisonAuthority.ReadOrDerive(
+                    poisonImmunityFixture, new[] { genericMetadataPoison }, catalog) == authoredPoisonMagnitude,
+                "classic-legacy-poison-recovery-from-native-abilities-without-kind-metadata");
+            report.Checks.Add("classic-legacy-poison-recovery-from-native-abilities-without-kind-metadata");
             var poisonImmunityStatuses = poisonImmunityFixture with
             {
                 Conditions = new Dictionary<string, string>
