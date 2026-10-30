@@ -39,6 +39,13 @@ public static class RuntimeEquipmentRuntimeAuthority
         return next;
     }
 
+    // Preserve hand exclusions using original weapon-type evidence even when
+    // transitional WIELD equipment relationships are absent.
+    internal static bool IsTwoHandedClassicWeapon(
+        RuntimeItemDefinition item, RuntimeEquipmentDefinition? relation) =>
+        item.ItemType.Equals("weapon", StringComparison.OrdinalIgnoreCase)
+        && (relation?.TwoHanded == true || item.WeaponType is 1 or 3);
+
     internal static bool IsOwnedReadinessCandidate(RuntimeItemInstance item, string ownerId) =>
         string.Equals(item.OwnerId, ownerId, StringComparison.OrdinalIgnoreCase)
         && (item.LocationKind.Equals(RuntimeItemLocations.Character, StringComparison.OrdinalIgnoreCase)

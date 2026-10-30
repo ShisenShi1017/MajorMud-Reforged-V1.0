@@ -90,6 +90,20 @@ public static class RuntimeItemSmokeReport
                 throw new InvalidDataException("Dropped ready weapon retained its active pointer.");
         });
 
+        Check("classic-two-handed-weapon-type-without-synthetic-slot", () =>
+        {
+            var nativeTwoHanded = new RuntimeItemDefinition("smoke:weapon", "Test weapon",
+                "weapon", true, false, false, false, 0) { WeaponType = 1 };
+            if (!RuntimeEquipmentRuntimeAuthority.IsTwoHandedClassicWeapon(nativeTwoHanded, null)
+                || !RuntimeEquipmentRuntimeAuthority.IsTwoHandedClassicWeapon(
+                    nativeTwoHanded with { WeaponType = 3 }, null)
+                || RuntimeEquipmentRuntimeAuthority.IsTwoHandedClassicWeapon(
+                    nativeTwoHanded with { WeaponType = 2 }, null)
+                || RuntimeEquipmentRuntimeAuthority.IsTwoHandedClassicWeapon(
+                    nativeTwoHanded with { ItemType = "armor" }, null))
+                throw new InvalidDataException("Native two-handed weapon rules must work without WIELD relationships.");
+        });
+
         Check("classic-weapon-readiness-reads-saved-instance-id", () =>
         {
             var one = new RuntimeItemInstance("readied-first", "item.1", owner,

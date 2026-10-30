@@ -169,6 +169,8 @@ public sealed partial class RuntimeLiveGameplayFacade
                     throw new InvalidOperationException($"{definition.Name} is not a usable light source.");
                 if (command.Name == "wield" && !weapon)
                     throw new InvalidOperationException($"{definition.Name} is not a weapon.");
+                if (command.Name == "ready" && !ready)
+                    throw new InvalidOperationException($"{definition.Name} cannot be readied.");
                 if (command.Name == "wear" && ready)
                     throw new InvalidOperationException($"{definition.Name} must be readied rather than worn.");
                 if (command.Name == "light" && item.Charges == 0)
@@ -176,7 +178,8 @@ public sealed partial class RuntimeLiveGameplayFacade
 
                 if (ready)
                 {
-                    if (weapon && relationship?.TwoHanded == true &&
+                    if (weapon && RuntimeEquipmentRuntimeAuthority.IsTwoHandedClassicWeapon(
+                            definition, relationship) &&
                         engine.Equipment(actor.Id).Any(e => e.EquippedSlot is not null &&
                             (e.EquippedSlot.Equals("OFF_HAND", StringComparison.OrdinalIgnoreCase)
                                 || e.EquippedSlot.Equals("SHIELD", StringComparison.OrdinalIgnoreCase))))
@@ -212,7 +215,9 @@ public sealed partial class RuntimeLiveGameplayFacade
                         state with { ActiveItemState = activeItemState }, actor.Id);
                     var selected = selectedId is null ? null : engine.Find(selectedId);
                     if (selected is not null &&
-                        catalog.Equipment(selected.CanonicalItemId)?.TwoHanded == true)
+                        RuntimeEquipmentRuntimeAuthority.IsTwoHandedClassicWeapon(
+                            catalog.Require(selected.CanonicalItemId),
+                            catalog.Equipment(selected.CanonicalItemId)))
                         throw new InvalidOperationException("Off-hand item conflicts with readied two-handed weapon.");
                 }
                 var moved = engine.Equip(item.InstanceId, actor.Id, character, relationship.Slot);
