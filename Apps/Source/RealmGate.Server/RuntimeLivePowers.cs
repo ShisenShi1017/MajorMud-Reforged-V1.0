@@ -1278,9 +1278,9 @@ public sealed partial class RuntimeLiveGameplayFacade
                 if (_session.World.Definition.Type.Equals("Classic", StringComparison.OrdinalIgnoreCase)
                     && spell.DecodedAbilities.Any(ability => ability.AbilityId == 20))
                 {
-                    var casterLevel = _owner._characters.LoadCharacter(request.CasterId)?.Level ?? 0;
+                    var cureCasterLevel = _owner._characters.LoadCharacter(request.CasterId)?.Level ?? 0;
                     var cureRoll = RollClassicNativeCureEffectMagnitude(
-                        spell, casterLevel, _owner._classicCureMagnitudeRandom);
+                        spell, cureCasterLevel, _owner._classicCureMagnitudeRandom);
                     cureMetadata["effect_roll"] = cureRoll.ToString(System.Globalization.CultureInfo.InvariantCulture);
                     cureMetadata["operation_authority"] = "native_ability20_magnitude";
                 }
