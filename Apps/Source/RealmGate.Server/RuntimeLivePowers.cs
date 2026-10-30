@@ -697,6 +697,10 @@ public sealed partial class RuntimeLiveGameplayFacade
             // managed rollback behavior if a nested follow-up fails.
             foreach (var expired in due)
                 ApplyClassicNativePoisonOnTermination(session, expired, nowUtc);
+            // Native player termination ability 160 removes the granted spell
+            // from the complete learned-spell array, including preexisting knowledge.
+            foreach (var expired in due)
+                ApplyClassicNativeGiveTempSpellTermination(session, expired, nowUtc);
             foreach (var characterId in due.Where(effect => effect.Target.Kind.Equals("character", StringComparison.OrdinalIgnoreCase))
                          .Select(effect => effect.Target.Id).Distinct(StringComparer.OrdinalIgnoreCase))
                 SynchronizeDecodedTemporarySpells(characterId);
@@ -811,6 +815,7 @@ public sealed partial class RuntimeLiveGameplayFacade
                     session.World.Definition.Type, sourceEffect.Target.Kind))
                 ExecuteDecodedEndCastChain(session, sourceEffect, nowUtc, sink, applied, 0);
             ApplyClassicNativePoisonOnTermination(session, sourceEffect, nowUtc);
+            ApplyClassicNativeGiveTempSpellTermination(session, sourceEffect, nowUtc);
         }
         catch
         {
@@ -823,6 +828,42 @@ public sealed partial class RuntimeLiveGameplayFacade
 
     internal static bool ShouldExecuteCastOnEnd(int chancePercent, int roll) =>
         chancePercent is >= 1 and <= 100 && roll is >= 1 and <= 100 && roll <= chancePercent;
+
+    // WCCMMUD _perform_spell_termination_player_upkeep ability 160 at
+    // 0x44A161 calls 0x41B0E6. The helper examines ALL 100 spellbook slots
+    // (+0x47A) and zeros every slot equal to the granted spell ID. There is
+    // no permanent-vs-temporary distinction in the native termination path.
+    private void ApplyClassicNativeGiveTempSpellTermination(
+        RuntimeSession session, RuntimeActiveSpellEffect terminated, DateTimeOffset nowUtc)
+    {
+        if (!session.World.Definition.Type.Equals("Classic", StringComparison.OrdinalIgnoreCase)
+            || !terminated.Target.Kind.Equals("character", StringComparison.OrdinalIgnoreCase))
+            return;
+        var granted = ResolveDecodedTemporarySpellIds(
+            new[] { terminated }, _liveSpellCatalog!);
+        if (granted.Count == 0) return;
+        var character = _characters.LoadCharacter(terminated.Target.Id);
+        if (character is null) return;
+        var next = RemoveClassicNativeTerminatedSpellKnowledge(
+            _liveSpellEngine!, character, granted, nowUtc);
+        if (!ReferenceEquals(next, character))
+            _characters.SaveCharacter(next);
+    }
+
+    internal static RuntimeCharacterRecord RemoveClassicNativeTerminatedSpellKnowledge(
+        RuntimeSpellEngine engine, RuntimeCharacterRecord character,
+        IReadOnlySet<string> granted, DateTimeOffset nowUtc)
+    {
+        // Clear the managed spellbook irrespective of any Reforged source tag.
+        // The character's persistent spell list represents the same original
+        // 100-slot inventory and must also lose all matching occurrences.
+        foreach (var spellId in granted)
+            if (engine.Knows(character.CharacterId, spellId))
+                engine.Forget(character.CharacterId, spellId);
+        var retained = character.Spells.Where(spellId => !granted.Contains(spellId)).ToArray();
+        return retained.Length == character.Spells.Count ? character
+            : character with { Spells = retained, UpdatedAtUtc = nowUtc };
+    }
 
     private void SynchronizeDecodedTemporarySpells(string characterId)
     {
@@ -1798,6 +1839,34 @@ public sealed class RuntimeLivePowersSmokeReport
             Check(RuntimeLiveGameplayFacade.ResolveDecodedTemporarySpellIds(new[] { temporaryGrantEffect }, spells)
                     .SetEquals(new[] { "spell.13" }),
                 "give-temp-spell-resolves-exact-generated-spell-13", r);
+            var originalMinorHealing = new RuntimeKnownSpell(
+                "native-temporary-spell-target", "spell.13", DateTimeOffset.UnixEpoch);
+            var unrelatedKnowledge = new RuntimeKnownSpell(
+                "native-temporary-spell-target", "spell.47", DateTimeOffset.UnixEpoch);
+            var nativeTempBook = new RuntimeSpellEngine(spells,
+                initial: new RuntimeSpellState(
+                    new[] { originalMinorHealing, unrelatedKnowledge },
+                    Array.Empty<RuntimeActiveSpellEffect>(),
+                    new Dictionary<string, RuntimeSpellResources>()));
+            var originalNativeTempCharacter = new RuntimeCharacterRecord(
+                "native-temporary-spell-target", "account.native-temp", "Native Temp",
+                "Classic", "race.audit", "Audit", "class.audit", "Audit",
+                10, 0, 70, 70, 20, 20, "room.map1.2140", 2140,
+                new Dictionary<string, int>(), new Dictionary<string, int>(),
+                new[] { "spell.13", "spell.47", "spell.13" },
+                Array.Empty<string>(), new Dictionary<string, string?>(),
+                new Dictionary<string, string>(),
+                DateTimeOffset.UnixEpoch, DateTimeOffset.UnixEpoch);
+            var nativeTerminatedCharacter =
+                RuntimeLiveGameplayFacade.RemoveClassicNativeTerminatedSpellKnowledge(
+                    nativeTempBook, originalNativeTempCharacter,
+                    new HashSet<string>(StringComparer.OrdinalIgnoreCase) { "spell.13" },
+                    DateTimeOffset.UnixEpoch.AddDays(1));
+            Check(!nativeTempBook.Knows(originalNativeTempCharacter.CharacterId, "spell.13")
+                && nativeTempBook.Knows(originalNativeTempCharacter.CharacterId, "spell.47")
+                && nativeTerminatedCharacter.Spells.SequenceEqual(new[] { "spell.47" })
+                && nativeTerminatedCharacter.UpdatedAtUtc == DateTimeOffset.UnixEpoch.AddDays(1),
+                "classic-givetempspell-native-100-slot-removal-includes-prior-knowledge", r);
             Check(openDoorOwners.Length == 1 && openDoorOwners[0].Id == "spell.750"
                 && openDoorOwners[0].Name == "wizard knock" && openDoorOwners[0].TargetType == "11"
                 && openDoorOwners[0].DecodedAbilities.Single(ability => ability.AbilityId == 161).Value == 0
