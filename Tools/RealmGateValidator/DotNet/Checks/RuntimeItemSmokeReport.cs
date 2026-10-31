@@ -214,6 +214,31 @@ public static class RuntimeItemSmokeReport
                 throw new InvalidDataException("Readiness pointers were lost after synthetic equipment removal.");
         });
 
+        Check("classic-death-retained-readiness-after-legacy-slot-migration", () =>
+        {
+            var retainedWeapon = new RuntimeItemInstance("legacy.retained.weapon", "item.1",
+                owner, RuntimeItemLocations.Equipment, owner, "WIELD", 0, 1, null);
+            var retainedLight = new RuntimeItemInstance("legacy.retained.light", "item.2",
+                owner, RuntimeItemLocations.Equipment, owner, "LIGHT", 35, 1, null);
+            var preMigration = new[] { retainedWeapon, retainedLight };
+            var seeded = RuntimeEquipmentRuntimeAuthority.SeedLegacyReadinessState(
+                preMigration, owner, new Dictionary<string, string>());
+            // Simulate a death transition where a retained item is moved into
+            // inventory by slot migration, while a dropped light goes to corpse.
+            var afterDeath = new[]
+            {
+                retainedWeapon with { LocationKind = RuntimeItemLocations.Character, EquippedSlot = null },
+                retainedLight with { LocationKind = RuntimeItemLocations.Corpse,
+                    LocationId = "corpse.test", OwnerId = null, EquippedSlot = null }
+            };
+            var after = RuntimeEquipmentRuntimeAuthority.ReconcileReadinessState(
+                afterDeath, owner, seeded);
+            if (after.GetValueOrDefault(RuntimeEquipmentRuntimeAuthority.ReadyWeaponKey)
+                    != retainedWeapon.InstanceId
+                || after.ContainsKey(RuntimeEquipmentRuntimeAuthority.ReadyLightKey))
+                throw new InvalidDataException("Death readiness lost a retained migrated weapon or retained a corpse light.");
+        });
+
         Check("classic-synthetic-relationship-removal-save-migration", () =>
         {
             // This branch runs after the compiler no longer emits synthetic

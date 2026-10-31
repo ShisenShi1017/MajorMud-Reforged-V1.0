@@ -92,6 +92,10 @@ public static class RuntimeCharacterDeathResolver
 
         var state = character.ItemState ?? new RuntimeItemState(Array.Empty<RuntimeItemInstance>(), 0, new Dictionary<string, string>(), Array.Empty<RuntimeCorpseState>());
         var gold = RuntimeCharacterGold.Validate(state.Gold);
+        // Capture old WIELD/LIGHT state before the item engine migrates
+        // transitional slot occupants into carried items.
+        var seededReadiness = RuntimeEquipmentRuntimeAuthority.SeedLegacyReadinessState(
+            state.Items, character.CharacterId, state.ActiveItemState);
         var engine = new RuntimeItemEngine(catalog, state.Items, state.Corpses);
         var rootsBefore = engine.Items
             .Where(item => string.Equals(item.OwnerId, character.CharacterId, StringComparison.OrdinalIgnoreCase)
@@ -105,7 +109,7 @@ public static class RuntimeCharacterDeathResolver
         var corpse = engine.CreateCorpse(character.CharacterId, roomId, gold);
         var dropped = rootsBefore.Length - retainedIds.Count;
         var snapshot = engine.Snapshot(0, RuntimeEquipmentRuntimeAuthority.ReconcileReadinessState(
-            engine.Items, character.CharacterId, state.ActiveItemState));
+            engine.Items, character.CharacterId, seededReadiness));
         var eventId = "death." + Guid.NewGuid().ToString("N");
         var semantic = character.SemanticState ?? RuntimeCharacterSemanticState.Empty;
         var currentLives = RuntimeClassicCharacterProgressionFormula.ReadLives(character);
@@ -224,6 +228,8 @@ public static class RuntimeCharacterDeathResolver
         if (!deathRoomId.Equals(currentRoomId, StringComparison.OrdinalIgnoreCase))
             throw new InvalidOperationException("The active corpse is not in the current room.");
         var state = character.ItemState ?? new RuntimeItemState(Array.Empty<RuntimeItemInstance>(), 0, new Dictionary<string, string>(), Array.Empty<RuntimeCorpseState>());
+        var seededReadiness = RuntimeEquipmentRuntimeAuthority.SeedLegacyReadinessState(
+            state.Items, character.CharacterId, state.ActiveItemState);
         var engine = new RuntimeItemEngine(catalog, state.Items, state.Corpses);
         recovery = engine.RecoverOwnedCorpse(corpseId, character.CharacterId);
         var gold = RuntimeCharacterGold.Credit(state.Gold, recovery.GoldRecovered);
@@ -238,7 +244,7 @@ public static class RuntimeCharacterDeathResolver
         var updated = character with
         {
             ItemState = engine.Snapshot(gold, RuntimeEquipmentRuntimeAuthority.ReconcileReadinessState(
-                engine.Items, character.CharacterId, state.ActiveItemState)),
+                engine.Items, character.CharacterId, seededReadiness)),
             SemanticState = semantic with { RuntimeMarkers = markers },
             UpdatedAtUtc = nowUtc
         };
