@@ -180,6 +180,16 @@ public static class RuntimeItemSmokeReport
                 throw new InvalidDataException("A removed lantern retained its active-state pointer.");
         });
 
+        Check("classic-light-fuel-requirement-for-all-ready-aliases", () =>
+        {
+            var emptyLight = new RuntimeItemInstance("empty-light", "item.2", owner,
+                RuntimeItemLocations.Character, owner, null, 0, 1, null);
+            if (RuntimeEquipmentRuntimeAuthority.CanReadyClassicLight(emptyLight)
+                || !RuntimeEquipmentRuntimeAuthority.CanReadyClassicLight(emptyLight with { Charges = 25 })
+                || !RuntimeEquipmentRuntimeAuthority.CanReadyClassicLight(emptyLight with { Charges = -1 }))
+                throw new InvalidDataException("Empty lanterns must not be readied through READY/EQUIP aliases.");
+        });
+
         Check("classic-light-command-uses-item-runtime", () =>
         {
             if (RuntimeCommandRuntimeRouteCatalog.Require("light").Kind != RuntimeCommandRouteKind.ItemRuntime)

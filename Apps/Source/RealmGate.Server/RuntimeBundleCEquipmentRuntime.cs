@@ -50,6 +50,11 @@ public static class RuntimeEquipmentRuntimeAuthority
 
     // Preserve hand exclusions using original weapon-type evidence even when
     // transitional WIELD equipment relationships are absent.
+    // Every command alias that readies a light must enforce the same fuel
+    // requirement. A negative charge sentinel is reserved for unlimited fuel.
+    internal static bool CanReadyClassicLight(RuntimeItemInstance item) =>
+        item.Charges != 0;
+
     internal static bool IsTwoHandedClassicWeapon(
         RuntimeItemDefinition item, RuntimeEquipmentDefinition? relation) =>
         item.ItemType.Equals("weapon", StringComparison.OrdinalIgnoreCase)

@@ -173,7 +173,7 @@ public sealed partial class RuntimeLiveGameplayFacade
                     throw new InvalidOperationException($"{definition.Name} cannot be readied.");
                 if (command.Name == "wear" && ready)
                     throw new InvalidOperationException($"{definition.Name} must be readied rather than worn.");
-                if (command.Name == "light" && item.Charges == 0)
+                if (light && !RuntimeEquipmentRuntimeAuthority.CanReadyClassicLight(item))
                     throw new InvalidOperationException($"{definition.Name} has no fuel remaining.");
 
                 if (ready)
