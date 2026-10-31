@@ -24,23 +24,6 @@ public sealed partial class RuntimeLiveGameplayFacade
         return ExecuteItemCommand(session, RuntimeCommand.Parse("equip " + target));
     }
 
-    private static string? ClassicForcedEquipmentSlot(string itemName)
-    {
-        var name = itemName.Trim().ToLowerInvariant();
-        if (name.Contains("padded vest")) return "TORSO";
-        if (name.Contains("padded pants")) return "LEGS";
-        if (name.Contains("padded helm")) return "HEAD";
-        if (name.Contains("padded gloves")) return "HANDS";
-        if (name.Contains("padded boots")) return "FEET";
-        if (name == "club") return "WIELD";
-        if (name.Contains("quarterstaff")) return "WIELD";
-        return null;
-    }
-
-
-    private static bool IsClassicWeaponSlot(string? slot) => (slot ?? string.Empty).ToUpperInvariant() is
-        "MAIN_HAND" or "PRIMARY_HAND" or "WEAPON" or "HAND" or "WIELD" or "OFF_HAND" or "SECONDARY_HAND";
-
     private static string ClassicEquipmentSlot(RuntimeItemCatalog catalog, RuntimeItemInstance item)
     {
         var relation = catalog.Equipment(item.CanonicalItemId);

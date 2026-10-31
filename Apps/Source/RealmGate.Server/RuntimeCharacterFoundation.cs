@@ -523,9 +523,25 @@ public sealed class RuntimeCharacterRepository
         var result = RuntimeCharacterPersistencePolicy.Load(path, JsonOptions);
         if (result.Source == "missing") return null;
         var migrated = RuntimeClassicRoomCurrencyStore.MigrateLegacyCurrency(_projectRoot, result.Character);
+        var currencyMigrated = !ReferenceEquals(migrated, result.Character);
+        // Player-only compatibility migration runs at the repository load
+        // boundary, so combat, inventory, login and autosave all see the same
+        // real carried item instances rather than synthetic WIELD/LIGHT slots.
+        if (migrated.ItemState?.Items.Any(item =>
+                string.Equals(item.OwnerId, migrated.CharacterId, StringComparison.OrdinalIgnoreCase)
+                && item.LocationKind.Equals(RuntimeItemLocations.Equipment, StringComparison.OrdinalIgnoreCase)
+                && (string.Equals(item.EquippedSlot, "WIELD", StringComparison.OrdinalIgnoreCase)
+                    || string.Equals(item.EquippedSlot, "LIGHT", StringComparison.OrdinalIgnoreCase))) == true)
+        {
+            var catalog = RuntimeItemCatalog.Load(_projectRoot, migrated.WorldId);
+            migrated = RuntimeEquipmentRuntimeAuthority.MigrateLegacyPlayerReadySlots(
+                migrated, catalog, DateTimeOffset.UtcNow);
+        }
         if (result.Recovered || !ReferenceEquals(migrated, result.Character))
         {
-            var reason = result.Recovered ? "crash-recovery" : "legacy-currency-migration";
+            var reason = result.Recovered ? "crash-recovery"
+                : !currencyMigrated ? "legacy-player-readiness-migration"
+                : "legacy-currency-migration";
             var recovered = RuntimeCharacterPersistencePolicy.PrepareForSave(migrated, reason, DateTimeOffset.UtcNow);
             WriteAtomic(path, recovered, retainBackup: true);
             return recovered;

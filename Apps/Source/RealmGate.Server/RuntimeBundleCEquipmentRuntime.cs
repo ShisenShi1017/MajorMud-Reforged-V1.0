@@ -18,6 +18,73 @@ public static class RuntimeEquipmentRuntimeAuthority
     internal const string ReadyWeaponKey = "classic.readiness.weapon_instance_id";
     internal const string ReadyLightKey = "classic.readiness.light_instance_id";
 
+    // Character-save migration boundary: unlike generated equipment metadata,
+    // the two readiness positions never represent worn body equipment. Convert
+    // only the named player owner here; NPC equipment and reset state are untouched.
+    // Returning the same record allows the repository to avoid unnecessary writes.
+    internal static RuntimeCharacterRecord MigrateLegacyPlayerReadySlots(
+        RuntimeCharacterRecord character, RuntimeItemCatalog catalog, DateTimeOffset nowUtc)
+    {
+        ArgumentNullException.ThrowIfNull(character);
+        ArgumentNullException.ThrowIfNull(catalog);
+        var state = character.ItemState;
+        if (state is null) return character;
+        var legacy = state.Items.Where(item =>
+            string.Equals(item.OwnerId, character.CharacterId, StringComparison.OrdinalIgnoreCase)
+            && item.LocationKind.Equals(RuntimeItemLocations.Equipment, StringComparison.OrdinalIgnoreCase)
+            && (string.Equals(item.EquippedSlot, "WIELD", StringComparison.OrdinalIgnoreCase)
+                || string.Equals(item.EquippedSlot, "LIGHT", StringComparison.OrdinalIgnoreCase))).ToArray();
+        if (legacy.Length == 0) return character;
+
+        // Reject malformed selections of the wrong item kind before seeding,
+        // so an old light ID cannot mask the saved weapon (and vice versa).
+        var prior = new Dictionary<string, string>(state.ActiveItemState, StringComparer.OrdinalIgnoreCase);
+        foreach (var (key, expectedType) in new[]
+                 {
+                     (ReadyWeaponKey, "weapon"), (ReadyLightKey, "light_source")
+                 })
+        {
+            if (!prior.TryGetValue(key, out var id)) continue;
+            var selected = state.Items.FirstOrDefault(item =>
+                item.InstanceId.Equals(id, StringComparison.OrdinalIgnoreCase)
+                && string.Equals(item.OwnerId, character.CharacterId, StringComparison.OrdinalIgnoreCase));
+            if (selected is not null &&
+                !catalog.Require(selected.CanonicalItemId).ItemType.Equals(expectedType, StringComparison.OrdinalIgnoreCase))
+                prior.Remove(key);
+        }
+        var seeded = SeedLegacyReadinessState(state.Items, character.CharacterId, prior);
+        var migratedItems = state.Items.Select(item =>
+        {
+            if (!legacy.Any(old => old.InstanceId.Equals(item.InstanceId, StringComparison.OrdinalIgnoreCase)))
+                return item;
+            if (item.Metadata?.ContainsKey("npc_reset_key") == true
+                || item.Metadata?.ContainsKey("npc_reset_equipped_slot") == true)
+                throw new InvalidDataException($"NPC reset item {item.InstanceId} cannot migrate as player readiness.");
+            var expectedType = string.Equals(item.EquippedSlot, "WIELD",
+                StringComparison.OrdinalIgnoreCase) ? "weapon" : "light_source";
+            if (!catalog.Require(item.CanonicalItemId).ItemType.Equals(expectedType, StringComparison.OrdinalIgnoreCase))
+                throw new InvalidDataException($"Invalid player legacy readiness slot for {item.CanonicalItemId}.");
+            var metadata = item.Metadata is null
+                ? new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase)
+                : new Dictionary<string, string>(item.Metadata, StringComparer.OrdinalIgnoreCase);
+            metadata.TryAdd("classic_legacy_equipped_slot", item.EquippedSlot!);
+            return item with
+            {
+                LocationKind = RuntimeItemLocations.Character,
+                LocationId = character.CharacterId,
+                EquippedSlot = null,
+                Metadata = metadata
+            };
+        }).ToArray();
+        var migratedState = state with
+        {
+            Items = migratedItems,
+            ActiveItemState = ReconcileReadinessState(migratedItems, character.CharacterId, seeded)
+        };
+        var engine = new RuntimeItemEngine(catalog, migratedState.Items, migratedState.Corpses);
+        return Commit(character, engine, migratedState.Gold, migratedState.ActiveItemState, nowUtc).Character;
+    }
+
     // Capture legacy readiness BEFORE RuntimeItemEngine migrates old WIELD
     // and LIGHT equipment records into carried items.
     internal static IReadOnlyDictionary<string, string> SeedLegacyReadinessState(

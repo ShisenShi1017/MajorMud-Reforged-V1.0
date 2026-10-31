@@ -68,7 +68,8 @@ using (var itemDocument = JsonDocument.Parse(File.ReadAllText(Path.Combine(resul
 using (var equipmentDocument = JsonDocument.Parse(File.ReadAllText(Path.Combine(result.OutputRoot, "equipment.json"))))
 {
     var equipment = equipmentDocument.RootElement.GetProperty("records");
-    if (equipment.GetArrayLength() < 900) throw new Exception("Runtime equipment projection is unexpectedly small.");
+    if (equipment.GetArrayLength() != 925)
+        throw new Exception($"Classic equipment reconciliation expected 925 relationships, found {equipment.GetArrayLength()}.");
     var itemRecords = ReadGeneratedRecords(result.OutputRoot, "items.json");
     var weaponIds = itemRecords.Where(item => ReadString(item, "item_type").Equals("weapon", StringComparison.OrdinalIgnoreCase))
         .Select(item => ReadString(item, "id")).ToHashSet(StringComparer.OrdinalIgnoreCase);

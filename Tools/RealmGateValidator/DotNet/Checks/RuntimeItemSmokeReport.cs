@@ -284,6 +284,62 @@ public static class RuntimeItemSmokeReport
                 throw new InvalidDataException("Death readiness lost a retained migrated weapon or retained a corpse light.");
         });
 
+        Check("classic-player-load-migrates-readiness-with-npc-state-isolation", () =>
+        {
+            var weaponDef = catalog.Items.First(item =>
+                item.ItemType.Equals("weapon", StringComparison.OrdinalIgnoreCase)
+                && catalog.Equipment(item.Id)?.Slot == "WIELD");
+            var lightDef = catalog.Items.First(item =>
+                item.ItemType.Equals("light_source", StringComparison.OrdinalIgnoreCase)
+                && catalog.Equipment(item.Id)?.Slot == "LIGHT");
+            var oldWeapon = new RuntimeItemInstance("legacy.player.weapon", weaponDef.Id, owner,
+                RuntimeItemLocations.Equipment, owner, "WIELD", 3, 1, null,
+                new Dictionary<string, string> { ["custom"] = "preserved" });
+            var oldLight = new RuntimeItemInstance("legacy.player.light", lightDef.Id, owner,
+                RuntimeItemLocations.Equipment, owner, "LIGHT", 19, 1, null);
+            var npc = new RuntimeItemInstance("npc.untouched.weapon", weaponDef.Id, "npc.owner",
+                RuntimeItemLocations.Equipment, "npc.owner", "WIELD", 8, 1, null,
+                new Dictionary<string, string> { ["npc_reset_key"] = "reset.test" });
+            var before = character with
+            {
+                ItemState = new RuntimeItemState(new[] { oldWeapon, oldLight }, 123,
+                    new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase)
+                    {
+                        [RuntimeEquipmentRuntimeAuthority.ReadyWeaponKey] = oldLight.InstanceId,
+                        [RuntimeEquipmentRuntimeAuthority.ReadyLightKey] = oldWeapon.InstanceId,
+                        ["bank.test"] = "retained"
+                    })
+            };
+            var migrated = RuntimeEquipmentRuntimeAuthority.MigrateLegacyPlayerReadySlots(
+                before, catalog, DateTimeOffset.UnixEpoch.AddHours(1));
+            var state = migrated.ItemState!;
+            var ready = state.Items.Single(x => x.InstanceId == oldWeapon.InstanceId);
+            var light = state.Items.Single(x => x.InstanceId == oldLight.InstanceId);
+            if (ready.LocationKind != RuntimeItemLocations.Character || ready.EquippedSlot is not null
+                || ready.Charges != oldWeapon.Charges
+                || ready.Metadata?.GetValueOrDefault("custom") != "preserved"
+                || ready.Metadata?.GetValueOrDefault("classic_legacy_equipped_slot") != "WIELD"
+                || light.LocationKind != RuntimeItemLocations.Character || light.EquippedSlot is not null
+                || light.Charges != oldLight.Charges
+                || light.Metadata?.GetValueOrDefault("classic_legacy_equipped_slot") != "LIGHT"
+                || migrated.Equipment.ContainsKey("WIELD") || migrated.Equipment.ContainsKey("LIGHT")
+                || state.Gold != 123 || state.ActiveItemState.GetValueOrDefault("bank.test") != "retained"
+                || state.ActiveItemState.GetValueOrDefault(RuntimeEquipmentRuntimeAuthority.ReadyWeaponKey) != ready.InstanceId
+                || state.ActiveItemState.GetValueOrDefault(RuntimeEquipmentRuntimeAuthority.ReadyLightKey) != light.InstanceId)
+                throw new InvalidDataException("Player load migration lost readiness, item state, or NPC separation.");
+            if (!ReferenceEquals(migrated,
+                RuntimeEquipmentRuntimeAuthority.MigrateLegacyPlayerReadySlots(
+                    migrated, catalog, DateTimeOffset.UnixEpoch.AddHours(2))))
+                throw new InvalidDataException("Player readiness migration was not idempotent.");
+
+            var npcOnly = before with { ItemState = new RuntimeItemState(new[] { npc }, 0,
+                new Dictionary<string, string>()) };
+            if (!ReferenceEquals(npcOnly,
+                RuntimeEquipmentRuntimeAuthority.MigrateLegacyPlayerReadySlots(
+                    npcOnly, catalog, DateTimeOffset.UnixEpoch.AddHours(3))))
+                throw new InvalidDataException("NPC equipment state must not trigger player migration.");
+        });
+
         Check("classic-synthetic-relationship-removal-save-migration", () =>
         {
             // This branch runs after the compiler no longer emits synthetic
