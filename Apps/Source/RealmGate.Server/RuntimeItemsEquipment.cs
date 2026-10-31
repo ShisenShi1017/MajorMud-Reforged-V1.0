@@ -2797,11 +2797,16 @@ public sealed partial class RuntimeItemEngine
                 ? null
                 : RuntimeEquipmentRuntimeAuthority.ResolveReadiedWeaponInstanceId(
                     new RuntimeItemState(_items.Values.ToArray(), 0, activeItemState), ownerId);
+            var readiedLightId = activeItemState is null
+                ? null
+                : RuntimeEquipmentRuntimeAuthority.ResolveReadiedLightInstanceId(
+                    new RuntimeItemState(_items.Values.ToArray(), 0, activeItemState), ownerId);
             var equipped = _items.Values.Where(x =>
                 Same(x.OwnerId, ownerId)
                 && (x.EquippedSlot is not null
                     || x.LocationKind.Equals(RuntimeItemLocations.Character, StringComparison.OrdinalIgnoreCase)
-                        && x.InstanceId.Equals(readiedWeaponId, StringComparison.OrdinalIgnoreCase)))
+                        && (x.InstanceId.Equals(readiedWeaponId, StringComparison.OrdinalIgnoreCase)
+                            || x.InstanceId.Equals(readiedLightId, StringComparison.OrdinalIgnoreCase))))
                 .OrderBy(x => x.InstanceId, StringComparer.OrdinalIgnoreCase).ToArray();
             var armorClass = 0;
             var damageResistance = 0;

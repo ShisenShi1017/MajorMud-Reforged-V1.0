@@ -90,6 +90,49 @@ public static class RuntimeItemSmokeReport
                 throw new InvalidDataException("Dropped ready weapon retained its active pointer.");
         });
 
+        Check("carried-readied-light-keeps-equipment-ability-projection", () =>
+        {
+            var lightDefinition = catalog.Items.First(item =>
+                item.ItemType.Equals("light_source", StringComparison.OrdinalIgnoreCase)
+                && item.Gettable);
+            var light = new RuntimeItemEngine(catalog).Create(lightDefinition.Id,
+                RuntimeItemLocations.Character, owner, ownerId: owner) with { Charges = 25 };
+            var active = new Dictionary<string, string>
+            {
+                [RuntimeEquipmentRuntimeAuthority.ReadyLightKey] = light.InstanceId
+            };
+            var equipmentEngine = new RuntimeItemEngine(catalog, new[] { light });
+            var withLight = equipmentEngine.EquipmentModifierTotals(owner, active);
+            if (withLight.SourceInstanceIds.Count != 1
+                || withLight.SourceInstanceIds[0] != light.InstanceId)
+                throw new InvalidDataException("A readied carried light was omitted from equipment-derived modifiers.");
+            var droppedState = RuntimeEquipmentRuntimeAuthority.ReconcileReadinessState(
+                new[] { light with { LocationKind = RuntimeItemLocations.Room,
+                    OwnerId = null, LocationId = room } }, owner, active);
+            var withoutLight = equipmentEngine.EquipmentModifierTotals(owner, droppedState);
+            if (droppedState.ContainsKey(RuntimeEquipmentRuntimeAuthority.ReadyLightKey)
+                || withoutLight.SourceInstanceIds.Contains(light.InstanceId))
+                throw new InvalidDataException("A removed light still contributed equipment statistics.");
+
+            var exhausted = light with { Charges = 0 };
+            var exhaustedState = new RuntimeItemState(new[] { exhausted }, 0, active);
+            var normalized = RuntimeEquipmentRuntimeAuthority.ReconcileReadinessState(
+                new[] { exhausted }, owner, active);
+            if (normalized.ContainsKey(RuntimeEquipmentRuntimeAuthority.ReadyLightKey)
+                || RuntimeEquipmentRuntimeAuthority.ResolveReadiedLightInstanceId(
+                    exhaustedState, owner) is not null)
+                throw new InvalidDataException("An exhausted light kept its saved readiness and equipment bonuses.");
+            var legacyExhausted = exhausted with
+            {
+                LocationKind = RuntimeItemLocations.Equipment,
+                EquippedSlot = "LIGHT"
+            };
+            var seedExhausted = RuntimeEquipmentRuntimeAuthority.SeedLegacyReadinessState(
+                new[] { legacyExhausted }, owner, active);
+            if (seedExhausted.ContainsKey(RuntimeEquipmentRuntimeAuthority.ReadyLightKey))
+                throw new InvalidDataException("A depleted legacy lantern was restored as readied.");
+        });
+
         Check("classic-two-handed-weapon-type-without-synthetic-slot", () =>
         {
             var nativeTwoHanded = new RuntimeItemDefinition("smoke:weapon", "Test weapon",

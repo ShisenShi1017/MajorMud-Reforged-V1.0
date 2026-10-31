@@ -508,8 +508,15 @@ public sealed partial class RuntimeLiveGameplayFacade
             break;
         }
 
+        var readiedWeaponId = RuntimeEquipmentRuntimeAuthority.ResolveReadiedWeaponInstanceId(
+            character.ItemState, character.CharacterId);
+        var readiedLightId = RuntimeEquipmentRuntimeAuthority.ResolveReadiedLightInstanceId(
+            character.ItemState, character.CharacterId);
         var equipmentStrength = owned
-            .Where(item => item.EquippedSlot is not null)
+            .Where(item => item.EquippedSlot is not null
+                || item.LocationKind.Equals(RuntimeItemLocations.Character, StringComparison.OrdinalIgnoreCase)
+                    && (item.InstanceId.Equals(readiedWeaponId, StringComparison.OrdinalIgnoreCase)
+                        || item.InstanceId.Equals(readiedLightId, StringComparison.OrdinalIgnoreCase)))
             .Sum(item => itemCatalog.Require(item.CanonicalItemId).EquipmentAbilityModifiers.GetValueOrDefault(46));
         var activeStrength = RuntimeClassicStatusProjection.Numeric(character, "stat_strength");
         return Math.Max(0, checked(baseStrength + equipmentStrength + activeStrength));

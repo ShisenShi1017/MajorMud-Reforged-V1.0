@@ -103,11 +103,14 @@ public static class RuntimeEquipmentRuntimeAuthority
             if (next.TryGetValue(key, out var selected)
                 && !string.IsNullOrWhiteSpace(selected)
                 && owned.Any(item => item.InstanceId.Equals(selected, StringComparison.OrdinalIgnoreCase)
+                    && (key != ReadyLightKey || CanReadyClassicLight(item))
                     && (item.EquippedSlot is null
                         || item.EquippedSlot.Equals(slot, StringComparison.OrdinalIgnoreCase))))
                 continue;
             next.Remove(key);
-            var oldItems = owned.Where(item => string.Equals(item.EquippedSlot, slot, StringComparison.OrdinalIgnoreCase)).ToArray();
+            var oldItems = owned.Where(item =>
+                string.Equals(item.EquippedSlot, slot, StringComparison.OrdinalIgnoreCase)
+                && (key != ReadyLightKey || CanReadyClassicLight(item))).ToArray();
             if (oldItems.Length > 1)
                 throw new InvalidDataException($"Ambiguous legacy {slot} readiness for {ownerId}.");
             if (oldItems.Length == 1) next[key] = oldItems[0].InstanceId;
@@ -149,6 +152,7 @@ public static class RuntimeEquipmentRuntimeAuthority
         {
             if (next.TryGetValue(key, out var instanceId)
                 && owned.Any(item => item.InstanceId.Equals(instanceId, StringComparison.OrdinalIgnoreCase)
+                    && (key != ReadyLightKey || CanReadyClassicLight(item))
                     && (item.EquippedSlot is null
                         || item.EquippedSlot.Equals(legacySlot, StringComparison.OrdinalIgnoreCase))))
                 continue;
@@ -156,7 +160,8 @@ public static class RuntimeEquipmentRuntimeAuthority
             next.Remove(key);
             var legacy = owned.Where(item =>
                 item.EquippedSlot is not null
-                && item.EquippedSlot.Equals(legacySlot, StringComparison.OrdinalIgnoreCase)).ToArray();
+                && item.EquippedSlot.Equals(legacySlot, StringComparison.OrdinalIgnoreCase)
+                && (key != ReadyLightKey || CanReadyClassicLight(item))).ToArray();
             if (legacy.Length > 1)
                 throw new InvalidDataException($"Duplicate legacy {legacySlot} readiness cannot be persisted.");
             if (legacy.Length == 1) next[key] = legacy[0].InstanceId;
@@ -174,12 +179,14 @@ public static class RuntimeEquipmentRuntimeAuthority
         {
             var selected = owned.FirstOrDefault(item =>
                 item.InstanceId.Equals(id, StringComparison.OrdinalIgnoreCase)
+                && (key != ReadyLightKey || CanReadyClassicLight(item))
                 && (item.EquippedSlot is null
                     || item.EquippedSlot.Equals(legacySlot, StringComparison.OrdinalIgnoreCase)));
             if (selected is not null) return selected.InstanceId;
         }
 
         return owned.FirstOrDefault(item => item.EquippedSlot is not null
+            && (key != ReadyLightKey || CanReadyClassicLight(item))
             && (item.EquippedSlot.Equals(legacySlot, StringComparison.OrdinalIgnoreCase)
                 || acceptedLegacySlots.Any(slot =>
                     item.EquippedSlot.Equals(slot, StringComparison.OrdinalIgnoreCase))))?.InstanceId;
