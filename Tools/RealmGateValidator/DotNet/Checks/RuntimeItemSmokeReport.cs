@@ -201,6 +201,41 @@ public static class RuntimeItemSmokeReport
                     != legacyLight.InstanceId || seeded.GetValueOrDefault("bank") != "keep")
                 throw new InvalidDataException("Legacy weapon/light readiness was not captured before migration.");
 
+            var stale = RuntimeEquipmentRuntimeAuthority.SeedLegacyReadinessState(
+                new[] { legacyWeapon, legacyLight }, owner,
+                new Dictionary<string, string>
+                {
+                    [RuntimeEquipmentRuntimeAuthority.ReadyWeaponKey] = "missing.weapon",
+                    [RuntimeEquipmentRuntimeAuthority.ReadyLightKey] = "missing.light",
+                    ["bank"] = "keep"
+                });
+            if (stale.GetValueOrDefault(RuntimeEquipmentRuntimeAuthority.ReadyWeaponKey)
+                    != legacyWeapon.InstanceId ||
+                stale.GetValueOrDefault(RuntimeEquipmentRuntimeAuthority.ReadyLightKey)
+                    != legacyLight.InstanceId || stale.GetValueOrDefault("bank") != "keep")
+                throw new InvalidDataException("Stale readiness pointers masked real legacy equipment.");
+
+            var explicitWeapon = new RuntimeItemInstance("explicit-ready-weapon", "item.1", owner,
+                RuntimeItemLocations.Character, owner, null, 0, 1, null);
+            var explicitSelection = RuntimeEquipmentRuntimeAuthority.SeedLegacyReadinessState(
+                new[] { legacyWeapon, explicitWeapon }, owner,
+                new Dictionary<string, string>
+                {
+                    [RuntimeEquipmentRuntimeAuthority.ReadyWeaponKey] = explicitWeapon.InstanceId
+                });
+            if (explicitSelection.GetValueOrDefault(RuntimeEquipmentRuntimeAuthority.ReadyWeaponKey)
+                != explicitWeapon.InstanceId)
+                throw new InvalidDataException("Migration overwrote a valid explicitly selected carried weapon.");
+
+            var missingSelection = RuntimeEquipmentRuntimeAuthority.SeedLegacyReadinessState(
+                new[] { explicitWeapon }, owner,
+                new Dictionary<string, string>
+                {
+                    [RuntimeEquipmentRuntimeAuthority.ReadyWeaponKey] = "missing.weapon"
+                });
+            if (missingSelection.ContainsKey(RuntimeEquipmentRuntimeAuthority.ReadyWeaponKey))
+                throw new InvalidDataException("Migration retained a stale readiness pointer without a legacy fallback.");
+
             var carried = new[]
             {
                 legacyWeapon with { LocationKind = RuntimeItemLocations.Character, EquippedSlot = null },

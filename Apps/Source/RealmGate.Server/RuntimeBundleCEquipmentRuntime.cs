@@ -27,10 +27,19 @@ public static class RuntimeEquipmentRuntimeAuthority
     {
         var next = new Dictionary<string, string>(prior, StringComparer.OrdinalIgnoreCase);
         var owned = items.Where(item => string.Equals(item.OwnerId, ownerId, StringComparison.OrdinalIgnoreCase)
-            && item.LocationKind.Equals(RuntimeItemLocations.Equipment, StringComparison.OrdinalIgnoreCase)).ToArray();
+            && IsOwnedReadinessCandidate(item, ownerId)).ToArray();
         foreach (var (key, slot) in new[] { (ReadyWeaponKey, "WIELD"), (ReadyLightKey, "LIGHT") })
         {
-            if (next.ContainsKey(key)) continue;
+            // Do not let an obsolete saved pointer hide the actual legacy
+            // occupant before the item engine moves it into carried inventory.
+            // A valid explicit selection still takes priority over legacy state.
+            if (next.TryGetValue(key, out var selected)
+                && !string.IsNullOrWhiteSpace(selected)
+                && owned.Any(item => item.InstanceId.Equals(selected, StringComparison.OrdinalIgnoreCase)
+                    && (item.EquippedSlot is null
+                        || item.EquippedSlot.Equals(slot, StringComparison.OrdinalIgnoreCase))))
+                continue;
+            next.Remove(key);
             var oldItems = owned.Where(item => string.Equals(item.EquippedSlot, slot, StringComparison.OrdinalIgnoreCase)).ToArray();
             if (oldItems.Length > 1)
                 throw new InvalidDataException($"Ambiguous legacy {slot} readiness for {ownerId}.");
