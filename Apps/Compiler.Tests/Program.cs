@@ -80,6 +80,13 @@ using (var equipmentDocument = JsonDocument.Parse(File.ReadAllText(Path.Combine(
     if (nonWieldWeapons.Length != 1 || !nonWieldWeapons[0].Equals("item.514", StringComparison.OrdinalIgnoreCase) ||
         !ReadString(equipmentById[nonWieldWeapons[0]], "slot").Equals("FACE", StringComparison.OrdinalIgnoreCase))
         throw new Exception($"Unexpected generated weapon slot overrides: {string.Join(", ", nonWieldWeapons)}");
+    var originalSlots = new[]
+    {
+        "NONE", "WORN_1", "HEAD", "HANDS", "FINGER_1",
+        "FEET", "ARMS", "BACK", "NECK", "LEGS",
+        "WAIST", "TORSO", "OFF_HAND", "FINGER_2", "WRIST_1",
+        "EARS", "WORN_16", "WRIST_2", "EYES", "FACE"
+    };
     foreach (var record in equipment.EnumerateArray())
     {
         if (!record.TryGetProperty("item_id", out var itemId) || string.IsNullOrWhiteSpace(itemId.GetString()))
@@ -88,6 +95,21 @@ using (var equipmentDocument = JsonDocument.Parse(File.ReadAllText(Path.Combine(
             throw new Exception("Runtime equipment projection contains a record without slot.");
         if (slot.GetString() == "UNKNOWN")
             throw new Exception("Unrecognized native worn_on code leaked into runtime equipment.");
+
+        // Check EVERY generated item relationship, not just the 20-slot
+        // dictionary. An override must not erase source worn_on evidence.
+        var wornOn = record.GetProperty("native_worn_on").GetInt32();
+        if (wornOn < 0 || wornOn >= originalSlots.Length ||
+            ReadString(record, "native_slot") != originalSlots[wornOn])
+            throw new Exception($"Classic item {itemId.GetString()} lost native worn_on identity {wornOn}.");
+        var runtimeSlot = slot.GetString()!;
+        var legacyReady = wornOn == 0 && (runtimeSlot is "WIELD" or "LIGHT");
+        var nativeRelation = runtimeSlot == originalSlots[wornOn];
+        // Existing Classic bug-fix overrides may intentionally choose a
+        // different *native* position, e.g. masks FACE rather than HEAD.
+        // Only the two readiness names may be synthetic runtime positions.
+        if (!legacyReady && !nativeRelation && !originalSlots.Contains(runtimeSlot, StringComparer.Ordinal))
+            throw new Exception($"Classic item {itemId.GetString()} has an unsupported override slot {runtimeSlot} for native worn_on {wornOn}.");
     }
 }
 

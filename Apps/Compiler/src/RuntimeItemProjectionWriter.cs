@@ -72,6 +72,10 @@ internal static class RuntimeItemProjectionWriter
             if (!Slots.TryGetValue(wornOn, out var slot))
                 throw new InvalidDataException(
                     $"Item '{id}' has unknown native worn_on code {wornOn}.");
+            // Preserve the unmodified source position separately from the
+            // Reforged compatibility/bug-fix relationship used at runtime.
+            var sourceWornOn = wornOn;
+            var sourceNativeSlot = slot;
             // Transitional compatibility: ready weapons and light sources are
             // NOT native body slots. Keep their existing runtime relationships
             // until readiness and active-light state are migrated atomically.
@@ -124,6 +128,8 @@ internal static class RuntimeItemProjectionWriter
             {
                 ["item_id"] = id,
                 ["slot"] = slot,
+                ["native_worn_on"] = sourceWornOn,
+                ["native_slot"] = sourceNativeSlot,
                 ["two_handed"] = ReadBool(equipmentData, "two_handed") || itemType.Equals("weapon", StringComparison.OrdinalIgnoreCase) && weaponType is 1 or 3,
                 ["class_restricted"] = ReadBool(equipmentData, "class_restricted"),
                 ["race_restricted"] = ReadBool(equipmentData, "race_restricted"),
