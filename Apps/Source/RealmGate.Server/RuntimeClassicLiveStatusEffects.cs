@@ -1538,6 +1538,12 @@ public sealed class RuntimeClassicLiveStatusEffectsSmokeReport
                 Require(RuntimeLiveGameplayFacade.IsVerifiedNativeRoomDirectDamage(
                     nativeSpells.Require("spell.485")), "native-room-swamp-poison-direct-ability");
                 report.Checks.Add("native-room-swamp-poison-direct-ability");
+                Require(nativeSpells.Require("spell.526").AttackType == "1"
+                    && nativeSpells.Require("spell.526").NativeResistTypeRaw == 0
+                    && nativeSpells.Require("spell.485").AttackType == "6"
+                    && nativeSpells.Require("spell.485").NativeResistTypeRaw == 0,
+                    "native-room-attack-element-versus-resistance-type");
+                report.Checks.Add("native-room-attack-element-versus-resistance-type");
                 Require(!RuntimeLiveGameplayFacade.IsVerifiedNativeRoomDirectDamage(
                     nativeSpells.Require("spell.753")), "native-silver-river-textblock-not-invented-damage");
                 report.Checks.Add("native-silver-river-textblock-not-invented-damage");
