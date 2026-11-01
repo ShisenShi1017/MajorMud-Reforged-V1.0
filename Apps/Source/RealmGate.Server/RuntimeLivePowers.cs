@@ -1386,7 +1386,11 @@ public sealed partial class RuntimeLiveGameplayFacade
                 targetMr = ReadMagicResistance(targetCharacter);
             }
             var casterLevel = _owner._characters.LoadCharacter(request.CasterId)?.Level ?? 0;
-            var resolution = RuntimeClassicPlayerSpellCombat.Resolve(spell, targetMr, false, false, false, Random.Shared, casterLevel);
+            var classicNativeCharacterTarget = _session.World.Definition.Type.Equals("Classic", StringComparison.OrdinalIgnoreCase)
+                && targetCharacter is not null;
+            var resolution = RuntimeClassicPlayerSpellCombat.Resolve(spell, targetMr, false, false, false,
+                Random.Shared, casterLevel, classicNativeCharacterTarget,
+                classicNativeCharacterTarget && ReadAbilityValue(targetCharacter!, 51) > 0);
             var hasDecodedDamage=spell.DecodedAbilities.Any(x=>x.AbilityId is 1 or 17);
             var hasDecodedHeal=spell.DecodedAbilities.Any(x=>x.AbilityId==18);
             var healMana = spell.DecodedAbilities.FirstOrDefault(x => x.AbilityId == 150);
@@ -1938,7 +1942,9 @@ public static class RuntimeClassicPlayerSpellCombat
         bool absorptionDecoded,
         bool damageShieldDecoded,
         Random random,
-        int casterLevel = 0)
+        int casterLevel = 0,
+        bool classicNativeCharacterTarget = false,
+        bool nativeTargetHasAntiMagic = false)
     {
         ArgumentNullException.ThrowIfNull(spell);
         ArgumentNullException.ThrowIfNull(random);
@@ -1950,10 +1956,21 @@ public static class RuntimeClassicPlayerSpellCombat
         var scaledMaximum = Scale(spell.MaximumEffect, effectiveLevel, spell.LevelsForMaximumIncrease, spell.MaximumIncrease);
         var min = Math.Min(scaledMinimum, scaledMaximum);
         var max = Math.Max(scaledMinimum, scaledMaximum);
-        var effectRoll = min == max ? min : random.Next(min, checked(max + 1));
-        var resistanceChance = hostile ? Math.Clamp(Math.Max(0, targetMagicResistance) / 2, 0, 97) : 0;
-        var resistanceRoll = random.Next(1, 101);
-        var resisted = hostile && resistanceRoll <= resistanceChance;
+        // Original Classic draws the effect range even when the endpoints are identical.
+        // Custom worlds retain their pre-existing draw behavior.
+        var effectRoll = classicNativeCharacterTarget || min != max
+            ? random.Next(min, checked(max + 1)) : min;
+        var nativeResistEligible = spell.NativeResistTypeRaw == 2
+            || spell.NativeResistTypeRaw == 1 && nativeTargetHasAntiMagic;
+        // The recovered player-to-character native branch caps at 98 and calls
+        // _genrdn(1,100), whose upper bound is exclusive (1..99).
+        var rollResistance = hostile && (!classicNativeCharacterTarget || nativeResistEligible);
+        var resistanceChance = rollResistance
+            ? Math.Clamp(Math.Max(0, targetMagicResistance) / 2, 0, classicNativeCharacterTarget ? 98 : 97)
+            : 0;
+        var resistanceRoll = rollResistance
+            ? random.Next(1, classicNativeCharacterTarget ? 100 : 101) : 0;
+        var resisted = rollResistance && resistanceRoll <= resistanceChance;
         var reflected = hostile && !resisted && reflectionDecoded;
         var absorbed = hostile && !resisted && !reflected && absorptionDecoded;
         var shield = hostile && !resisted && !reflected && !absorbed && damageShieldDecoded;
