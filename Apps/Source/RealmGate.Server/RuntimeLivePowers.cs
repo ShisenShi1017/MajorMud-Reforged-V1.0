@@ -1725,6 +1725,39 @@ public sealed class RuntimeLivePowersSmokeReport
             Check(RuntimeLiveGameplayFacade.RollClassicNativeCureEffectMagnitude(variableCure, 0, nativeCureRng) == 10
                 && nativeCureRng.Sequence == 1,
                 "classic-cure-variable-native-range", r);
+            // Regression vectors for the recovered native player-to-character admission
+            // and 1..99 roll. The same resolver remains backward-compatible in Custom.
+            var resistFixture = antidote with
+            {
+                TargetType = "8", MinimumEffect = 7, MaximumEffect = 7,
+                NativeResistTypeRaw = 0
+            };
+            var noResist = RuntimeClassicPlayerSpellCombat.Resolve(
+                resistFixture, 300, false, false, false, new Random(7), 1, true, false);
+            Check(!noResist.Resisted && noResist.ResistanceRoll == 0
+                && noResist.ResistanceChancePercent == 0 && noResist.EffectRoll == 7,
+                "classic-player-resist-type-zero-no-roll", r);
+            var antiMagicInactive = RuntimeClassicPlayerSpellCombat.Resolve(
+                resistFixture with { NativeResistTypeRaw = 1 }, 300,
+                false, false, false, new Random(7), 1, true, false);
+            var antiMagicActive = RuntimeClassicPlayerSpellCombat.Resolve(
+                resistFixture with { NativeResistTypeRaw = 1 }, 300,
+                false, false, false, new Random(7), 1, true, true);
+            Check(antiMagicInactive.ResistanceRoll == 0
+                && antiMagicActive.ResistanceRoll is >= 1 and <= 99
+                && antiMagicActive.ResistanceChancePercent == 98,
+                "classic-player-resist-type-one-antimagic-conditional", r);
+            var normalResist = RuntimeClassicPlayerSpellCombat.Resolve(
+                resistFixture with { NativeResistTypeRaw = 2 }, 300,
+                false, false, false, new Random(7), 1, true, false);
+            Check(normalResist.ResistanceRoll is >= 1 and <= 99
+                && normalResist.ResistanceChancePercent == 98,
+                "classic-player-native-resist-cap-and-exclusive-rng", r);
+            var customResist = RuntimeClassicPlayerSpellCombat.Resolve(
+                resistFixture, 300, false, false, false, new Random(7), 1);
+            Check(customResist.ResistanceRoll is >= 1 and <= 100
+                && customResist.ResistanceChancePercent == 97,
+                "custom-player-resistance-behavior-preserved", r);
             var cureDisease = spells.Require("spell.150");
             var bless = spells.Require("spell.14");
             Check(RuntimeLiveGameplayFacade.ShouldDiscardDecodedRemovalHelper(cureDisease), "instant-removes-spell-helper-discarded-even-without-match", r);
