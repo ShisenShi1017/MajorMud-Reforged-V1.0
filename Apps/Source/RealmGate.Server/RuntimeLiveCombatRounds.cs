@@ -387,13 +387,13 @@ public sealed partial class RuntimeLiveGameplayFacade
                         }
                         else
                         {
-                            var resistance = ResolveNpcHitSpellResistance(
+                            var resistance = ResolveNpcHitSpellResistanceWithAdmission(
                                 hitSpell.ResistTypeRaw,
                                 ReadBaseStat(before, "wil", "willpower", "will"),
                                 ReadBaseStat(before, "int", "intellect", "intelligence"),
                                 RuntimeClassicCharacterFormulaCalculator.ResolveMagicResistanceModifier(before),
                                 ReadAbilityValue(before, 51),
-                                Random.Shared.Next(1, 101));
+                                Random.Shared);
                             if (resistance.Resisted)
                             {
                                 // Native _monster_cast has already passed its pre-cast roll and paid the full
@@ -669,13 +669,13 @@ public sealed partial class RuntimeLiveGameplayFacade
                 continue;
             }
 
-            var resistance = ResolveNpcHitSpellResistance(
+            var resistance = ResolveNpcHitSpellResistanceWithAdmission(
                 spell.ResistTypeRaw,
                 ReadBaseStat(character, "wil", "willpower", "will"),
                 ReadBaseStat(character, "int", "intellect", "intelligence"),
                 RuntimeClassicCharacterFormulaCalculator.ResolveMagicResistanceModifier(character),
                 ReadAbilityValue(character, 51),
-                Random.Shared.Next(1, 101));
+                Random.Shared);
             if (resistance.Resisted)
             {
                 var resistMessage = RuntimeClassicCombatAnsi.Effect($"{actor.DisplayName} resists {casterName}'s {spell.SpellName}.");
@@ -813,13 +813,26 @@ public sealed partial class RuntimeLiveGameplayFacade
             ResolveNpcHitSpellEffectRange(spell.MinimumEffect, spell.MaximumEffect));
     }
 
+    // Native resistance admission must precede the RNG draw. Retain the
+    // existing NPC roll domain until the exact _monster_cast bound is recovered.
+    internal static RuntimeNpcHitSpellResistanceResolution ResolveNpcHitSpellResistanceWithAdmission(
+        int resistanceTypeRaw, int willpower, int intellect, int magicResistanceBonus,
+        int antiMagicAbility, Random random)
+    {
+        ArgumentNullException.ThrowIfNull(random);
+        var eligible = resistanceTypeRaw == 2 || resistanceTypeRaw == 1 && antiMagicAbility > 0;
+        var roll = eligible ? random.Next(1, 101) : 0;
+        return ResolveNpcHitSpellResistance(
+            resistanceTypeRaw, willpower, intellect, magicResistanceBonus, antiMagicAbility, roll);
+    }
+
     internal static RuntimeNpcHitSpellResistanceResolution ResolveNpcHitSpellResistance(
         int resistanceTypeRaw, int willpower, int intellect, int magicResistanceBonus, int antiMagicAbility, int roll)
     {
         if (resistanceTypeRaw < 0) throw new InvalidDataException("NPC_HIT_SPELL_NEGATIVE_RESISTANCE_TYPE");
         if (willpower < 0 || intellect < 0 || antiMagicAbility < 0)
             throw new InvalidDataException("NPC_HIT_SPELL_NEGATIVE_RESISTANCE_INPUT");
-        if (roll is < 1 or > 100) throw new ArgumentOutOfRangeException(nameof(roll));
+        if (roll is < 0 or > 100) throw new ArgumentOutOfRangeException(nameof(roll));
 
         var antiMagicRequired = resistanceTypeRaw == 1;
         var checkEligible = resistanceTypeRaw switch
