@@ -829,8 +829,8 @@ public sealed partial class RuntimeLiveGameplayFacade
             // resistance before checking for an already active spell. Keeping
             // this order matters even if the duplicate is rejected: it consumes RNG.
             // WGSERVER _genrdn has an exclusive upper bound (1..99 here).
-            if (int.TryParse(spell.TargetType, out var targetType)
-                && (targetType == 2 || targetType == 1 && ReadAbilityValue(character, 51) > 0))
+            if (spell.NativeResistTypeRaw == 2
+                || spell.NativeResistTypeRaw == 1 && ReadAbilityValue(character, 51) > 0)
             {
                 var threshold = ClassicNativeRoomResistanceThreshold(ReadMagicResistance(character));
                 if (_classicRoomSpellRandom.Genrdn(1, 100) <= threshold)
@@ -883,11 +883,14 @@ public sealed partial class RuntimeLiveGameplayFacade
         RuntimeCharacterRecord character, RuntimeSpellDefinition spell)
     {
         // _get_spell_random_modifier at 0x43F608 is called for spell types 0..2.
-        // Resist type indexes 0..6 map to native ability 3/5/65/66,
+        // Attack element indexes 0..6 map to native ability 3/5/65/66,
         // no modifier (4), 147, and 21 respectively.
         if (!int.TryParse(spell.SpellType, out var spellType) || spellType is < 0 or > 2)
             return 0;
-        return spell.NativeResistTypeRaw switch
+        if (!int.TryParse(spell.AttackType, System.Globalization.NumberStyles.Integer,
+            System.Globalization.CultureInfo.InvariantCulture, out var attackElement))
+            return 0;
+        return attackElement switch
         {
             0 => ReadElementalResistance(character, "cold"),
             1 => ReadElementalResistance(character, "fire"),
