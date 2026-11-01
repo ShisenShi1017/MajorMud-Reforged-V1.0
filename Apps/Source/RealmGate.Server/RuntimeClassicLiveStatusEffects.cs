@@ -717,6 +717,10 @@ public sealed partial class RuntimeLiveGameplayFacade
     internal static int ClassicNativeRoomResistanceThreshold(int targetMagicResistance)
         => Math.Clamp(Math.Max(0, targetMagicResistance) / 2, 0, 97);
 
+    // Native spell resistance admission is keyed by ResistType (+0xC6), not TargetType.
+    internal static bool ClassicNativeRoomResistEligible(int nativeResistType, bool targetHasAntiMagic)
+        => nativeResistType == 2 || nativeResistType == 1 && targetHasAntiMagic;
+
     // Native _genrdn(0, max-min+1) consumes a CRT draw even for fixed magnitude.
     private int RollClassicNativeRoomMagnitude(int minimum, int maximum)
     {
@@ -829,8 +833,8 @@ public sealed partial class RuntimeLiveGameplayFacade
             // resistance before checking for an already active spell. Keeping
             // this order matters even if the duplicate is rejected: it consumes RNG.
             // WGSERVER _genrdn has an exclusive upper bound (1..99 here).
-            if (spell.NativeResistTypeRaw == 2
-                || spell.NativeResistTypeRaw == 1 && ReadAbilityValue(character, 51) > 0)
+            if (ClassicNativeRoomResistEligible(spell.NativeResistTypeRaw,
+                    ReadAbilityValue(character, 51) > 0))
             {
                 var threshold = ClassicNativeRoomResistanceThreshold(ReadMagicResistance(character));
                 if (_classicRoomSpellRandom.Genrdn(1, 100) <= threshold)
@@ -1509,6 +1513,14 @@ public sealed class RuntimeClassicLiveStatusEffectsSmokeReport
                     timedSpells[10].Id, new RuntimeSpellTarget("character", "classic-slot-target"), slotNow)).Succeeded,
                     "custom-active-slots-unrestricted");
                 report.Checks.Add("custom-active-slots-unrestricted");
+                Require(!RuntimeLiveGameplayFacade.ClassicNativeRoomResistEligible(0, false)
+                    && !RuntimeLiveGameplayFacade.ClassicNativeRoomResistEligible(0, true)
+                    && !RuntimeLiveGameplayFacade.ClassicNativeRoomResistEligible(1, false)
+                    && RuntimeLiveGameplayFacade.ClassicNativeRoomResistEligible(1, true)
+                    && RuntimeLiveGameplayFacade.ClassicNativeRoomResistEligible(2, false)
+                    && RuntimeLiveGameplayFacade.ClassicNativeRoomResistEligible(2, true),
+                    "classic-room-native-resist-type-admission");
+                report.Checks.Add("classic-room-native-resist-type-admission");
                 Require(RuntimeLiveGameplayFacade.ClassicNativeRoomResistanceThreshold(100) == 50
                     && RuntimeLiveGameplayFacade.ClassicNativeRoomResistanceThreshold(250) == 97
                     && RuntimeLiveGameplayFacade.ClassicNativeRoomResistanceThreshold(0) == 0,
