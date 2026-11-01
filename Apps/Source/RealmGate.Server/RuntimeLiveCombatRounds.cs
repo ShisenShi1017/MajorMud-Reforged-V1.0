@@ -820,6 +820,8 @@ public sealed partial class RuntimeLiveGameplayFacade
         int antiMagicAbility, Random random)
     {
         ArgumentNullException.ThrowIfNull(random);
+        if (resistanceTypeRaw < 0 || willpower < 0 || intellect < 0 || antiMagicAbility < 0)
+            throw new InvalidDataException("NPC_HIT_SPELL_NEGATIVE_RESISTANCE_INPUT");
         var eligible = resistanceTypeRaw == 2 || resistanceTypeRaw == 1 && antiMagicAbility > 0;
         var roll = eligible ? random.Next(1, 101) : 0;
         return ResolveNpcHitSpellResistance(
@@ -842,6 +844,8 @@ public sealed partial class RuntimeLiveGameplayFacade
             2 => true,
             _ => false
         };
+        if (checkEligible && roll == 0)
+            throw new ArgumentOutOfRangeException(nameof(roll));
         var score = RuntimeClassicCharacterFormulaCalculator.CalculateMagicResistance(intellect, willpower, magicResistanceBonus);
         var chance = checkEligible ? Math.Clamp(score / 2, 0, 97) : 0;
         return new RuntimeNpcHitSpellResistanceResolution(
@@ -1796,6 +1800,31 @@ public sealed class RuntimeLiveCombatRoundSmokeReport
             Require(generalStatusSpell is not null, "generated-npc-general-status-delivery"); report.Checks.Add("generated-npc-general-status-delivery");
             var generalDelivery = RuntimeLiveGameplayFacade.ResolveNpcHitSpellStatusDelivery(generalStatusSpell!, false, false);
             Require(generalDelivery.Eligible && generalDelivery.Applied && generalDelivery.EffectKind == "status-or-scripted", "npc-hit-spell-general-status-live-consumer"); report.Checks.Add("npc-hit-spell-general-status-live-consumer");
+            var skippedRng = new Random(1042);
+            var untouchedRng = new Random(1042);
+            var noRoll = RuntimeLiveGameplayFacade.ResolveNpcHitSpellResistanceWithAdmission(
+                0, 40, 60, 7, 0, skippedRng);
+            Require(!noRoll.CheckEligible && noRoll.ResistanceRoll == 0
+                && skippedRng.Next(1, 101) == untouchedRng.Next(1, 101),
+                "npc-unresistable-spell-does-not-consume-resistance-rng");
+            report.Checks.Add("npc-unresistable-spell-does-not-consume-resistance-rng");
+            var absentAntiMagicRng = new Random(1042);
+            var untouchedAntiMagicRng = new Random(1042);
+            var noAntiMagicRoll = RuntimeLiveGameplayFacade.ResolveNpcHitSpellResistanceWithAdmission(
+                1, 40, 60, 7, 0, absentAntiMagicRng);
+            Require(!noAntiMagicRoll.CheckEligible && noAntiMagicRoll.ResistanceRoll == 0
+                && absentAntiMagicRng.Next(1, 101) == untouchedAntiMagicRng.Next(1, 101),
+                "npc-antimagic-required-spell-does-not-consume-ineligible-rng");
+            report.Checks.Add("npc-antimagic-required-spell-does-not-consume-ineligible-rng");
+            var normalRng = new Random(1042);
+            var expectedRng = new Random(1042);
+            var expectedRoll = expectedRng.Next(1, 101);
+            var admittedRoll = RuntimeLiveGameplayFacade.ResolveNpcHitSpellResistanceWithAdmission(
+                2, 40, 60, 7, 0, normalRng);
+            Require(admittedRoll.CheckEligible && admittedRoll.ResistanceRoll == expectedRoll
+                && normalRng.Next(1, 101) == expectedRng.Next(1, 101),
+                "npc-eligible-spell-consumes-exactly-one-resistance-rng");
+            report.Checks.Add("npc-eligible-spell-consumes-exactly-one-resistance-rng");
             var mrNormal = RuntimeLiveGameplayFacade.ResolveNpcHitSpellResistance(2, 40, 60, 7, 0, 24);
             Require(mrNormal.MagicResistanceScore == 52 && mrNormal.ResistanceChancePercent == 26 && mrNormal.Resisted, "npc-hit-spell-mr-equation"); report.Checks.Add("npc-hit-spell-mr-equation");
             var mrMiss = RuntimeLiveGameplayFacade.ResolveNpcHitSpellResistance(2, 40, 60, 7, 0, 27);
