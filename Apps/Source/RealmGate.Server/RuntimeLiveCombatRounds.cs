@@ -813,8 +813,9 @@ public sealed partial class RuntimeLiveGameplayFacade
             ResolveNpcHitSpellEffectRange(spell.MinimumEffect, spell.MaximumEffect));
     }
 
-    // Native resistance admission must precede the RNG draw. Retain the
-    // existing NPC roll domain until the exact _monster_cast bound is recovered.
+    // WCCMMUD _monster_cast at 0x427ebb uses _genrdn(1,100) only when
+    // ResistType +0xC6 admits a roll. WGSERVER _genrdn uses an exclusive
+    // upper bound, so eligible native resistance rolls are 1..99.
     internal static RuntimeNpcHitSpellResistanceResolution ResolveNpcHitSpellResistanceWithAdmission(
         int resistanceTypeRaw, int willpower, int intellect, int magicResistanceBonus,
         int antiMagicAbility, Random random)
@@ -823,7 +824,7 @@ public sealed partial class RuntimeLiveGameplayFacade
         if (resistanceTypeRaw < 0 || willpower < 0 || intellect < 0 || antiMagicAbility < 0)
             throw new InvalidDataException("NPC_HIT_SPELL_NEGATIVE_RESISTANCE_INPUT");
         var eligible = resistanceTypeRaw == 2 || resistanceTypeRaw == 1 && antiMagicAbility > 0;
-        var roll = eligible ? random.Next(1, 101) : 0;
+        var roll = eligible ? random.Next(1, 100) : 0;
         return ResolveNpcHitSpellResistance(
             resistanceTypeRaw, willpower, intellect, magicResistanceBonus, antiMagicAbility, roll);
     }
@@ -834,7 +835,7 @@ public sealed partial class RuntimeLiveGameplayFacade
         if (resistanceTypeRaw < 0) throw new InvalidDataException("NPC_HIT_SPELL_NEGATIVE_RESISTANCE_TYPE");
         if (willpower < 0 || intellect < 0 || antiMagicAbility < 0)
             throw new InvalidDataException("NPC_HIT_SPELL_NEGATIVE_RESISTANCE_INPUT");
-        if (roll is < 0 or > 100) throw new ArgumentOutOfRangeException(nameof(roll));
+        if (roll is < 0 or > 99) throw new ArgumentOutOfRangeException(nameof(roll));
 
         var antiMagicRequired = resistanceTypeRaw == 1;
         var checkEligible = resistanceTypeRaw switch
@@ -1818,13 +1819,18 @@ public sealed class RuntimeLiveCombatRoundSmokeReport
             report.Checks.Add("npc-antimagic-required-spell-does-not-consume-ineligible-rng");
             var normalRng = new Random(1042);
             var expectedRng = new Random(1042);
-            var expectedRoll = expectedRng.Next(1, 101);
+            var expectedRoll = expectedRng.Next(1, 100);
             var admittedRoll = RuntimeLiveGameplayFacade.ResolveNpcHitSpellResistanceWithAdmission(
                 2, 40, 60, 7, 0, normalRng);
-            Require(admittedRoll.CheckEligible && admittedRoll.ResistanceRoll == expectedRoll
-                && normalRng.Next(1, 101) == expectedRng.Next(1, 101),
+            Require(admittedRoll.CheckEligible && admittedRoll.ResistanceRoll is >= 1 and <= 99
+                && admittedRoll.ResistanceRoll == expectedRoll
+                && normalRng.Next(1, 100) == expectedRng.Next(1, 100),
                 "npc-eligible-spell-consumes-exactly-one-resistance-rng");
             report.Checks.Add("npc-eligible-spell-consumes-exactly-one-resistance-rng");
+            var maximumNativeRoll = RuntimeLiveGameplayFacade.ResolveNpcHitSpellResistance(2, 40, 60, 7, 0, 99);
+            Require(maximumNativeRoll.CheckEligible && maximumNativeRoll.ResistanceRoll == 99
+                && !maximumNativeRoll.Resisted, "npc-native-resistance-99-valid-not-forced-resist");
+            report.Checks.Add("npc-native-resistance-99-valid-not-forced-resist");
             var mrNormal = RuntimeLiveGameplayFacade.ResolveNpcHitSpellResistance(2, 40, 60, 7, 0, 24);
             Require(mrNormal.MagicResistanceScore == 52 && mrNormal.ResistanceChancePercent == 26 && mrNormal.Resisted, "npc-hit-spell-mr-equation"); report.Checks.Add("npc-hit-spell-mr-equation");
             var mrMiss = RuntimeLiveGameplayFacade.ResolveNpcHitSpellResistance(2, 40, 60, 7, 0, 27);
