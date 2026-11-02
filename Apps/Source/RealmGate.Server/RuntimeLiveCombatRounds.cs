@@ -1849,6 +1849,22 @@ public sealed class RuntimeLiveCombatRoundSmokeReport
             Require(selfTargetSpells.All(row => !RuntimeLiveGameplayFacade.ResolveNpcHitSpellEffectForAudit(
                     row.Spell!, row.Spell!.EffectRange.RollMinimum).Executable),
                 "npc-self-spells-player-direct-effect-quarantined"); report.Checks.Add("npc-self-spells-excluded-from-player-direct-effects");
+            var sharedAreaRangeRng = new CountingRangeRandom();
+            var sharedAreaRaw = RuntimeLiveGameplayFacade.ResolveNpcStatusEffectMagnitude(
+                immediateDamageSpell!.MinimumEffect, immediateDamageSpell.MaximumEffect,
+                null, sharedAreaRangeRng, classicWorld: true);
+            var sharedAreaTargetRng = new CountingRangeRandom();
+            var primaryAreaEffect = RuntimeLiveGameplayFacade.ResolveNpcHitSpellEffect(
+                areaHostileSpell, 0, false, sharedAreaTargetRng, sharedAreaRaw);
+            var bystanderAreaEffect = RuntimeLiveGameplayFacade.ResolveNpcHitSpellEffect(
+                areaHostileSpell, 0, false, sharedAreaTargetRng, sharedAreaRaw);
+            Require(sharedAreaRangeRng.Calls == 1
+                && sharedAreaTargetRng.Calls == 0
+                && primaryAreaEffect.Executable && bystanderAreaEffect.Executable
+                && primaryAreaEffect.Roll == sharedAreaRaw
+                && bystanderAreaEffect.Roll == sharedAreaRaw,
+                "npc-native-area-one-base-draw-not-one-per-target");
+            report.Checks.Add("npc-native-area-one-base-draw-not-one-per-target");
             var directFixedRng = new CountingRangeRandom();
             var fixedDirect = immediateDamageSpell! with
             {
