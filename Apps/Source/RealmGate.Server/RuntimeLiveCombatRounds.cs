@@ -816,6 +816,9 @@ public sealed partial class RuntimeLiveGameplayFacade
     // WCCMMUD _monster_cast at 0x427ebb uses _genrdn(1,100) only when
     // ResistType +0xC6 admits a roll. WGSERVER _genrdn uses an exclusive
     // upper bound, so eligible native resistance rolls are 1..99.
+    // The original _attack_monster_user calls _monster_cast for the type-2
+    // cast row (0x42E6A8) and for a physical row's HitSpell (0x42EE69);
+    // this native admission rule applies to both entry points.
     internal static RuntimeNpcHitSpellResistanceResolution ResolveNpcHitSpellResistanceWithAdmission(
         int resistanceTypeRaw, int willpower, int intellect, int magicResistanceBonus,
         int antiMagicAbility, Random random)
