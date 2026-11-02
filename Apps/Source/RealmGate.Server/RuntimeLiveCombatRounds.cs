@@ -950,6 +950,9 @@ public sealed partial class RuntimeLiveGameplayFacade
             return new RuntimeNpcHitSpellEffectResolution(false, type, scope, element,
                 spell.EffectRange.RollMinimum, spell.EffectRange.RollMaximum, 0, 0, elementalResistancePercent, poisonImmune, 0, reason);
         }
+        // WCCMMUD _monster_cast 0x428218..0x42822f consumes an effect
+        // range draw before dispatching the ordered +0xD8 ability slots.
+        // Do not skip the draw for equal authored range endpoints.
         var roll = random.Next(spell.EffectRange.RollMinimum, checked(spell.EffectRange.RollMaximum + 1));
         var finalDamage = ResolveElementalSpellDamage(roll, element, elementalResistancePercent, poisonImmune);
         return new RuntimeNpcHitSpellEffectResolution(true, type, scope, element,
@@ -1765,6 +1768,18 @@ public sealed class RuntimeLiveCombatRoundSmokeReport
             Require(selfTargetSpells.All(row => !RuntimeLiveGameplayFacade.ResolveNpcHitSpellEffectForAudit(
                     row.Spell!, row.Spell!.EffectRange.RollMinimum).Executable),
                 "npc-self-spells-player-direct-effect-quarantined"); report.Checks.Add("npc-self-spells-excluded-from-player-direct-effects");
+            var directFixedRng = new CountingRangeRandom();
+            var fixedDirect = immediateDamageSpell! with
+            {
+                EffectRange = RuntimeLiveGameplayFacade.ResolveNpcHitSpellEffectRange(7, 7)
+            };
+            var directFixedResult = RuntimeLiveGameplayFacade.ResolveNpcHitSpellEffect(
+                fixedDirect, 0, false, directFixedRng);
+            Require(directFixedResult.Executable && directFixedResult.Roll == 7
+                && directFixedRng.Calls == 1
+                && directFixedRng.LastMinimum == 7 && directFixedRng.LastExclusiveMaximum == 8,
+                "npc-native-fixed-damage-range-consumes-one-draw");
+            report.Checks.Add("npc-native-fixed-damage-range-consumes-one-draw");
             var immediateEffect = RuntimeLiveGameplayFacade.ResolveNpcHitSpellEffectForAudit(immediateDamageSpell!, immediateDamageSpell!.EffectRange.RollMinimum);
             Require(immediateEffect.Executable && immediateEffect.DirectDamage == immediateDamageSpell.EffectRange.RollMinimum, "npc-hit-spell-immediate-damage-live-consumer"); report.Checks.Add("npc-hit-spell-immediate-damage-live-consumer");
             Require(RuntimeLiveGameplayFacade.ResolveElementalSpellDamage(100, "fire", 25, false) == 75, "npc-hit-spell-elemental-resistance-reduction"); report.Checks.Add("npc-hit-spell-elemental-resistance-reduction");
@@ -1859,4 +1874,18 @@ public sealed class RuntimeLiveCombatRoundSmokeReport
     public string ToJson() => JsonSerializer.Serialize(this, new JsonSerializerOptions { WriteIndented = true });
     private static void Require(bool value, string code) { if (!value) throw new InvalidOperationException(code); }
     private sealed class FixedClassicRandom : IClassicRandom { public int NextInclusive(int minimum, int maximum) => minimum; }
+    private sealed class CountingRangeRandom : Random
+    {
+        public int Calls { get; private set; }
+        public int LastMinimum { get; private set; }
+        public int LastExclusiveMaximum { get; private set; }
+        public override int Next(int minValue, int maxValue)
+        {
+            if (maxValue <= minValue) throw new ArgumentOutOfRangeException(nameof(maxValue));
+            Calls++;
+            LastMinimum = minValue;
+            LastExclusiveMaximum = maxValue;
+            return minValue;
+        }
+    }
 }
