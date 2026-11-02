@@ -1267,7 +1267,8 @@ public sealed partial class RuntimeLiveGameplayFacade
                         spell.DurationRaw,
                         nowUtc,
                         nowUtc.AddSeconds(checked((long)spell.DurationRaw * RuntimeClassicLiveStatusCatalog.SpellRoundSeconds)),
-                        BuildClassicStatusMetadata(definition, spell, nowUtc, effectRoll))
+                        BuildClassicStatusMetadata(definition, spell, nowUtc, effectRoll,
+                            session.World.Definition.Type.Equals("Classic", StringComparison.OrdinalIgnoreCase)))
                 }).ToArray();
             _liveSpellEngine.RestoreSnapshot(snapshot with { ActiveEffects = active });
             ApplyClassicNativePoisonOnApplication(session, active[^1], nowUtc);
