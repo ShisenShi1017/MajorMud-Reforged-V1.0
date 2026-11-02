@@ -596,11 +596,33 @@ public sealed partial class RuntimeLiveGameplayFacade
         return Math.Max(inherentLevel, Math.Max(0, activeEffectLevel));
     }
 
+    // Preserve every populated decoded effect slot independently, including
+    // repeated ability IDs and zero-valued slots. These are compact projection
+    // positions, not invented physical indexes for omitted native empty slots.
+    internal static void AddClassicOrderedAbilitySlotMetadata(
+        Dictionary<string, string> metadata,
+        IReadOnlyList<RuntimeClassicLiveStatusAbility> abilities)
+    {
+        ArgumentNullException.ThrowIfNull(metadata);
+        ArgumentNullException.ThrowIfNull(abilities);
+        if (abilities.Count > 10)
+            throw new InvalidDataException("CLASSIC_NATIVE_ABILITY_SLOT_METADATA_EXCEEDS_TEN");
+        metadata["classic.decoded_slot_count"] = abilities.Count.ToString(CultureInfo.InvariantCulture);
+        for (var index = 0; index < abilities.Count; index++)
+        {
+            metadata[$"classic.decoded_slot.{index}.ability_id"] =
+                abilities[index].AbilityId.ToString(CultureInfo.InvariantCulture);
+            metadata[$"classic.decoded_slot.{index}.raw_value"] =
+                abilities[index].Value.ToString(CultureInfo.InvariantCulture);
+        }
+    }
+
     private static IReadOnlyDictionary<string, string> BuildClassicStatusMetadata(
         RuntimeClassicLiveStatusDefinition definition,
         RuntimeNpcHitSpellSelection spell,
         DateTimeOffset nowUtc,
-        int effectRoll)
+        int effectRoll,
+        bool isClassicWorld)
     {
         var metadata = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase)
         {
@@ -625,6 +647,7 @@ public sealed partial class RuntimeLiveGameplayFacade
         }
         foreach (var ability in definition.Abilities)
             metadata[$"ability.{ability.AbilityId}"] = ability.Value.ToString(CultureInfo.InvariantCulture);
+        if (isClassicWorld) AddClassicOrderedAbilitySlotMetadata(metadata, definition.Abilities);
         return metadata;
     }
 
@@ -659,6 +682,8 @@ public sealed partial class RuntimeLiveGameplayFacade
         }
         foreach (var ability in definition.Abilities)
             metadata[$"ability.{ability.AbilityId}"] = ability.Value.ToString(CultureInfo.InvariantCulture);
+        if (session.World.Definition.Type.Equals("Classic", StringComparison.OrdinalIgnoreCase))
+            AddClassicOrderedAbilitySlotMetadata(metadata, definition.Abilities);
         var normalized = castEffect with
         {
             ExpiresAtUtc = nowUtc.AddSeconds(checked((long)castEffect.Duration * RuntimeClassicLiveStatusCatalog.SpellRoundSeconds)),
