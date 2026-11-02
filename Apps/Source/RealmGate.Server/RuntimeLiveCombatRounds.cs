@@ -975,17 +975,18 @@ public sealed partial class RuntimeLiveGameplayFacade
     // WCCMMUD _monster_cast_area first obtains the count of room occupants
     // admitted by _get_room_targets (0x425F65..0x4260A5), including its native
     // spell-immunity and resist rolls. Only after that count is positive does
-    // it draw one base magnitude at 0x42658E. The +0xCC spell-type jump table
-    // at 0x4265B3 divides the shared magnitude by accepted target count for
+    // it draw one base magnitude at 0x42658E. The native definition-type
+    // field at +0xCC controls a jump table at 0x4265B3, which divides the
+    // shared magnitude by accepted target count for
     // all types except 11, 12 and 13, which retain the full raw magnitude.
     // Do not wire this into live damage until the recipient admission prepass
     // and per-handler ordering are faithfully represented.
     internal static int ResolveClassicNpcAreaPerTargetBaseMagnitude(
-        int sharedMagnitude, int admittedTargetCount, int spellTypeRaw)
+        int sharedMagnitude, int admittedTargetCount, int nativeDefinitionTypeAtCc)
     {
         if (admittedTargetCount <= 0)
             throw new ArgumentOutOfRangeException(nameof(admittedTargetCount));
-        return spellTypeRaw is 11 or 12 or 13
+        return nativeDefinitionTypeAtCc is 11 or 12 or 13
             ? sharedMagnitude
             : sharedMagnitude / admittedTargetCount;
     }
