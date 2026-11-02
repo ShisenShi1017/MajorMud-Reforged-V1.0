@@ -1368,6 +1368,20 @@ public sealed class RuntimeClassicLiveStatusEffectsSmokeReport
                     .SequenceEqual(new[] { 10, 115, 122, 7, 122, 122, 122 }),
                     "classic-ordered-repeated-ability-vector");
                 report.Checks.Add("classic-ordered-repeated-ability-vector");
+                var originalOrderedSlots = nativeSpells.Require("spell.4").DecodedAbilities;
+                var orderedSlotMetadata = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase);
+                RuntimeLiveGameplayFacade.AddClassicOrderedAbilitySlotMetadata(
+                    orderedSlotMetadata, originalOrderedSlots);
+                Require(orderedSlotMetadata.GetValueOrDefault("classic.decoded_slot_count") == "7"
+                    && Enumerable.Range(0, originalOrderedSlots.Count).All(index =>
+                        orderedSlotMetadata.GetValueOrDefault($"classic.decoded_slot.{index}.ability_id") ==
+                        originalOrderedSlots[index].AbilityId.ToString(CultureInfo.InvariantCulture)
+                        && orderedSlotMetadata.GetValueOrDefault($"classic.decoded_slot.{index}.raw_value") ==
+                        originalOrderedSlots[index].Value.ToString(CultureInfo.InvariantCulture))
+                    && Enumerable.Range(0, originalOrderedSlots.Count).Count(index =>
+                        orderedSlotMetadata[$"classic.decoded_slot.{index}.ability_id"] == "122") == 4,
+                    "classic-repeated-slots-persist-ordered-ids-and-raw-values");
+                report.Checks.Add("classic-repeated-slots-persist-ordered-ids-and-raw-values");
                 var freedomHold = new RuntimeClassicLiveStatusDefinition(
                     "spell.test-hold", "90001", "native hold", 0, 0, 1, 0, 0,
                     new[] { new RuntimeClassicLiveStatusAbility(74, "Hold", 1) });
