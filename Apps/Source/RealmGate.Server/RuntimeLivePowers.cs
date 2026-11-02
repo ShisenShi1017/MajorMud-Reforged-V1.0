@@ -1193,12 +1193,13 @@ public sealed partial class RuntimeLiveGameplayFacade
     // Classic fixed ranges consume a native-style draw instead of skipping.
     // The exact process-global native CRT stream remains a separate parity issue.
     internal static int ResolveNpcStatusEffectMagnitude(
-        int minimum, int maximum, int? alreadyRolled, Random random, bool classicWorld)
+        int minimum, int maximum, int? alreadyRolled, Random random, bool classicWorld,
+        bool nativeAreaMagnitudeScaled = false)
     {
         ArgumentNullException.ThrowIfNull(random);
         var low = Math.Min(minimum, maximum);
         var high = Math.Max(minimum, maximum);
-        if (alreadyRolled is int prior && (prior < low || prior > high))
+        if (alreadyRolled is int prior && !nativeAreaMagnitudeScaled && (prior < low || prior > high))
             throw new InvalidDataException($"NPC_SPELL_EFFECT_ROLL_OUTSIDE_NATIVE_RANGE:{prior}:{low}:{high}");
         if (classicWorld)
             return alreadyRolled ?? random.Next(low, checked(high + 1));
@@ -1212,7 +1213,8 @@ public sealed partial class RuntimeLiveGameplayFacade
         string casterId,
         bool poisonImmune,
         DateTimeOffset nowUtc,
-        int? alreadyRolledEffectMagnitude = null)
+        int? alreadyRolledEffectMagnitude = null,
+        bool nativeAreaMagnitudeScaled = false)
     {
         lock (_livePowerGate)
         {
@@ -1230,7 +1232,8 @@ public sealed partial class RuntimeLiveGameplayFacade
             // If direct damage rolled it earlier, reuse that exact value.
             var classicNativeEffectRoll = session.World.Definition.Type.Equals("Classic", StringComparison.OrdinalIgnoreCase)
                 ? ResolveNpcStatusEffectMagnitude(spell.MinimumEffect, spell.MaximumEffect,
-                    alreadyRolledEffectMagnitude, Random.Shared, classicWorld: true)
+                    alreadyRolledEffectMagnitude, Random.Shared, classicWorld: true,
+                    nativeAreaMagnitudeScaled: nativeAreaMagnitudeScaled)
                 : (int?)null;
             if (IsDecodedAbilityNegated(incomingSpell, ReadNegatedAbilityIds(character)))
                 return new RuntimeNpcHitSpellStatusDeliveryResolution(
