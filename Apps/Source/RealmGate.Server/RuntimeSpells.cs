@@ -169,6 +169,13 @@ public sealed class RuntimeSpellCatalog
                     }
                 }
             }
+            // Original WCCMMUD _monster_cast walks exactly ten ordered
+            // effect slots (+0xA8 values, +0xD8 ability IDs). The generated
+            // compact projection may omit empty slots but cannot invent an
+            // eleventh populated slot or change the surviving slot order.
+            if (worldId.Equals("Classic", StringComparison.OrdinalIgnoreCase)
+                && decodedAbilities.Count > 10)
+                throw new InvalidDataException($"CLASSIC_SPELL_NATIVE_ABILITY_SLOTS_EXCEEDED:{id}:{decodedAbilities.Count}");
             var startSelector = castMessageId > 0
                 ? castMessageId
                 : decodedAbilities.FirstOrDefault(ability => ability.AbilityId == 120 && ability.Value > 0)?.Value ?? 0;
