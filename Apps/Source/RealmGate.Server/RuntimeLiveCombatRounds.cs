@@ -35,6 +35,15 @@ public sealed record RuntimeElementalHitPointResolution(
     int HitPointsAfter,
     int DamageApplied,
     int HealingApplied);
+// One entry per populated decoded effect, in the original relative order.
+// PopulatedOrdinal is not an absolute native slot index: empty positions in
+// the generated projection are not represented here.
+public sealed record RuntimeClassicNpcEffectSlot(
+    int PopulatedOrdinal,
+    int AbilityId,
+    int RawValue,
+    int EffectiveValue);
+
 public sealed record RuntimeNpcHitSpellStatusDeliveryResolution(
     bool Eligible,
     bool Applied,
@@ -367,9 +376,19 @@ public sealed partial class RuntimeLiveGameplayFacade
                         var definition = ClassicLiveStatusCatalog(session).TryGet(hitSpell.CanonicalSpellId, out var decodedSelfStatus)
                             ? decodedSelfStatus
                             : throw new InvalidDataException($"NPC_SELF_SPELL_STATUS_UNRESOLVED:{hitSpell.CanonicalSpellId}");
-                        var modifiers = definition.Abilities
-                            .Where(ability => ability.Value != 0)
-                            .ToDictionary(ability => ability.AbilityId, ability => ability.Value);
+                        // Native monster self-casts also roll the base effect magnitude
+                        // before dispatching the ten ordered ability positions, including
+                        // fixed ranges. A zero-valued ability inherits that base.
+                        var classicSelfCast = session.World.Definition.Type.Equals("Classic", StringComparison.OrdinalIgnoreCase);
+                        var resolvedSelfSlots = classicSelfCast
+                            ? ResolveClassicNpcEffectSlots(definition.Abilities,
+                                ResolveNpcStatusEffectMagnitude(hitSpell.MinimumEffect, hitSpell.MaximumEffect,
+                                    null, Random.Shared, classicWorld: true))
+                            : definition.Abilities.Select((ability, index) => new RuntimeClassicNpcEffectSlot(
+                                index, ability.AbilityId, ability.Value, ability.Value)).ToArray();
+                        var modifiers = resolvedSelfSlots
+                            .Where(slot => slot.EffectiveValue != 0)
+                            .ToDictionary(slot => slot.AbilityId, slot => slot.EffectiveValue);
                         if (definition.DurationRounds > 0 && modifiers.Count > 0)
                             Living(session).ApplyNpcTimedStatus(encounter.NpcInstanceId, definition.SpellId, definition.DurationRounds, modifiers, DateTimeOffset.UtcNow);
                     }
@@ -937,6 +956,21 @@ public sealed partial class RuntimeLiveGameplayFacade
         3 => "status-or-scripted-effect",
         _ => $"spell-type-{spellTypeRaw}"
     };
+
+    // Original _monster_cast (0x42828B..0x4282A9) restores the single base
+    // magnitude when a slot's signed Int16 value at +0xA8 is zero, otherwise
+    // it uses that slot's own value. The ability ID comes from +0xD8.
+    // Preserve repeated IDs and the relative order of populated slots.
+    internal static IReadOnlyList<RuntimeClassicNpcEffectSlot> ResolveClassicNpcEffectSlots(
+        IReadOnlyList<RuntimeClassicLiveStatusAbility> abilities, int baseMagnitude)
+    {
+        ArgumentNullException.ThrowIfNull(abilities);
+        if (abilities.Count > 10)
+            throw new InvalidDataException($"CLASSIC_NPC_NATIVE_ABILITY_SLOTS_EXCEEDED:{abilities.Count}");
+        return abilities.Select((ability, index) => new RuntimeClassicNpcEffectSlot(
+            index, ability.AbilityId, ability.Value,
+            ability.Value == 0 ? baseMagnitude : ability.Value)).ToArray();
+    }
 
     internal static RuntimeNpcHitSpellEffectResolution ResolveNpcHitSpellEffect(
         RuntimeNpcHitSpellSelection spell, int elementalResistancePercent, bool poisonImmune, Random random)
