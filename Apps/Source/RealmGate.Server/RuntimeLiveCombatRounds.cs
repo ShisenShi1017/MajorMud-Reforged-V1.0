@@ -1820,6 +1820,41 @@ public sealed class RuntimeLiveCombatRoundSmokeReport
             Require(liveStatusCatalog.TryGet("spell.1220", out var blacknightStatus) && blacknightStatus.DurationRounds == 15 &&
                 blacknightStatus.Abilities.Count == 1 && blacknightStatus.Abilities[0] is { AbilityId: 37, Value: 200 },
                 "npc-blacknight-decoded-self-status"); report.Checks.Add("npc-blacknight-decoded-self-status");
+            var nativeAreaCandidates = new[]
+            {
+                new RuntimeClassicNpcAreaTargetSnapshot("area.member1", false, 0, 0, 0, 0),
+                new RuntimeClassicNpcAreaTargetSnapshot("area.immune", true, 0, 0, 0, 0),
+                new RuntimeClassicNpcAreaTargetSnapshot("area.member2", false, 0, 0, 0, 0)
+            };
+            var noResistAreaRng = new CountingRangeRandom();
+            var noResistArea = RuntimeLiveGameplayFacade.ResolveClassicNpcAreaRollPlan(
+                0, 4, 10, nativeAreaCandidates, noResistAreaRng);
+            Require(noResistArea.EligibleTargetCount == 2
+                && noResistArea.SharedBaseMagnitude == 4
+                && noResistAreaRng.Calls == 1
+                && noResistArea.Targets.Select(x => x.Admitted).SequenceEqual(new[] { true, false, true })
+                && noResistArea.Targets.All(x => x.ResistanceRoll == 0),
+                "npc-native-area-immunity-and-single-base-draw-after-admission");
+            report.Checks.Add("npc-native-area-immunity-and-single-base-draw-after-admission");
+            var fullyResistedAreaRng = new CountingRangeRandom();
+            var fullyResistedArea = RuntimeLiveGameplayFacade.ResolveClassicNpcAreaRollPlan(
+                2, 4, 10,
+                new[] { new RuntimeClassicNpcAreaTargetSnapshot("area.resisted", false, 100, 100, 100, 0) },
+                fullyResistedAreaRng);
+            Require(fullyResistedArea.EligibleTargetCount == 0
+                && fullyResistedArea.SharedBaseMagnitude is null
+                && fullyResistedAreaRng.Calls == 1
+                && fullyResistedArea.Targets[0].ResistanceRoll == 1,
+                "npc-native-area-no-magnitude-draw-when-all-targets-resist");
+            report.Checks.Add("npc-native-area-no-magnitude-draw-when-all-targets-resist");
+            var unresistedAreaRng = new CountingRangeRandom();
+            var unresistedArea = RuntimeLiveGameplayFacade.ResolveClassicNpcAreaRollPlan(
+                2, 4, 10, nativeAreaCandidates, unresistedAreaRng);
+            Require(unresistedArea.EligibleTargetCount == 2
+                && unresistedArea.SharedBaseMagnitude == 4
+                && unresistedAreaRng.Calls == 3,
+                "npc-native-area-target-resistance-rolls-before-one-magnitude-roll");
+            report.Checks.Add("npc-native-area-target-resistance-rolls-before-one-magnitude-roll");
             Require(RuntimeLiveGameplayFacade.ResolveClassicNpcAreaPerTargetBaseMagnitude(10, 3, 0) == 3
                 && RuntimeLiveGameplayFacade.ResolveClassicNpcAreaPerTargetBaseMagnitude(10, 3, 3) == 3
                 && RuntimeLiveGameplayFacade.ResolveClassicNpcAreaPerTargetBaseMagnitude(10, 3, 9) == 3
