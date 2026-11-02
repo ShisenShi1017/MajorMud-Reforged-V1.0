@@ -1846,6 +1846,13 @@ public sealed class RuntimeLiveCombatRoundSmokeReport
             Require(maximumNativeRoll.CheckEligible && maximumNativeRoll.ResistanceRoll == 99
                 && !maximumNativeRoll.Resisted, "npc-native-resistance-99-valid-not-forced-resist");
             report.Checks.Add("npc-native-resistance-99-valid-not-forced-resist");
+            var highMrRoll97 = RuntimeLiveGameplayFacade.ResolveNpcHitSpellResistance(2, 100, 100, 100, 0, 97);
+            var highMrRoll98 = RuntimeLiveGameplayFacade.ResolveNpcHitSpellResistance(2, 100, 100, 100, 0, 98);
+            var highMrRoll99 = RuntimeLiveGameplayFacade.ResolveNpcHitSpellResistance(2, 100, 100, 100, 0, 99);
+            Require(highMrRoll97.ResistanceChancePercent == 97 && highMrRoll97.Resisted
+                && !highMrRoll98.Resisted && !highMrRoll99.Resisted,
+                "npc-native-97-cap-inclusive-resist-threshold");
+            report.Checks.Add("npc-native-97-cap-inclusive-resist-threshold");
             var mrNormal = RuntimeLiveGameplayFacade.ResolveNpcHitSpellResistance(2, 40, 60, 7, 0, 24);
             Require(mrNormal.MagicResistanceScore == 52 && mrNormal.ResistanceChancePercent == 26 && mrNormal.Resisted, "npc-hit-spell-mr-equation"); report.Checks.Add("npc-hit-spell-mr-equation");
             var mrMiss = RuntimeLiveGameplayFacade.ResolveNpcHitSpellResistance(2, 40, 60, 7, 0, 27);
