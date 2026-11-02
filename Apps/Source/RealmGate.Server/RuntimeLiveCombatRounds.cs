@@ -442,7 +442,8 @@ public sealed partial class RuntimeLiveGameplayFacade
                                         hitSpell,
                                         $"npc.{npc.LegacyId}",
                                         ReadAbilityValue(before, 21) > 0,
-                                        DateTimeOffset.UtcNow);
+                                        DateTimeOffset.UtcNow,
+                                        effect.Executable ? effect.Roll : (int?)null);
                                     if (durationDelivery.Applied)
                                     {
                                         before = _characters.LoadCharacter(actor.Id) ?? before;
@@ -459,7 +460,8 @@ public sealed partial class RuntimeLiveGameplayFacade
                                         hitSpell,
                                         $"npc.{npc.LegacyId}",
                                         ReadAbilityValue(before, 21) > 0,
-                                        DateTimeOffset.UtcNow);
+                                        DateTimeOffset.UtcNow,
+                                        effect.Executable ? effect.Roll : (int?)null);
                                     if (delivery.Applied)
                                     {
                                         before = _characters.LoadCharacter(actor.Id) ?? before;
@@ -732,7 +734,8 @@ public sealed partial class RuntimeLiveGameplayFacade
                 }
                 if (nextHitPoints > 0)
                 {
-                    var durationDelivery = ApplyNpcHitSpellStatusDelivery(target, character, spell, casterId, poisonImmune, nowUtc);
+                    var durationDelivery = ApplyNpcHitSpellStatusDelivery(target, character, spell, casterId, poisonImmune, nowUtc,
+                        effect.Executable ? effect.Roll : (int?)null);
                     if (durationDelivery.Applied)
                     {
                         var areaDurationMessage = RuntimeClassicCombatAnsi.Effect($"{casterName}'s {spell.SpellName} affects {actor.DisplayName} for {durationDelivery.DurationSeconds} combat rounds.");
@@ -743,7 +746,8 @@ public sealed partial class RuntimeLiveGameplayFacade
                 continue;
             }
 
-            var delivery = ApplyNpcHitSpellStatusDelivery(target, character, spell, casterId, poisonImmune, nowUtc);
+            var delivery = ApplyNpcHitSpellStatusDelivery(target, character, spell, casterId, poisonImmune, nowUtc,
+                        effect.Executable ? effect.Roll : (int?)null);
             if (delivery.Applied)
             {
                 var areaStatusMessage = RuntimeClassicCombatAnsi.Effect($"{casterName}'s {spell.SpellName} affects {actor.DisplayName} for {delivery.DurationSeconds} combat rounds.");
