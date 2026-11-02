@@ -1224,6 +1224,14 @@ public sealed partial class RuntimeLiveGameplayFacade
             if (!catalog.TryGet(spell.CanonicalSpellId, out var definition))
                 throw new InvalidOperationException($"Decoded status spell '{spell.CanonicalSpellId}' is missing from the Classic status catalog.");
             var incomingSpell = _liveSpellCatalog!.Require(spell.CanonicalSpellId);
+            // _monster_cast rolls the base magnitude before entering the ordered
+            // effect handlers (0x428218..0x42828B). Admission, duplicate-status
+            // rejection and slot limits must not suppress that already-owed draw.
+            // If direct damage rolled it earlier, reuse that exact value.
+            var classicNativeEffectRoll = session.World.Definition.Type.Equals("Classic", StringComparison.OrdinalIgnoreCase)
+                ? ResolveNpcStatusEffectMagnitude(spell.MinimumEffect, spell.MaximumEffect,
+                    alreadyRolledEffectMagnitude, Random.Shared, classicWorld: true)
+                : (int?)null;
             if (IsDecodedAbilityNegated(incomingSpell, ReadNegatedAbilityIds(character)))
                 return new RuntimeNpcHitSpellStatusDeliveryResolution(
                     false, false, false, "negated", spell.CanonicalSpellId,
@@ -1238,9 +1246,9 @@ public sealed partial class RuntimeLiveGameplayFacade
                     _liveSpellEngine.EffectsFor(character.CharacterId), "character",
                     character.CharacterId, spell.CanonicalSpellId, nowUtc))
                 return resolution with { Applied = false, Reason = "native-player-active-spell-slots-full" };
-            var effectRoll = ResolveNpcStatusEffectMagnitude(
+            var effectRoll = classicNativeEffectRoll ?? ResolveNpcStatusEffectMagnitude(
                 spell.MinimumEffect, spell.MaximumEffect, alreadyRolledEffectMagnitude,
-                Random.Shared, session.World.Definition.Type.Equals("Classic", StringComparison.OrdinalIgnoreCase));
+                Random.Shared, classicWorld: false);
             var snapshot = _liveSpellEngine.Snapshot();
             var active = snapshot.ActiveEffects
                 .Where(effect => !existing.Any(old => old.EffectId.Equals(effect.EffectId, StringComparison.OrdinalIgnoreCase)))
