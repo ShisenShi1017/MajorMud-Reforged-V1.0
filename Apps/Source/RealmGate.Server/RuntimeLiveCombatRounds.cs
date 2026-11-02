@@ -972,6 +972,24 @@ public sealed partial class RuntimeLiveGameplayFacade
             ability.Value == 0 ? baseMagnitude : ability.Value)).ToArray();
     }
 
+    // WCCMMUD _monster_cast_area first obtains the count of room occupants
+    // admitted by _get_room_targets (0x425F65..0x4260A5), including its native
+    // spell-immunity and resist rolls. Only after that count is positive does
+    // it draw one base magnitude at 0x42658E. The +0xCC spell-type jump table
+    // at 0x4265B3 divides the shared magnitude by accepted target count for
+    // all types except 11, 12 and 13, which retain the full raw magnitude.
+    // Do not wire this into live damage until the recipient admission prepass
+    // and per-handler ordering are faithfully represented.
+    internal static int ResolveClassicNpcAreaPerTargetBaseMagnitude(
+        int sharedMagnitude, int admittedTargetCount, int spellTypeRaw)
+    {
+        if (admittedTargetCount <= 0)
+            throw new ArgumentOutOfRangeException(nameof(admittedTargetCount));
+        return spellTypeRaw is 11 or 12 or 13
+            ? sharedMagnitude
+            : sharedMagnitude / admittedTargetCount;
+    }
+
     internal static RuntimeNpcHitSpellEffectResolution ResolveNpcHitSpellEffect(
         RuntimeNpcHitSpellSelection spell, int elementalResistancePercent, bool poisonImmune, Random random)
     {
@@ -1751,6 +1769,15 @@ public sealed class RuntimeLiveCombatRoundSmokeReport
             Require(liveStatusCatalog.TryGet("spell.1220", out var blacknightStatus) && blacknightStatus.DurationRounds == 15 &&
                 blacknightStatus.Abilities.Count == 1 && blacknightStatus.Abilities[0] is { AbilityId: 37, Value: 200 },
                 "npc-blacknight-decoded-self-status"); report.Checks.Add("npc-blacknight-decoded-self-status");
+            Require(RuntimeLiveGameplayFacade.ResolveClassicNpcAreaPerTargetBaseMagnitude(10, 3, 0) == 3
+                && RuntimeLiveGameplayFacade.ResolveClassicNpcAreaPerTargetBaseMagnitude(10, 3, 3) == 3
+                && RuntimeLiveGameplayFacade.ResolveClassicNpcAreaPerTargetBaseMagnitude(10, 3, 9) == 3
+                && RuntimeLiveGameplayFacade.ResolveClassicNpcAreaPerTargetBaseMagnitude(-10, 3, 0) == -3
+                && RuntimeLiveGameplayFacade.ResolveClassicNpcAreaPerTargetBaseMagnitude(10, 3, 11) == 10
+                && RuntimeLiveGameplayFacade.ResolveClassicNpcAreaPerTargetBaseMagnitude(10, 3, 12) == 10
+                && RuntimeLiveGameplayFacade.ResolveClassicNpcAreaPerTargetBaseMagnitude(10, 3, 13) == 10,
+                "npc-native-area-accepted-target-divisor-and-type11-13-exceptions");
+            report.Checks.Add("npc-native-area-accepted-target-divisor-and-type11-13-exceptions");
             var nativeSlotFixture = new[]
             {
                 new RuntimeClassicLiveStatusAbility(122, "RemovesSpell", 0),
