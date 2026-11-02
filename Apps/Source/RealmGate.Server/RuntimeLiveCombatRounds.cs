@@ -370,6 +370,22 @@ public sealed partial class RuntimeLiveGameplayFacade
                 if (hitSpell is { Triggered: true })
                 {
                     var hitSpellScript = RuntimeNpcHitSpellScriptCatalog.Load(_characters.ProjectRoot, session.World.Definition.Id, hitSpell.LegacySpellId);
+                    // Classic _get_room_targets completes every recipient's immunity
+                    // and resistance checks before _monster_cast_area draws its one
+                    // shared magnitude. Custom worlds retain their original path.
+                    var nativeAreaPlan = hitSpellScript is null
+                        && session.World.Definition.Type.Equals("Classic", StringComparison.OrdinalIgnoreCase)
+                        && IsNpcRoomAreaSpell(hitSpell)
+                        ? BuildClassicNpcAreaSpellRollPlan(session, hitSpell)
+                        : null;
+                    var nativeAreaMagnitude = nativeAreaPlan?.SharedBaseMagnitude is int areaBase
+                        ? ResolveClassicNpcAreaPerTargetBaseMagnitude(
+                            areaBase, nativeAreaPlan.EligibleTargetCount, hitSpell.SpellTypeRaw)
+                        : (int?)null;
+                    var primaryAreaAdmission = nativeAreaPlan?.Targets.FirstOrDefault(
+                        target => target.SessionId.Equals(session.Id, StringComparison.OrdinalIgnoreCase));
+                    if (nativeAreaPlan is not null && primaryAreaAdmission is null)
+                        throw new InvalidDataException("NPC_NATIVE_AREA_PRIMARY_SESSION_MISSING_FROM_ADMISSION");
                     if (hitSpellScript is not null)
                     {
                         var plan = RuntimeNpcHitSpellScriptCatalog.ValidateAndPlan(
@@ -409,7 +425,9 @@ public sealed partial class RuntimeLiveGameplayFacade
                     // NPC-effect boundaries (TextBlock 2510 and NPC Picklocks).
                     if (hitSpellScript is null && !IsNpcSelfSpell(hitSpell))
                     {
-                        if (RuntimeClassicStatusProjection.IsSpellImmune(before, hitSpell.SpellLevel))
+                        if (nativeAreaPlan is not null
+                            ? primaryAreaAdmission!.SpellImmune
+                            : RuntimeClassicStatusProjection.IsSpellImmune(before, hitSpell.SpellLevel))
                         {
                             var spellImmuneMessage = RuntimeClassicCombatAnsi.Effect($"{actor.DisplayName} is immune to {encounter.NpcName}'s {hitSpell.SpellName}.");
                             messages.Add(spellImmuneMessage);
@@ -417,14 +435,16 @@ public sealed partial class RuntimeLiveGameplayFacade
                         }
                         else
                         {
-                            var resistance = ResolveNpcHitSpellResistanceWithAdmission(
-                                hitSpell.ResistTypeRaw,
-                                ReadBaseStat(before, "wil", "willpower", "will"),
-                                ReadBaseStat(before, "int", "intellect", "intelligence"),
-                                RuntimeClassicCharacterFormulaCalculator.ResolveMagicResistanceModifier(before),
-                                ReadAbilityValue(before, 51),
-                                Random.Shared);
-                            if (resistance.Resisted)
+                            var resisted = nativeAreaPlan is not null
+                                ? !primaryAreaAdmission!.Admitted
+                                : ResolveNpcHitSpellResistanceWithAdmission(
+                                    hitSpell.ResistTypeRaw,
+                                    ReadBaseStat(before, "wil", "willpower", "will"),
+                                    ReadBaseStat(before, "int", "intellect", "intelligence"),
+                                    RuntimeClassicCharacterFormulaCalculator.ResolveMagicResistanceModifier(before),
+                                    ReadAbilityValue(before, 51),
+                                    Random.Shared).Resisted;
+                            if (resisted)
                             {
                                 // Native _monster_cast has already passed its pre-cast roll and paid the full
                                 // AttEnergy here. A single-target effect-admission/resistance rejection restores
@@ -442,7 +462,7 @@ public sealed partial class RuntimeLiveGameplayFacade
                                     hitSpell,
                                     ReadElementalResistance(before, ResolveNpcHitSpellAttackElement(hitSpell.AttackTypeRaw)),
                                     ReadAbilityValue(before, 21) > 0,
-                                    Random.Shared);
+                                    Random.Shared, nativeAreaMagnitude, nativeAreaPlan is not null);
                                 if (effect.Executable && effect.DirectDamage != 0)
                                 {
                                     var hitPointResolution = ApplyElementalSpellHitPoints(playerHp, before.MaximumHitPoints, effect.DirectDamage);
@@ -473,7 +493,8 @@ public sealed partial class RuntimeLiveGameplayFacade
                                         $"npc.{npc.LegacyId}",
                                         ReadAbilityValue(before, 21) > 0,
                                         DateTimeOffset.UtcNow,
-                                        effect.Executable ? effect.Roll : (int?)null);
+                                        effect.Executable ? effect.Roll : nativeAreaMagnitude,
+                                        nativeAreaPlan is not null);
                                     if (durationDelivery.Applied)
                                     {
                                         before = _characters.LoadCharacter(actor.Id) ?? before;
@@ -491,7 +512,8 @@ public sealed partial class RuntimeLiveGameplayFacade
                                         $"npc.{npc.LegacyId}",
                                         ReadAbilityValue(before, 21) > 0,
                                         DateTimeOffset.UtcNow,
-                                        effect.Executable ? effect.Roll : (int?)null);
+                                        effect.Executable ? effect.Roll : nativeAreaMagnitude,
+                                        nativeAreaPlan is not null);
                                     if (delivery.Applied)
                                     {
                                         before = _characters.LoadCharacter(actor.Id) ?? before;
@@ -522,7 +544,9 @@ public sealed partial class RuntimeLiveGameplayFacade
                             $"npc.{npc.LegacyId}",
                             encounter.NpcName,
                             messages,
-                            roomMessagePriorities);
+                            roomMessagePriorities,
+                            nativeAreaPlan,
+                            nativeAreaMagnitude);
                     }
                 }
                 if (isDecodedSpellRow && !nativeSpellHealing)
@@ -673,13 +697,42 @@ public sealed partial class RuntimeLiveGameplayFacade
         return IsNpcFullAreaSpell(spell) || IsNpcAreaHostileSpell(spell);
     }
 
+    private RuntimeClassicNpcAreaRollPlan BuildClassicNpcAreaSpellRollPlan(
+        RuntimeSession primarySession, RuntimeNpcHitSpellSelection spell)
+    {
+        // Reforged's session manager sorts by player display name. The native
+        // Worldgroup session-index iteration is not yet fully mapped.
+        // Preserve the current live order and retain this as an explicit
+        // exact-RNG-sequence parity boundary.
+        var snapshots = new List<RuntimeClassicNpcAreaTargetSnapshot>();
+        foreach (var target in _sessions.InRoom(
+                     primarySession.World.Definition.Id, primarySession.CurrentRoom.Id))
+        {
+            if (target.Actor is not RuntimeCharacterActor actor) continue;
+            var character = _characters.LoadCharacter(actor.Id);
+            if (character is null || character.HitPoints <= 0) continue;
+            snapshots.Add(new RuntimeClassicNpcAreaTargetSnapshot(
+                target.Id,
+                RuntimeClassicStatusProjection.IsSpellImmune(character, spell.SpellLevel),
+                ReadBaseStat(character, "wil", "willpower", "will"),
+                ReadBaseStat(character, "int", "intellect", "intelligence"),
+                RuntimeClassicCharacterFormulaCalculator.ResolveMagicResistanceModifier(character),
+                ReadAbilityValue(character, 51)));
+        }
+        return ResolveClassicNpcAreaRollPlan(
+            spell.ResistTypeRaw, spell.MinimumEffect, spell.MaximumEffect,
+            snapshots, Random.Shared);
+    }
+
     private void ApplyNpcRoomAreaSpellToBystanders(
         RuntimeSession primarySession,
         RuntimeNpcHitSpellSelection spell,
         string casterId,
         string casterName,
         List<string> messages,
-        Dictionary<string, RuntimeClassicRoomMessagePriority> roomMessagePriorities)
+        Dictionary<string, RuntimeClassicRoomMessagePriority> roomMessagePriorities,
+        RuntimeClassicNpcAreaRollPlan? nativeAreaPlan,
+        int? nativeAreaMagnitude)
     {
         var nowUtc = DateTimeOffset.UtcNow;
         var targets = _sessions.InRoom(primarySession.World.Definition.Id, primarySession.CurrentRoom.Id)
@@ -693,7 +746,12 @@ public sealed partial class RuntimeLiveGameplayFacade
             var character = _characters.LoadCharacter(actor.Id);
             if (character is null || character.HitPoints <= 0) continue;
 
-            if (RuntimeClassicStatusProjection.IsSpellImmune(character, spell.SpellLevel))
+            var areaAdmission = nativeAreaPlan?.Targets.FirstOrDefault(
+                entry => entry.SessionId.Equals(target.Id, StringComparison.OrdinalIgnoreCase));
+            if (nativeAreaPlan is not null && areaAdmission is null) continue;
+            if (nativeAreaPlan is not null
+                ? areaAdmission!.SpellImmune
+                : RuntimeClassicStatusProjection.IsSpellImmune(character, spell.SpellLevel))
             {
                 var immuneMessage = RuntimeClassicCombatAnsi.Effect($"{actor.DisplayName} is immune to {casterName}'s {spell.SpellName}.");
                 messages.Add(immuneMessage);
@@ -701,14 +759,16 @@ public sealed partial class RuntimeLiveGameplayFacade
                 continue;
             }
 
-            var resistance = ResolveNpcHitSpellResistanceWithAdmission(
-                spell.ResistTypeRaw,
-                ReadBaseStat(character, "wil", "willpower", "will"),
-                ReadBaseStat(character, "int", "intellect", "intelligence"),
-                RuntimeClassicCharacterFormulaCalculator.ResolveMagicResistanceModifier(character),
-                ReadAbilityValue(character, 51),
-                Random.Shared);
-            if (resistance.Resisted)
+            var resisted = nativeAreaPlan is not null
+                ? !areaAdmission!.Admitted
+                : ResolveNpcHitSpellResistanceWithAdmission(
+                    spell.ResistTypeRaw,
+                    ReadBaseStat(character, "wil", "willpower", "will"),
+                    ReadBaseStat(character, "int", "intellect", "intelligence"),
+                    RuntimeClassicCharacterFormulaCalculator.ResolveMagicResistanceModifier(character),
+                    ReadAbilityValue(character, 51),
+                    Random.Shared).Resisted;
+            if (resisted)
             {
                 var resistMessage = RuntimeClassicCombatAnsi.Effect($"{actor.DisplayName} resists {casterName}'s {spell.SpellName}.");
                 messages.Add(resistMessage);
@@ -721,7 +781,7 @@ public sealed partial class RuntimeLiveGameplayFacade
                 spell,
                 ReadElementalResistance(character, ResolveNpcHitSpellAttackElement(spell.AttackTypeRaw)),
                 poisonImmune,
-                Random.Shared);
+                Random.Shared, nativeAreaMagnitude, nativeAreaPlan is not null);
             if (effect.Executable && effect.DirectDamage != 0)
             {
                 var hitPointResolution = ApplyElementalSpellHitPoints(character.HitPoints, character.MaximumHitPoints, effect.DirectDamage);
@@ -765,7 +825,8 @@ public sealed partial class RuntimeLiveGameplayFacade
                 if (nextHitPoints > 0)
                 {
                     var durationDelivery = ApplyNpcHitSpellStatusDelivery(target, character, spell, casterId, poisonImmune, nowUtc,
-                        effect.Executable ? effect.Roll : (int?)null);
+                        effect.Executable ? effect.Roll : nativeAreaMagnitude,
+                        nativeAreaPlan is not null);
                     if (durationDelivery.Applied)
                     {
                         var areaDurationMessage = RuntimeClassicCombatAnsi.Effect($"{casterName}'s {spell.SpellName} affects {actor.DisplayName} for {durationDelivery.DurationSeconds} combat rounds.");
@@ -777,7 +838,8 @@ public sealed partial class RuntimeLiveGameplayFacade
             }
 
             var delivery = ApplyNpcHitSpellStatusDelivery(target, character, spell, casterId, poisonImmune, nowUtc,
-                        effect.Executable ? effect.Roll : (int?)null);
+                        effect.Executable ? effect.Roll : nativeAreaMagnitude,
+                        nativeAreaPlan is not null);
             if (delivery.Applied)
             {
                 var areaStatusMessage = RuntimeClassicCombatAnsi.Effect($"{casterName}'s {spell.SpellName} affects {actor.DisplayName} for {delivery.DurationSeconds} combat rounds.");
