@@ -1188,6 +1188,23 @@ public sealed partial class RuntimeLiveGameplayFacade
         return removed.Count;
     }
 
+    // _monster_cast performs one magnitude draw before its ordered effect
+    // slots. A preceding direct effect supplies its draw to status delivery;
+    // Classic fixed ranges consume a native-style draw instead of skipping.
+    // The exact process-global native CRT stream remains a separate parity issue.
+    internal static int ResolveNpcStatusEffectMagnitude(
+        int minimum, int maximum, int? alreadyRolled, Random random, bool classicWorld)
+    {
+        ArgumentNullException.ThrowIfNull(random);
+        var low = Math.Min(minimum, maximum);
+        var high = Math.Max(minimum, maximum);
+        if (alreadyRolled is int prior && (prior < low || prior > high))
+            throw new InvalidDataException($"NPC_SPELL_EFFECT_ROLL_OUTSIDE_NATIVE_RANGE:{prior}:{low}:{high}");
+        if (classicWorld)
+            return alreadyRolled ?? random.Next(low, checked(high + 1));
+        return minimum == maximum ? minimum : random.Next(low, checked(high + 1));
+    }
+
     internal RuntimeNpcHitSpellStatusDeliveryResolution ApplyNpcHitSpellStatusDelivery(
         RuntimeSession session,
         RuntimeCharacterRecord character,
@@ -1221,21 +1238,9 @@ public sealed partial class RuntimeLiveGameplayFacade
                     _liveSpellEngine.EffectsFor(character.CharacterId), "character",
                     character.CharacterId, spell.CanonicalSpellId, nowUtc))
                 return resolution with { Applied = false, Reason = "native-player-active-spell-slots-full" };
-            var rollMinimum = Math.Min(spell.MinimumEffect, spell.MaximumEffect);
-            var rollMaximum = Math.Max(spell.MinimumEffect, spell.MaximumEffect);
-            if (alreadyRolledEffectMagnitude is int priorRoll
-                && (priorRoll < rollMinimum || priorRoll > rollMaximum))
-                throw new InvalidDataException($"NPC_SPELL_EFFECT_ROLL_OUTSIDE_NATIVE_RANGE:{spell.CanonicalSpellId}:{priorRoll}");
-            // _monster_cast rolls one magnitude before its ordered ten ability
-            // slots (0x428218..0x42822F and 0x42828B..0x42954D).
-            // An earlier direct-effect roll is reused by status application
-            // rather than consuming a second random draw. Classic fixed-range
-            // status effects also consume one native-style range draw.
-            var effectRoll = session.World.Definition.Type.Equals("Classic", StringComparison.OrdinalIgnoreCase)
-                ? alreadyRolledEffectMagnitude ?? Random.Shared.Next(rollMinimum, checked(rollMaximum + 1))
-                : spell.MinimumEffect == spell.MaximumEffect
-                    ? spell.MinimumEffect
-                    : Random.Shared.Next(rollMinimum, checked(rollMaximum + 1));
+            var effectRoll = ResolveNpcStatusEffectMagnitude(
+                spell.MinimumEffect, spell.MaximumEffect, alreadyRolledEffectMagnitude,
+                Random.Shared, session.World.Definition.Type.Equals("Classic", StringComparison.OrdinalIgnoreCase));
             var snapshot = _liveSpellEngine.Snapshot();
             var active = snapshot.ActiveEffects
                 .Where(effect => !existing.Any(old => old.EffectId.Equals(effect.EffectId, StringComparison.OrdinalIgnoreCase)))
