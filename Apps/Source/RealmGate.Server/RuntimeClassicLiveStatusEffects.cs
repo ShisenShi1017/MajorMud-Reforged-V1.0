@@ -107,6 +107,10 @@ public sealed class RuntimeClassicLiveStatusCatalog
                 }
             }
 
+            // Both live Classic spell loaders must retain the original
+            // ten-slot native storage width; never merge repeated effects.
+            if (worldId.Equals("Classic", StringComparison.OrdinalIgnoreCase) && abilities.Count > 10)
+                throw new InvalidDataException($"CLASSIC_STATUS_NATIVE_ABILITY_SLOTS_EXCEEDED:{id}:{abilities.Count}");
             var definition = new RuntimeClassicLiveStatusDefinition(
                 id,
                 legacyId,
@@ -1316,6 +1320,10 @@ public sealed class RuntimeClassicLiveStatusEffectsSmokeReport
                 Require(nativeSpells.Spells.Sum(spell => spell.DecodedAbilities.Count) == 3889,
                     "classic-3889-populated-ability-positions");
                 report.Checks.Add("classic-3889-populated-ability-positions");
+                Require(nativeSpells.Spells.All(spell => spell.DecodedAbilities.Count <= 10)
+                    && catalog.Definitions.All(definition => definition.Abilities.Count <= 10),
+                    "classic-native-ten-ability-slot-max-both-live-catalogs");
+                report.Checks.Add("classic-native-ten-ability-slot-max-both-live-catalogs");
                 var mixedHpMana = nativeSpells.Spells.Where(spell =>
                     spell.DecodedAbilities.Any(ability => ability.AbilityId is 1 or 17 or 18)
                     && spell.DecodedAbilities.Any(ability => ability.AbilityId == 150)).ToArray();
