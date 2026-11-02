@@ -1934,6 +1934,32 @@ public sealed class RuntimeLiveCombatRoundSmokeReport
                 && RuntimeLiveGameplayFacade.ResolveClassicNpcAreaPerTargetBaseMagnitude(10, 3, 13) == 10,
                 "npc-native-area-accepted-target-divisor-and-type11-13-exceptions");
             report.Checks.Add("npc-native-area-accepted-target-divisor-and-type11-13-exceptions");
+            // Once the room admission prepass rolls a single base magnitude,
+            // each accepted Classic recipient consumes the pre-scaled value
+            // without a second damage or status RNG draw.
+            var areaScaledFixture = areaHostileSpell with
+            {
+                SpellTypeRaw = 0,
+                EffectRange = RuntimeLiveGameplayFacade.ResolveNpcHitSpellEffectRange(4, 10)
+            };
+            var areaPerTargetMagnitude = RuntimeLiveGameplayFacade.ResolveClassicNpcAreaPerTargetBaseMagnitude(
+                4, 2, areaScaledFixture.SpellTypeRaw);
+            var noExtraAreaRng = new CountingRangeRandom();
+            var areaFirst = RuntimeLiveGameplayFacade.ResolveNpcHitSpellEffect(
+                areaScaledFixture, 0, false, noExtraAreaRng,
+                areaPerTargetMagnitude, nativeAreaMagnitudeScaled: true);
+            var areaSecond = RuntimeLiveGameplayFacade.ResolveNpcHitSpellEffect(
+                areaScaledFixture, 0, false, noExtraAreaRng,
+                areaPerTargetMagnitude, nativeAreaMagnitudeScaled: true);
+            var areaStatusRoll = RuntimeLiveGameplayFacade.ResolveNpcStatusEffectMagnitude(
+                4, 10, areaPerTargetMagnitude, noExtraAreaRng,
+                classicWorld: true, nativeAreaMagnitudeScaled: true);
+            Require(areaFirst.Executable && areaSecond.Executable
+                && areaPerTargetMagnitude == 2
+                && areaFirst.DirectDamage == 2 && areaSecond.DirectDamage == 2
+                && areaStatusRoll == 2 && noExtraAreaRng.Calls == 0,
+                "npc-native-area-scaled-damage-and-status-reuse-no-per-recipient-draw");
+            report.Checks.Add("npc-native-area-scaled-damage-and-status-reuse-no-per-recipient-draw");
             var nativeSlotFixture = new[]
             {
                 new RuntimeClassicLiveStatusAbility(122, "RemovesSpell", 0),
