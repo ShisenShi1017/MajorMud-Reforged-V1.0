@@ -359,6 +359,15 @@ public sealed partial class RuntimeLiveGameplayFacade
                 if (hitSpell is { Triggered: true })
                 {
                     var hitSpellScript = RuntimeNpcHitSpellScriptCatalog.Load(_characters.ProjectRoot, session.World.Definition.Id, hitSpell.LegacySpellId);
+                    // _monster_cast_area (0x426588..0x426599) performs one
+                    // base effect range draw before its area-effect dispatch.
+                    // Reuse that raw magnitude across Classic targets.
+                    var nativeAreaMagnitude = hitSpellScript is null
+                        && session.World.Definition.Type.Equals("Classic", StringComparison.OrdinalIgnoreCase)
+                        && IsNpcRoomAreaSpell(hitSpell)
+                        ? ResolveNpcStatusEffectMagnitude(hitSpell.MinimumEffect, hitSpell.MaximumEffect,
+                            null, Random.Shared, classicWorld: true)
+                        : (int?)null;
                     if (hitSpellScript is not null)
                     {
                         var plan = RuntimeNpcHitSpellScriptCatalog.ValidateAndPlan(
@@ -431,7 +440,7 @@ public sealed partial class RuntimeLiveGameplayFacade
                                     hitSpell,
                                     ReadElementalResistance(before, ResolveNpcHitSpellAttackElement(hitSpell.AttackTypeRaw)),
                                     ReadAbilityValue(before, 21) > 0,
-                                    Random.Shared);
+                                    Random.Shared, nativeAreaMagnitude);
                                 if (effect.Executable && effect.DirectDamage != 0)
                                 {
                                     var hitPointResolution = ApplyElementalSpellHitPoints(playerHp, before.MaximumHitPoints, effect.DirectDamage);
@@ -462,7 +471,7 @@ public sealed partial class RuntimeLiveGameplayFacade
                                         $"npc.{npc.LegacyId}",
                                         ReadAbilityValue(before, 21) > 0,
                                         DateTimeOffset.UtcNow,
-                                        effect.Executable ? effect.Roll : (int?)null);
+                                        effect.Executable ? effect.Roll : nativeAreaMagnitude);
                                     if (durationDelivery.Applied)
                                     {
                                         before = _characters.LoadCharacter(actor.Id) ?? before;
@@ -480,7 +489,7 @@ public sealed partial class RuntimeLiveGameplayFacade
                                         $"npc.{npc.LegacyId}",
                                         ReadAbilityValue(before, 21) > 0,
                                         DateTimeOffset.UtcNow,
-                                        effect.Executable ? effect.Roll : (int?)null);
+                                        effect.Executable ? effect.Roll : nativeAreaMagnitude);
                                     if (delivery.Applied)
                                     {
                                         before = _characters.LoadCharacter(actor.Id) ?? before;
@@ -511,7 +520,8 @@ public sealed partial class RuntimeLiveGameplayFacade
                             $"npc.{npc.LegacyId}",
                             encounter.NpcName,
                             messages,
-                            roomMessagePriorities);
+                            roomMessagePriorities,
+                            nativeAreaMagnitude);
                     }
                 }
                 if (isDecodedSpellRow && !nativeSpellHealing)
@@ -668,7 +678,8 @@ public sealed partial class RuntimeLiveGameplayFacade
         string casterId,
         string casterName,
         List<string> messages,
-        Dictionary<string, RuntimeClassicRoomMessagePriority> roomMessagePriorities)
+        Dictionary<string, RuntimeClassicRoomMessagePriority> roomMessagePriorities,
+        int? nativeAreaMagnitude)
     {
         var nowUtc = DateTimeOffset.UtcNow;
         var targets = _sessions.InRoom(primarySession.World.Definition.Id, primarySession.CurrentRoom.Id)
@@ -710,7 +721,7 @@ public sealed partial class RuntimeLiveGameplayFacade
                 spell,
                 ReadElementalResistance(character, ResolveNpcHitSpellAttackElement(spell.AttackTypeRaw)),
                 poisonImmune,
-                Random.Shared);
+                Random.Shared, nativeAreaMagnitude);
             if (effect.Executable && effect.DirectDamage != 0)
             {
                 var hitPointResolution = ApplyElementalSpellHitPoints(character.HitPoints, character.MaximumHitPoints, effect.DirectDamage);
@@ -754,7 +765,7 @@ public sealed partial class RuntimeLiveGameplayFacade
                 if (nextHitPoints > 0)
                 {
                     var durationDelivery = ApplyNpcHitSpellStatusDelivery(target, character, spell, casterId, poisonImmune, nowUtc,
-                        effect.Executable ? effect.Roll : (int?)null);
+                        effect.Executable ? effect.Roll : nativeAreaMagnitude);
                     if (durationDelivery.Applied)
                     {
                         var areaDurationMessage = RuntimeClassicCombatAnsi.Effect($"{casterName}'s {spell.SpellName} affects {actor.DisplayName} for {durationDelivery.DurationSeconds} combat rounds.");
@@ -766,7 +777,7 @@ public sealed partial class RuntimeLiveGameplayFacade
             }
 
             var delivery = ApplyNpcHitSpellStatusDelivery(target, character, spell, casterId, poisonImmune, nowUtc,
-                        effect.Executable ? effect.Roll : (int?)null);
+                        effect.Executable ? effect.Roll : nativeAreaMagnitude);
             if (delivery.Applied)
             {
                 var areaStatusMessage = RuntimeClassicCombatAnsi.Effect($"{casterName}'s {spell.SpellName} affects {actor.DisplayName} for {delivery.DurationSeconds} combat rounds.");
@@ -973,7 +984,8 @@ public sealed partial class RuntimeLiveGameplayFacade
     }
 
     internal static RuntimeNpcHitSpellEffectResolution ResolveNpcHitSpellEffect(
-        RuntimeNpcHitSpellSelection spell, int elementalResistancePercent, bool poisonImmune, Random random)
+        RuntimeNpcHitSpellSelection spell, int elementalResistancePercent, bool poisonImmune, Random random,
+        int? alreadyRolledAreaMagnitude = null)
     {
         ArgumentNullException.ThrowIfNull(spell);
         ArgumentNullException.ThrowIfNull(random);
@@ -994,7 +1006,13 @@ public sealed partial class RuntimeLiveGameplayFacade
         // WCCMMUD _monster_cast 0x428218..0x42822f consumes an effect
         // range draw before dispatching the ordered +0xD8 ability slots.
         // Do not skip the draw for equal authored range endpoints.
-        var roll = random.Next(spell.EffectRange.RollMinimum, checked(spell.EffectRange.RollMaximum + 1));
+        // Native area casts produce one base draw and then dispatch their
+        // targets. Exact per-target scaling remains separately unresolved.
+        if (alreadyRolledAreaMagnitude is int areaRoll
+            && (areaRoll < spell.EffectRange.RollMinimum || areaRoll > spell.EffectRange.RollMaximum))
+            throw new InvalidDataException("NPC_AREA_BASE_MAGNITUDE_OUT_OF_RANGE");
+        var roll = alreadyRolledAreaMagnitude
+            ?? random.Next(spell.EffectRange.RollMinimum, checked(spell.EffectRange.RollMaximum + 1));
         var finalDamage = ResolveElementalSpellDamage(roll, element, elementalResistancePercent, poisonImmune);
         return new RuntimeNpcHitSpellEffectResolution(true, type, scope, element,
             spell.EffectRange.RollMinimum, spell.EffectRange.RollMaximum, roll, roll, elementalResistancePercent, poisonImmune, finalDamage,
