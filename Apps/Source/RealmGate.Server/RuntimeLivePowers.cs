@@ -1732,6 +1732,29 @@ public sealed class RuntimeLivePowersSmokeReport
             var curePoison = spells.Spells.Single(x => x.LegacyId == "222");
             Check(RuntimeLiveGameplayFacade.IsCurePoisonSpell(antidote), "cure-poison-antidote-classification", r);
             Check(RuntimeLiveGameplayFacade.IsCurePoisonSpell(curePoison), "cure-poison-healer-classification", r);
+            var fixedNpcRng = new Random(707);
+            var fixedNpcExpectedRng = new Random(707);
+            var fixedNpcMagnitude = RuntimeLiveGameplayFacade.ResolveNpcStatusEffectMagnitude(
+                7, 7, null, fixedNpcRng, classicWorld: true);
+            _ = fixedNpcExpectedRng.Next(7, 8);
+            Check(fixedNpcMagnitude == 7
+                && fixedNpcRng.Next(1, 100) == fixedNpcExpectedRng.Next(1, 100)
+                && fixedNpcRng.Next(1, 100) == fixedNpcExpectedRng.Next(1, 100),
+                "classic-npc-fixed-status-effect-consumes-native-range-draw", r);
+            var sharedNpcRng = new Random(707);
+            var sharedNpcExpectedRng = new Random(707);
+            var sharedNpcMagnitude = RuntimeLiveGameplayFacade.ResolveNpcStatusEffectMagnitude(
+                7, 9, 8, sharedNpcRng, classicWorld: true);
+            Check(sharedNpcMagnitude == 8
+                && sharedNpcRng.Next(1, 100) == sharedNpcExpectedRng.Next(1, 100),
+                "classic-npc-direct-and-status-effect-share-prerolled-magnitude", r);
+            var customFixedNpcRng = new Random(707);
+            var customFixedNpcExpectedRng = new Random(707);
+            var customFixedNpcMagnitude = RuntimeLiveGameplayFacade.ResolveNpcStatusEffectMagnitude(
+                7, 7, null, customFixedNpcRng, classicWorld: false);
+            Check(customFixedNpcMagnitude == 7
+                && customFixedNpcRng.Next(1, 100) == customFixedNpcExpectedRng.Next(1, 100),
+                "custom-npc-fixed-status-effect-preserves-no-draw", r);
             var nativeCureRng = new RuntimeClassicWorldgroupPrng(1234u);
             var fixedCure = antidote with { MinimumEffect = 7, MaximumEffect = 7 };
             Check(RuntimeLiveGameplayFacade.RollClassicNativeCureEffectMagnitude(fixedCure, 0, nativeCureRng) == 7
