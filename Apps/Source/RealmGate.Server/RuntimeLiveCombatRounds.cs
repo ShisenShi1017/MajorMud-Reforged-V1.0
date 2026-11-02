@@ -1961,7 +1961,7 @@ public sealed class RuntimeLiveCombatRoundSmokeReport
             var untouchedRng = new Random(1042);
             var noRoll = RuntimeLiveGameplayFacade.ResolveNpcHitSpellResistanceWithAdmission(
                 0, 40, 60, 7, 0, skippedRng);
-            Require(!noRoll.CheckEligible && noRoll.ResistanceRoll == 0
+            Require(!noRoll.CheckEligible && noRoll.Roll == 0
                 && skippedRng.Next(1, 101) == untouchedRng.Next(1, 101),
                 "npc-unresistable-spell-does-not-consume-resistance-rng");
             report.Checks.Add("npc-unresistable-spell-does-not-consume-resistance-rng");
@@ -1969,7 +1969,7 @@ public sealed class RuntimeLiveCombatRoundSmokeReport
             var untouchedAntiMagicRng = new Random(1042);
             var noAntiMagicRoll = RuntimeLiveGameplayFacade.ResolveNpcHitSpellResistanceWithAdmission(
                 1, 40, 60, 7, 0, absentAntiMagicRng);
-            Require(!noAntiMagicRoll.CheckEligible && noAntiMagicRoll.ResistanceRoll == 0
+            Require(!noAntiMagicRoll.CheckEligible && noAntiMagicRoll.Roll == 0
                 && absentAntiMagicRng.Next(1, 101) == untouchedAntiMagicRng.Next(1, 101),
                 "npc-antimagic-required-spell-does-not-consume-ineligible-rng");
             report.Checks.Add("npc-antimagic-required-spell-does-not-consume-ineligible-rng");
@@ -1978,13 +1978,13 @@ public sealed class RuntimeLiveCombatRoundSmokeReport
             var expectedRoll = expectedRng.Next(1, 100);
             var admittedRoll = RuntimeLiveGameplayFacade.ResolveNpcHitSpellResistanceWithAdmission(
                 2, 40, 60, 7, 0, normalRng);
-            Require(admittedRoll.CheckEligible && admittedRoll.ResistanceRoll is >= 1 and <= 99
-                && admittedRoll.ResistanceRoll == expectedRoll
+            Require(admittedRoll.CheckEligible && admittedRoll.Roll is >= 1 and <= 99
+                && admittedRoll.Roll == expectedRoll
                 && normalRng.Next(1, 100) == expectedRng.Next(1, 100),
                 "npc-eligible-spell-consumes-exactly-one-resistance-rng");
             report.Checks.Add("npc-eligible-spell-consumes-exactly-one-resistance-rng");
             var maximumNativeRoll = RuntimeLiveGameplayFacade.ResolveNpcHitSpellResistance(2, 40, 60, 7, 0, 99);
-            Require(maximumNativeRoll.CheckEligible && maximumNativeRoll.ResistanceRoll == 99
+            Require(maximumNativeRoll.CheckEligible && maximumNativeRoll.Roll == 99
                 && !maximumNativeRoll.Resisted, "npc-native-resistance-99-valid-not-forced-resist");
             report.Checks.Add("npc-native-resistance-99-valid-not-forced-resist");
             var highMrRoll97 = RuntimeLiveGameplayFacade.ResolveNpcHitSpellResistance(2, 100, 100, 100, 0, 97);
