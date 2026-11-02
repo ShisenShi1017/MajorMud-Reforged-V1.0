@@ -1042,7 +1042,8 @@ public sealed partial class RuntimeLiveGameplayFacade
     }
 
     internal static RuntimeNpcHitSpellEffectResolution ResolveNpcHitSpellEffect(
-        RuntimeNpcHitSpellSelection spell, int elementalResistancePercent, bool poisonImmune, Random random)
+        RuntimeNpcHitSpellSelection spell, int elementalResistancePercent, bool poisonImmune, Random random,
+        int? nativePreRolledMagnitude = null, bool nativeAreaMagnitudeScaled = false)
     {
         ArgumentNullException.ThrowIfNull(spell);
         ArgumentNullException.ThrowIfNull(random);
@@ -1063,7 +1064,14 @@ public sealed partial class RuntimeLiveGameplayFacade
         // WCCMMUD _monster_cast 0x428218..0x42822f consumes an effect
         // range draw before dispatching the ordered +0xD8 ability slots.
         // Do not skip the draw for equal authored range endpoints.
-        var roll = random.Next(spell.EffectRange.RollMinimum, checked(spell.EffectRange.RollMaximum + 1));
+        // Classic area spells receive their magnitude from _monster_cast_area
+        // after the native target-admission prepass. It may be smaller than the
+        // authored range because the admitted-target divisor has already run.
+        if (nativePreRolledMagnitude is int supplied && !nativeAreaMagnitudeScaled
+            && (supplied < spell.EffectRange.RollMinimum || supplied > spell.EffectRange.RollMaximum))
+            throw new InvalidDataException("NPC_NATIVE_EFFECT_MAGNITUDE_OUTSIDE_AUTHORED_RANGE");
+        var roll = nativePreRolledMagnitude
+            ?? random.Next(spell.EffectRange.RollMinimum, checked(spell.EffectRange.RollMaximum + 1));
         var finalDamage = ResolveElementalSpellDamage(roll, element, elementalResistancePercent, poisonImmune);
         return new RuntimeNpcHitSpellEffectResolution(true, type, scope, element,
             spell.EffectRange.RollMinimum, spell.EffectRange.RollMaximum, roll, roll, elementalResistancePercent, poisonImmune, finalDamage,
