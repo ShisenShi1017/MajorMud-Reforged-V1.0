@@ -1751,6 +1751,28 @@ public sealed class RuntimeLiveCombatRoundSmokeReport
             Require(liveStatusCatalog.TryGet("spell.1220", out var blacknightStatus) && blacknightStatus.DurationRounds == 15 &&
                 blacknightStatus.Abilities.Count == 1 && blacknightStatus.Abilities[0] is { AbilityId: 37, Value: 200 },
                 "npc-blacknight-decoded-self-status"); report.Checks.Add("npc-blacknight-decoded-self-status");
+            var nativeSlotFixture = new[]
+            {
+                new RuntimeClassicLiveStatusAbility(122, "RemovesSpell", 0),
+                new RuntimeClassicLiveStatusAbility(7, "DamageResistance", -5),
+                new RuntimeClassicLiveStatusAbility(122, "RemovesSpell", 31),
+                new RuntimeClassicLiveStatusAbility(122, "RemovesSpell", 0)
+            };
+            var resolvedNativeSlots = RuntimeLiveGameplayFacade.ResolveClassicNpcEffectSlots(nativeSlotFixture, 19);
+            Require(resolvedNativeSlots.Count == 4
+                && resolvedNativeSlots.Select(slot => slot.AbilityId).SequenceEqual(new[] { 122, 7, 122, 122 })
+                && resolvedNativeSlots.Select(slot => slot.PopulatedOrdinal).SequenceEqual(new[] { 0, 1, 2, 3 })
+                && resolvedNativeSlots.Select(slot => slot.RawValue).SequenceEqual(new[] { 0, -5, 31, 0 })
+                && resolvedNativeSlots.Select(slot => slot.EffectiveValue).SequenceEqual(new[] { 19, -5, 31, 19 }),
+                "npc-native-ordered-repeated-slots-and-zero-inherits-base-magnitude");
+            report.Checks.Add("npc-native-ordered-repeated-slots-and-zero-inherits-base-magnitude");
+            var fixedSelfSlots = RuntimeLiveGameplayFacade.ResolveClassicNpcEffectSlots(
+                blacknightStatus.Abilities, 13);
+            Require(fixedSelfSlots.Count == 1
+                && fixedSelfSlots[0].AbilityId == 37 && fixedSelfSlots[0].RawValue == 200
+                && fixedSelfSlots[0].EffectiveValue == 200,
+                "npc-blacknight-fixed-slot-overrides-base-magnitude");
+            report.Checks.Add("npc-blacknight-fixed-slot-overrides-base-magnitude");
             var npcStatusRoot = Path.Combine(Path.GetTempPath(), "reforged-npc-status-" + Guid.NewGuid().ToString("N"));
             try
             {
