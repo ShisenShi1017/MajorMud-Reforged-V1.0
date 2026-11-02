@@ -67,6 +67,17 @@ public sealed record RuntimeNpcHitSpellResistanceResolution(
     bool Resisted);
 
 
+// Native _get_room_targets operates on same-room live player sessions
+// before _monster_cast_area generates its one shared effect magnitude.
+public sealed record RuntimeClassicNpcAreaTargetSnapshot(
+    string SessionId, bool SpellImmune, int Willpower, int Intellect,
+    int MagicResistanceBonus, int AntiMagicAbility);
+public sealed record RuntimeClassicNpcAreaTargetAdmission(
+    string SessionId, bool Admitted, bool SpellImmune, int ResistanceRoll);
+public sealed record RuntimeClassicNpcAreaRollPlan(
+    IReadOnlyList<RuntimeClassicNpcAreaTargetAdmission> Targets,
+    int EligibleTargetCount, int? SharedBaseMagnitude);
+
 public sealed record RuntimeDecodedSpellEffectRange(
     int AuthoredFirstEndpoint,
     int AuthoredSecondEndpoint,
@@ -834,6 +845,45 @@ public sealed partial class RuntimeLiveGameplayFacade
             spell.ResistTypeRaw, spell.ResistAbilityRaw, spell.DifficultyRaw,
             ClassifyNpcHitSpell(spell.SpellTypeRaw, spell.TargetTypeRaw, spell.AttackTypeRaw, spell.ResistTypeRaw),
             ResolveNpcHitSpellEffectRange(spell.MinimumEffect, spell.MaximumEffect));
+    }
+
+    // The native _get_room_targets (0x425F65..0x4260A5) admits room
+    // sessions in the original enumeration order: immunity first, then
+    // conditional MR rolls. _monster_cast_area (0x426472..0x426599) draws
+    // a single base magnitude only when this prepass accepted >=1 target.
+    // The caller must provide same-room, living player sessions in the native
+    // enumeration order. The exact live session-to-native index mapping remains
+    // unverified, so this result is not yet wired into live mutation.
+    internal static RuntimeClassicNpcAreaRollPlan ResolveClassicNpcAreaRollPlan(
+        int resistanceTypeRaw, int effectMinimum, int effectMaximum,
+        IReadOnlyList<RuntimeClassicNpcAreaTargetSnapshot> targets, Random random)
+    {
+        ArgumentNullException.ThrowIfNull(targets);
+        ArgumentNullException.ThrowIfNull(random);
+        var seen = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+        var results = new List<RuntimeClassicNpcAreaTargetAdmission>(targets.Count);
+        var eligibleCount = 0;
+        foreach (var target in targets)
+        {
+            if (string.IsNullOrWhiteSpace(target.SessionId) || !seen.Add(target.SessionId))
+                throw new InvalidDataException("NPC_NATIVE_AREA_TARGET_ID_INVALID_OR_DUPLICATE");
+            if (target.SpellImmune)
+            {
+                results.Add(new(target.SessionId, false, true, 0));
+                continue;
+            }
+            var resistance = ResolveNpcHitSpellResistanceWithAdmission(
+                resistanceTypeRaw, target.Willpower, target.Intellect,
+                target.MagicResistanceBonus, target.AntiMagicAbility, random);
+            var admitted = !resistance.Resisted;
+            if (admitted) eligibleCount++;
+            results.Add(new(target.SessionId, admitted, false, resistance.Roll));
+        }
+        var magnitude = eligibleCount > 0
+            ? ResolveNpcStatusEffectMagnitude(effectMinimum, effectMaximum,
+                null, random, classicWorld: true)
+            : (int?)null;
+        return new(results, eligibleCount, magnitude);
     }
 
     // WCCMMUD _monster_cast at 0x427ebb uses _genrdn(1,100) only when
