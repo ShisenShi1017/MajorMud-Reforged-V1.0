@@ -1194,7 +1194,8 @@ public sealed partial class RuntimeLiveGameplayFacade
         RuntimeNpcHitSpellSelection spell,
         string casterId,
         bool poisonImmune,
-        DateTimeOffset nowUtc)
+        DateTimeOffset nowUtc,
+        int? alreadyRolledEffectMagnitude = null)
     {
         lock (_livePowerGate)
         {
@@ -1220,10 +1221,21 @@ public sealed partial class RuntimeLiveGameplayFacade
                     _liveSpellEngine.EffectsFor(character.CharacterId), "character",
                     character.CharacterId, spell.CanonicalSpellId, nowUtc))
                 return resolution with { Applied = false, Reason = "native-player-active-spell-slots-full" };
-            var effectRoll = spell.MinimumEffect == spell.MaximumEffect
-                ? spell.MinimumEffect
-                : Random.Shared.Next(Math.Min(spell.MinimumEffect, spell.MaximumEffect),
-                    checked(Math.Max(spell.MinimumEffect, spell.MaximumEffect) + 1));
+            var rollMinimum = Math.Min(spell.MinimumEffect, spell.MaximumEffect);
+            var rollMaximum = Math.Max(spell.MinimumEffect, spell.MaximumEffect);
+            if (alreadyRolledEffectMagnitude is int priorRoll
+                && (priorRoll < rollMinimum || priorRoll > rollMaximum))
+                throw new InvalidDataException($"NPC_SPELL_EFFECT_ROLL_OUTSIDE_NATIVE_RANGE:{spell.CanonicalSpellId}:{priorRoll}");
+            // _monster_cast rolls one magnitude before its ordered ten ability
+            // slots (0x428218..0x42822F and 0x42828B..0x42954D).
+            // An earlier direct-effect roll is reused by status application
+            // rather than consuming a second random draw. Classic fixed-range
+            // status effects also consume one native-style range draw.
+            var effectRoll = session.World.Definition.Type.Equals("Classic", StringComparison.OrdinalIgnoreCase)
+                ? alreadyRolledEffectMagnitude ?? Random.Shared.Next(rollMinimum, checked(rollMaximum + 1))
+                : spell.MinimumEffect == spell.MaximumEffect
+                    ? spell.MinimumEffect
+                    : Random.Shared.Next(rollMinimum, checked(rollMaximum + 1));
             var snapshot = _liveSpellEngine.Snapshot();
             var active = snapshot.ActiveEffects
                 .Where(effect => !existing.Any(old => old.EffectId.Equals(effect.EffectId, StringComparison.OrdinalIgnoreCase)))
