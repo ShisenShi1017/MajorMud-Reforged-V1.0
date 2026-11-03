@@ -471,6 +471,27 @@ public sealed partial class RuntimeLiveGameplayFacade
                                 {
                                     var hitPointResolution = ApplyElementalSpellHitPoints(playerHp, before.MaximumHitPoints, effect.DirectDamage);
                                     playerHp = hitPointResolution.HitPointsAfter;
+                                    // WCCMMUD _monster_cast ability 8 at 0x428A9A..0x428ACE
+                                    // applies the same raw magnitude to the monster's current HP
+                                    // and clamps to its definition maximum (+0x78). Do not
+                                    // substitute capped actual player damage for that magnitude.
+                                    // _monster_cast_area uses a separate handler; keep it gated.
+                                    if (session.World.Definition.Type.Equals("Classic", StringComparison.OrdinalIgnoreCase)
+                                        && !IsNpcRoomAreaSpell(hitSpell) && effect.Roll > 0
+                                        && ClassicLiveStatusCatalog(session).TryGet(hitSpell.CanonicalSpellId, out var drainDefinition)
+                                        && drainDefinition.Abilities.Any(ability => ability.AbilityId == 8))
+                                    {
+                                        var healedNpcHp = ResolveClassicNpcDrainHitPointsAfter(
+                                            npcHp, liveNpc.MaximumHitPoints, effect.Roll);
+                                        if (healedNpcHp > npcHp)
+                                        {
+                                            if (!Living(session).ApplyNpcHealing(
+                                                encounter.NpcInstanceId, effect.Roll, DateTimeOffset.UtcNow))
+                                                throw new InvalidOperationException(
+                                                    $"NPC_NATIVE_DRAIN_CASTER_MISSING:{encounter.NpcInstanceId}");
+                                            npcHp = healedNpcHp;
+                                        }
+                                    }
                                     if (hitPointResolution.DamageApplied > 0)
                                     {
                                         nativeSpellDamage = hitPointResolution.DamageApplied;
@@ -1091,6 +1112,16 @@ public sealed partial class RuntimeLiveGameplayFacade
     // table: direct HP handlers 1 and 17 differ from poison 19 and confusion
     // 71. Ability 8 (drain) remains on the previous guarded direct path until
     // its healing/secondary mutation ordering is reconstructed.
+    internal static int ResolveClassicNpcDrainHitPointsAfter(
+        int currentHitPoints, int maximumHitPoints, int rawDrainMagnitude)
+    {
+        if (maximumHitPoints <= 0 || currentHitPoints < 0 || currentHitPoints > maximumHitPoints
+            || rawDrainMagnitude < 0)
+            throw new InvalidDataException("NPC_NATIVE_DRAIN_HIT_POINT_INPUT_INVALID");
+        return (int)Math.Min((long)maximumHitPoints,
+            (long)currentHitPoints + rawDrainMagnitude);
+    }
+
     internal static bool ClassicNpcHasDirectHitPointHandler(
         RuntimeClassicLiveStatusDefinition definition)
     {
