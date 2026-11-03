@@ -1985,6 +1985,9 @@ public sealed class RuntimeLiveCombatRoundSmokeReport
             Require(RuntimeLiveGameplayFacade.ResolveNpcHitSpellAttackElement(3) == "lightning", "npc-hit-spell-lightning-classification"); report.Checks.Add("npc-hit-spell-lightning-classification");
             Require(RuntimeLiveGameplayFacade.ResolveNpcHitSpellAttackElement(4) == "untyped", "npc-hit-spell-untyped-classification"); report.Checks.Add("npc-hit-spell-untyped-classification");
             Require(RuntimeLiveGameplayFacade.ResolveNpcHitSpellAttackElement(5) == "acid", "npc-hit-spell-acid-classification"); report.Checks.Add("npc-hit-spell-acid-classification");
+            Require(RuntimeLiveGameplayFacade.ResolveNpcHitSpellAttackElement(5, classicNativeElement: true) == "water",
+                "npc-native-attack5-uses-water-resistance-ability147");
+            report.Checks.Add("npc-native-attack5-uses-water-resistance-ability147");
             Require(RuntimeLiveGameplayFacade.ResolveNpcHitSpellAttackElement(6) == "poison", "npc-hit-spell-poison-classification"); report.Checks.Add("npc-hit-spell-poison-classification");
             Require(RuntimeLiveGameplayFacade.ResolveNpcHitSpellTargetScope(0) == "contact-attached-target", "npc-hit-spell-contact-target-classification"); report.Checks.Add("npc-hit-spell-contact-target-classification");
             Require(RuntimeLiveGameplayFacade.ResolveNpcHitSpellTargetScope(1) == "self-target", "npc-hit-spell-self-target-classification"); report.Checks.Add("npc-hit-spell-self-target-classification");
@@ -2238,6 +2241,34 @@ public sealed class RuntimeLiveCombatRoundSmokeReport
                 && noExtraMinusMrRng.Calls == 0,
                 "npc-native-area-ability17-damage-uses-one-shared-roll-and-target-mr");
             report.Checks.Add("npc-native-area-ability17-damage-uses-one-shared-roll-and-target-mr");
+            Require(liveStatusCatalog.TryGet("spell.805", out var acidTempestStatus)
+                    && acidTempestStatus.SpellTypeRaw == 0
+                    && acidTempestStatus.AttackTypeRaw == 5
+                    && acidTempestStatus.Abilities.Any(ability => ability.AbilityId == 17),
+                "npc-native-area-acid-tempest-uses-attack-element5-water");
+            report.Checks.Add("npc-native-area-acid-tempest-uses-attack-element5-water");
+            var attackFiveFixture = plagueSpell! with
+            {
+                SpellTypeRaw = 0, TargetTypeRaw = 12, AttackTypeRaw = 5,
+                MinimumEffect = 100, MaximumEffect = 100,
+                EffectRange = RuntimeLiveGameplayFacade.ResolveNpcHitSpellEffectRange(100, 100)
+            };
+            var attackFiveRng = new CountingRangeRandom();
+            var nativeWaterResistance = RuntimeLiveGameplayFacade.ResolveNpcHitSpellEffect(
+                attackFiveFixture, 50, false, attackFiveRng,
+                nativePreRolledMagnitude: 100, nativeAreaMagnitudeScaled: true,
+                classicNativeHasDirectHitPointHandler: true,
+                classicNativeAttackElement: true);
+            var customAcidResistance = RuntimeLiveGameplayFacade.ResolveNpcHitSpellEffect(
+                attackFiveFixture, 50, false, attackFiveRng,
+                nativePreRolledMagnitude: 100, nativeAreaMagnitudeScaled: true);
+            Require(nativeWaterResistance.Element == "water"
+                && nativeWaterResistance.DirectDamage == 50
+                && customAcidResistance.Element == "acid"
+                && customAcidResistance.DirectDamage == 100
+                && attackFiveRng.Calls == 0,
+                "npc-native-water-defense-scales-acid-attack-without-changing-custom");
+            report.Checks.Add("npc-native-water-defense-scales-acid-attack-without-changing-custom");
             Require(liveStatusCatalog.TryGet("spell.139", out var acidRainStatus)
                     && acidRainStatus.SpellTypeRaw == 3
                     && acidRainStatus.Abilities.Any(ability => ability.AbilityId == 1)
