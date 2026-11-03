@@ -428,9 +428,15 @@ public sealed partial class RuntimeLiveGameplayFacade
                                     null, Random.Shared, classicWorld: true))
                             : definition.Abilities.Select((ability, index) => new RuntimeClassicNpcEffectSlot(
                                 index, ability.AbilityId, ability.Value, ability.Value)).ToArray();
-                        var modifiers = resolvedSelfSlots
-                            .Where(slot => slot.EffectiveValue != 0)
-                            .ToDictionary(slot => slot.AbilityId, slot => slot.EffectiveValue);
+                        // The native slot vector is ordered and may contain
+                        // repeated control abilities (e.g. several RemovesSpell
+                        // entries). Only actual stat modifiers can be placed
+                        // in the timed-status dictionary. Retain Custom's
+                        // existing projection until its separate audit.
+                        var modifiers = classicSelfCast
+                            ? ResolveClassicNpcTimedModifierProjection(resolvedSelfSlots)
+                            : resolvedSelfSlots.Where(slot => slot.EffectiveValue != 0)
+                                .ToDictionary(slot => slot.AbilityId, slot => slot.EffectiveValue);
                         if (definition.DurationRounds > 0 && modifiers.Count > 0)
                             Living(session).ApplyNpcTimedStatus(encounter.NpcInstanceId, definition.SpellId, definition.DurationRounds, modifiers, DateTimeOffset.UtcNow);
                     }
@@ -1213,6 +1219,22 @@ public sealed partial class RuntimeLiveGameplayFacade
     // magnitude when a slot's signed Int16 value at +0xA8 is zero, otherwise
     // it uses that slot's own value. The ability ID comes from +0xD8.
     // Preserve repeated IDs and the relative order of populated slots.
+    // The existing timed-status store is keyed by ability ID. This is
+    // intentionally a *stat-only projection*, not the native ordered
+    // dispatcher. Duplicate stat IDs retain the last populated value here;
+    // exact native stacking remains a separate parity boundary. Repeated
+    // scripted/removal slots are preserved in ResolveClassicNpcEffectSlots.
+    internal static Dictionary<int, int> ResolveClassicNpcTimedModifierProjection(
+        IReadOnlyList<RuntimeClassicNpcEffectSlot> orderedSlots)
+    {
+        ArgumentNullException.ThrowIfNull(orderedSlots);
+        return orderedSlots
+            .Where(slot => slot.EffectiveValue != 0
+                && RuntimeClassicLiveStatusDefinition.IsCombatModifierAbility(slot.AbilityId))
+            .GroupBy(slot => slot.AbilityId)
+            .ToDictionary(group => group.Key, group => group.Last().EffectiveValue);
+    }
+
     internal static IReadOnlyList<RuntimeClassicNpcEffectSlot> ResolveClassicNpcEffectSlots(
         IReadOnlyList<RuntimeClassicLiveStatusAbility> abilities, int baseMagnitude)
     {
