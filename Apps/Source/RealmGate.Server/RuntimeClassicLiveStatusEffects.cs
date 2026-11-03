@@ -36,8 +36,10 @@ public sealed record RuntimeClassicLiveStatusDefinition(
     // separately for every populated slot (WCCMMUD _monster_cast 0x428445).
     // Repeated IDs are intentional: chest spells such as spell.465 execute
     // the same TextBlock multiple times. Never deduplicate this projection.
+    // Raw slot values, including zero. Native zero-valued TextBlock
+    // abilities inherit the spell's single rolled base magnitude.
     public IReadOnlyList<int> TextblockIds => Abilities
-        .Where(x => x.AbilityId == 148 && x.Value > 0)
+        .Where(x => x.AbilityId == 148)
         .Select(x => x.Value).ToArray();
     public bool RuneMarker => Abilities.Any(x => x.AbilityId == 152 && x.Value == 0);
     public IReadOnlyList<int> RemovedLegacySpellIds => Abilities
@@ -1417,6 +1419,8 @@ public sealed class RuntimeClassicLiveStatusEffectsSmokeReport
                     .Where(spell => spell.Abilities.Any(ability => ability.AbilityId == 148))
                     .ToArray();
                 Require(nativeTextblockOwners.Length == 180
+                    && nativeTextblockOwners.Sum(spell => spell.TextblockIds.Count) == 199
+                    && nativeTextblockOwners.Count(spell => spell.TextblockIds.Contains(0)) == 28
                     && nativeTextblockOwners.Sum(spell =>
                         spell.Abilities.Count(ability => ability.AbilityId == 148)) == 199
                     && nativeTextblockOwners.Count(spell =>
@@ -1431,6 +1435,12 @@ public sealed class RuntimeClassicLiveStatusEffectsSmokeReport
                     && oakChestFour.TextblockIds.SequenceEqual(Enumerable.Repeat(876, 4)),
                     "classic-native-repeated-textblock-ids-not-deduplicated");
                 report.Checks.Add("classic-native-repeated-textblock-ids-not-deduplicated");
+                Require(catalog.TryGet("spell.997", out var blackwoodOpen)
+                    && blackwoodOpen.TextblockIds.SequenceEqual(new[] { 0 })
+                    && blackwoodOpen.MinimumEffect == 9384
+                    && blackwoodOpen.MaximumEffect == 9384,
+                    "classic-native-zero-value-textblock-inherits-spell-magnitude");
+                report.Checks.Add("classic-native-zero-value-textblock-inherits-spell-magnitude");
                 var originalOrderedSlots = nativeSpells.Require("spell.4").DecodedAbilities;
                 var orderedSlotMetadata = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase);
                 RuntimeLiveGameplayFacade.AddClassicOrderedAbilitySlotMetadata(
