@@ -2170,6 +2170,45 @@ public sealed class RuntimeLiveCombatRoundSmokeReport
                 && RuntimeLiveGameplayFacade.ResolveClassicNpcAreaPerTargetBaseMagnitude(10, 3, 12) == 10,
                 "npc-native-area-target-type-not-spell-type-divisor-provenance");
             report.Checks.Add("npc-native-area-target-type-not-spell-type-divisor-provenance");
+            // Native _monster_cast_area ability17 at 0x426FCE adjusts the
+            // elemental result with a different MR formula from the user-cast
+            // handler. In particular, no Anti-Magic below 50 MR amplifies
+            // damage, whereas Anti-Magic uses capped MR/2 reduction.
+            Require(RuntimeLiveGameplayFacade.ResolveClassicNpcAreaDamageMinusMr(100, 0, false) == 150
+                && RuntimeLiveGameplayFacade.ResolveClassicNpcAreaDamageMinusMr(100, 50, false) == 100
+                && RuntimeLiveGameplayFacade.ResolveClassicNpcAreaDamageMinusMr(100, 51, false) == 99
+                && RuntimeLiveGameplayFacade.ResolveClassicNpcAreaDamageMinusMr(100, 100, false) == 75
+                && RuntimeLiveGameplayFacade.ResolveClassicNpcAreaDamageMinusMr(100, 200, false) == 50
+                && RuntimeLiveGameplayFacade.ResolveClassicNpcAreaDamageMinusMr(100, 0, true) == 100
+                && RuntimeLiveGameplayFacade.ResolveClassicNpcAreaDamageMinusMr(100, 100, true) == 50
+                && RuntimeLiveGameplayFacade.ResolveClassicNpcAreaDamageMinusMr(100, 200, true) == 25
+                && RuntimeLiveGameplayFacade.ResolveClassicNpcAreaDamageMinusMr(-100, 0, false) == -150,
+                "npc-native-area-damage-minus-mr-antimagic-caps-and-signed-truncation");
+            report.Checks.Add("npc-native-area-damage-minus-mr-antimagic-caps-and-signed-truncation");
+            var nativeAreaMinusMrFixture = plagueSpell! with
+            {
+                SpellTypeRaw = 0, TargetTypeRaw = 12, AttackTypeRaw = 4,
+                MinimumEffect = 10, MaximumEffect = 50,
+                EffectRange = RuntimeLiveGameplayFacade.ResolveNpcHitSpellEffectRange(10, 50)
+            };
+            var noExtraMinusMrRng = new CountingRangeRandom();
+            var nativeAreaMinusMr = RuntimeLiveGameplayFacade.ResolveNpcHitSpellEffect(
+                nativeAreaMinusMrFixture, 0, false, noExtraMinusMrRng,
+                nativePreRolledMagnitude: 10, nativeAreaMagnitudeScaled: true,
+                classicNativeHasDirectHitPointHandler: true,
+                classicNativeAreaDamageMinusMr17: true,
+                nativeTargetMagicResistance: 100);
+            var nativeAreaAntiMagic = RuntimeLiveGameplayFacade.ResolveNpcHitSpellEffect(
+                nativeAreaMinusMrFixture, 0, false, noExtraMinusMrRng,
+                nativePreRolledMagnitude: 10, nativeAreaMagnitudeScaled: true,
+                classicNativeHasDirectHitPointHandler: true,
+                classicNativeAreaDamageMinusMr17: true,
+                nativeTargetMagicResistance: 100, nativeTargetHasAntiMagic: true);
+            Require(nativeAreaMinusMr.Executable && nativeAreaMinusMr.DirectDamage == 8
+                && nativeAreaAntiMagic.Executable && nativeAreaAntiMagic.DirectDamage == 5
+                && noExtraMinusMrRng.Calls == 0,
+                "npc-native-area-ability17-damage-uses-one-shared-roll-and-target-mr");
+            report.Checks.Add("npc-native-area-ability17-damage-uses-one-shared-roll-and-target-mr");
             // Once the room admission prepass rolls a single base magnitude,
             // each accepted Classic recipient consumes the pre-scaled value
             // without a second damage or status RNG draw.
