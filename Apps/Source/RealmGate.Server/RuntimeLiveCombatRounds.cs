@@ -479,11 +479,11 @@ public sealed partial class RuntimeLiveGameplayFacade
                                     // applies the same raw magnitude to the monster's current HP
                                     // and clamps to its definition maximum (+0x78). Do not
                                     // substitute capped actual player damage for that magnitude.
-                                    // _monster_cast_area uses a separate handler; keep it gated.
+                                    // The native area variant uses the same caster HP
+                                    // recovery, once for each admitted player recipient.
                                     if (npcHp > 0
                                         && session.World.Definition.Type.Equals("Classic", StringComparison.OrdinalIgnoreCase)
-                                        && classicDrainAbility8 && effect.Roll > 0
-                                        )
+                                        && classicDrainAbility8 && effect.Roll > 0)
                                     {
                                         var healedNpcHp = ResolveClassicNpcDrainHitPointsAfter(
                                             npcHp, liveNpc.MaximumHitPoints, effect.Roll);
@@ -1137,8 +1137,8 @@ public sealed partial class RuntimeLiveGameplayFacade
 
     // WCCMMUD _monster_cast dispatches ability IDs through the 0x4282CA
     // table: direct HP handlers 1 and 17 differ from poison 19 and confusion
-    // 71. Ability 8 (drain) remains on the previous guarded direct path until
-    // its healing/secondary mutation ordering is reconstructed.
+    // 71. Ability 8 drains the victim and heals the casting monster; the
+    // area variant repeats that mutation per admitted recipient.
     internal static int ResolveClassicNpcDrainHitPointsAfter(
         int currentHitPoints, int maximumHitPoints, int rawDrainMagnitude)
     {
