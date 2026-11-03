@@ -1952,6 +1952,20 @@ public sealed class RuntimeLiveCombatRoundSmokeReport
                 && statusOnlyRng.Calls == 0,
                 "npc-classic-status-only-no-immediate-damage-or-rng");
             report.Checks.Add("npc-classic-status-only-no-immediate-damage-or-rng");
+            var nativeBeePoisonFixture = plagueSpell! with
+            {
+                CanonicalSpellId = "spell.365", SpellTypeRaw = 0,
+                TargetTypeRaw = 8, DurationRaw = 100
+            };
+            var nativeBeePoisonDelivery = RuntimeLiveGameplayFacade.ResolveNpcHitSpellStatusDelivery(
+                nativeBeePoisonFixture, false, false, classicNativePoisonAbility19: true);
+            var customBeePoisonDelivery = RuntimeLiveGameplayFacade.ResolveNpcHitSpellStatusDelivery(
+                nativeBeePoisonFixture, false, false);
+            Require(nativeBeePoisonDelivery.Eligible && nativeBeePoisonDelivery.Applied
+                && nativeBeePoisonDelivery.EffectKind == "immediate-with-poison"
+                && !customBeePoisonDelivery.Eligible,
+                "npc-classic-type0-poison19-delivers-status-without-direct-hp-damage");
+            report.Checks.Add("npc-classic-type0-poison19-delivers-status-without-direct-hp-damage");
             var plagueDelivery = RuntimeLiveGameplayFacade.ResolveNpcHitSpellStatusDelivery(plagueSpell, false, false, plagueStatus.HasCombatModifiers);
             Require(plagueDelivery.Eligible && plagueDelivery.Applied && plagueDelivery.DurationSeconds == 30 &&
                 plagueDelivery.EffectKind == "immediate-with-duration-modifiers",
