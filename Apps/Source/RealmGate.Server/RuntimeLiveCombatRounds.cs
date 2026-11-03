@@ -476,7 +476,8 @@ public sealed partial class RuntimeLiveGameplayFacade
                                     // and clamps to its definition maximum (+0x78). Do not
                                     // substitute capped actual player damage for that magnitude.
                                     // _monster_cast_area uses a separate handler; keep it gated.
-                                    if (session.World.Definition.Type.Equals("Classic", StringComparison.OrdinalIgnoreCase)
+                                    if (npcHp > 0
+                                        && session.World.Definition.Type.Equals("Classic", StringComparison.OrdinalIgnoreCase)
                                         && !IsNpcRoomAreaSpell(hitSpell) && effect.Roll > 0
                                         && ClassicLiveStatusCatalog(session).TryGet(hitSpell.CanonicalSpellId, out var drainDefinition)
                                         && drainDefinition.Abilities.Any(ability => ability.AbilityId == 8))
