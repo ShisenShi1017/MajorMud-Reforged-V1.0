@@ -44,6 +44,17 @@ public sealed record RuntimeClassicNpcEffectSlot(
     int RawValue,
     int EffectiveValue);
 
+// This is a native dispatch *plan*, not a request to execute arbitrary
+// special commands or create unowned monster instances. Each populated
+// Summon(12) or TextBlock(148) slot is independently ordered.
+public sealed record RuntimeClassicNativeSpecialSpellSlot(
+    int PopulatedOrdinal,
+    int AbilityId,
+    int RawValue,
+    int EffectiveId,
+    bool NativeTargetAdmitted,
+    bool ResolvedId);
+
 public sealed record RuntimeNpcHitSpellStatusDeliveryResolution(
     bool Eligible,
     bool Applied,
@@ -1224,6 +1235,27 @@ public sealed partial class RuntimeLiveGameplayFacade
     // dispatcher. Duplicate stat IDs retain the last populated value here;
     // exact native stacking remains a separate parity boundary. Repeated
     // scripted/removal slots are preserved in ResolveClassicNpcEffectSlots.
+    // Summon(12) in _monster_cast (0x428BD9) admits target types 1, 2,
+    // 6 and 8. TextBlock(148) dispatches the special-command interpreter
+    // at 0x428445 for every authored slot. The native effect magnitude is
+    // substituted only for slots whose raw value is zero; repeated IDs are
+    // never deduplicated. This boundary deliberately does not perform the
+    // unverified ownership, lifetime or transactional script mutations.
+    internal static IReadOnlyList<RuntimeClassicNativeSpecialSpellSlot> ResolveClassicNativeSpecialSpellSlots(
+        IReadOnlyList<RuntimeClassicNpcEffectSlot> orderedSlots, int nativeTargetTypeRaw)
+    {
+        ArgumentNullException.ThrowIfNull(orderedSlots);
+        if (orderedSlots.Count > 10)
+            throw new InvalidDataException("CLASSIC_NATIVE_SPECIAL_SLOTS_EXCEED_TEN");
+        return orderedSlots
+            .Where(slot => slot.AbilityId is 12 or 148)
+            .Select(slot => new RuntimeClassicNativeSpecialSpellSlot(
+                slot.PopulatedOrdinal, slot.AbilityId, slot.RawValue, slot.EffectiveValue,
+                slot.AbilityId == 148 || nativeTargetTypeRaw is 1 or 2 or 6 or 8,
+                slot.EffectiveValue > 0))
+            .ToArray();
+    }
+
     internal static Dictionary<int, int> ResolveClassicNpcTimedModifierProjection(
         IReadOnlyList<RuntimeClassicNpcEffectSlot> orderedSlots)
     {
