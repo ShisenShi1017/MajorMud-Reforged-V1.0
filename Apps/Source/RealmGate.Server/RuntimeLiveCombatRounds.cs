@@ -1981,6 +1981,42 @@ public sealed class RuntimeLiveCombatRoundSmokeReport
                 && nativeDrainVector.Abilities.Count(ability => ability.AbilityId == 8) == 1,
                 "npc-native-ability8-drain-recovers-caster-hp-capped-at-maximum");
             report.Checks.Add("npc-native-ability8-drain-recovers-caster-hp-capped-at-maximum");
+            // WCCMMUD _monster_cast_area dispatches ability 8 by its effect
+            // ID even if the spell's +0xC4 type is 3 (Shadow Breath / 1011).
+            // Four canonical area spells have Drain: 389, 520, 899, 1011.
+            Require(liveStatusCatalog.TryGet("spell.389", out var drainsAreaStatus)
+                    && RuntimeLiveGameplayFacade.ClassicNpcHasDrainHandler(drainsAreaStatus)
+                    && liveStatusCatalog.TryGet("spell.520", out var sucksLifeAreaStatus)
+                    && RuntimeLiveGameplayFacade.ClassicNpcHasDrainHandler(sucksLifeAreaStatus)
+                    && liveStatusCatalog.TryGet("spell.899", out var necromanticStormAreaStatus)
+                    && RuntimeLiveGameplayFacade.ClassicNpcHasDrainHandler(necromanticStormAreaStatus)
+                    && liveStatusCatalog.TryGet("spell.1011", out var shadowBreathAreaStatus)
+                    && RuntimeLiveGameplayFacade.ClassicNpcHasDrainHandler(shadowBreathAreaStatus)
+                    && shadowBreathAreaStatus.SpellTypeRaw == 3,
+                "npc-four-area-drain-owners-including-type3-shadow-breath");
+            report.Checks.Add("npc-four-area-drain-owners-including-type3-shadow-breath");
+            var shadowBreathFixture = plagueSpell! with
+            {
+                SpellTypeRaw = 3,
+                TargetTypeRaw = 12,
+                AttackTypeRaw = 4,
+                MinimumEffect = 50,
+                MaximumEffect = 150,
+                EffectRange = RuntimeLiveGameplayFacade.ResolveNpcHitSpellEffectRange(50, 150)
+            };
+            var nativeShadowBreathEffect = RuntimeLiveGameplayFacade.ResolveNpcHitSpellEffect(
+                shadowBreathFixture, 0, false, new CountingRangeRandom(),
+                classicNativeHasDirectHitPointHandler: true, classicNativeDrainAbility8: true);
+            var legacyShadowBreathEffect = RuntimeLiveGameplayFacade.ResolveNpcHitSpellEffect(
+                shadowBreathFixture, 0, false, new CountingRangeRandom(),
+                classicNativeHasDirectHitPointHandler: true);
+            Require(nativeShadowBreathEffect.Executable
+                && nativeShadowBreathEffect.DirectDamage == 50
+                && !legacyShadowBreathEffect.Executable
+                && RuntimeLiveGameplayFacade.ResolveClassicNpcDrainHitPointsAfter(20, 100, 50) == 70
+                && RuntimeLiveGameplayFacade.ResolveClassicNpcDrainHitPointsAfter(70, 100, 50) == 100,
+                "npc-native-type3-area-drain-damages-and-heals-once-per-recipient");
+            report.Checks.Add("npc-native-type3-area-drain-damages-and-heals-once-per-recipient");
             var statusOnlyRng = new CountingRangeRandom();
             var statusOnlyDamage = RuntimeLiveGameplayFacade.ResolveNpcHitSpellEffect(
                 plagueSpell!, 0, false, statusOnlyRng,
