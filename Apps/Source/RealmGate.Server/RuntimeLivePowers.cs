@@ -1990,6 +1990,29 @@ public sealed class RuntimeLivePowersSmokeReport
                 && scatterValues.Where(value => value > 0).Order().SequenceEqual(new[] { 1076, 2371, 2379 }),
                 "scatter-items-twelve-owners-nine-markers-three-destinations", r);
             Check(healManaSpells.Length == 26, "heal-mana-spell-count-26", r);
+            var classicCureOnlySpells = spells.Spells
+                .Where(RuntimeLiveGameplayFacade.IsClassicCureOnlySpell).ToArray();
+            Check(classicCureOnlySpells.Length == 7
+                && classicCureOnlySpells.Select(spell => spell.LegacyId)
+                    .Order(StringComparer.OrdinalIgnoreCase)
+                    .SequenceEqual(new[] { "112", "1268", "156", "19", "222", "31", "855" }
+                        .Order(StringComparer.OrdinalIgnoreCase)),
+                "classic-seven-cure-only-ability-vectors", r);
+            var nativePurify = spells.Require("spell.1268");
+            Check(nativePurify.DecodedAbilities.Count == 2
+                && nativePurify.DecodedAbilities.All(ability => ability.AbilityId == 20 && ability.Value == 0)
+                && RuntimeLiveGameplayFacade.IsClassicCureOnlySpell(nativePurify),
+                "classic-purify-repeated-ability20-cure-handler", r);
+            var purifyMagnitudes = RuntimeClassicNativePoisonAuthority.ResolveOrderedAbilityMagnitudes(
+                nativePurify.DecodedAbilities, 20, 9);
+            Check(purifyMagnitudes is { Count: 2 }
+                && purifyMagnitudes.SequenceEqual(new[] { 9, 9 })
+                && purifyMagnitudes.Aggregate(20, RuntimeClassicNativePoisonAuthority.CurePoison) == 2,
+                "classic-purify-two-ordered-poison-cures-from-one-base-roll", r);
+            Check(!RuntimeLiveGameplayFacade.IsClassicCureOnlySpell(spells.Require("spell.1039"))
+                && !RuntimeLiveGameplayFacade.IsClassicCureOnlySpell(spells.Require("spell.804"))
+                && !RuntimeLiveGameplayFacade.IsClassicCureOnlySpell(spells.Require("spell.356")),
+                "classic-mixed-heal-cure-spells-retain-compound-path", r);
             var goldenVial = spells.Require("spell.459");
             var goldenResolution = RuntimeClassicPlayerSpellCombat.Resolve(goldenVial, 0, false, false, false, new Random(1));
             Check(RuntimeLiveGameplayFacade.ResolveHealManaMagnitude(0, goldenResolution) == 250,
