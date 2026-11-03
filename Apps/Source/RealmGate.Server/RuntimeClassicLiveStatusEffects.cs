@@ -1220,13 +1220,17 @@ public sealed partial class RuntimeLiveGameplayFacade
             foreach (var effect in effects.Where(IsPoisonEffect)) remove.Add(effect.EffectId);
         if (nativeClassicCure)
         {
-            // Native Cure Poison helper 0x43FCA7 clears the FIRST active
-            // spell whose native spell type is 6; it does not indiscriminately
-            // delete all active poison spells of type 1.
-            var firstTypeSix = effects.FirstOrDefault(effect =>
-                catalog.TryGet(effect.SpellId, out var typeDefinition)
-                && typeDefinition.SpellTypeRaw == 6);
-            if (firstTypeSix is not null) remove.Add(firstTypeSix.EffectId);
+            // Native helper 0x43FCA7 removes the first type-6 active spell
+            // per invocation. _cast_user_target executes every ability-20
+            // slot independently, so a definition with two Cure Poison slots
+            // (Purify / spell.1268) may clear two type-6 active slots.
+            // Preserve current EffectsFor ordering until the native active
+            // slot-index mapping is verified.
+            var cureSlots = definition.Abilities.Count(ability => ability.AbilityId == 20);
+            foreach (var removable in effects.Where(effect =>
+                    catalog.TryGet(effect.SpellId, out var typeDefinition)
+                    && typeDefinition.SpellTypeRaw == 6).Take(cureSlots))
+                remove.Add(removable.EffectId);
         }
         foreach (var legacyId in definition.RemovedLegacySpellIds)
             if (catalog.TryGetLegacy(legacyId.ToString(CultureInfo.InvariantCulture), out var removedSpell))
