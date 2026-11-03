@@ -2459,6 +2459,44 @@ public sealed class RuntimeLiveCombatRoundSmokeReport
                             nativePicklockSelf.Abilities, 200)).Count == 0,
                 "npc-classic-scripted-self-skill-not-fabricated-as-combat-stat");
             report.Checks.Add("npc-classic-scripted-self-skill-not-fabricated-as-combat-stat");
+            Require(liveStatusCatalog.TryGet("spell.1347", out var allBallSummon)
+                    && liveStatusCatalog.TryGet("spell.1386", out var duergarSummon)
+                    && liveStatusCatalog.TryGet("spell.465", out var chestItemsTextblocks)
+                    && liveStatusCatalog.TryGet("spell.997", out var blackwoodOpenTextblock),
+                "npc-native-special-slot-catalog-vectors-exist");
+            report.Checks.Add("npc-native-special-slot-catalog-vectors-exist");
+            var fourSummons = RuntimeLiveGameplayFacade.ResolveClassicNativeSpecialSpellSlots(
+                RuntimeLiveGameplayFacade.ResolveClassicNpcEffectSlots(allBallSummon.Abilities, 0), 1);
+            var threeZeroSummons = RuntimeLiveGameplayFacade.ResolveClassicNativeSpecialSpellSlots(
+                RuntimeLiveGameplayFacade.ResolveClassicNpcEffectSlots(duergarSummon.Abilities, 1112), 1);
+            var deniedAreaSummons = RuntimeLiveGameplayFacade.ResolveClassicNativeSpecialSpellSlots(
+                RuntimeLiveGameplayFacade.ResolveClassicNpcEffectSlots(allBallSummon.Abilities, 0), 12);
+            Require(fourSummons.Count == 4
+                && fourSummons.Select(slot => slot.EffectiveId)
+                    .SequenceEqual(new[] { 1080, 1081, 1082, 1083 })
+                && fourSummons.All(slot => slot.AbilityId == 12
+                    && slot.NativeTargetAdmitted && slot.ResolvedId)
+                && threeZeroSummons.Count == 3
+                && threeZeroSummons.All(slot => slot.RawValue == 0
+                    && slot.EffectiveId == 1112 && slot.ResolvedId)
+                && deniedAreaSummons.All(slot => !slot.NativeTargetAdmitted),
+                "npc-native-summon-repeated-slots-zero-fallback-and-cc-target-gate");
+            report.Checks.Add("npc-native-summon-repeated-slots-zero-fallback-and-cc-target-gate");
+            var repeatedChestCommands = RuntimeLiveGameplayFacade.ResolveClassicNativeSpecialSpellSlots(
+                RuntimeLiveGameplayFacade.ResolveClassicNpcEffectSlots(chestItemsTextblocks.Abilities, 0), 1);
+            var fallbackBlackwoodCommand = RuntimeLiveGameplayFacade.ResolveClassicNativeSpecialSpellSlots(
+                RuntimeLiveGameplayFacade.ResolveClassicNpcEffectSlots(blackwoodOpenTextblock.Abilities, 9384), 1);
+            Require(repeatedChestCommands.Count == 8
+                && repeatedChestCommands.Select(slot => slot.PopulatedOrdinal)
+                    .SequenceEqual(Enumerable.Range(0, 8))
+                && repeatedChestCommands.All(slot => slot.AbilityId == 148
+                    && slot.EffectiveId == 880 && slot.ResolvedId)
+                && fallbackBlackwoodCommand.Count == 1
+                && fallbackBlackwoodCommand[0].RawValue == 0
+                && fallbackBlackwoodCommand[0].EffectiveId == 9384
+                && fallbackBlackwoodCommand[0].NativeTargetAdmitted,
+                "npc-native-textblock-repeated-commands-and-zero-fallback-in-order");
+            report.Checks.Add("npc-native-textblock-repeated-commands-and-zero-fallback-in-order");
             var fixedSelfSlots = RuntimeLiveGameplayFacade.ResolveClassicNpcEffectSlots(
                 blacknightStatus.Abilities, 13);
             Require(fixedSelfSlots.Count == 1
