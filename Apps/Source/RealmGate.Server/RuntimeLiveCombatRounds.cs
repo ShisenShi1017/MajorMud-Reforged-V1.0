@@ -383,7 +383,7 @@ public sealed partial class RuntimeLiveGameplayFacade
                         : null;
                     var nativeAreaMagnitude = nativeAreaPlan?.SharedBaseMagnitude is int areaBase
                         ? ResolveClassicNpcAreaPerTargetBaseMagnitude(
-                            areaBase, nativeAreaPlan.EligibleTargetCount, hitSpell.SpellTypeRaw)
+                            areaBase, nativeAreaPlan.EligibleTargetCount, hitSpell.TargetTypeRaw)
                         : (int?)null;
                     var primaryAreaAdmission = nativeAreaPlan?.Targets.FirstOrDefault(
                         target => target.SessionId.Equals(session.Id, StringComparison.OrdinalIgnoreCase));
@@ -1149,17 +1149,17 @@ public sealed partial class RuntimeLiveGameplayFacade
     // admitted by _get_room_targets (0x425F65..0x4260A5), including its native
     // spell-immunity and resist rolls. Only after that count is positive does
     // it draw one base magnitude at 0x42658E. The native definition-type
-    // field at +0xCC controls a jump table at 0x4265B3, which divides the
-    // shared magnitude by accepted target count for
+    // field at +0xCC is target_type (NOT spell_type at +0xC4). Its
+    // jump table at 0x4265B3 divides the shared magnitude by target count for
     // all types except 11, 12 and 13, which retain the full raw magnitude.
     // Do not wire this into live damage until the recipient admission prepass
     // and per-handler ordering are faithfully represented.
     internal static int ResolveClassicNpcAreaPerTargetBaseMagnitude(
-        int sharedMagnitude, int admittedTargetCount, int nativeDefinitionTypeAtCc)
+        int sharedMagnitude, int admittedTargetCount, int nativeTargetTypeAtCc)
     {
         if (admittedTargetCount <= 0)
             throw new ArgumentOutOfRangeException(nameof(admittedTargetCount));
-        return nativeDefinitionTypeAtCc is 11 or 12 or 13
+        return nativeTargetTypeAtCc is 11 or 12 or 13
             ? sharedMagnitude
             : sharedMagnitude / admittedTargetCount;
     }
@@ -2044,16 +2044,26 @@ public sealed class RuntimeLiveCombatRoundSmokeReport
                 && RuntimeLiveGameplayFacade.ResolveClassicNpcAreaPerTargetBaseMagnitude(10, 3, 13) == 10,
                 "npc-native-area-accepted-target-divisor-and-type11-13-exceptions");
             report.Checks.Add("npc-native-area-accepted-target-divisor-and-type11-13-exceptions");
+            // SpellType=0 is not the native divisor selector. Original +0xCC
+            // is TargetType: plague 446 is full-area 11; poison gas 1304 is
+            // hostile-area 12. Neither divides the cast's base magnitude.
+            Require(plagueSpell.SpellTypeRaw == 0 && plagueSpell.TargetTypeRaw == 11
+                && RuntimeLiveGameplayFacade.ResolveClassicNpcAreaPerTargetBaseMagnitude(
+                    10, 3, plagueSpell.TargetTypeRaw) == 10
+                && nativeSpells.Require("spell.1304").TargetType == "12"
+                && RuntimeLiveGameplayFacade.ResolveClassicNpcAreaPerTargetBaseMagnitude(10, 3, 12) == 10,
+                "npc-native-area-target-type-not-spell-type-divisor-provenance");
+            report.Checks.Add("npc-native-area-target-type-not-spell-type-divisor-provenance");
             // Once the room admission prepass rolls a single base magnitude,
             // each accepted Classic recipient consumes the pre-scaled value
             // without a second damage or status RNG draw.
             var areaScaledFixture = areaHostileSpell with
             {
-                SpellTypeRaw = 0,
+                SpellTypeRaw = 0, TargetTypeRaw = 8,
                 EffectRange = RuntimeLiveGameplayFacade.ResolveNpcHitSpellEffectRange(4, 10)
             };
             var areaPerTargetMagnitude = RuntimeLiveGameplayFacade.ResolveClassicNpcAreaPerTargetBaseMagnitude(
-                4, 2, areaScaledFixture.SpellTypeRaw);
+                4, 2, areaScaledFixture.TargetTypeRaw);
             var noExtraAreaRng = new CountingRangeRandom();
             var areaFirst = RuntimeLiveGameplayFacade.ResolveNpcHitSpellEffect(
                 areaScaledFixture, 0, false, noExtraAreaRng,
