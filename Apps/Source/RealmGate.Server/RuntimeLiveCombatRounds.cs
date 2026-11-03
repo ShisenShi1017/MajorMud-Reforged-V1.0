@@ -2227,6 +2227,47 @@ public sealed class RuntimeLiveCombatRoundSmokeReport
                 && noExtraMinusMrRng.Calls == 0,
                 "npc-native-area-ability17-damage-uses-one-shared-roll-and-target-mr");
             report.Checks.Add("npc-native-area-ability17-damage-uses-one-shared-roll-and-target-mr");
+            Require(liveStatusCatalog.TryGet("spell.139", out var acidRainStatus)
+                    && acidRainStatus.SpellTypeRaw == 3
+                    && acidRainStatus.Abilities.Any(ability => ability.AbilityId == 1)
+                    && liveStatusCatalog.TryGet("spell.751", out var demonExplosionStatus)
+                    && demonExplosionStatus.SpellTypeRaw == 3
+                    && demonExplosionStatus.Abilities.Any(ability => ability.AbilityId == 17),
+                "npc-native-type3-area-ability1-and-17-catalog-owners");
+            report.Checks.Add("npc-native-type3-area-ability1-and-17-catalog-owners");
+            var type3AreaDamageFixture = plagueSpell! with
+            {
+                SpellTypeRaw = 3, TargetTypeRaw = 12, AttackTypeRaw = 5,
+                MinimumEffect = 1, MaximumEffect = 1,
+                EffectRange = RuntimeLiveGameplayFacade.ResolveNpcHitSpellEffectRange(1, 1)
+            };
+            var type3AreaRng = new CountingRangeRandom();
+            var nativeAcidRainDamage = RuntimeLiveGameplayFacade.ResolveNpcHitSpellEffect(
+                type3AreaDamageFixture, 100, false, type3AreaRng,
+                nativePreRolledMagnitude: 1, nativeAreaMagnitudeScaled: true,
+                classicNativeHasDirectHitPointHandler: true,
+                classicNativeAreaDamageAbility1: true);
+            var customAcidRainDamage = RuntimeLiveGameplayFacade.ResolveNpcHitSpellEffect(
+                type3AreaDamageFixture, 100, false, type3AreaRng);
+            Require(nativeAcidRainDamage.Executable && nativeAcidRainDamage.DirectDamage == 1
+                && !customAcidRainDamage.Executable && type3AreaRng.Calls == 0,
+                "npc-type3-area-ability1-not-falsely-immunized-by-elemental-resistance");
+            report.Checks.Add("npc-type3-area-ability1-not-falsely-immunized-by-elemental-resistance");
+            var type3AreaMinusMrFixture = type3AreaDamageFixture with
+            {
+                AttackTypeRaw = 1, MinimumEffect = 100, MaximumEffect = 100,
+                EffectRange = RuntimeLiveGameplayFacade.ResolveNpcHitSpellEffectRange(100, 100)
+            };
+            var nativeDemonExplosionDamage = RuntimeLiveGameplayFacade.ResolveNpcHitSpellEffect(
+                type3AreaMinusMrFixture, 100, false, type3AreaRng,
+                nativePreRolledMagnitude: 100, nativeAreaMagnitudeScaled: true,
+                classicNativeHasDirectHitPointHandler: true,
+                classicNativeAreaDamageMinusMr17: true,
+                nativeTargetMagicResistance: 100);
+            Require(nativeDemonExplosionDamage.Executable
+                && nativeDemonExplosionDamage.DirectDamage == 75 && type3AreaRng.Calls == 0,
+                "npc-type3-area-ability17-mr-adjusts-untyped-native-magnitude");
+            report.Checks.Add("npc-type3-area-ability17-mr-adjusts-untyped-native-magnitude");
             // Once the room admission prepass rolls a single base magnitude,
             // each accepted Classic recipient consumes the pre-scaled value
             // without a second damage or status RNG draw.
