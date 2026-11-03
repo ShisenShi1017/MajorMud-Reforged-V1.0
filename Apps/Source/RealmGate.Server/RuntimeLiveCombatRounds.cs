@@ -697,6 +697,17 @@ public sealed partial class RuntimeLiveGameplayFacade
         return IsNpcFullAreaSpell(spell) || IsNpcAreaHostileSpell(spell);
     }
 
+    private bool? ResolveClassicNpcDirectHitPointAdmission(
+        RuntimeSession session, RuntimeNpcHitSpellSelection spell)
+    {
+        if (!session.World.Definition.Type.Equals("Classic", StringComparison.OrdinalIgnoreCase))
+            return null;
+        var catalog = ClassicLiveStatusCatalog(session);
+        if (!catalog.TryGet(spell.CanonicalSpellId, out var definition))
+            throw new InvalidDataException($"NPC_CLASSIC_DIRECT_ABILITY_VECTOR_MISSING:{spell.CanonicalSpellId}");
+        return ClassicNpcHasDirectHitPointHandler(definition);
+    }
+
     private RuntimeClassicNpcAreaRollPlan BuildClassicNpcAreaSpellRollPlan(
         RuntimeSession primarySession, RuntimeNpcHitSpellSelection spell)
     {
@@ -1069,6 +1080,17 @@ public sealed partial class RuntimeLiveGameplayFacade
         _ => $"spell-type-{spellTypeRaw}"
     };
 
+    // WCCMMUD _monster_cast dispatches ability IDs through the 0x4282CA
+    // table: direct HP handlers 1 and 17 differ from poison 19 and confusion
+    // 71. Ability 8 (drain) remains on the previous guarded direct path until
+    // its healing/secondary mutation ordering is reconstructed.
+    internal static bool ClassicNpcHasDirectHitPointHandler(
+        RuntimeClassicLiveStatusDefinition definition)
+    {
+        ArgumentNullException.ThrowIfNull(definition);
+        return definition.Abilities.Any(ability => ability.AbilityId is 1 or 8 or 17);
+    }
+
     // Original _monster_cast (0x42828B..0x4282A9) restores the single base
     // magnitude when a slot's signed Int16 value at +0xA8 is zero, otherwise
     // it uses that slot's own value. The ability ID comes from +0xD8.
@@ -1105,7 +1127,8 @@ public sealed partial class RuntimeLiveGameplayFacade
 
     internal static RuntimeNpcHitSpellEffectResolution ResolveNpcHitSpellEffect(
         RuntimeNpcHitSpellSelection spell, int elementalResistancePercent, bool poisonImmune, Random random,
-        int? nativePreRolledMagnitude = null, bool nativeAreaMagnitudeScaled = false)
+        int? nativePreRolledMagnitude = null, bool nativeAreaMagnitudeScaled = false,
+        bool? classicNativeHasDirectHitPointHandler = null)
     {
         ArgumentNullException.ThrowIfNull(spell);
         ArgumentNullException.ThrowIfNull(random);
@@ -1114,11 +1137,13 @@ public sealed partial class RuntimeLiveGameplayFacade
         var element = ResolveNpcHitSpellAttackElement(spell.AttackTypeRaw);
         var positiveRange = spell.EffectRange.Sign == RuntimeSpellEffectSign.Positive && spell.EffectRange.RollMaximum > 0;
         var hostileScope = spell.TargetTypeRaw is 0 or 8 or 11 or 12;
-        var executable = spell.SpellTypeRaw == 0 && hostileScope && positiveRange;
+        var executable = spell.SpellTypeRaw == 0 && hostileScope && positiveRange
+            && classicNativeHasDirectHitPointHandler != false;
         if (!executable)
         {
             var reason = spell.SpellTypeRaw != 0 ? "non-immediate-spell-type"
                 : !hostileScope ? "non-hostile-or-scripted-target-scope"
+                : classicNativeHasDirectHitPointHandler == false ? "no-native-direct-hit-point-handler"
                 : "non-positive-effect-range";
             return new RuntimeNpcHitSpellEffectResolution(false, type, scope, element,
                 spell.EffectRange.RollMinimum, spell.EffectRange.RollMaximum, 0, 0, elementalResistancePercent, poisonImmune, 0, reason);
