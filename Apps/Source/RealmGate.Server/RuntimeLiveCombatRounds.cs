@@ -1231,8 +1231,9 @@ public sealed partial class RuntimeLiveGameplayFacade
     // field at +0xCC is target_type (NOT spell_type at +0xC4). Its
     // jump table at 0x4265B3 divides the shared magnitude by target count for
     // all types except 11, 12 and 13, which retain the full raw magnitude.
-    // Do not wire this into live damage until the recipient admission prepass
-    // and per-handler ordering are faithfully represented.
+    // The two-phase Classic live area path now calls this after its admission
+    // prepass. Native session-index order and the remaining effect handlers
+    // are still separate parity boundaries.
     internal static int ResolveClassicNpcAreaPerTargetBaseMagnitude(
         int sharedMagnitude, int admittedTargetCount, int nativeTargetTypeAtCc)
     {
