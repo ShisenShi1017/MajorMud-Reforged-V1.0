@@ -1259,13 +1259,20 @@ public sealed partial class RuntimeLiveGameplayFacade
     }
 
     internal static RuntimeNpcHitSpellStatusDeliveryResolution ResolveNpcHitSpellStatusDelivery(
-        RuntimeNpcHitSpellSelection spell, bool poisonImmune, bool duplicateActiveEffect, bool hasDecodedDurationModifiers = false)
+        RuntimeNpcHitSpellSelection spell, bool poisonImmune, bool duplicateActiveEffect,
+        bool hasDecodedDurationModifiers = false, bool classicNativePoisonAbility19 = false)
     {
         ArgumentNullException.ThrowIfNull(spell);
+        // Native _monster_cast ability 19 is dispatched by its own effect ID.
+        // Spell type 0 can therefore carry poison without an HP-damage slot
+        // or other combat-stat modifiers (e.g. Bee Poison / spell.365).
+        var immediatePoison = spell.SpellTypeRaw == 0 && classicNativePoisonAbility19;
         var kind = spell.SpellTypeRaw == 1 ? "poison" : spell.SpellTypeRaw == 3 ? "status-or-scripted"
-            : spell.SpellTypeRaw == 0 && hasDecodedDurationModifiers ? "immediate-with-duration-modifiers" : "unsupported";
+            : spell.SpellTypeRaw == 0 && hasDecodedDurationModifiers ? "immediate-with-duration-modifiers"
+            : immediatePoison ? "immediate-with-poison" : "unsupported";
         var hostileScope = spell.TargetTypeRaw is 0 or 8 or 11 or 12;
-        var eligibleType = spell.SpellTypeRaw is 1 or 3 || spell.SpellTypeRaw == 0 && hasDecodedDurationModifiers;
+        var eligibleType = spell.SpellTypeRaw is 1 or 3
+            || spell.SpellTypeRaw == 0 && (hasDecodedDurationModifiers || immediatePoison);
         if (!eligibleType) return new(false, false, false, kind, spell.CanonicalSpellId, spell.DurationRaw, spell.MinimumEffect, spell.MaximumEffect, "not-status-delivery-type");
         if (!hostileScope) return new(false, false, false, kind, spell.CanonicalSpellId, spell.DurationRaw, spell.MinimumEffect, spell.MaximumEffect, "non-hostile-or-scripted-target-scope");
         if (spell.DurationRaw <= 0) return new(false, false, false, kind, spell.CanonicalSpellId, spell.DurationRaw, spell.MinimumEffect, spell.MaximumEffect, "non-positive-duration");
