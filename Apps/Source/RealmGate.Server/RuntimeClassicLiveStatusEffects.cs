@@ -32,7 +32,13 @@ public sealed record RuntimeClassicLiveStatusDefinition(
     public bool RemovedByNativeClassicFreedom => Abilities.Any(x => x.AbilityId is 74 or 75);
     public bool CausesFear => Abilities.Any(x => x.AbilityId == 60);
     public bool NonMagical => Abilities.Any(x => x.AbilityId == 144);
-    public IReadOnlyList<int> TextblockIds => Abilities.Where(x => x.AbilityId == 148 && x.Value > 0).Select(x => x.Value).Distinct().ToArray();
+    // Native ability 148 calls _perform_text_block_as_special_command
+    // separately for every populated slot (WCCMMUD _monster_cast 0x428445).
+    // Repeated IDs are intentional: chest spells such as spell.465 execute
+    // the same TextBlock multiple times. Never deduplicate this projection.
+    public IReadOnlyList<int> TextblockIds => Abilities
+        .Where(x => x.AbilityId == 148 && x.Value > 0)
+        .Select(x => x.Value).ToArray();
     public bool RuneMarker => Abilities.Any(x => x.AbilityId == 152 && x.Value == 0);
     public IReadOnlyList<int> RemovedLegacySpellIds => Abilities
         .Where(x => x.AbilityId == 122 && x.Value > 0)
@@ -1405,6 +1411,26 @@ public sealed class RuntimeClassicLiveStatusEffectsSmokeReport
                         .SequenceEqual(new[] { 0, 0, 0 }),
                     "classic-summon-repeated-distinct-targets-and-zero-fallback");
                 report.Checks.Add("classic-summon-repeated-distinct-targets-and-zero-fallback");
+                // Every native TextBlock ability is an independent interpreter
+                // invocation. Repeated identical IDs are not one command.
+                var nativeTextblockOwners = catalog.Definitions
+                    .Where(spell => spell.Abilities.Any(ability => ability.AbilityId == 148))
+                    .ToArray();
+                Require(nativeTextblockOwners.Length == 180
+                    && nativeTextblockOwners.Sum(spell =>
+                        spell.Abilities.Count(ability => ability.AbilityId == 148)) == 199
+                    && nativeTextblockOwners.Count(spell =>
+                        spell.Abilities.Count(ability => ability.AbilityId == 148) > 1) == 8,
+                    "classic-native-180-textblock-owners-199-ordered-slots-8-repeated");
+                report.Checks.Add("classic-native-180-textblock-owners-199-ordered-slots-8-repeated");
+                Require(catalog.TryGet("spell.465", out var chestEight)
+                    && chestEight.TextblockIds.SequenceEqual(Enumerable.Repeat(880, 8))
+                    && catalog.TryGet("spell.473", out var goldenChestThree)
+                    && goldenChestThree.TextblockIds.SequenceEqual(new[] { 893, 893, 893 })
+                    && catalog.TryGet("spell.464", out var oakChestFour)
+                    && oakChestFour.TextblockIds.SequenceEqual(Enumerable.Repeat(876, 4)),
+                    "classic-native-repeated-textblock-ids-not-deduplicated");
+                report.Checks.Add("classic-native-repeated-textblock-ids-not-deduplicated");
                 var originalOrderedSlots = nativeSpells.Require("spell.4").DecodedAbilities;
                 var orderedSlotMetadata = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase);
                 RuntimeLiveGameplayFacade.AddClassicOrderedAbilitySlotMetadata(
