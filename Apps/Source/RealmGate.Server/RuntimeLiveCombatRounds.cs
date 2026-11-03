@@ -1139,6 +1139,30 @@ public sealed partial class RuntimeLiveGameplayFacade
     // table: direct HP handlers 1 and 17 differ from poison 19 and confusion
     // 71. Ability 8 drains the victim and heals the casting monster; the
     // area variant repeats that mutation per admitted recipient.
+    // Native _monster_cast_area ability-17 handler (0x426FCE-0x42707C)
+    // applies elemental resistance before this MR adjustment. If ability 51
+    // (Anti-Magic) is present, reduction = min(MR/2,75) percent. Otherwise
+    // positive reduction = min((MR-50)/2,50), and a zero reduction falls
+    // through the original (50-MR)% bonus/penalty branch. Keep this distinct
+    // from the player-cast Damage(-MR) handler at 0x474E3D.
+    internal static int ResolveClassicNpcAreaDamageMinusMr(
+        int signedMagnitudeAfterElement, int targetMagicResistance, bool targetHasAntiMagic)
+    {
+        var mr = Math.Clamp(targetMagicResistance, 0, ushort.MaxValue);
+        if (targetHasAntiMagic)
+        {
+            var percent = Math.Min(mr / 2, 75);
+            return checked((int)((long)signedMagnitudeAfterElement
+                - ((long)signedMagnitudeAfterElement * percent) / 100));
+        }
+        var reduction = Math.Min(Math.Max(0, (mr - 50) / 2), 50);
+        if (reduction > 0)
+            return checked((int)((long)signedMagnitudeAfterElement
+                - ((long)signedMagnitudeAfterElement * reduction) / 100));
+        return checked((int)((long)signedMagnitudeAfterElement
+            + ((long)signedMagnitudeAfterElement * (50 - mr)) / 100));
+    }
+
     internal static int ResolveClassicNpcDrainHitPointsAfter(
         int currentHitPoints, int maximumHitPoints, int rawDrainMagnitude)
     {
