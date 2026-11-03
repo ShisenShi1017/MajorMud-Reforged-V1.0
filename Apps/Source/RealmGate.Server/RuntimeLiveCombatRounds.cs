@@ -376,8 +376,10 @@ public sealed partial class RuntimeLiveGameplayFacade
                     var classicDirectHpAdmission = hitSpellScript is null && !IsNpcSelfSpell(hitSpell)
                         ? ResolveClassicNpcDirectHitPointAdmission(session, hitSpell)
                         : null;
+                    var isNativeClassicNpcSpell = session.World.Definition.Type.Equals(
+                        "Classic", StringComparison.OrdinalIgnoreCase);
                     var classicDrainAbility8 = hitSpellScript is null
-                        && session.World.Definition.Type.Equals("Classic", StringComparison.OrdinalIgnoreCase)
+                        && isNativeClassicNpcSpell
                         && ClassicLiveStatusCatalog(session).TryGet(hitSpell.CanonicalSpellId, out var drainStatus)
                         && ClassicNpcHasDrainHandler(drainStatus);
                     var nativeAreaPlan = hitSpellScript is null
@@ -473,13 +475,15 @@ public sealed partial class RuntimeLiveGameplayFacade
                             {
                                 var effect = ResolveNpcHitSpellEffect(
                                     hitSpell,
-                                    ReadElementalResistance(before, ResolveNpcHitSpellAttackElement(hitSpell.AttackTypeRaw)),
+                                    ReadElementalResistance(before, ResolveNpcHitSpellAttackElement(
+                                        hitSpell.AttackTypeRaw, isNativeClassicNpcSpell)),
                                     ReadAbilityValue(before, 21) > 0,
                                     Random.Shared, nativeAreaMagnitude, nativeAreaPlan is not null,
                                     classicDirectHpAdmission, classicDrainAbility8,
                                     classicAreaDamageMinusMr17, classicAreaDamageAbility1,
                                     ReadMagicResistance(before),
-                                    ReadAbilityValue(before, 51) > 0);
+                                    ReadAbilityValue(before, 51) > 0,
+                                    isNativeClassicNpcSpell);
                                 if (effect.Executable && effect.DirectDamage != 0)
                                 {
                                     var hitPointResolution = ApplyElementalSpellHitPoints(playerHp, before.MaximumHitPoints, effect.DirectDamage);
@@ -842,13 +846,15 @@ public sealed partial class RuntimeLiveGameplayFacade
             var poisonImmune = ReadAbilityValue(character, 21) > 0;
             var effect = ResolveNpcHitSpellEffect(
                 spell,
-                ReadElementalResistance(character, ResolveNpcHitSpellAttackElement(spell.AttackTypeRaw)),
+                ReadElementalResistance(character, ResolveNpcHitSpellAttackElement(
+                    spell.AttackTypeRaw, nativeAreaPlan is not null)),
                 poisonImmune,
                 Random.Shared, nativeAreaMagnitude, nativeAreaPlan is not null,
                 classicDirectHpAdmission, classicDrainAbility8,
                 classicAreaDamageMinusMr17, classicAreaDamageAbility1,
                 ReadMagicResistance(character),
-                ReadAbilityValue(character, 51) > 0);
+                ReadAbilityValue(character, 51) > 0,
+                nativeAreaPlan is not null);
             if (effect.Executable && effect.DirectDamage != 0)
             {
                 var hitPointResolution = ApplyElementalSpellHitPoints(character.HitPoints, character.MaximumHitPoints, effect.DirectDamage);
@@ -1245,13 +1251,14 @@ public sealed partial class RuntimeLiveGameplayFacade
         bool classicNativeAreaDamageMinusMr17 = false,
         bool classicNativeAreaDamageAbility1 = false,
         int nativeTargetMagicResistance = 0,
-        bool nativeTargetHasAntiMagic = false)
+        bool nativeTargetHasAntiMagic = false,
+        bool classicNativeAttackElement = false)
     {
         ArgumentNullException.ThrowIfNull(spell);
         ArgumentNullException.ThrowIfNull(random);
         var type = ResolveNpcHitSpellTypeMeaning(spell.SpellTypeRaw);
         var scope = ResolveNpcHitSpellTargetScope(spell.TargetTypeRaw);
-        var element = ResolveNpcHitSpellAttackElement(spell.AttackTypeRaw);
+        var element = ResolveNpcHitSpellAttackElement(spell.AttackTypeRaw, classicNativeAttackElement);
         var positiveRange = spell.EffectRange.Sign == RuntimeSpellEffectSign.Positive && spell.EffectRange.RollMaximum > 0;
         var hostileScope = spell.TargetTypeRaw is 0 or 8 or 11 or 12;
         // Ability 8 is an independent native HP handler even for spell
@@ -1407,14 +1414,18 @@ public sealed partial class RuntimeLiveGameplayFacade
         _ => $"target-type-{targetTypeRaw}"
     };
 
-    internal static string ResolveNpcHitSpellAttackElement(int attackTypeRaw) => attackTypeRaw switch
+    // Both native _monster_cast and _monster_cast_area use ability 147
+    // (Water Resistance) for attack element 5. Keep the Custom descriptor
+    // "acid" unchanged: it was a preexisting Custom-world convention.
+    internal static string ResolveNpcHitSpellAttackElement(
+        int attackTypeRaw, bool classicNativeElement = false) => attackTypeRaw switch
     {
         0 => "cold",
         1 => "fire",
         2 => "stone",
         3 => "lightning",
         4 => "untyped",
-        5 => "acid",
+        5 => classicNativeElement ? "water" : "acid",
         6 => "poison",
         _ => $"attack-type-{attackTypeRaw}"
     };
