@@ -2099,6 +2099,26 @@ public sealed class RuntimeLiveCombatRoundSmokeReport
                 && RuntimeLiveGameplayFacade.ResolveClassicNpcDrainHitPointsAfter(70, 100, 50) == 100,
                 "npc-native-type3-area-drain-damages-and-heals-once-per-recipient");
             report.Checks.Add("npc-native-type3-area-drain-damages-and-heals-once-per-recipient");
+            Require(liveStatusCatalog.TryGet("spell.82", out var breathDrainStatus)
+                    && breathDrainStatus.SpellTypeRaw == 3
+                    && RuntimeLiveGameplayFacade.ClassicNpcHasDrainHandler(breathDrainStatus),
+                "npc-native-contact-type0-drain-catalog-owner");
+            report.Checks.Add("npc-native-contact-type0-drain-catalog-owner");
+            var invalidContactDrain = shadowBreathFixture with
+            {
+                TargetTypeRaw = 0,
+                MinimumEffect = 4, MaximumEffect = 12,
+                EffectRange = RuntimeLiveGameplayFacade.ResolveNpcHitSpellEffectRange(4, 12)
+            };
+            var invalidContactDrainRng = new CountingRangeRandom();
+            var contactDrainResult = RuntimeLiveGameplayFacade.ResolveNpcHitSpellEffect(
+                invalidContactDrain, 0, false, invalidContactDrainRng,
+                classicNativeHasDirectHitPointHandler: true, classicNativeDrainAbility8: true);
+            Require(!contactDrainResult.Executable
+                && contactDrainResult.QuarantineReason == "native-drain-target-type-ineligible"
+                && invalidContactDrainRng.Calls == 0,
+                "npc-native-contact-type0-drain-fails-closed-without-roll");
+            report.Checks.Add("npc-native-contact-type0-drain-fails-closed-without-roll");
             var statusOnlyRng = new CountingRangeRandom();
             var statusOnlyDamage = RuntimeLiveGameplayFacade.ResolveNpcHitSpellEffect(
                 plagueSpell!, 0, false, statusOnlyRng,
