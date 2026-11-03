@@ -1372,6 +1372,28 @@ public sealed class RuntimeClassicLiveStatusEffectsSmokeReport
                     .SequenceEqual(new[] { 10, 115, 122, 7, 122, 122, 122 }),
                     "classic-ordered-repeated-ability-vector");
                 report.Checks.Add("classic-ordered-repeated-ability-vector");
+                // WCCMMUD _monster_cast's ability-12 branch (0x428BD9)
+                // invokes the native spawn helper once per populated slot.
+                // Record all repeated summon targets without enabling unproven
+                // owner/lifetime cleanup through generic live SummonNpc.
+                var nativeSummonOwners = nativeSpells.Spells
+                    .Where(spell => spell.DecodedAbilities.Any(ability => ability.AbilityId == 12))
+                    .ToArray();
+                Require(nativeSummonOwners.Length == 88
+                    && nativeSummonOwners.Sum(spell =>
+                        spell.DecodedAbilities.Count(ability => ability.AbilityId == 12)) == 157
+                    && nativeSummonOwners.Count(spell =>
+                        spell.DecodedAbilities.Count(ability => ability.AbilityId == 12) > 1) == 31,
+                    "classic-native-summon-88-spells-157-ordered-slots-31-repeated");
+                report.Checks.Add("classic-native-summon-88-spells-157-ordered-slots-31-repeated");
+                Require(nativeSpells.Require("spell.1347").DecodedAbilities
+                        .Where(ability => ability.AbilityId == 12).Select(ability => ability.Value)
+                        .SequenceEqual(new[] { 1080, 1081, 1082, 1083 })
+                    && nativeSpells.Require("spell.1386").DecodedAbilities
+                        .Where(ability => ability.AbilityId == 12).Select(ability => ability.Value)
+                        .SequenceEqual(new[] { 0, 0, 0 }),
+                    "classic-summon-repeated-distinct-targets-and-zero-fallback");
+                report.Checks.Add("classic-summon-repeated-distinct-targets-and-zero-fallback");
                 var originalOrderedSlots = nativeSpells.Require("spell.4").DecodedAbilities;
                 var orderedSlotMetadata = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase);
                 RuntimeLiveGameplayFacade.AddClassicOrderedAbilitySlotMetadata(
