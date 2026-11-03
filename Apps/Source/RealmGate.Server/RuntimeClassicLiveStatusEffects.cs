@@ -1349,6 +1349,17 @@ public sealed class RuntimeClassicLiveStatusEffectsSmokeReport
                 Require(nativeSpells.Spells.Sum(spell => spell.DecodedAbilities.Count) == 3889,
                     "classic-3889-populated-ability-positions");
                 report.Checks.Add("classic-3889-populated-ability-positions");
+                var immediateWithoutDirectHp = nativeSpells.Spells.Where(spell =>
+                    spell.SpellType == "0"
+                    && spell.TargetType is "0" or "8" or "11" or "12"
+                    && Math.Max(spell.MinimumEffect, spell.MaximumEffect) > 0
+                    && !spell.DecodedAbilities.Any(ability => ability.AbilityId is 1 or 8 or 17))
+                    .ToArray();
+                Require(immediateWithoutDirectHp.Length == 21
+                    && immediateWithoutDirectHp.Count(spell =>
+                        spell.DecodedAbilities.Any(ability => ability.AbilityId == 19)) == 6,
+                    "classic-immediate-status-only-21-spells-six-poison19-no-fabricated-hp");
+                report.Checks.Add("classic-immediate-status-only-21-spells-six-poison19-no-fabricated-hp");
                 Require(nativeSpells.Spells.All(spell => spell.DecodedAbilities.Count <= 10)
                     && catalog.Definitions.All(definition => definition.Abilities.Count <= 10),
                     "classic-native-ten-ability-slot-max-both-live-catalogs");
