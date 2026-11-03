@@ -376,6 +376,10 @@ public sealed partial class RuntimeLiveGameplayFacade
                     var classicDirectHpAdmission = hitSpellScript is null && !IsNpcSelfSpell(hitSpell)
                         ? ResolveClassicNpcDirectHitPointAdmission(session, hitSpell)
                         : null;
+                    var classicDrainAbility8 = hitSpellScript is null
+                        && session.World.Definition.Type.Equals("Classic", StringComparison.OrdinalIgnoreCase)
+                        && ClassicLiveStatusCatalog(session).TryGet(hitSpell.CanonicalSpellId, out var drainStatus)
+                        && ClassicNpcHasDrainHandler(drainStatus);
                     var nativeAreaPlan = hitSpellScript is null
                         && session.World.Definition.Type.Equals("Classic", StringComparison.OrdinalIgnoreCase)
                         && IsNpcRoomAreaSpell(hitSpell)
@@ -466,7 +470,7 @@ public sealed partial class RuntimeLiveGameplayFacade
                                     ReadElementalResistance(before, ResolveNpcHitSpellAttackElement(hitSpell.AttackTypeRaw)),
                                     ReadAbilityValue(before, 21) > 0,
                                     Random.Shared, nativeAreaMagnitude, nativeAreaPlan is not null,
-                                    classicDirectHpAdmission);
+                                    classicDirectHpAdmission, classicDrainAbility8);
                                 if (effect.Executable && effect.DirectDamage != 0)
                                 {
                                     var hitPointResolution = ApplyElementalSpellHitPoints(playerHp, before.MaximumHitPoints, effect.DirectDamage);
@@ -478,9 +482,8 @@ public sealed partial class RuntimeLiveGameplayFacade
                                     // _monster_cast_area uses a separate handler; keep it gated.
                                     if (npcHp > 0
                                         && session.World.Definition.Type.Equals("Classic", StringComparison.OrdinalIgnoreCase)
-                                        && !IsNpcRoomAreaSpell(hitSpell) && effect.Roll > 0
-                                        && ClassicLiveStatusCatalog(session).TryGet(hitSpell.CanonicalSpellId, out var drainDefinition)
-                                        && drainDefinition.Abilities.Any(ability => ability.AbilityId == 8))
+                                        && classicDrainAbility8 && effect.Roll > 0
+                                        )
                                     {
                                         var healedNpcHp = ResolveClassicNpcDrainHitPointsAfter(
                                             npcHp, liveNpc.MaximumHitPoints, effect.Roll);
@@ -564,7 +567,7 @@ public sealed partial class RuntimeLiveGameplayFacade
                         }
 
                     if (IsNpcRoomAreaSpell(hitSpell))
-                        ApplyNpcRoomAreaSpellToBystanders(
+                        npcHp = ApplyNpcRoomAreaSpellToBystanders(
                             session,
                             hitSpell,
                             $"npc.{npc.LegacyId}",
@@ -573,7 +576,11 @@ public sealed partial class RuntimeLiveGameplayFacade
                             roomMessagePriorities,
                             nativeAreaPlan,
                             nativeAreaMagnitude,
-                            classicDirectHpAdmission);
+                            classicDirectHpAdmission,
+                            classicDrainAbility8,
+                            encounter.NpcInstanceId,
+                            npcHp,
+                            liveNpc.MaximumHitPoints);
                     }
                 }
                 if (isDecodedSpellRow && !nativeSpellHealing)
@@ -762,7 +769,7 @@ public sealed partial class RuntimeLiveGameplayFacade
             snapshots, Random.Shared);
     }
 
-    private void ApplyNpcRoomAreaSpellToBystanders(
+    private int ApplyNpcRoomAreaSpellToBystanders(
         RuntimeSession primarySession,
         RuntimeNpcHitSpellSelection spell,
         string casterId,
@@ -771,7 +778,11 @@ public sealed partial class RuntimeLiveGameplayFacade
         Dictionary<string, RuntimeClassicRoomMessagePriority> roomMessagePriorities,
         RuntimeClassicNpcAreaRollPlan? nativeAreaPlan,
         int? nativeAreaMagnitude,
-        bool? classicDirectHpAdmission)
+        bool? classicDirectHpAdmission,
+        bool classicDrainAbility8,
+        string casterNpcInstanceId,
+        int casterHitPoints,
+        int casterMaximumHitPoints)
     {
         var nowUtc = DateTimeOffset.UtcNow;
         var targets = _sessions.InRoom(primarySession.World.Definition.Id, primarySession.CurrentRoom.Id)
@@ -821,11 +832,25 @@ public sealed partial class RuntimeLiveGameplayFacade
                 ReadElementalResistance(character, ResolveNpcHitSpellAttackElement(spell.AttackTypeRaw)),
                 poisonImmune,
                 Random.Shared, nativeAreaMagnitude, nativeAreaPlan is not null,
-                classicDirectHpAdmission);
+                classicDirectHpAdmission, classicDrainAbility8);
             if (effect.Executable && effect.DirectDamage != 0)
             {
                 var hitPointResolution = ApplyElementalSpellHitPoints(character.HitPoints, character.MaximumHitPoints, effect.DirectDamage);
                 var nextHitPoints = hitPointResolution.HitPointsAfter;
+                // Native area Drain (0x427312..0x42734C) heals the casting
+                // monster once for each affected room player, independent of
+                // the victim's remaining HP. The primary target was processed
+                // before this loop and is not in the bystander enumeration.
+                if (classicDrainAbility8 && effect.DirectDamage > 0
+                    && casterHitPoints > 0 && casterHitPoints < casterMaximumHitPoints)
+                {
+                    var healed = ResolveClassicNpcDrainHitPointsAfter(
+                        casterHitPoints, casterMaximumHitPoints, effect.DirectDamage);
+                    if (!Living(primarySession).ApplyNpcHealing(
+                        casterNpcInstanceId, effect.DirectDamage, nowUtc))
+                        throw new InvalidOperationException($"NPC_NATIVE_AREA_DRAIN_CASTER_MISSING:{casterNpcInstanceId}");
+                    casterHitPoints = healed;
+                }
                 if (hitPointResolution.DamageApplied > 0)
                 {
                     var areaHitMessage = RuntimeClassicCombatAnsi.NpcAttack(
@@ -899,6 +924,7 @@ public sealed partial class RuntimeLiveGameplayFacade
                 roomMessagePriorities[areaNoEffectMessage] = RuntimeClassicRoomMessagePriority.Medium;
             }
         }
+        return casterHitPoints;
     }
 
     internal static int ResolveNpcAttacksPerRound(RuntimeNpcDefinition npc)
@@ -1123,6 +1149,13 @@ public sealed partial class RuntimeLiveGameplayFacade
             (long)currentHitPoints + rawDrainMagnitude);
     }
 
+    internal static bool ClassicNpcHasDrainHandler(
+        RuntimeClassicLiveStatusDefinition definition)
+    {
+        ArgumentNullException.ThrowIfNull(definition);
+        return definition.Abilities.Any(ability => ability.AbilityId == 8);
+    }
+
     internal static bool ClassicNpcHasDirectHitPointHandler(
         RuntimeClassicLiveStatusDefinition definition)
     {
@@ -1167,7 +1200,8 @@ public sealed partial class RuntimeLiveGameplayFacade
     internal static RuntimeNpcHitSpellEffectResolution ResolveNpcHitSpellEffect(
         RuntimeNpcHitSpellSelection spell, int elementalResistancePercent, bool poisonImmune, Random random,
         int? nativePreRolledMagnitude = null, bool nativeAreaMagnitudeScaled = false,
-        bool? classicNativeHasDirectHitPointHandler = null)
+        bool? classicNativeHasDirectHitPointHandler = null,
+        bool classicNativeDrainAbility8 = false)
     {
         ArgumentNullException.ThrowIfNull(spell);
         ArgumentNullException.ThrowIfNull(random);
@@ -1176,11 +1210,14 @@ public sealed partial class RuntimeLiveGameplayFacade
         var element = ResolveNpcHitSpellAttackElement(spell.AttackTypeRaw);
         var positiveRange = spell.EffectRange.Sign == RuntimeSpellEffectSign.Positive && spell.EffectRange.RollMaximum > 0;
         var hostileScope = spell.TargetTypeRaw is 0 or 8 or 11 or 12;
-        var executable = spell.SpellTypeRaw == 0 && hostileScope && positiveRange
-            && classicNativeHasDirectHitPointHandler != false;
+        // Ability 8 is an independent native HP handler even for spell
+        // type 3 (Shadow Breath / 1011). Do not generalize the exception
+        // to unrelated status handlers or to the Custom-world resolver.
+        var executable = (spell.SpellTypeRaw == 0 || classicNativeDrainAbility8)
+            && hostileScope && positiveRange && classicNativeHasDirectHitPointHandler != false;
         if (!executable)
         {
-            var reason = spell.SpellTypeRaw != 0 ? "non-immediate-spell-type"
+            var reason = spell.SpellTypeRaw != 0 && !classicNativeDrainAbility8 ? "non-immediate-spell-type"
                 : !hostileScope ? "non-hostile-or-scripted-target-scope"
                 : classicNativeHasDirectHitPointHandler == false ? "no-native-direct-hit-point-handler"
                 : "non-positive-effect-range";
