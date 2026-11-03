@@ -1239,7 +1239,11 @@ public sealed partial class RuntimeLiveGameplayFacade
                 return new RuntimeNpcHitSpellStatusDeliveryResolution(
                     false, false, false, "negated", spell.CanonicalSpellId,
                     0, spell.MinimumEffect, spell.MaximumEffect, "negate-ability-immunity");
-            var resolution = ResolveNpcHitSpellStatusDelivery(spell, poisonImmune, existing.Length > 0, definition.HasCombatModifiers);
+            var classicPoisonSlot = session.World.Definition.Type.Equals("Classic", StringComparison.OrdinalIgnoreCase)
+                && definition.Abilities.Any(ability => ability.AbilityId == 19);
+            var resolution = ResolveNpcHitSpellStatusDelivery(
+                spell, poisonImmune, existing.Length > 0,
+                definition.HasCombatModifiers, classicPoisonSlot);
             if (!resolution.Applied) return resolution;
             // NPC on-hit status delivery writes the effect snapshot directly.
             // Enforce the same ten native player slots as ordinary Classic casts
