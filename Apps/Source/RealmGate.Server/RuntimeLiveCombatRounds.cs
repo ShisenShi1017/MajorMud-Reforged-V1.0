@@ -373,6 +373,9 @@ public sealed partial class RuntimeLiveGameplayFacade
                     // Classic _get_room_targets completes every recipient's immunity
                     // and resistance checks before _monster_cast_area draws its one
                     // shared magnitude. Custom worlds retain their original path.
+                    var classicDirectHpAdmission = hitSpellScript is null && !IsNpcSelfSpell(hitSpell)
+                        ? ResolveClassicNpcDirectHitPointAdmission(session, hitSpell)
+                        : null;
                     var nativeAreaPlan = hitSpellScript is null
                         && session.World.Definition.Type.Equals("Classic", StringComparison.OrdinalIgnoreCase)
                         && IsNpcRoomAreaSpell(hitSpell)
@@ -462,7 +465,8 @@ public sealed partial class RuntimeLiveGameplayFacade
                                     hitSpell,
                                     ReadElementalResistance(before, ResolveNpcHitSpellAttackElement(hitSpell.AttackTypeRaw)),
                                     ReadAbilityValue(before, 21) > 0,
-                                    Random.Shared, nativeAreaMagnitude, nativeAreaPlan is not null);
+                                    Random.Shared, nativeAreaMagnitude, nativeAreaPlan is not null,
+                                    classicDirectHpAdmission);
                                 if (effect.Executable && effect.DirectDamage != 0)
                                 {
                                     var hitPointResolution = ApplyElementalSpellHitPoints(playerHp, before.MaximumHitPoints, effect.DirectDamage);
@@ -546,7 +550,8 @@ public sealed partial class RuntimeLiveGameplayFacade
                             messages,
                             roomMessagePriorities,
                             nativeAreaPlan,
-                            nativeAreaMagnitude);
+                            nativeAreaMagnitude,
+                            classicDirectHpAdmission);
                     }
                 }
                 if (isDecodedSpellRow && !nativeSpellHealing)
@@ -743,7 +748,8 @@ public sealed partial class RuntimeLiveGameplayFacade
         List<string> messages,
         Dictionary<string, RuntimeClassicRoomMessagePriority> roomMessagePriorities,
         RuntimeClassicNpcAreaRollPlan? nativeAreaPlan,
-        int? nativeAreaMagnitude)
+        int? nativeAreaMagnitude,
+        bool? classicDirectHpAdmission)
     {
         var nowUtc = DateTimeOffset.UtcNow;
         var targets = _sessions.InRoom(primarySession.World.Definition.Id, primarySession.CurrentRoom.Id)
@@ -792,7 +798,8 @@ public sealed partial class RuntimeLiveGameplayFacade
                 spell,
                 ReadElementalResistance(character, ResolveNpcHitSpellAttackElement(spell.AttackTypeRaw)),
                 poisonImmune,
-                Random.Shared, nativeAreaMagnitude, nativeAreaPlan is not null);
+                Random.Shared, nativeAreaMagnitude, nativeAreaPlan is not null,
+                classicDirectHpAdmission);
             if (effect.Executable && effect.DirectDamage != 0)
             {
                 var hitPointResolution = ApplyElementalSpellHitPoints(character.HitPoints, character.MaximumHitPoints, effect.DirectDamage);
