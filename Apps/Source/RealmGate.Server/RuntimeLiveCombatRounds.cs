@@ -385,6 +385,9 @@ public sealed partial class RuntimeLiveGameplayFacade
                         && IsNpcRoomAreaSpell(hitSpell)
                         ? BuildClassicNpcAreaSpellRollPlan(session, hitSpell)
                         : null;
+                    var classicAreaDamageMinusMr17 = nativeAreaPlan is not null
+                        && ClassicLiveStatusCatalog(session).TryGet(hitSpell.CanonicalSpellId, out var minusMrAreaStatus)
+                        && minusMrAreaStatus.Abilities.Any(ability => ability.AbilityId == 17);
                     var nativeAreaMagnitude = nativeAreaPlan?.SharedBaseMagnitude is int areaBase
                         ? ResolveClassicNpcAreaPerTargetBaseMagnitude(
                             areaBase, nativeAreaPlan.EligibleTargetCount, hitSpell.TargetTypeRaw)
@@ -470,7 +473,9 @@ public sealed partial class RuntimeLiveGameplayFacade
                                     ReadElementalResistance(before, ResolveNpcHitSpellAttackElement(hitSpell.AttackTypeRaw)),
                                     ReadAbilityValue(before, 21) > 0,
                                     Random.Shared, nativeAreaMagnitude, nativeAreaPlan is not null,
-                                    classicDirectHpAdmission, classicDrainAbility8);
+                                    classicDirectHpAdmission, classicDrainAbility8,
+                                    classicAreaDamageMinusMr17, ReadMagicResistance(before),
+                                    ReadAbilityValue(before, 51) > 0);
                                 if (effect.Executable && effect.DirectDamage != 0)
                                 {
                                     var hitPointResolution = ApplyElementalSpellHitPoints(playerHp, before.MaximumHitPoints, effect.DirectDamage);
@@ -578,6 +583,7 @@ public sealed partial class RuntimeLiveGameplayFacade
                             nativeAreaMagnitude,
                             classicDirectHpAdmission,
                             classicDrainAbility8,
+                            classicAreaDamageMinusMr17,
                             encounter.NpcInstanceId,
                             npcHp,
                             liveNpc.MaximumHitPoints);
@@ -780,6 +786,7 @@ public sealed partial class RuntimeLiveGameplayFacade
         int? nativeAreaMagnitude,
         bool? classicDirectHpAdmission,
         bool classicDrainAbility8,
+        bool classicAreaDamageMinusMr17,
         string casterNpcInstanceId,
         int casterHitPoints,
         int casterMaximumHitPoints)
@@ -832,7 +839,9 @@ public sealed partial class RuntimeLiveGameplayFacade
                 ReadElementalResistance(character, ResolveNpcHitSpellAttackElement(spell.AttackTypeRaw)),
                 poisonImmune,
                 Random.Shared, nativeAreaMagnitude, nativeAreaPlan is not null,
-                classicDirectHpAdmission, classicDrainAbility8);
+                classicDirectHpAdmission, classicDrainAbility8,
+                classicAreaDamageMinusMr17, ReadMagicResistance(character),
+                ReadAbilityValue(character, 51) > 0);
             if (effect.Executable && effect.DirectDamage != 0)
             {
                 var hitPointResolution = ApplyElementalSpellHitPoints(character.HitPoints, character.MaximumHitPoints, effect.DirectDamage);
@@ -1225,7 +1234,10 @@ public sealed partial class RuntimeLiveGameplayFacade
         RuntimeNpcHitSpellSelection spell, int elementalResistancePercent, bool poisonImmune, Random random,
         int? nativePreRolledMagnitude = null, bool nativeAreaMagnitudeScaled = false,
         bool? classicNativeHasDirectHitPointHandler = null,
-        bool classicNativeDrainAbility8 = false)
+        bool classicNativeDrainAbility8 = false,
+        bool classicNativeAreaDamageMinusMr17 = false,
+        int nativeTargetMagicResistance = 0,
+        bool nativeTargetHasAntiMagic = false)
     {
         ArgumentNullException.ThrowIfNull(spell);
         ArgumentNullException.ThrowIfNull(random);
@@ -1237,11 +1249,14 @@ public sealed partial class RuntimeLiveGameplayFacade
         // Ability 8 is an independent native HP handler even for spell
         // type 3 (Shadow Breath / 1011). Do not generalize the exception
         // to unrelated status handlers or to the Custom-world resolver.
-        var executable = (spell.SpellTypeRaw == 0 || classicNativeDrainAbility8)
+        var executable = (spell.SpellTypeRaw == 0 || classicNativeDrainAbility8
+                || classicNativeAreaDamageMinusMr17)
             && hostileScope && positiveRange && classicNativeHasDirectHitPointHandler != false;
         if (!executable)
         {
-            var reason = spell.SpellTypeRaw != 0 && !classicNativeDrainAbility8 ? "non-immediate-spell-type"
+            var reason = spell.SpellTypeRaw != 0
+                && !classicNativeDrainAbility8 && !classicNativeAreaDamageMinusMr17
+                ? "non-immediate-spell-type"
                 : !hostileScope ? "non-hostile-or-scripted-target-scope"
                 : classicNativeHasDirectHitPointHandler == false ? "no-native-direct-hit-point-handler"
                 : "non-positive-effect-range";
@@ -1259,7 +1274,11 @@ public sealed partial class RuntimeLiveGameplayFacade
             throw new InvalidDataException("NPC_NATIVE_EFFECT_MAGNITUDE_OUTSIDE_AUTHORED_RANGE");
         var roll = nativePreRolledMagnitude
             ?? random.Next(spell.EffectRange.RollMinimum, checked(spell.EffectRange.RollMaximum + 1));
-        var finalDamage = ResolveElementalSpellDamage(roll, element, elementalResistancePercent, poisonImmune);
+        var elementalDamage = ResolveElementalSpellDamage(roll, element, elementalResistancePercent, poisonImmune);
+        var finalDamage = classicNativeAreaDamageMinusMr17
+            ? ResolveClassicNpcAreaDamageMinusMr(
+                elementalDamage, nativeTargetMagicResistance, nativeTargetHasAntiMagic)
+            : elementalDamage;
         return new RuntimeNpcHitSpellEffectResolution(true, type, scope, element,
             spell.EffectRange.RollMinimum, spell.EffectRange.RollMaximum, roll, roll, elementalResistancePercent, poisonImmune, finalDamage,
             finalDamage == 0 && (poisonImmune || elementalResistancePercent == 100) ? "elemental-immunity" : string.Empty);
