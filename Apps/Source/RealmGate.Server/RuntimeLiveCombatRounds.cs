@@ -1929,6 +1929,13 @@ public sealed class RuntimeLiveCombatRoundSmokeReport
                     && RuntimeLiveGameplayFacade.ClassicNpcHasDirectHitPointHandler(drainStatus),
                 "npc-classic-status-only-does-not-fabricate-direct-hp-damage");
             report.Checks.Add("npc-classic-status-only-does-not-fabricate-direct-hp-damage");
+            Require(RuntimeLiveGameplayFacade.ResolveClassicNpcDrainHitPointsAfter(20, 100, 30) == 50
+                && RuntimeLiveGameplayFacade.ResolveClassicNpcDrainHitPointsAfter(90, 100, 30) == 100
+                && RuntimeLiveGameplayFacade.ResolveClassicNpcDrainHitPointsAfter(100, 100, 30) == 100
+                && liveStatusCatalog.TryGet("spell.950", out var nativeDrainVector)
+                && nativeDrainVector.Abilities.Count(ability => ability.AbilityId == 8) == 1,
+                "npc-native-ability8-drain-recovers-caster-hp-capped-at-maximum");
+            report.Checks.Add("npc-native-ability8-drain-recovers-caster-hp-capped-at-maximum");
             var statusOnlyRng = new CountingRangeRandom();
             var statusOnlyDamage = RuntimeLiveGameplayFacade.ResolveNpcHitSpellEffect(
                 plagueSpell!, 0, false, statusOnlyRng,
