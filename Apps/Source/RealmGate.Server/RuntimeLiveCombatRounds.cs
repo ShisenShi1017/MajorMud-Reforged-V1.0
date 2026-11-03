@@ -1889,6 +1889,24 @@ public sealed class RuntimeLiveCombatRoundSmokeReport
                 plagueStatus.Abilities.Any(ability => ability.AbilityId == 2 && ability.Value == -5) &&
                 plagueStatus.Abilities.Any(ability => ability.AbilityId == 4 && ability.Value == -4),
                 "npc-plague-decoded-duration-modifiers"); report.Checks.Add("npc-plague-decoded-duration-modifiers");
+            Require(liveStatusCatalog.TryGet("spell.365", out var beePoisonStatus)
+                    && !RuntimeLiveGameplayFacade.ClassicNpcHasDirectHitPointHandler(beePoisonStatus)
+                    && liveStatusCatalog.TryGet("spell.777", out var voodooStunStatus)
+                    && !RuntimeLiveGameplayFacade.ClassicNpcHasDirectHitPointHandler(voodooStunStatus)
+                    && RuntimeLiveGameplayFacade.ClassicNpcHasDirectHitPointHandler(plagueStatus)
+                    && liveStatusCatalog.TryGet("spell.950", out var drainStatus)
+                    && RuntimeLiveGameplayFacade.ClassicNpcHasDirectHitPointHandler(drainStatus),
+                "npc-classic-status-only-does-not-fabricate-direct-hp-damage");
+            report.Checks.Add("npc-classic-status-only-does-not-fabricate-direct-hp-damage");
+            var statusOnlyRng = new CountingRangeRandom();
+            var statusOnlyDamage = RuntimeLiveGameplayFacade.ResolveNpcHitSpellEffect(
+                plagueSpell!, 0, false, statusOnlyRng,
+                classicNativeHasDirectHitPointHandler: false);
+            Require(!statusOnlyDamage.Executable && statusOnlyDamage.DirectDamage == 0
+                && statusOnlyDamage.QuarantineReason == "no-native-direct-hit-point-handler"
+                && statusOnlyRng.Calls == 0,
+                "npc-classic-status-only-no-immediate-damage-or-rng");
+            report.Checks.Add("npc-classic-status-only-no-immediate-damage-or-rng");
             var plagueDelivery = RuntimeLiveGameplayFacade.ResolveNpcHitSpellStatusDelivery(plagueSpell, false, false, plagueStatus.HasCombatModifiers);
             Require(plagueDelivery.Eligible && plagueDelivery.Applied && plagueDelivery.DurationSeconds == 30 &&
                 plagueDelivery.EffectKind == "immediate-with-duration-modifiers",
