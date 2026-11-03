@@ -1261,12 +1261,18 @@ public sealed partial class RuntimeLiveGameplayFacade
         var element = ResolveNpcHitSpellAttackElement(spell.AttackTypeRaw, classicNativeAttackElement);
         var positiveRange = spell.EffectRange.Sign == RuntimeSpellEffectSign.Positive && spell.EffectRange.RollMaximum > 0;
         var hostileScope = spell.TargetTypeRaw is 0 or 8 or 11 or 12;
+        // _monster_cast ability8's +0xCC gate (0x428A6D) admits single
+        // target types 1/2/6/8, not contact target 0; the area handler
+        // separately admits types 11/12. Avoid inventing a Classic
+        // contact-attached Drain for a spell such as Draws the Breath (82).
+        var nativeDrainTargetValid = !classicNativeDrainAbility8 || spell.TargetTypeRaw != 0;
         // Ability 8 is an independent native HP handler even for spell
         // type 3 (Shadow Breath / 1011). Do not generalize the exception
         // to unrelated status handlers or to the Custom-world resolver.
         var executable = (spell.SpellTypeRaw == 0 || classicNativeDrainAbility8
                 || classicNativeAreaDamageMinusMr17 || classicNativeAreaDamageAbility1)
-            && hostileScope && positiveRange && classicNativeHasDirectHitPointHandler != false;
+            && hostileScope && positiveRange && nativeDrainTargetValid
+            && classicNativeHasDirectHitPointHandler != false;
         if (!executable)
         {
             var reason = spell.SpellTypeRaw != 0
@@ -1274,6 +1280,7 @@ public sealed partial class RuntimeLiveGameplayFacade
                 && !classicNativeAreaDamageAbility1
                 ? "non-immediate-spell-type"
                 : !hostileScope ? "non-hostile-or-scripted-target-scope"
+                : !nativeDrainTargetValid ? "native-drain-target-type-ineligible"
                 : classicNativeHasDirectHitPointHandler == false ? "no-native-direct-hit-point-handler"
                 : "non-positive-effect-range";
             return new RuntimeNpcHitSpellEffectResolution(false, type, scope, element,
