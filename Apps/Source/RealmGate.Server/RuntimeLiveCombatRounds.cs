@@ -2401,6 +2401,32 @@ public sealed class RuntimeLiveCombatRoundSmokeReport
                 && resolvedNativeSlots.Select(slot => slot.EffectiveValue).SequenceEqual(new[] { 19, -5, 31, 19 }),
                 "npc-native-ordered-repeated-slots-and-zero-inherits-base-magnitude");
             report.Checks.Add("npc-native-ordered-repeated-slots-and-zero-inherits-base-magnitude");
+            Require(liveStatusCatalog.TryGet("spell.1062", out var barbskinSelf)
+                    && barbskinSelf.Abilities.Count(ability => ability.AbilityId == 122) == 4,
+                "npc-self-barbskin-four-repeated-removespell-slots");
+            report.Checks.Add("npc-self-barbskin-four-repeated-removespell-slots");
+            var barbskinOrderedSlots = RuntimeLiveGameplayFacade.ResolveClassicNpcEffectSlots(
+                barbskinSelf.Abilities, 19);
+            var barbskinModifiers = RuntimeLiveGameplayFacade.ResolveClassicNpcTimedModifierProjection(
+                barbskinOrderedSlots);
+            Require(barbskinOrderedSlots.Count == barbskinSelf.Abilities.Count
+                && barbskinModifiers.Count == 3
+                && barbskinModifiers[7] == 50
+                && barbskinModifiers[2] == 10
+                && barbskinModifiers[72] == 19
+                && !barbskinModifiers.ContainsKey(122)
+                && !barbskinModifiers.ContainsKey(115)
+                && !barbskinModifiers.ContainsKey(137),
+                "npc-classic-self-timed-buff-excludes-ordered-removal-and-message-commands");
+            report.Checks.Add("npc-classic-self-timed-buff-excludes-ordered-removal-and-message-commands");
+            Require(liveStatusCatalog.TryGet("spell.1220", out var nativePicklockSelf)
+                    && nativePicklockSelf.Abilities.Count == 1
+                    && nativePicklockSelf.Abilities[0].AbilityId == 37
+                    && RuntimeLiveGameplayFacade.ResolveClassicNpcTimedModifierProjection(
+                        RuntimeLiveGameplayFacade.ResolveClassicNpcEffectSlots(
+                            nativePicklockSelf.Abilities, 200)).Count == 0,
+                "npc-classic-scripted-self-skill-not-fabricated-as-combat-stat");
+            report.Checks.Add("npc-classic-scripted-self-skill-not-fabricated-as-combat-stat");
             var fixedSelfSlots = RuntimeLiveGameplayFacade.ResolveClassicNpcEffectSlots(
                 blacknightStatus.Abilities, 13);
             Require(fixedSelfSlots.Count == 1
