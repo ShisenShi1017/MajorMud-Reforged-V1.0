@@ -1309,6 +1309,13 @@ public sealed partial class RuntimeLiveGameplayFacade
         return effect with { Metadata = metadata };
     }
 
+    internal static bool IsClassicCureOnlySpell(RuntimeSpellDefinition spell)
+    {
+        ArgumentNullException.ThrowIfNull(spell);
+        return spell.DecodedAbilities.Any(ability => ability.AbilityId == 20)
+            && spell.DecodedAbilities.All(ability => ability.AbilityId is 20 or 73 or 122 or 115 or 120 or 144);
+    }
+
     internal static bool IsCurePoisonSpell(RuntimeSpellDefinition spell)
     {
         ArgumentNullException.ThrowIfNull(spell);
@@ -1365,7 +1372,16 @@ public sealed partial class RuntimeLiveGameplayFacade
                 return new[] { new RuntimeSpellExecutionEvent(Guid.NewGuid().ToString("N"), spell.Id, request.CasterId, request.Target, "immune", 0, request.RequestedAtUtc, null,
                     new Dictionary<string, string> { ["spell_level"] = spell.SpellLevel.ToString(), ["spell_immunity_level"] = immunityLevel.ToString() }) };
             }
-            if (IsCurePoisonSpell(spell))
+            // Classic treats ability 20 as the Cure Poison handler even when
+            // the definition name is not "cure poison" (e.g. Purify/Jade
+            // Amulet). Restrict the early cure operation to vectors without
+            // independently executable heal/damage/mana/status handlers.
+            // Compound cures (Restoration, Curing Wind, etc.) stay on the
+            // existing mixed-effect path until their native order is proven.
+            var classicCureOnly = _session.World.Definition.Type.Equals(
+                "Classic", StringComparison.OrdinalIgnoreCase)
+                && IsClassicCureOnlySpell(spell);
+            if (classicCureOnly || IsCurePoisonSpell(spell))
             {
                 var cureMetadata = new Dictionary<string, string>(
                     effect.Metadata ?? new Dictionary<string, string>(), StringComparer.OrdinalIgnoreCase);
