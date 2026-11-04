@@ -1367,6 +1367,30 @@ public sealed partial class RuntimeLivingWorldService
                     continue;
                 }
 
+                // Spell summons are real dynamic NPC instances, not rows in
+                // the authored room-spawn table. Rehydrate only surviving,
+                // explicitly tagged Classic spell NPCs; never turn dead
+                // summoned identities into respawnable fixed slots.
+                if (_world.Definition.Type.Equals("Classic", StringComparison.OrdinalIgnoreCase)
+                    && npc.Alive
+                    && npc.Metadata.TryGetValue("npc_lifecycle_owner", out var lifecycleOwner)
+                    && lifecycleOwner.Equals("classic-native-spell", StringComparison.OrdinalIgnoreCase)
+                    && _world.FindRoomById(npc.RoomId) is not null
+                    && int.TryParse(npc.NpcId.StartsWith("npc.", StringComparison.OrdinalIgnoreCase)
+                        ? npc.NpcId[4..] : npc.NpcId, out var summonedLegacyId)
+                    && _world.Npcs.ContainsKey(summonedLegacyId))
+                {
+                    _npcs[npc.InstanceId] = npc with
+                    {
+                        HomeRoomId = npc.RoomId,
+                        RespawnAtUtc = null
+                    };
+                    _npcAi[npc.InstanceId] = new RuntimeNpcAiState(
+                        npc.InstanceId, "idle", null, npc.RoomId,
+                        npc.RoomId, 0, DateTimeOffset.UtcNow);
+                    continue;
+                }
+
                 // Migration from legacy fixed slots and recovery of new
                 // dynamically generated Classic monsters. A dead old slot
                 // must never turn into a permanent native respawn identity.
