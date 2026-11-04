@@ -2687,6 +2687,65 @@ public sealed class RuntimeLiveCombatRoundSmokeReport
                 && directFixedRng.LastMinimum == 7 && directFixedRng.LastExclusiveMaximum == 8,
                 "npc-native-fixed-damage-range-consumes-one-draw");
             report.Checks.Add("npc-native-fixed-damage-range-consumes-one-draw");
+            // Native per-slot signed Int16 values override the one base
+            // magnitude without rerolling. A zero slot inherits the roll.
+            // The same native negative value heals through the existing
+            // signed hit-point consumer, even when the authored range is
+            // entirely negative or crosses zero.
+            var mixedRawFixture = immediateDamageSpell! with
+            {
+                SpellTypeRaw = 0, TargetTypeRaw = 8, AttackTypeRaw = 4,
+                MinimumEffect = -10, MaximumEffect = 20,
+                EffectRange = RuntimeLiveGameplayFacade.ResolveNpcHitSpellEffectRange(-10, 20)
+            };
+            var mixedPositiveRng = new CountingRangeRandom();
+            var mixedPositive = RuntimeLiveGameplayFacade.ResolveNpcHitSpellEffect(
+                mixedRawFixture, 0, false, mixedPositiveRng,
+                classicNativeHasDirectHitPointHandler: true,
+                classicNativeAttackElement: true,
+                classicNativeDirectSlotRaw: 5);
+            var mixedNegativeRng = new CountingRangeRandom();
+            var mixedNegative = RuntimeLiveGameplayFacade.ResolveNpcHitSpellEffect(
+                mixedRawFixture, 0, false, mixedNegativeRng,
+                classicNativeHasDirectHitPointHandler: true,
+                classicNativeAttackElement: true,
+                classicNativeDirectSlotRaw: -7);
+            var nativeZeroRng = new CountingRangeRandom();
+            var mixedFallback = RuntimeLiveGameplayFacade.ResolveNpcHitSpellEffect(
+                mixedRawFixture, 0, false, nativeZeroRng,
+                classicNativeHasDirectHitPointHandler: true,
+                classicNativeAttackElement: true,
+                classicNativeDirectSlotRaw: 0);
+            var customMixedRng = new CountingRangeRandom();
+            var customMixed = RuntimeLiveGameplayFacade.ResolveNpcHitSpellEffect(
+                mixedRawFixture, 0, false, customMixedRng);
+            Require(mixedPositive.Executable && mixedPositive.Roll == -10
+                && mixedPositive.RawDirectDamage == 5 && mixedPositive.DirectDamage == 5
+                && mixedNegative.Executable && mixedNegative.Roll == -10
+                && mixedNegative.RawDirectDamage == -7 && mixedNegative.DirectDamage == -7
+                && mixedFallback.Executable && mixedFallback.DirectDamage == -10
+                && !customMixed.Executable
+                && mixedPositiveRng.Calls == 1 && mixedNegativeRng.Calls == 1
+                && nativeZeroRng.Calls == 1 && customMixedRng.Calls == 0,
+                "npc-native-signed-slot-overrides-base-roll-and-mixed-custom-isolation");
+            report.Checks.Add("npc-native-signed-slot-overrides-base-roll-and-mixed-custom-isolation");
+            var nativeWaterNegativeRng = new CountingRangeRandom();
+            var negativeWaterFixture = mixedRawFixture with { AttackTypeRaw = 5 };
+            var nativeWaterNegative = RuntimeLiveGameplayFacade.ResolveNpcHitSpellEffect(
+                negativeWaterFixture, 50, false, nativeWaterNegativeRng,
+                classicNativeHasDirectHitPointHandler: true,
+                classicNativeAttackElement: true,
+                classicNativeDirectSlotRaw: -20);
+            var nativeWaterOverresist = RuntimeLiveGameplayFacade.ResolveNpcHitSpellEffect(
+                negativeWaterFixture, 150, false, nativeWaterNegativeRng,
+                classicNativeHasDirectHitPointHandler: true,
+                classicNativeAttackElement: true,
+                classicNativeDirectSlotRaw: -20);
+            Require(nativeWaterNegative.Element == "water" && nativeWaterNegative.DirectDamage == -10
+                && nativeWaterOverresist.DirectDamage == 10
+                && nativeWaterNegativeRng.Calls == 2,
+                "npc-native-negative-water-damage-and-overresistance-inversion");
+            report.Checks.Add("npc-native-negative-water-damage-and-overresistance-inversion");
             var immediateEffect = RuntimeLiveGameplayFacade.ResolveNpcHitSpellEffectForAudit(immediateDamageSpell!, immediateDamageSpell!.EffectRange.RollMinimum);
             Require(immediateEffect.Executable && immediateEffect.DirectDamage == immediateDamageSpell.EffectRange.RollMinimum, "npc-hit-spell-immediate-damage-live-consumer"); report.Checks.Add("npc-hit-spell-immediate-damage-live-consumer");
             Require(RuntimeLiveGameplayFacade.ResolveElementalSpellDamage(100, "fire", 25, false) == 75, "npc-hit-spell-elemental-resistance-reduction"); report.Checks.Add("npc-hit-spell-elemental-resistance-reduction");
