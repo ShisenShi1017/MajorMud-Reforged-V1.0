@@ -1891,7 +1891,11 @@ public sealed class RuntimeClassicLiveStatusEffectsSmokeReport
             Require(textblockOwners.Sum(x => x.Abilities.Count(a => a.AbilityId == 148 && a.Value == 0)) == 28,
                 "decoded-textblock-zero-sentinel-count"); report.Checks.Add("decoded-textblock-zero-sentinel-count-28");
             var nativeTextblocks = RuntimeClassicNativeTextblockPayloadAuthority.Load(projectRoot);
-            var distinctTextblockTargets = textblockOwners.SelectMany(x => x.TextblockIds).Distinct().ToArray();
+            // Raw zero slots are retained in TextblockIds so the native
+            // shared-magnitude fallback remains reconstructable. Zero itself
+            // is not a textblock ID: the referenced ID is the magnitude.
+            var distinctTextblockTargets = textblockOwners.SelectMany(x => x.TextblockIds)
+                .Where(id => id > 0).Distinct().ToArray();
             Require(distinctTextblockTargets.Length == 144, "decoded-textblock-distinct-target-count"); report.Checks.Add("decoded-textblock-distinct-target-count-144");
             Require(distinctTextblockTargets.Count(id => nativeTextblocks.TryResolveTextblock(id, out _)) == 74,
                 "decoded-textblock-native-payload-resolution-count"); report.Checks.Add("decoded-textblock-native-payload-target-count-74");
