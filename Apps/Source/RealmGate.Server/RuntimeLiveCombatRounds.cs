@@ -1235,8 +1235,9 @@ public sealed partial class RuntimeLiveGameplayFacade
     // dispatcher. Duplicate stat IDs retain the last populated value here;
     // exact native stacking remains a separate parity boundary. Repeated
     // scripted/removal slots are preserved in ResolveClassicNpcEffectSlots.
-    // Summon(12) in _monster_cast (0x428BD9) admits target types 1, 2,
-    // 6 and 8. TextBlock(148) dispatches the special-command interpreter
+    // Summon(12) in _monster_cast (0x428BD9) admits target types 0, 2,
+    // 6 and 8 (verified via 0x428BD9..0x428BF7). It does not admit type 1;
+    // self-target summons may use a distinct native cast route. TextBlock(148) dispatches the special-command interpreter
     // at 0x428445 for every authored slot. The native effect magnitude is
     // substituted only for slots whose raw value is zero; repeated IDs are
     // never deduplicated. This boundary deliberately does not perform the
@@ -1251,7 +1252,7 @@ public sealed partial class RuntimeLiveGameplayFacade
             .Where(slot => slot.AbilityId is 12 or 148)
             .Select(slot => new RuntimeClassicNativeSpecialSpellSlot(
                 slot.PopulatedOrdinal, slot.AbilityId, slot.RawValue, slot.EffectiveValue,
-                slot.AbilityId == 148 || nativeTargetTypeRaw is 1 or 2 or 6 or 8,
+                slot.AbilityId == 148 || nativeTargetTypeRaw is 0 or 2 or 6 or 8,
                 slot.EffectiveValue > 0))
             .ToArray();
     }
@@ -2466,11 +2467,11 @@ public sealed class RuntimeLiveCombatRoundSmokeReport
                 "npc-native-special-slot-catalog-vectors-exist");
             report.Checks.Add("npc-native-special-slot-catalog-vectors-exist");
             var fourSummons = RuntimeLiveGameplayFacade.ResolveClassicNativeSpecialSpellSlots(
-                RuntimeLiveGameplayFacade.ResolveClassicNpcEffectSlots(allBallSummon.Abilities, 0), 1);
+                RuntimeLiveGameplayFacade.ResolveClassicNpcEffectSlots(allBallSummon.Abilities, 0), 2);
             var threeZeroSummons = RuntimeLiveGameplayFacade.ResolveClassicNativeSpecialSpellSlots(
-                RuntimeLiveGameplayFacade.ResolveClassicNpcEffectSlots(duergarSummon.Abilities, 1112), 1);
+                RuntimeLiveGameplayFacade.ResolveClassicNpcEffectSlots(duergarSummon.Abilities, 1112), 8);
             var deniedAreaSummons = RuntimeLiveGameplayFacade.ResolveClassicNativeSpecialSpellSlots(
-                RuntimeLiveGameplayFacade.ResolveClassicNpcEffectSlots(allBallSummon.Abilities, 0), 12);
+                RuntimeLiveGameplayFacade.ResolveClassicNpcEffectSlots(allBallSummon.Abilities, 0), 1);
             Require(fourSummons.Count == 4
                 && fourSummons.Select(slot => slot.EffectiveId)
                     .SequenceEqual(new[] { 1080, 1081, 1082, 1083 })
@@ -2479,7 +2480,17 @@ public sealed class RuntimeLiveCombatRoundSmokeReport
                 && threeZeroSummons.Count == 3
                 && threeZeroSummons.All(slot => slot.RawValue == 0
                     && slot.EffectiveId == 1112 && slot.ResolvedId)
-                && deniedAreaSummons.All(slot => !slot.NativeTargetAdmitted),
+                && deniedAreaSummons.All(slot => !slot.NativeTargetAdmitted)
+                && new[] { 0, 2, 6, 8 }.All(nativeType =>
+                    RuntimeLiveGameplayFacade.ResolveClassicNativeSpecialSpellSlots(
+                        RuntimeLiveGameplayFacade.ResolveClassicNpcEffectSlots(
+                            duergarSummon.Abilities, 1112), nativeType)
+                        .All(slot => slot.NativeTargetAdmitted))
+                && new[] { 1, 11, 12, 13 }.All(nativeType =>
+                    RuntimeLiveGameplayFacade.ResolveClassicNativeSpecialSpellSlots(
+                        RuntimeLiveGameplayFacade.ResolveClassicNpcEffectSlots(
+                            duergarSummon.Abilities, 1112), nativeType)
+                        .All(slot => !slot.NativeTargetAdmitted)),
                 "npc-native-summon-repeated-slots-zero-fallback-and-cc-target-gate");
             report.Checks.Add("npc-native-summon-repeated-slots-zero-fallback-and-cc-target-gate");
             var repeatedChestCommands = RuntimeLiveGameplayFacade.ResolveClassicNativeSpecialSpellSlots(
