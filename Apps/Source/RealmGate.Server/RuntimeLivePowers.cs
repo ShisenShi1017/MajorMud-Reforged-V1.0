@@ -1936,6 +1936,24 @@ public sealed class RuntimeLivePowersSmokeReport
                 && !RuntimeLiveGameplayFacade.IsVerifiedNativeUserDamageMinusMrSpell(spells.Require("spell.805"))
                 && !RuntimeLiveGameplayFacade.IsVerifiedNativeUserDamageMinusMrSpell(spells.Require("spell.526")),
                 "native-user-damage-minus-mr-isolated-handler-only", r);
+            Check(RuntimeLiveGameplayFacade.ResolveSignedClassicSpellMagnitude(
+                    -20, "untyped", 0, false) == -20
+                && RuntimeLiveGameplayFacade.ResolveSignedClassicSpellMagnitude(
+                    -20, "water", 50, false) == -10
+                && RuntimeLiveGameplayFacade.ResolveSignedClassicSpellMagnitude(
+                    -20, "water", 150, false) == 10
+                && RuntimeLiveGameplayFacade.ResolveSignedClassicSpellMagnitude(
+                    20, "water", 150, false) == -10
+                && RuntimeLiveGameplayFacade.ResolveSignedClassicSpellMagnitude(
+                    -20, "poison", 0, true) == 0,
+                "native-signed-direct-hp-magnitudes-and-overresistance", r);
+            Check(spells.Require("spell.1210").MinimumEffect == -20
+                && spells.Require("spell.1210").DecodedAbilities.Any(ability => ability.AbilityId == 17)
+                && spells.Require("spell.1047").MinimumEffect == -15
+                && spells.Require("spell.1047").MaximumEffect == 20
+                && spells.Require("spell.1252").MinimumEffect == -999
+                && spells.Require("spell.1252").DecodedAbilities.Any(ability => ability.AbilityId == 18),
+                "native-negative-and-mixed-hp-spell-catalog-vectors", r);
             var poisonEffect = new RuntimeActiveSpellEffect("poison", "spell.poison", "npc.1", new RuntimeSpellTarget("character", "character.1"), 1, 2, 10, DateTimeOffset.UtcNow, DateTimeOffset.UtcNow.AddSeconds(10), new Dictionary<string,string> { ["effect_kind"] = "poison" });
             var statusEffect = poisonEffect with { EffectId = "status", Metadata = new Dictionary<string,string> { ["effect_kind"] = "status" } };
             Check(RuntimeLiveGameplayFacade.IsPoisonEffect(poisonEffect), "cure-poison-removes-poison", r);
