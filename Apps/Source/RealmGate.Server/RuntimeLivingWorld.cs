@@ -599,6 +599,51 @@ public sealed partial class RuntimeLivingWorldService
                 .OrderBy(ReadClassicActiveSlot).ThenBy(x=>x.InstanceId,StringComparer.OrdinalIgnoreCase).ToArray();
     }
 
+    // Native _spawn_monster (WCCMMUD 0x424361..0x4243EE) first requires
+    // a free room monster slot (15) and refuses invalid monster identities.
+    // Keep Classic spell-created NPCs on the same living-world/AI pipeline
+    // rather than creating a second transient NPC store. GameLimit is
+    // enforced as an additional existing world-definition constraint.
+    // Ownership, restart persistence and native generated-room accounting
+    // remain separate lifecycle parity boundaries.
+    public RuntimeLivingNpcState? TrySummonClassicSpellNpc(
+        int npcLegacyId, string roomId, string source)
+    {
+        if (npcLegacyId <= 0 || string.IsNullOrWhiteSpace(roomId)
+            || string.IsNullOrWhiteSpace(source))
+            return null;
+        if (!_world.Definition.Type.Equals("Classic", StringComparison.OrdinalIgnoreCase))
+            return null;
+        lock (_gate)
+        {
+            if (_world.FindRoomById(roomId) is null
+                || !_world.Npcs.TryGetValue(npcLegacyId, out var definition))
+                return null;
+            if (_npcs.Values.Count(npc => npc.Alive
+                && npc.RoomId.Equals(roomId, StringComparison.OrdinalIgnoreCase)) >= 15)
+                return null;
+            if (definition.GameLimit > 0
+                && _npcs.Values.Count(npc => npc.Alive
+                    && npc.NpcId.Equals(definition.Id, StringComparison.OrdinalIgnoreCase))
+                    >= definition.GameLimit)
+                return null;
+            var created = SummonNpc(definition.Id, roomId, source);
+            var metadata = new Dictionary<string, string>(created.Metadata, StringComparer.OrdinalIgnoreCase)
+            {
+                ["npc_lifecycle_owner"] = "classic-native-spell",
+                ["classic_native_spell_summon"] = "true"
+            };
+            var state = created with
+            {
+                InteractionModel = "classic_native_spell_summon",
+                Metadata = metadata
+            };
+            _npcs[created.InstanceId] = state;
+            Save();
+            return state;
+        }
+    }
+
     public RuntimeLivingNpcState SummonNpc(string npcId, string roomId, string source)
     {
         lock (_gate)
