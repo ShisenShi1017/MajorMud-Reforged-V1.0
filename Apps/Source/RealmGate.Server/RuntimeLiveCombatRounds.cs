@@ -468,8 +468,8 @@ public sealed partial class RuntimeLiveGameplayFacade
                                 if (Living(session).ApplyNpcHealing(
                                         encounter.NpcInstanceId, healSlot.EffectiveValue,
                                         DateTimeOffset.UtcNow))
-                                    npcHp = Math.Min(liveNpc.MaximumHitPoints,
-                                        checked(npcHp + healSlot.EffectiveValue));
+                                    npcHp = (int)Math.Min((long)liveNpc.MaximumHitPoints,
+                                        (long)npcHp + healSlot.EffectiveValue);
                             }
                         }
                         if (classicSelfCast)
