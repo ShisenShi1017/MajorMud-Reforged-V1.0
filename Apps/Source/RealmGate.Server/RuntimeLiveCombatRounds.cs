@@ -450,6 +450,21 @@ public sealed partial class RuntimeLiveGameplayFacade
                                 .ToDictionary(slot => slot.AbilityId, slot => slot.EffectiveValue);
                         if (definition.DurationRounds > 0 && modifiers.Count > 0)
                             Living(session).ApplyNpcTimedStatus(encounter.NpcInstanceId, definition.SpellId, definition.DurationRounds, modifiers, DateTimeOffset.UtcNow);
+                        if (classicSelfCast)
+                        {
+                            // _monster_cast diverts target type 1 into the native
+                            // area/self handler, whose ability-12 branch summons
+                            // once per original slot (0x427641..0x4276C0).
+                            // Keep the authoritative living-world room/AI owner;
+                            // no special-command TextBlocks are executed here.
+                            var selfSummonSlots = ResolveClassicNativeSpecialSpellSlots(
+                                resolvedSelfSlots, hitSpell.TargetTypeRaw, nativeAreaDispatcher: true);
+                            foreach (var slot in selfSummonSlots.Where(slot =>
+                                         slot.AbilityId == 12 && slot.NativeTargetAdmitted && slot.ResolvedId))
+                                _ = Living(session).TrySummonClassicSpellNpc(
+                                    slot.EffectiveId, session.CurrentRoom.Id,
+                                    $"classic-native-spell:{encounter.NpcInstanceId}:{hitSpell.LegacySpellId}");
+                        }
                     }
                     // Native target type 1 is Self. Do not run player resistance, damage,
                     // status, or scripted-character execution for an NPC self-cast. The
