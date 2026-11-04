@@ -516,6 +516,29 @@ public sealed partial class RuntimeLiveGameplayFacade
                                     ReadMagicResistance(before),
                                     ReadAbilityValue(before, 51) > 0,
                                     isNativeClassicNpcSpell);
+                                var nativeSpecialSummoned = false;
+                                if (isNativeClassicNpcSpell && hitSpell.TargetTypeRaw == 8
+                                    && ClassicLiveStatusCatalog(session).TryGet(hitSpell.CanonicalSpellId,
+                                        out var nativeTargetSummonDefinition)
+                                    && nativeTargetSummonDefinition.Abilities.Any(ability => ability.AbilityId == 12))
+                                {
+                                    // _monster_cast's target-type-8 ability12 branch
+                                    // is reached only after admission/resistance.
+                                    // A single base magnitude roll belongs to the
+                                    // whole ordered spell even with fixed summon IDs.
+                                    var baseMagnitude = effect.Executable ? effect.Roll :
+                                        ResolveNpcStatusEffectMagnitude(hitSpell.MinimumEffect,
+                                            hitSpell.MaximumEffect, null, Random.Shared, classicWorld: true);
+                                    var nativeSummonSlots = ResolveClassicNativeSpecialSpellSlots(
+                                        ResolveClassicNpcEffectSlots(nativeTargetSummonDefinition.Abilities,
+                                            baseMagnitude), hitSpell.TargetTypeRaw);
+                                    foreach (var slot in nativeSummonSlots.Where(slot =>
+                                                 slot.AbilityId == 12 && slot.NativeTargetAdmitted
+                                                     && slot.ResolvedId))
+                                        nativeSpecialSummoned |= Living(session).TrySummonClassicSpellNpc(
+                                            slot.EffectiveId, session.CurrentRoom.Id,
+                                            $"classic-native-spell:{encounter.NpcInstanceId}:{hitSpell.LegacySpellId}") is not null;
+                                }
                                 if (effect.Executable && effect.DirectDamage != 0)
                                 {
                                     var hitPointResolution = ApplyElementalSpellHitPoints(playerHp, before.MaximumHitPoints, effect.DirectDamage);
@@ -594,6 +617,12 @@ public sealed partial class RuntimeLiveGameplayFacade
                                         var statusMessage = RuntimeClassicCombatAnsi.Effect($"{encounter.NpcName}'s {hitSpell.SpellName} affects {actor.DisplayName} for {delivery.DurationSeconds} combat rounds.");
                                         messages.Add(statusMessage);
                                         roomMessagePriorities[statusMessage] = RuntimeClassicRoomMessagePriority.Medium;
+                                    }
+                                    else if (nativeSpecialSummoned)
+                                    {
+                                        // The native summon already created a living NPC,
+                                        // so this is not a no-effect spell. Native cast
+                                        // messages remain owned by the attack renderer.
                                     }
                                     else if (delivery.PoisonImmune || effect.QuarantineReason == "elemental-immunity")
                                     {
