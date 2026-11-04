@@ -1237,13 +1237,16 @@ public sealed partial class RuntimeLiveGameplayFacade
     // scripted/removal slots are preserved in ResolveClassicNpcEffectSlots.
     // Summon(12) in _monster_cast (0x428BD9) admits target types 0, 2,
     // 6 and 8 (verified via 0x428BD9..0x428BF7). It does not admit type 1;
-    // self-target summons may use a distinct native cast route. TextBlock(148) dispatches the special-command interpreter
+    // self-target summons instead use _monster_cast_area's separate
+    // summon handler at 0x427641..0x4276C0 (targets 1, 2, 6).
+    // TextBlock(148) dispatches the special-command interpreter
     // at 0x428445 for every authored slot. The native effect magnitude is
     // substituted only for slots whose raw value is zero; repeated IDs are
     // never deduplicated. This boundary deliberately does not perform the
     // unverified ownership, lifetime or transactional script mutations.
     internal static IReadOnlyList<RuntimeClassicNativeSpecialSpellSlot> ResolveClassicNativeSpecialSpellSlots(
-        IReadOnlyList<RuntimeClassicNpcEffectSlot> orderedSlots, int nativeTargetTypeRaw)
+        IReadOnlyList<RuntimeClassicNpcEffectSlot> orderedSlots, int nativeTargetTypeRaw,
+        bool nativeAreaDispatcher = false)
     {
         ArgumentNullException.ThrowIfNull(orderedSlots);
         if (orderedSlots.Count > 10)
@@ -1252,7 +1255,9 @@ public sealed partial class RuntimeLiveGameplayFacade
             .Where(slot => slot.AbilityId is 12 or 148)
             .Select(slot => new RuntimeClassicNativeSpecialSpellSlot(
                 slot.PopulatedOrdinal, slot.AbilityId, slot.RawValue, slot.EffectiveValue,
-                slot.AbilityId == 148 || nativeTargetTypeRaw is 0 or 2 or 6 or 8,
+                slot.AbilityId == 148 || (nativeAreaDispatcher
+                    ? nativeTargetTypeRaw is 1 or 2 or 6
+                    : nativeTargetTypeRaw is 0 or 2 or 6 or 8),
                 slot.EffectiveValue > 0))
             .ToArray();
     }
@@ -2493,6 +2498,26 @@ public sealed class RuntimeLiveCombatRoundSmokeReport
                         .All(slot => !slot.NativeTargetAdmitted)),
                 "npc-native-summon-repeated-slots-zero-fallback-and-cc-target-gate");
             report.Checks.Add("npc-native-summon-repeated-slots-zero-fallback-and-cc-target-gate");
+            var nativeSelfSummons = RuntimeLiveGameplayFacade.ResolveClassicNativeSpecialSpellSlots(
+                RuntimeLiveGameplayFacade.ResolveClassicNpcEffectSlots(
+                    duergarSummon.Abilities, 1112), 1, nativeAreaDispatcher: true);
+            Require(nativeSelfSummons.Count == 3
+                && nativeSelfSummons.All(slot =>
+                    slot.AbilityId == 12 && slot.NativeTargetAdmitted && slot.EffectiveId == 1112)
+                && new[] { 1, 2, 6 }.All(target =>
+                    RuntimeLiveGameplayFacade.ResolveClassicNativeSpecialSpellSlots(
+                        RuntimeLiveGameplayFacade.ResolveClassicNpcEffectSlots(
+                            allBallSummon.Abilities, 0), target, nativeAreaDispatcher: true)
+                        .Where(slot => slot.AbilityId == 12)
+                        .All(slot => slot.NativeTargetAdmitted))
+                && new[] { 0, 8, 11, 12 }.All(target =>
+                    RuntimeLiveGameplayFacade.ResolveClassicNativeSpecialSpellSlots(
+                        RuntimeLiveGameplayFacade.ResolveClassicNpcEffectSlots(
+                            allBallSummon.Abilities, 0), target, nativeAreaDispatcher: true)
+                        .Where(slot => slot.AbilityId == 12)
+                        .All(slot => !slot.NativeTargetAdmitted)),
+                "npc-native-area-self-summon-target-gate-from-original-dll");
+            report.Checks.Add("npc-native-area-self-summon-target-gate-from-original-dll");
             var repeatedChestCommands = RuntimeLiveGameplayFacade.ResolveClassicNativeSpecialSpellSlots(
                 RuntimeLiveGameplayFacade.ResolveClassicNpcEffectSlots(chestItemsTextblocks.Abilities, 0), 1);
             var fallbackBlackwoodCommand = RuntimeLiveGameplayFacade.ResolveClassicNativeSpecialSpellSlots(
