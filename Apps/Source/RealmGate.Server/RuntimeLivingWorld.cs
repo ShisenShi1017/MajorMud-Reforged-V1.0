@@ -606,6 +606,15 @@ public sealed partial class RuntimeLivingWorldService
     // enforced as an additional existing world-definition constraint.
     // Ownership, restart persistence and native generated-room accounting
     // remain separate lifecycle parity boundaries.
+    internal static bool ClassicNativeSpellSummonAdmitted(
+        int activeRoomMonsterCount, int activeNpcDefinitionCount, int gameLimit)
+    {
+        if (activeRoomMonsterCount < 0 || activeNpcDefinitionCount < 0 || gameLimit < 0)
+            throw new ArgumentOutOfRangeException(nameof(activeRoomMonsterCount));
+        return activeRoomMonsterCount < 15
+            && (gameLimit == 0 || activeNpcDefinitionCount < gameLimit);
+    }
+
     public RuntimeLivingNpcState? TrySummonClassicSpellNpc(
         int npcLegacyId, string roomId, string source)
     {
@@ -619,13 +628,12 @@ public sealed partial class RuntimeLivingWorldService
             if (_world.FindRoomById(roomId) is null
                 || !_world.Npcs.TryGetValue(npcLegacyId, out var definition))
                 return null;
-            if (_npcs.Values.Count(npc => npc.Alive
-                && npc.RoomId.Equals(roomId, StringComparison.OrdinalIgnoreCase)) >= 15)
-                return null;
-            if (definition.GameLimit > 0
-                && _npcs.Values.Count(npc => npc.Alive
-                    && npc.NpcId.Equals(definition.Id, StringComparison.OrdinalIgnoreCase))
-                    >= definition.GameLimit)
+            var activeRoomCount = _npcs.Values.Count(npc => npc.Alive
+                && npc.RoomId.Equals(roomId, StringComparison.OrdinalIgnoreCase));
+            var activeDefinitionCount = _npcs.Values.Count(npc => npc.Alive
+                && npc.NpcId.Equals(definition.Id, StringComparison.OrdinalIgnoreCase));
+            if (!ClassicNativeSpellSummonAdmitted(
+                activeRoomCount, activeDefinitionCount, definition.GameLimit))
                 return null;
             var created = SummonNpc(definition.Id, roomId, source);
             var metadata = new Dictionary<string, string>(created.Metadata, StringComparer.OrdinalIgnoreCase)
