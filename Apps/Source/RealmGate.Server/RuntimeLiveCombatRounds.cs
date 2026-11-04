@@ -2501,6 +2501,14 @@ public sealed class RuntimeLiveCombatRoundSmokeReport
                 && areaStatusRoll == 2 && noExtraAreaRng.Calls == 0,
                 "npc-native-area-scaled-damage-and-status-reuse-no-per-recipient-draw");
             report.Checks.Add("npc-native-area-scaled-damage-and-status-reuse-no-per-recipient-draw");
+            Require(RuntimeLivingWorldService.ClassicNativeSpellSummonAdmitted(0, 0, 0)
+                && RuntimeLivingWorldService.ClassicNativeSpellSummonAdmitted(14, 999, 0)
+                && !RuntimeLivingWorldService.ClassicNativeSpellSummonAdmitted(15, 0, 0)
+                && RuntimeLivingWorldService.ClassicNativeSpellSummonAdmitted(0, 1, 2)
+                && !RuntimeLivingWorldService.ClassicNativeSpellSummonAdmitted(0, 2, 2)
+                && !RuntimeLivingWorldService.ClassicNativeSpellSummonAdmitted(15, 1, 2),
+                "npc-native-spell-summon-15-room-slots-and-definition-game-limit");
+            report.Checks.Add("npc-native-spell-summon-15-room-slots-and-definition-game-limit");
             var nativeSlotFixture = new[]
             {
                 new RuntimeClassicLiveStatusAbility(122, "RemovesSpell", 0),
