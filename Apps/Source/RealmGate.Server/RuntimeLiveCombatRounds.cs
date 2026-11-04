@@ -389,6 +389,10 @@ public sealed partial class RuntimeLiveGameplayFacade
                         : null;
                     var isNativeClassicNpcSpell = session.World.Definition.Type.Equals(
                         "Classic", StringComparison.OrdinalIgnoreCase);
+                    var classicDirectRawSlotValue = hitSpellScript is null
+                        && !IsNpcSelfSpell(hitSpell)
+                        ? ResolveClassicNpcDirectRawSlotValue(session, hitSpell)
+                        : null;
                     var classicDrainAbility8 = hitSpellScript is null
                         && isNativeClassicNpcSpell
                         && ClassicLiveStatusCatalog(session).TryGet(hitSpell.CanonicalSpellId, out var drainStatus)
@@ -515,7 +519,7 @@ public sealed partial class RuntimeLiveGameplayFacade
                                     classicAreaDamageMinusMr17, classicAreaDamageAbility1,
                                     ReadMagicResistance(before),
                                     ReadAbilityValue(before, 51) > 0,
-                                    isNativeClassicNpcSpell);
+                                    isNativeClassicNpcSpell, classicDirectRawSlotValue);
                                 var nativeSpecialSummoned = false;
                                 if (isNativeClassicNpcSpell && hitSpell.TargetTypeRaw == 8
                                     && ClassicLiveStatusCatalog(session).TryGet(hitSpell.CanonicalSpellId,
@@ -654,6 +658,7 @@ public sealed partial class RuntimeLiveGameplayFacade
                             classicDrainAbility8,
                             classicAreaDamageMinusMr17,
                             classicAreaDamageAbility1,
+                            classicDirectRawSlotValue,
                             encounter.NpcInstanceId,
                             npcHp,
                             liveNpc.MaximumHitPoints);
@@ -807,6 +812,19 @@ public sealed partial class RuntimeLiveGameplayFacade
         return IsNpcFullAreaSpell(spell) || IsNpcAreaHostileSpell(spell);
     }
 
+    private int? ResolveClassicNpcDirectRawSlotValue(
+        RuntimeSession session, RuntimeNpcHitSpellSelection spell)
+    {
+        if (!session.World.Definition.Type.Equals("Classic", StringComparison.OrdinalIgnoreCase))
+            return null;
+        var catalog = ClassicLiveStatusCatalog(session);
+        if (!catalog.TryGet(spell.CanonicalSpellId, out var definition))
+            throw new InvalidDataException(
+                $"NPC_CLASSIC_DIRECT_ABILITY_VECTOR_MISSING:{spell.CanonicalSpellId}");
+        return definition.Abilities.FirstOrDefault(ability =>
+            ability.AbilityId is 1 or 8 or 17)?.Value;
+    }
+
     private bool? ResolveClassicNpcDirectHitPointAdmission(
         RuntimeSession session, RuntimeNpcHitSpellSelection spell)
     {
@@ -858,6 +876,7 @@ public sealed partial class RuntimeLiveGameplayFacade
         bool classicDrainAbility8,
         bool classicAreaDamageMinusMr17,
         bool classicAreaDamageAbility1,
+        int? classicDirectRawSlotValue,
         string casterNpcInstanceId,
         int casterHitPoints,
         int casterMaximumHitPoints)
@@ -915,7 +934,7 @@ public sealed partial class RuntimeLiveGameplayFacade
                 classicAreaDamageMinusMr17, classicAreaDamageAbility1,
                 ReadMagicResistance(character),
                 ReadAbilityValue(character, 51) > 0,
-                nativeAreaPlan is not null);
+                nativeAreaPlan is not null, classicDirectRawSlotValue);
             if (effect.Executable && effect.DirectDamage != 0)
             {
                 var hitPointResolution = ApplyElementalSpellHitPoints(character.HitPoints, character.MaximumHitPoints, effect.DirectDamage);
@@ -1357,7 +1376,8 @@ public sealed partial class RuntimeLiveGameplayFacade
         bool classicNativeAreaDamageAbility1 = false,
         int nativeTargetMagicResistance = 0,
         bool nativeTargetHasAntiMagic = false,
-        bool classicNativeAttackElement = false)
+        bool classicNativeAttackElement = false,
+        int? classicNativeDirectSlotRaw = null)
     {
         ArgumentNullException.ThrowIfNull(spell);
         ArgumentNullException.ThrowIfNull(random);
