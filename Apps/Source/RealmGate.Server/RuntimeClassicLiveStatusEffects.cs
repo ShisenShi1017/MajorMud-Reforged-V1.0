@@ -62,7 +62,7 @@ public sealed record RuntimeClassicLiveStatusDefinition(
     // dictionary. Script, summon, message and removal slots must stay in the
     // ordered effect vector and never be reinterpreted as stat modifiers.
     internal static bool IsCombatModifierAbility(int abilityId) =>
-        abilityId is 2 or 3 or 4 or 5 or 7 or 22 or 24 or 25 or 27 or 34 or 36 or 44 or 45 or 46 or 48 or 49 or 58 or 65 or 66 or 68 or 69 or 71 or 72 or 77 or 87 or 88 or 89 or 90 or 91 or 92 or 93 or 94 or 96 or 99 or 105 or 106 or 116 or 117 or 118 or 123 or 142 or 145;
+        abilityId is 2 or 3 or 4 or 5 or 7 or 22 or 24 or 25 or 27 or 34 or 36 or 44 or 45 or 46 or 48 or 49 or 58 or 65 or 66 or 68 or 69 or 71 or 72 or 77 or 87 or 88 or 89 or 90 or 91 or 92 or 93 or 94 or 96 or 99 or 105 or 106 or 116 or 117 or 118 or 123 or 142 or 145 or 147;
     public bool HasCombatModifiers => Abilities.Any(x => IsCombatModifierAbility(x.AbilityId));
 }
 
