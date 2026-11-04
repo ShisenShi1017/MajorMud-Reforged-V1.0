@@ -555,14 +555,14 @@ public sealed partial class RuntimeLiveGameplayFacade
                                     // recovery, once for each admitted player recipient.
                                     if (npcHp > 0
                                         && session.World.Definition.Type.Equals("Classic", StringComparison.OrdinalIgnoreCase)
-                                        && classicDrainAbility8 && effect.Roll > 0)
+                                        && classicDrainAbility8 && effect.RawDirectDamage > 0)
                                     {
                                         var healedNpcHp = ResolveClassicNpcDrainHitPointsAfter(
-                                            npcHp, liveNpc.MaximumHitPoints, effect.Roll);
+                                            npcHp, liveNpc.MaximumHitPoints, effect.RawDirectDamage);
                                         if (healedNpcHp > npcHp)
                                         {
                                             if (!Living(session).ApplyNpcHealing(
-                                                encounter.NpcInstanceId, effect.Roll, DateTimeOffset.UtcNow))
+                                                encounter.NpcInstanceId, effect.RawDirectDamage, DateTimeOffset.UtcNow))
                                                 throw new InvalidOperationException(
                                                     $"NPC_NATIVE_DRAIN_CASTER_MISSING:{encounter.NpcInstanceId}");
                                             npcHp = healedNpcHp;
@@ -1385,6 +1385,13 @@ public sealed partial class RuntimeLiveGameplayFacade
         var scope = ResolveNpcHitSpellTargetScope(spell.TargetTypeRaw);
         var element = ResolveNpcHitSpellAttackElement(spell.AttackTypeRaw, classicNativeAttackElement);
         var positiveRange = spell.EffectRange.Sign == RuntimeSpellEffectSign.Positive && spell.EffectRange.RollMaximum > 0;
+        // In native Classic, the HP slot may carry a signed nonzero override
+        // even when the shared base magnitude is zero or negative. Custom
+        // worlds retain their previous strictly-positive direct-effect gate.
+        var classicSignedRange = classicNativeDirectSlotRaw.HasValue
+            && (classicNativeDirectSlotRaw.Value != 0
+                || spell.EffectRange.RollMinimum != 0
+                || spell.EffectRange.RollMaximum != 0);
         var hostileScope = spell.TargetTypeRaw is 0 or 8 or 11 or 12;
         // _monster_cast ability8's +0xCC gate (0x428A6D) admits single
         // target types 1/2/6/8, not contact target 0; the area handler
@@ -1396,7 +1403,7 @@ public sealed partial class RuntimeLiveGameplayFacade
         // to unrelated status handlers or to the Custom-world resolver.
         var executable = (spell.SpellTypeRaw == 0 || classicNativeDrainAbility8
                 || classicNativeAreaDamageMinusMr17 || classicNativeAreaDamageAbility1)
-            && hostileScope && positiveRange && nativeDrainTargetValid
+            && hostileScope && (positiveRange || classicSignedRange) && nativeDrainTargetValid
             && classicNativeHasDirectHitPointHandler != false;
         if (!executable)
         {
@@ -1426,18 +1433,24 @@ public sealed partial class RuntimeLiveGameplayFacade
         // >= 3 bypasses the element-resistance switch (0x426B9B and
         // 0x426E76). It must not turn type-3 Acid Rain or Demon Explosion
         // into elemental immunity or over-resistance healing.
+        var signedEffectiveMagnitude = classicNativeDirectSlotRaw is int authoredValue
+            && authoredValue != 0 ? authoredValue : roll;
         var skipElementalForNativeAreaStatus = spell.SpellTypeRaw >= 3
             && (classicNativeAreaDamageAbility1 || classicNativeAreaDamageMinusMr17
                 || classicNativeDrainAbility8);
         var elementalDamage = skipElementalForNativeAreaStatus
-            ? roll
-            : ResolveElementalSpellDamage(roll, element, elementalResistancePercent, poisonImmune);
+            ? signedEffectiveMagnitude
+            : classicNativeDirectSlotRaw.HasValue
+                ? ResolveSignedClassicSpellMagnitude(
+                    signedEffectiveMagnitude, element, elementalResistancePercent, poisonImmune)
+                : ResolveElementalSpellDamage(roll, element, elementalResistancePercent, poisonImmune);
         var finalDamage = classicNativeAreaDamageMinusMr17
             ? ResolveClassicNpcAreaDamageMinusMr(
                 elementalDamage, nativeTargetMagicResistance, nativeTargetHasAntiMagic)
             : elementalDamage;
         return new RuntimeNpcHitSpellEffectResolution(true, type, scope, element,
-            spell.EffectRange.RollMinimum, spell.EffectRange.RollMaximum, roll, roll, elementalResistancePercent, poisonImmune, finalDamage,
+            spell.EffectRange.RollMinimum, spell.EffectRange.RollMaximum,
+            roll, signedEffectiveMagnitude, elementalResistancePercent, poisonImmune, finalDamage,
             finalDamage == 0 && (poisonImmune || elementalResistancePercent == 100) ? "elemental-immunity" : string.Empty);
     }
 
