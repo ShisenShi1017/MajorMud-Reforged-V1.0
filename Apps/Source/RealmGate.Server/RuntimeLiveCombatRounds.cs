@@ -454,6 +454,24 @@ public sealed partial class RuntimeLiveGameplayFacade
                                 .ToDictionary(slot => slot.AbilityId, slot => slot.EffectiveValue);
                         if (definition.DurationRounds > 0 && modifiers.Count > 0)
                             Living(session).ApplyNpcTimedStatus(encounter.NpcInstanceId, definition.SpellId, definition.DurationRounds, modifiers, DateTimeOffset.UtcNow);
+                        if (classicSelfCast && definition.DurationRounds == 0 && npcHp > 0)
+                        {
+                            // Native Heal(18) is not a timed combat-stat
+                            // modifier. For an immediate positive self-cast,
+                            // apply every ordered healing slot directly to
+                            // the same authoritative living NPC HP state.
+                            // Negative heals and duration upkeep are isolated
+                            // until their distinct native branches are mapped.
+                            foreach (var healSlot in resolvedSelfSlots.Where(slot =>
+                                         slot.AbilityId == 18 && slot.EffectiveValue > 0))
+                            {
+                                if (Living(session).ApplyNpcHealing(
+                                        encounter.NpcInstanceId, healSlot.EffectiveValue,
+                                        DateTimeOffset.UtcNow))
+                                    npcHp = Math.Min(liveNpc.MaximumHitPoints,
+                                        checked(npcHp + healSlot.EffectiveValue));
+                            }
+                        }
                         if (classicSelfCast)
                         {
                             // _monster_cast diverts target type 1 into the native
