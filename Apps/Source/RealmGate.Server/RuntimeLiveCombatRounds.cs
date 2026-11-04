@@ -456,6 +456,17 @@ public sealed partial class RuntimeLiveGameplayFacade
                             Living(session).ApplyNpcTimedStatus(encounter.NpcInstanceId, definition.SpellId, definition.DurationRounds, modifiers, DateTimeOffset.UtcNow);
                         if (classicSelfCast && definition.DurationRounds == 0 && npcHp > 0)
                         {
+                            // Immediate native HealMana(150) modifies the
+                            // monster's current combat energy in slot order.
+                            // Duration-based mana upkeep remains a separate
+                            // lifecycle handler; do not manufacture ticks.
+                            foreach (var manaSlot in resolvedSelfSlots.Where(slot =>
+                                         slot.AbilityId == 150))
+                                npcEnergy = (int)Math.Clamp(
+                                    (long)npcEnergy + manaSlot.EffectiveValue, 0, int.MaxValue);
+                        }
+                        if (classicSelfCast && definition.DurationRounds == 0 && npcHp > 0)
+                        {
                             // Native Heal(18) is not a timed combat-stat
                             // modifier. For an immediate positive self-cast,
                             // apply every ordered healing slot directly to
