@@ -416,6 +416,11 @@ public sealed partial class RuntimeLiveGameplayFacade
                         && ClassicLiveStatusCatalog(session).TryGet(hitSpell.CanonicalSpellId,
                             out var directSingleStatus)
                         && directSingleStatus.Abilities.Any(ability => ability.AbilityId == 1);
+                    var classicSingleDamageMinusMr17 = isNativeClassicNpcSpell
+                        && hitSpell.TargetTypeRaw == 8 && hitSpell.DurationRaw == 0
+                        && ClassicLiveStatusCatalog(session).TryGet(hitSpell.CanonicalSpellId,
+                            out var directSingleMrStatus)
+                        && directSingleMrStatus.Abilities.Any(ability => ability.AbilityId == 17);
                     var nativeAreaMagnitude = nativeAreaPlan?.SharedBaseMagnitude is int areaBase
                         ? ResolveClassicNpcAreaPerTargetBaseMagnitude(
                             areaBase, nativeAreaPlan.EligibleTargetCount, hitSpell.TargetTypeRaw)
@@ -555,6 +560,7 @@ public sealed partial class RuntimeLiveGameplayFacade
                                     classicDirectHpAdmission, classicDrainAbility8,
                                     classicAreaDamageMinusMr17, classicAreaDamageAbility1,
                                     classicSingleDamageAbility1,
+                                    classicSingleDamageMinusMr17,
                                     ReadMagicResistance(before),
                                     ReadAbilityValue(before, 51) > 0,
                                     isNativeClassicNpcSpell, classicDirectRawSlotValue);
@@ -697,6 +703,7 @@ public sealed partial class RuntimeLiveGameplayFacade
                             classicAreaDamageMinusMr17,
                             classicAreaDamageAbility1,
                             classicSingleDamageAbility1,
+                            classicSingleDamageMinusMr17,
                             classicDirectRawSlotValue,
                             encounter.NpcInstanceId,
                             npcHp,
@@ -916,6 +923,7 @@ public sealed partial class RuntimeLiveGameplayFacade
         bool classicAreaDamageMinusMr17,
         bool classicAreaDamageAbility1,
         bool classicSingleDamageAbility1,
+        bool classicSingleDamageMinusMr17,
         int? classicDirectRawSlotValue,
         string casterNpcInstanceId,
         int casterHitPoints,
@@ -973,6 +981,7 @@ public sealed partial class RuntimeLiveGameplayFacade
                 classicDirectHpAdmission, classicDrainAbility8,
                 classicAreaDamageMinusMr17, classicAreaDamageAbility1,
                 classicSingleDamageAbility1,
+                classicSingleDamageMinusMr17,
                 ReadMagicResistance(character),
                 ReadAbilityValue(character, 51) > 0,
                 nativeAreaPlan is not null, classicDirectRawSlotValue);
@@ -1416,6 +1425,7 @@ public sealed partial class RuntimeLiveGameplayFacade
         bool classicNativeAreaDamageMinusMr17 = false,
         bool classicNativeAreaDamageAbility1 = false,
         bool classicNativeSingleDamageAbility1 = false,
+        bool classicNativeSingleDamageMinusMr17 = false,
         int nativeTargetMagicResistance = 0,
         bool nativeTargetHasAntiMagic = false,
         bool classicNativeAttackElement = false,
@@ -1445,7 +1455,7 @@ public sealed partial class RuntimeLiveGameplayFacade
         // to unrelated status handlers or to the Custom-world resolver.
         var executable = (spell.SpellTypeRaw == 0 || classicNativeDrainAbility8
                 || classicNativeAreaDamageMinusMr17 || classicNativeAreaDamageAbility1
-                || classicNativeSingleDamageAbility1)
+                || classicNativeSingleDamageAbility1 || classicNativeSingleDamageMinusMr17)
             && hostileScope && (positiveRange || classicSignedRange) && nativeDrainTargetValid
             && classicNativeHasDirectHitPointHandler != false;
         if (!executable)
@@ -1454,6 +1464,7 @@ public sealed partial class RuntimeLiveGameplayFacade
                 && !classicNativeDrainAbility8 && !classicNativeAreaDamageMinusMr17
                 && !classicNativeAreaDamageAbility1
                 && !classicNativeSingleDamageAbility1
+                && !classicNativeSingleDamageMinusMr17
                 ? "non-immediate-spell-type"
                 : !hostileScope ? "non-hostile-or-scripted-target-scope"
                 : !nativeDrainTargetValid ? "native-drain-target-type-ineligible"
@@ -1481,14 +1492,15 @@ public sealed partial class RuntimeLiveGameplayFacade
             && authoredValue != 0 ? authoredValue : roll;
         var skipElementalForNativeAreaStatus = spell.SpellTypeRaw >= 3
             && (classicNativeAreaDamageAbility1 || classicNativeAreaDamageMinusMr17
-                || classicNativeSingleDamageAbility1 || classicNativeDrainAbility8);
+                || classicNativeSingleDamageAbility1 || classicNativeSingleDamageMinusMr17
+                || classicNativeDrainAbility8);
         var elementalDamage = skipElementalForNativeAreaStatus
             ? signedEffectiveMagnitude
             : classicNativeDirectSlotRaw.HasValue
                 ? ResolveSignedClassicSpellMagnitude(
                     signedEffectiveMagnitude, element, elementalResistancePercent, poisonImmune)
                 : ResolveElementalSpellDamage(roll, element, elementalResistancePercent, poisonImmune);
-        var finalDamage = classicNativeAreaDamageMinusMr17
+        var finalDamage = classicNativeAreaDamageMinusMr17 || classicNativeSingleDamageMinusMr17
             ? ResolveClassicNpcAreaDamageMinusMr(
                 elementalDamage, nativeTargetMagicResistance, nativeTargetHasAntiMagic)
             : elementalDamage;
