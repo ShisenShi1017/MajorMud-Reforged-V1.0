@@ -2462,6 +2462,51 @@ public sealed class RuntimeLiveCombatRoundSmokeReport
                 && noExtraMinusMrRng.Calls == 0,
                 "npc-native-area-ability17-damage-uses-one-shared-roll-and-target-mr");
             report.Checks.Add("npc-native-area-ability17-damage-uses-one-shared-roll-and-target-mr");
+            Require(liveStatusCatalog.TryGet("spell.945", out var nativeSingleAcidBurns)
+                    && nativeSingleAcidBurns.SpellTypeRaw == 3
+                    && nativeSingleAcidBurns.DurationRounds == 0
+                    && nativeSingleAcidBurns.Abilities.Any(ability => ability.AbilityId == 1)
+                    && liveStatusCatalog.TryGet("spell.1262", out var nativeSingleBoltOfLight)
+                    && nativeSingleBoltOfLight.SpellTypeRaw == 3
+                    && nativeSingleBoltOfLight.DurationRounds == 0
+                    && nativeSingleBoltOfLight.Abilities.Any(ability => ability.AbilityId == 17),
+                "npc-native-type3-instant-single-target-ability1-and-17-definitions");
+            report.Checks.Add("npc-native-type3-instant-single-target-ability1-and-17-definitions");
+            var nativeSingleType3Fixture = plagueSpell! with
+            {
+                SpellTypeRaw = 3, TargetTypeRaw = 8, AttackTypeRaw = 1,
+                MinimumEffect = 100, MaximumEffect = 100,
+                EffectRange = RuntimeLiveGameplayFacade.ResolveNpcHitSpellEffectRange(100, 100)
+            };
+            var nativeSingleType3Rng = new CountingRangeRandom();
+            var instantSingleDamage1 = RuntimeLiveGameplayFacade.ResolveNpcHitSpellEffect(
+                nativeSingleType3Fixture, 100, false, nativeSingleType3Rng,
+                nativePreRolledMagnitude: 100,
+                classicNativeHasDirectHitPointHandler: true,
+                classicNativeSingleDamageAbility1: true,
+                classicNativeAttackElement: true, classicNativeDirectSlotRaw: 0);
+            var instantSingleDamage17 = RuntimeLiveGameplayFacade.ResolveNpcHitSpellEffect(
+                nativeSingleType3Fixture, 100, false, nativeSingleType3Rng,
+                nativePreRolledMagnitude: 100,
+                classicNativeHasDirectHitPointHandler: true,
+                classicNativeSingleDamageMinusMr17: true,
+                nativeTargetMagicResistance: 100,
+                classicNativeAttackElement: true, classicNativeDirectSlotRaw: 0);
+            var instantSingleAntiMagic17 = RuntimeLiveGameplayFacade.ResolveNpcHitSpellEffect(
+                nativeSingleType3Fixture, 100, false, nativeSingleType3Rng,
+                nativePreRolledMagnitude: 100,
+                classicNativeHasDirectHitPointHandler: true,
+                classicNativeSingleDamageMinusMr17: true,
+                nativeTargetMagicResistance: 100, nativeTargetHasAntiMagic: true,
+                classicNativeAttackElement: true, classicNativeDirectSlotRaw: 0);
+            var customSingleType3 = RuntimeLiveGameplayFacade.ResolveNpcHitSpellEffect(
+                nativeSingleType3Fixture, 100, false, nativeSingleType3Rng);
+            Require(instantSingleDamage1.Executable && instantSingleDamage1.DirectDamage == 100
+                && instantSingleDamage17.Executable && instantSingleDamage17.DirectDamage == 75
+                && instantSingleAntiMagic17.Executable && instantSingleAntiMagic17.DirectDamage == 50
+                && !customSingleType3.Executable && nativeSingleType3Rng.Calls == 0,
+                "npc-native-type3-single-target-hp-mr-and-antimagic-without-elemental-immunity");
+            report.Checks.Add("npc-native-type3-single-target-hp-mr-and-antimagic-without-elemental-immunity");
             Require(liveStatusCatalog.TryGet("spell.805", out var acidTempestStatus)
                     && acidTempestStatus.SpellTypeRaw == 0
                     && acidTempestStatus.AttackTypeRaw == 5
