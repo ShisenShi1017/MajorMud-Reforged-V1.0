@@ -1440,13 +1440,22 @@ public sealed partial class RuntimeLiveGameplayFacade
             var resolution = RuntimeClassicPlayerSpellCombat.Resolve(spell, targetMr, false, false, false,
                 Random.Shared, casterLevel, classicNativeCharacterTarget,
                 classicNativeCharacterTarget && ReadAbilityValue(targetCharacter!, 51) > 0);
+            var classicNativeWorld = _session.World.Definition.Type.Equals(
+                "Classic", StringComparison.OrdinalIgnoreCase);
+            // _get_spell_random_modifier uses attack type +0xD0. Element 5
+            // selects Water Resistance (ability147), not Custom's acid
+            // descriptor. Spell types >=3 bypass the elemental modifier.
+            var attackElement = classicNativeWorld && spell.AttackType == "5"
+                ? "water" : resolution.Element;
+            var nativeElementEligible = int.TryParse(spell.SpellType,
+                out var nativeSpellType) && nativeSpellType is 0 or 1 or 2;
             var hasDecodedDamage=spell.DecodedAbilities.Any(x=>x.AbilityId is 1 or 17);
             var hasDecodedHeal=spell.DecodedAbilities.Any(x=>x.AbilityId==18);
             var healMana = spell.DecodedAbilities.FirstOrDefault(x => x.AbilityId == 150);
             var decodedOperation=hasDecodedDamage?"damage":hasDecodedHeal?"heal":resolution.Operation;
             var metadata = new Dictionary<string,string>(effect.Metadata ?? new Dictionary<string,string>(), StringComparer.OrdinalIgnoreCase)
             {
-                ["element"] = resolution.Element,
+                ["element"] = attackElement,
                 ["resistance_chance"] = resolution.ResistanceChancePercent.ToString(),
                 ["resistance_roll"] = resolution.ResistanceRoll.ToString(),
                 ["resisted"] = resolution.Resisted.ToString(),
@@ -1458,6 +1467,18 @@ public sealed partial class RuntimeLiveGameplayFacade
             metadata["operation_authority"]=(hasDecodedDamage||hasDecodedHeal)?"decoded_ability_vector":"decoded_target_and_attack_type";
             var finalOperation = decodedOperation;
             var finalMagnitude = resolution.Magnitude;
+            // Native direct HP handlers preserve the sign of the rolled
+            // magnitude: a negative Damage(1/17) heals, and a negative
+            // Heal(18) damages. Custom keeps the prior absolute magnitude
+            // behavior until independently audited.
+            if (classicNativeWorld && resolution.EffectRoll < 0
+                && !resolution.Resisted && !resolution.Reflected && !resolution.Absorbed)
+            {
+                if (hasDecodedDamage) finalOperation = "heal";
+                else if (hasDecodedHeal) finalOperation = "damage";
+                metadata["native_signed_hp_effect"] = resolution.EffectRoll.ToString(
+                    System.Globalization.CultureInfo.InvariantCulture);
+            }
             // Apply the verified native ability-17 handler only to an isolated
             // player-target direct effect. Cast admission, general saves, and
             // compound ability dispatch remain separate native parity questions.
@@ -1475,9 +1496,17 @@ public sealed partial class RuntimeLiveGameplayFacade
             if (targetCharacter is not null && decodedOperation.Equals("damage", StringComparison.OrdinalIgnoreCase) &&
                 !resolution.Resisted && !resolution.Reflected && !resolution.Absorbed && finalMagnitude > 0)
             {
-                var elementalResistance = ReadElementalResistance(targetCharacter, resolution.Element);
+                var elementalResistance = ReadElementalResistance(targetCharacter, attackElement);
                 var poisonImmune = ReadAbilityValue(targetCharacter, 21) > 0;
-                var signedDamage = ResolveElementalSpellDamage(finalMagnitude, resolution.Element, elementalResistance, poisonImmune);
+                var signedBasis = classicNativeWorld && resolution.EffectRoll < 0
+                    ? checked(-finalMagnitude) : finalMagnitude;
+                var signedDamage = classicNativeWorld
+                    ? nativeElementEligible
+                        ? ResolveSignedClassicSpellMagnitude(signedBasis, attackElement,
+                            elementalResistance, poisonImmune)
+                        : signedBasis
+                    : ResolveElementalSpellDamage(finalMagnitude, attackElement,
+                        elementalResistance, poisonImmune);
                 finalOperation = signedDamage < 0 ? "heal" : "damage";
                 finalMagnitude = signedDamage < 0 ? checked(-signedDamage) : signedDamage;
                 metadata["elemental_resistance_percent"] = elementalResistance.ToString(System.Globalization.CultureInfo.InvariantCulture);
@@ -1676,6 +1705,23 @@ public sealed partial class RuntimeLiveGameplayFacade
         var high = Math.Max(scaledMin, scaledMax);
         // Native _genrdn(0,max-min+1) draws even when min == max.
         return checked(low + rng.Genrdn(0, checked(high - low + 1)));
+    }
+
+    // Native elemental adjustment multiplies the signed HP magnitude.
+    // A negative direct-Damage magnitude heals; >100% resistance can
+    // reverse either sign. This helper is Classic-only at its live callsite.
+    internal static int ResolveSignedClassicSpellMagnitude(
+        int signedMagnitude, string attackElement,
+        int elementalResistancePercent, bool poisonImmune)
+    {
+        ArgumentException.ThrowIfNullOrWhiteSpace(attackElement);
+        if (attackElement.Equals("poison", StringComparison.OrdinalIgnoreCase)
+            && poisonImmune)
+            return 0;
+        if (attackElement is "untyped" or "acid")
+            return signedMagnitude;
+        return checked((int)((long)(100 - elementalResistancePercent)
+            * signedMagnitude / 100));
     }
 
     internal static int ResolveNativeUserDamageMinusMr(int magnitude, int targetMagicResistance)
