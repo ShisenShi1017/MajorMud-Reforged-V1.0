@@ -335,6 +335,38 @@ public sealed partial class RuntimeLivingWorldService
                 $"npc-native-monster-removed:{dead.InstanceId}:{dead.SpawnId}");
         }
 
+        if (_world.Definition.Type.Equals("Classic", StringComparison.OrdinalIgnoreCase)
+            && current.Metadata.TryGetValue("npc_lifecycle_owner", out var spellOwner)
+            && spellOwner.Equals("classic-native-spell", StringComparison.OrdinalIgnoreCase))
+        {
+            // An instant spell-created monster is not a fixed world spawn
+            // slot. Do not convert it into a respawn-capable quest monster
+            // after defeat. Preserve its corpse through the existing death
+            // ledger, then let the normal corpse sweep remove it.
+            var spellMetadata = new Dictionary<string,string>(
+                current.Metadata, StringComparer.OrdinalIgnoreCase);
+            ClearTransientNpcExecutionMetadata(spellMetadata);
+            ClearRespawnBlockMetadata(spellMetadata);
+            ClearNpcTimedStatuses(spellMetadata);
+            _ = ClearClassicNativeEnslaveOwnershipOnNpcDeath(spellMetadata, true);
+            spellMetadata["npc_lifecycle_state"] = "native-spell-summon-defeated";
+            spellMetadata["npc_last_death_at_utc"] = nowUtc.ToString("O");
+            spellMetadata["npc_last_despawn_reason"] = NormalizeReason(reason, "native-spell-summon-defeated");
+            var spellDead = current with
+            {
+                Alive = false, CurrentHitPoints = 0,
+                RespawnAtUtc = null, Metadata = spellMetadata
+            };
+            _npcs[instanceId] = spellDead;
+            RecordNpcDeathLocked(current, nowUtc, nowUtc.AddMinutes(5));
+            PublishLivingWorldEventLocked("npc-native-spell-summon-defeated",
+                instanceId, current.RoomId, nowUtc);
+            return CreateTransition(RuntimeNpcLifecycleTransitionKind.EnterRespawnWait,
+                spellDead, spellDead.RoomId, nowUtc, worldTick,
+                "native-spell-summon-defeated",
+                $"npc-native-spell-summon-defeated:{instanceId}");
+        }
+
         var metadata = new Dictionary<string,string>(current.Metadata, StringComparer.OrdinalIgnoreCase);
         ClearTransientNpcExecutionMetadata(metadata);
         ClearRespawnBlockMetadata(metadata);
