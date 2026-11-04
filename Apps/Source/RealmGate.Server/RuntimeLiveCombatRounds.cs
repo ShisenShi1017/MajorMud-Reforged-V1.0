@@ -2612,6 +2612,29 @@ public sealed class RuntimeLiveCombatRoundSmokeReport
                         .All(slot => !slot.NativeTargetAdmitted)),
                 "npc-native-summon-repeated-slots-zero-fallback-and-cc-target-gate");
             report.Checks.Add("npc-native-summon-repeated-slots-zero-fallback-and-cc-target-gate");
+            Require(liveStatusCatalog.TryGet("spell.458", out var nativeInstantHeal)
+                    && nativeInstantHeal.DurationRounds == 0
+                    && nativeInstantHeal.Abilities.Single().AbilityId == 18
+                    && nativeInstantHeal.Abilities.Single().Value == 0
+                    && liveStatusCatalog.TryGet("spell.459", out var nativeInstantMana)
+                    && nativeInstantMana.DurationRounds == 0
+                    && nativeInstantMana.Abilities.Single().AbilityId == 150
+                    && nativeInstantMana.Abilities.Single().Value == 0
+                    && liveStatusCatalog.TryGet("spell.1164", out var nativeInstantHpMana)
+                    && nativeInstantHpMana.DurationRounds == 0
+                    && nativeInstantHpMana.Abilities.Select(ability => ability.AbilityId)
+                        .SequenceEqual(new[] { 18, 150 }),
+                "npc-native-instant-self-hp-mana-ordered-handler-vectors");
+            report.Checks.Add("npc-native-instant-self-hp-mana-ordered-handler-vectors");
+            var instantSelfMagnitude = RuntimeLiveGameplayFacade.ResolveClassicNpcEffectSlots(
+                nativeInstantHpMana.Abilities, 150);
+            Require(instantSelfMagnitude.Count == 2
+                && instantSelfMagnitude[0].EffectiveValue == 150
+                && instantSelfMagnitude[1].EffectiveValue == 150
+                && instantSelfMagnitude[0].AbilityId == 18
+                && instantSelfMagnitude[1].AbilityId == 150,
+                "npc-native-instant-self-hp-then-mana-one-base-roll");
+            report.Checks.Add("npc-native-instant-self-hp-then-mana-one-base-roll");
             var nativeSelfSummons = RuntimeLiveGameplayFacade.ResolveClassicNativeSpecialSpellSlots(
                 RuntimeLiveGameplayFacade.ResolveClassicNpcEffectSlots(
                     duergarSummon.Abilities, 1112), 1, nativeAreaDispatcher: true);
