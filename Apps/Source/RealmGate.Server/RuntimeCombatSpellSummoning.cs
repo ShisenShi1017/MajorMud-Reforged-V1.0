@@ -32,6 +32,8 @@ public sealed record RuntimeCombatSummonResult(RuntimeCombatSummonRequest Reques
 public interface IRuntimeCombatSummonEventSink
 {
     string SinkId { get; }
+    // Prepare must not mutate persistent/world state. Commit may fail after
+    // partial work; Rollback must tolerate an attempted partial Commit.
     void Prepare(RuntimeCombatSummonEvent summonEvent);
     void Commit(RuntimeCombatSummonEvent summonEvent);
     void Rollback(RuntimeCombatSummonEvent summonEvent);
@@ -42,6 +44,7 @@ public sealed class RuntimeCombatSpellSummoningCoordinator
     private readonly RuntimeCombatSummonPolicy _policy;
     private readonly IReadOnlyDictionary<RuntimeCombatSummonEventKind, IRuntimeCombatSummonEventSink> _sinks;
     private readonly HashSet<string> _completed = new(StringComparer.OrdinalIgnoreCase);
+    private readonly object _gate = new();
 
     public RuntimeCombatSpellSummoningCoordinator(RuntimeCombatSummonPolicy policy,
         IEnumerable<(RuntimeCombatSummonEventKind Kind, IRuntimeCombatSummonEventSink Sink)> sinks)
@@ -57,36 +60,59 @@ public sealed class RuntimeCombatSpellSummoningCoordinator
 
     public RuntimeCombatSummonResult Execute(RuntimeCombatSummonRequest request)
     {
-        ArgumentNullException.ThrowIfNull(request);
-        ValidateRequest(request, _policy);
-        if (!_completed.Add(request.SummonId)) throw new InvalidOperationException("COMBAT_SUMMON_ALREADY_COMPLETED");
-        var expires = _policy.DurationTicks > 0 ? checked(request.WorldTick + _policy.DurationTicks) : (long?)null;
-        var events = BuildEvents(request, expires);
-        var prepared = new List<(RuntimeCombatSummonEvent Event, IRuntimeCombatSummonEventSink Sink)>();
-        var committed = new List<(RuntimeCombatSummonEvent Event, IRuntimeCombatSummonEventSink Sink)>();
-        var trace = new List<string> { "summon_validated", $"owner:{_policy.OwnerKind}", $"duration:{_policy.DurationTicks}" };
-        try
+        lock (_gate)
         {
-            foreach (var summonEvent in events)
+            ArgumentNullException.ThrowIfNull(request);
+            ValidateRequest(request, _policy);
+            // Validate/construct before reserving the summon ID: overflow and
+            // invalid event plans must never poison a retry of the same ID.
+            var expires = _policy.DurationTicks > 0 ? checked(request.WorldTick + _policy.DurationTicks) : (long?)null;
+            var events = BuildEvents(request, expires);
+            if (!_completed.Add(request.SummonId)) throw new InvalidOperationException("COMBAT_SUMMON_ALREADY_COMPLETED");
+
+            var prepared = new List<(RuntimeCombatSummonEvent Event, IRuntimeCombatSummonEventSink Sink)>();
+            var attempted = new List<(RuntimeCombatSummonEvent Event, IRuntimeCombatSummonEventSink Sink)>();
+            var trace = new List<string> { "summon_validated", $"owner:{_policy.OwnerKind}", $"duration:{_policy.DurationTicks}" };
+            try
             {
-                if (!_sinks.TryGetValue(summonEvent.Kind, out var sink)) throw new InvalidOperationException($"COMBAT_SUMMON_SINK_UNAVAILABLE:{summonEvent.Kind}");
-                sink.Prepare(summonEvent); prepared.Add((summonEvent, sink));
-                trace.Add($"prepared:{summonEvent.Sequence}:{summonEvent.Kind}:{sink.SinkId}");
+                foreach (var summonEvent in events)
+                {
+                    if (!_sinks.TryGetValue(summonEvent.Kind, out var sink))
+                        throw new InvalidOperationException($"COMBAT_SUMMON_SINK_UNAVAILABLE:{summonEvent.Kind}");
+                    sink.Prepare(summonEvent);
+                    prepared.Add((summonEvent, sink));
+                    trace.Add($"prepared:{summonEvent.Sequence}:{summonEvent.Kind}:{sink.SinkId}");
+                }
+                foreach (var item in prepared)
+                {
+                    // Track even a sink whose Commit mutates and then throws.
+                    attempted.Add(item);
+                    item.Sink.Commit(item.Event);
+                    trace.Add($"committed:{item.Event.Sequence}:{item.Event.Kind}:{item.Sink.SinkId}");
+                }
+                trace.Add("summon_committed");
+                return new RuntimeCombatSummonResult(request, events, expires,
+                    _policy.AllowCombatInsertion && request.CombatId is not null,
+                    _policy.AllowThreatInheritance && request.CombatId is not null, true, trace);
             }
-            foreach (var item in prepared)
+            catch (Exception original)
             {
-                item.Sink.Commit(item.Event); committed.Add(item);
-                trace.Add($"committed:{item.Event.Sequence}:{item.Event.Kind}:{item.Sink.SinkId}");
+                var rollbackFailures = new List<Exception>();
+                for (var i = attempted.Count - 1; i >= 0; i--)
+                {
+                    try { attempted[i].Sink.Rollback(attempted[i].Event); }
+                    catch (Exception rollbackFailure) { rollbackFailures.Add(rollbackFailure); }
+                }
+                if (rollbackFailures.Count == 0)
+                {
+                    _completed.Remove(request.SummonId);
+                    throw;
+                }
+                // Unknown residual world state: retain the reservation rather
+                // than allowing an unsafe duplicate summon on retry.
+                throw new AggregateException("COMBAT_SUMMON_ROLLBACK_UNCERTAIN",
+                    new[] { original }.Concat(rollbackFailures));
             }
-            trace.Add("summon_committed");
-            return new RuntimeCombatSummonResult(request, events, expires, _policy.AllowCombatInsertion && request.CombatId is not null,
-                _policy.AllowThreatInheritance && request.CombatId is not null, true, trace);
-        }
-        catch
-        {
-            foreach (var item in committed.AsEnumerable().Reverse()) item.Sink.Rollback(item.Event);
-            _completed.Remove(request.SummonId);
-            throw;
         }
     }
 
