@@ -81,10 +81,12 @@ public sealed class RuntimeSpellExecutionEngine
             if (!cast.Succeeded || cast.Effect is null)
                 return new RuntimeSpellExecutionResult(false, cast.FailureCode, cast.FailureMessage, cast, Array.Empty<RuntimeSpellExecutionEvent>());
 
-            var events = _operations.ResolveOperations(spell, request, cast.Effect).ToArray();
             var applied = new List<RuntimeSpellExecutionEvent>();
             try
             {
+                // Cast already charged the caster; resolve errors belong to
+                // the same rollback boundary as downstream event failures.
+                var events = _operations.ResolveOperations(spell, request, cast.Effect).ToArray();
                 foreach (var spellEvent in events)
                 {
                     _sink.Apply(spellEvent);
@@ -149,17 +151,32 @@ public sealed class RuntimeSpellExecutionEngine
     {
         lock (_gate)
         {
+            var before = _spells.Snapshot();
             var events = new List<RuntimeSpellExecutionEvent>();
-            foreach (var effect in _spells.Snapshot().ActiveEffects.Where(x => x.ExpiresAtUtc is null || x.ExpiresAtUtc > nowUtc))
+            try
             {
-                foreach (var spellEvent in periodicResolver(effect))
+                foreach (var effect in before.ActiveEffects.Where(x => x.ExpiresAtUtc is null || x.ExpiresAtUtc > nowUtc))
                 {
-                    _sink.Apply(spellEvent);
-                    events.Add(spellEvent);
+                    foreach (var spellEvent in periodicResolver(effect))
+                    {
+                        _sink.Apply(spellEvent);
+                        events.Add(spellEvent);
+                    }
                 }
+                _spells.Expire(nowUtc);
+                return events;
             }
-            _spells.Expire(nowUtc);
-            return events;
+            catch
+            {
+                // Managed transactional recovery, not a claim about original
+                // MajorMUD periodic ordering. Sinks revert completed events.
+                for (var index = events.Count - 1; index >= 0; index--)
+                {
+                    try { _sink.Revert(events[index]); } catch { }
+                }
+                _spells.RestoreSnapshot(before);
+                throw;
+            }
         }
     }
 
