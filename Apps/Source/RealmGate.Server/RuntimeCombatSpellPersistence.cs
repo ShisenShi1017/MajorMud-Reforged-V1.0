@@ -55,6 +55,8 @@ public sealed record RuntimeCombatSpellRecoveryDecision(
 
 public interface IRuntimeCombatSpellSnapshotStore
 {
+    // Prepare must be side-effect-free; Commit may throw after writing.
+    // Rollback must compensate a partially committed snapshot.
     void Prepare(RuntimeCombatSpellSnapshot snapshot);
     void Commit(RuntimeCombatSpellSnapshot snapshot);
     void Rollback(RuntimeCombatSpellSnapshot snapshot);
@@ -66,6 +68,7 @@ public sealed class RuntimeCombatSpellPersistenceCoordinator
     private readonly RuntimeCombatSpellPersistencePolicy _policy;
     private readonly IRuntimeCombatSpellSnapshotStore _store;
     private readonly HashSet<string> _committedSnapshots = new(StringComparer.OrdinalIgnoreCase);
+    private readonly object _gate = new();
 
     public RuntimeCombatSpellPersistenceCoordinator(RuntimeCombatSpellPersistencePolicy policy, IRuntimeCombatSpellSnapshotStore store)
     {
@@ -76,24 +79,42 @@ public sealed class RuntimeCombatSpellPersistenceCoordinator
 
     public RuntimeCombatSpellSnapshot Save(RuntimeCombatSpellSnapshot snapshot)
     {
-        ArgumentNullException.ThrowIfNull(snapshot);
-        ValidateSnapshot(snapshot);
-        if (_policy.Confidence == RuntimeResolutionConfidence.WeakHypothesis) throw new InvalidOperationException("PERSISTENCE_POLICY_NOT_PROMOTED");
-        if (!_committedSnapshots.Add(snapshot.SnapshotId)) throw new InvalidOperationException("PERSISTENCE_SNAPSHOT_DUPLICATE");
-        var normalized = ApplyPolicy(snapshot);
-        var expectedHash = ComputeIntegrityHash(normalized with { IntegrityHash = string.Empty });
-        normalized = normalized with { IntegrityHash = expectedHash };
-        try
+        lock (_gate)
         {
-            _store.Prepare(normalized);
-            _store.Commit(normalized);
-            return normalized;
-        }
-        catch
-        {
-            _store.Rollback(normalized);
-            _committedSnapshots.Remove(snapshot.SnapshotId);
-            throw;
+            ArgumentNullException.ThrowIfNull(snapshot);
+            ValidateSnapshot(snapshot);
+            if (_policy.Confidence == RuntimeResolutionConfidence.WeakHypothesis)
+                throw new InvalidOperationException("PERSISTENCE_POLICY_NOT_PROMOTED");
+
+            // Normalization and hashing are pure preflight steps; failure
+            // must not consume the snapshot ID or invoke a store.
+            var normalized = ApplyPolicy(snapshot);
+            var expectedHash = ComputeIntegrityHash(normalized with { IntegrityHash = string.Empty });
+            normalized = normalized with { IntegrityHash = expectedHash };
+            if (!_committedSnapshots.Add(snapshot.SnapshotId))
+                throw new InvalidOperationException("PERSISTENCE_SNAPSHOT_DUPLICATE");
+            try
+            {
+                _store.Prepare(normalized);
+                _store.Commit(normalized);
+                return normalized;
+            }
+            catch (Exception original)
+            {
+                try
+                {
+                    _store.Rollback(normalized);
+                }
+                catch (Exception rollbackFailure)
+                {
+                    // The previous write may still exist; do not permit a
+                    // duplicate snapshot ID until state is reconciled.
+                    throw new AggregateException("PERSISTENCE_ROLLBACK_UNCERTAIN",
+                        original, rollbackFailure);
+                }
+                _committedSnapshots.Remove(snapshot.SnapshotId);
+                throw;
+            }
         }
     }
 
