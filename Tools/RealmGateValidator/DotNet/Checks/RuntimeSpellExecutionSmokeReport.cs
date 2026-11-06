@@ -60,7 +60,11 @@ public static class RuntimeSpellExecutionSmokeReport
         void Check(string name, Action action) { try { action(); checks.Add(name); } catch (Exception ex) { failures.Add($"{name}: {ex.Message}"); } }
         var catalog = RuntimeSpellCatalog.Load(projectRoot, worldId);
         var engine = new RuntimeSpellEngine(catalog);
-        var spell = catalog.Spells.First(); var caster = "execution:caster"; var target = new RuntimeSpellTarget("generated", "execution:target");
+        var spell = catalog.Spells.First();
+        // Tick tests must use a live, duration-bearing effect. The default
+        // catalog-first spell is not guaranteed to have a positive duration.
+        var periodicSpell = catalog.Spells.First(candidate => candidate.Duration > 0);
+        var caster = "execution:caster"; var target = new RuntimeSpellTarget("generated", "execution:target");
         engine.Learn(caster, spell.Id); engine.SetResources(caster, new RuntimeSpellResources(spell.ManaCost + 20, spell.EnergyCost + 20));
         var sink = new Sink(); var execution = new RuntimeSpellExecutionEngine(catalog, engine, new Operations(), sink, new[] { new TargetPolicy() });
         RuntimeSpellExecutionResult? result = null;
@@ -90,9 +94,9 @@ public static class RuntimeSpellExecutionSmokeReport
         Check("periodic-later-event-failure-reverts-earlier-event", () =>
         {
             var isolated = new RuntimeSpellEngine(catalog);
-            isolated.Learn(caster, spell.Id);
-            isolated.SetResources(caster, new RuntimeSpellResources(spell.ManaCost + 20, spell.EnergyCost + 20));
-            var initialCast = isolated.Cast(new(caster, spell.Id, target, DateTimeOffset.UtcNow));
+            isolated.Learn(caster, periodicSpell.Id);
+            isolated.SetResources(caster, new RuntimeSpellResources(periodicSpell.ManaCost + 20, periodicSpell.EnergyCost + 20));
+            var initialCast = isolated.Cast(new(caster, periodicSpell.Id, target, DateTimeOffset.UtcNow));
             if (!initialCast.Succeeded) throw new InvalidOperationException("Periodic fixture cast failed.");
             var before = isolated.Snapshot();
             var failingSink = new FailingSecondEventSink();
@@ -123,9 +127,9 @@ public static class RuntimeSpellExecutionSmokeReport
         Check("failed-sink-rollback-is-explicitly-uncertain", () =>
         {
             var isolated = new RuntimeSpellEngine(catalog);
-            isolated.Learn(caster, spell.Id);
-            isolated.SetResources(caster, new RuntimeSpellResources(spell.ManaCost + 20, spell.EnergyCost + 20));
-            var cast = isolated.Cast(new(caster, spell.Id, target, DateTimeOffset.UtcNow));
+            isolated.Learn(caster, periodicSpell.Id);
+            isolated.SetResources(caster, new RuntimeSpellResources(periodicSpell.ManaCost + 20, periodicSpell.EnergyCost + 20));
+            var cast = isolated.Cast(new(caster, periodicSpell.Id, target, DateTimeOffset.UtcNow));
             if (!cast.Succeeded || cast.Effect is null)
                 throw new InvalidOperationException("Rollback failure fixture cast failed.");
             var before = isolated.Snapshot();
