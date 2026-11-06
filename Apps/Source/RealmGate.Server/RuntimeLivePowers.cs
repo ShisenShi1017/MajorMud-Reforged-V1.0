@@ -278,6 +278,7 @@ public sealed partial class RuntimeLiveGameplayFacade
         // RuntimeSpellEngine state. A later cast side effect can throw after
         // successful HP/mana/status application.
         var castCharacterBefore = new Dictionary<string, RuntimeCharacterRecord>(StringComparer.OrdinalIgnoreCase);
+        var castSummonIds = new List<string>();
         var castRoomBefore = new Dictionary<string, (RuntimeSession Session, RuntimeRoom Room)>(StringComparer.OrdinalIgnoreCase);
         var hadCooldownBefore = _liveSpellCooldowns.TryGetValue(cooldownKey, out var cooldownBefore);
         try
@@ -301,6 +302,45 @@ public sealed partial class RuntimeLiveGameplayFacade
                     AllowClassicPlayerRefresh: true))
                 : execution.CastMany(actor.Id, spell.Id, partyTargets, now);
             if (!result.Succeeded) return result.FailureMessage ?? result.FailureCode ?? "The spell failed.";
+            // _cast_no_target reaches the same native summon-materialization
+            // owner as monster casts. Only the verified Classic self dispatcher
+            // is promoted here; Custom/AI and unresolved other targets retain
+            // their existing behavior. Each authored ability-12 slot executes.
+            if (session.World.Definition.Type.Equals("Classic", StringComparison.OrdinalIgnoreCase)
+                && spell.TargetType == "1" &&
+                spell.DecodedAbilities.Any(ability => ability.AbilityId == 12))
+            {
+                int? baseMagnitude = null;
+                foreach (var evt in result.Events)
+                {
+                    if (evt.Metadata is not null &&
+                        evt.Metadata.TryGetValue("effect_roll", out var rawRoll) &&
+                        int.TryParse(rawRoll, System.Globalization.NumberStyles.Integer,
+                            System.Globalization.CultureInfo.InvariantCulture, out var roll))
+                    {
+                        baseMagnitude = roll;
+                        break;
+                    }
+                }
+                if (baseMagnitude is null)
+                {
+                    if (spell.MinimumEffect != spell.MaximumEffect)
+                        throw new InvalidOperationException(
+                            $"CLASSIC_PLAYER_SUMMON_MAGNITUDE_UNRESOLVED:{spell.Id}");
+                    baseMagnitude = spell.MinimumEffect;
+                }
+                var ordered = ResolveClassicNpcEffectSlots(spell.DecodedAbilities, baseMagnitude.Value);
+                var summonSlots = ResolveClassicNativeSpecialSpellSlots(
+                    ordered, nativeTargetTypeRaw: 1, nativeAreaDispatcher: true);
+                foreach (var summonSlot in summonSlots.Where(slot =>
+                             slot.AbilityId == 12 && slot.NativeTargetAdmitted && slot.ResolvedId))
+                {
+                    var created = Living(session).TrySummonClassicSpellNpc(
+                        summonSlot.EffectiveId, session.CurrentRoom.Id,
+                        $"classic-native-player-spell:{actor.Id}:{spell.LegacyId}");
+                    if (created is not null) castSummonIds.Add(created.InstanceId);
+                }
+            }
             if (wizardKnockDoor is not null) Living(session).SetWizardKnockDoorState(wizardKnockDoor, opened: true);
             var remaining = result.Cast.Resources;
             var selfManaDelta = result.Events
@@ -394,6 +434,11 @@ public sealed partial class RuntimeLiveGameplayFacade
                     if (!savedRoom.Session.CurrentRoom.Id.Equals(savedRoom.Room.Id, StringComparison.OrdinalIgnoreCase))
                         savedRoom.Session.MoveToWorld(savedRoom.Session.World, savedRoom.Room, "decoded-spell-late-failure-rollback");
                 }
+                catch (Exception ex) { rollbackErrors.Add(ex); }
+            }
+            foreach (var summonedId in castSummonIds.AsEnumerable().Reverse())
+            {
+                try { Living(session).RemoveSummonedNpc(summonedId); }
                 catch (Exception ex) { rollbackErrors.Add(ex); }
             }
             foreach (var previous in castCharacterBefore.Values)
