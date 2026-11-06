@@ -93,6 +93,13 @@ public sealed class RuntimeClassicLiveStatusCatalog
         if (!document.RootElement.TryGetProperty("records", out var records) || records.ValueKind != JsonValueKind.Array)
             throw new InvalidOperationException("Generated spell projection has no records array.");
 
+        // The source-authoritative 1,350-spell Classic corpus has zero
+        // negative authored durations. Do not silently interpret an imported
+        // negative value as a permanent native effect.
+        if (isClassic && records.EnumerateArray().Any(record =>
+                ReadInt(record.TryGetProperty("effect", out var effect) ? effect : default, "duration") < 0))
+            throw new InvalidDataException("CLASSIC_NEGATIVE_SPELL_DURATION_UNVERIFIED");
+
         var bySpell = new Dictionary<string, RuntimeClassicLiveStatusDefinition>(StringComparer.OrdinalIgnoreCase);
         var byLegacy = new Dictionary<string, RuntimeClassicLiveStatusDefinition>(StringComparer.OrdinalIgnoreCase);
         foreach (var record in records.EnumerateArray())

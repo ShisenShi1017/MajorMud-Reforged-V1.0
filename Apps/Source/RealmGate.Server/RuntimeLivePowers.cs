@@ -1052,7 +1052,13 @@ public sealed partial class RuntimeLiveGameplayFacade
 
     private RuntimeSpellTarget ResolvePowerTarget(RuntimeSession session, IReadOnlyList<string> args, string generatedTargetType)
     {
-        if (args.Count == 0 || generatedTargetType.Equals("self", StringComparison.OrdinalIgnoreCase) || generatedTargetType == "0") return new RuntimeSpellTarget("character", session.Actor.Id);
+        // Original Classic target type 1 is Self, including when a caller
+        // supplied a separate target name. Do not redirect a self-only spell
+        // to another character or NPC (Custom/AI retains its own policy).
+        if (IsClassicNativeSelfSpellTarget(session.World.Definition.Type, generatedTargetType)
+            || args.Count == 0 || generatedTargetType.Equals("self", StringComparison.OrdinalIgnoreCase)
+            || generatedTargetType == "0")
+            return new RuntimeSpellTarget("character", session.Actor.Id);
         var query = string.Join(" ", args);
         var player = _sessions.FindUniqueInRoom(session, query);
         if (player is not null) return new RuntimeSpellTarget("character", player.Actor.Id);
@@ -1069,6 +1075,10 @@ public sealed partial class RuntimeLiveGameplayFacade
         if (npcMatches.Length == 1) return new RuntimeSpellTarget("npc", npcMatches[0].InstanceId);
         throw new InvalidOperationException($"No valid live target uniquely matches '{query}'.");
     }
+
+    internal static bool IsClassicNativeSelfSpellTarget(string worldType, string targetType) =>
+        worldType.Equals("Classic", StringComparison.OrdinalIgnoreCase)
+        && targetType == "1";
 
     internal static bool IsDecodedSpellTargetAdmitted(
         RuntimeSpellDefinition spell,
@@ -1787,7 +1797,11 @@ public sealed class RuntimeLivePowersSmokeReport
             var empty = new RuntimeLivePowerState(new RuntimeSpellState(Array.Empty<RuntimeKnownSpell>(), Array.Empty<RuntimeActiveSpellEffect>(), new Dictionary<string, RuntimeSpellResources>()), new Dictionary<string, RuntimeActorAbilitySnapshot>(), new Dictionary<string, DateTimeOffset>(), DateTimeOffset.UtcNow);
             repo.Save(empty); Check(repo.Load().Spells.ActiveEffects.Count == 0, "persistence", r); Check(repo.Load().Abilities.Count == 0, "reconnect", r);
             Check(typeof(RuntimeSpellEngine).GetMethod(nameof(RuntimeSpellEngine.Expire)) is not null, "duration-expiration", r); Check(typeof(RuntimeSpellExecutionEngine).GetMethod(nameof(RuntimeSpellExecutionEngine.Dispel)) is not null, "dispel", r);
-            Check(typeof(RuntimeSpellEngine).GetMethod(nameof(RuntimeSpellEngine.Validate)) is not null, "validator", r); Check(typeof(RuntimeAbilityEngine).GetMethod(nameof(RuntimeAbilityEngine.Execute)) is not null, "rollback", r);
+            Check(IsClassicNativeSelfSpellTarget("Classic", "1")
+            && !IsClassicNativeSelfSpellTarget("Classic", "8")
+            && !IsClassicNativeSelfSpellTarget("Custom1", "1"),
+            "native-classic-self-only-target-1-does-not-affect-custom", r);
+        Check(typeof(RuntimeSpellEngine).GetMethod(nameof(RuntimeSpellEngine.Validate)) is not null, "validator", r); Check(typeof(RuntimeAbilityEngine).GetMethod(nameof(RuntimeAbilityEngine.Execute)) is not null, "rollback", r);
             if(!worldId.Equals("Classic",StringComparison.OrdinalIgnoreCase))
             {
                 var derivedStatusCatalog=RuntimeClassicLiveStatusCatalog.Load(root,worldId);
