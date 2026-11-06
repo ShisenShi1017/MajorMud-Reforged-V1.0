@@ -356,16 +356,15 @@ public sealed class NightmareMdbBridgeService
             "CREATOR MDB",
             $"APPLY PACKAGE DONE | Time={creatorStageTimer.Elapsed}");
 
-        // Custom worlds are independent runtimes. The imported overlay is canonical,
-        // but Data/Custom1 is the disposable effective runtime projection consumed by
-        // the server. Rebuild it immediately so the next Custom1 login sees the new
-        // races/items/rooms/etc. without ever falling back to Classic runtime data.
+        // Imported changes must reach the isolated Test Realm before the live world.
+        // Build the complete effective dataset now; publication remains a separate,
+        // explicitly acknowledged action with snapshot and rollback protection.
         creatorStageTimer.Restart();
         var build = _custom.Build();
         creatorStageTimer.Stop();
         RealmGatePerformanceTrace.Mark(
             "CREATOR MDB",
-            $"CUSTOM1 EFFECTIVE BUILD DONE | Families={build.Families} | Objects={build.Objects} | Files={build.Files} | Time={creatorStageTimer.Elapsed}");
+            $"CUSTOM1 TEST REALM BUILD DONE | Families={build.Families} | Objects={build.Objects} | Files={build.Files} | Time={creatorStageTimer.Elapsed}");
 
         var manifest = new JsonObject
         {
@@ -2378,7 +2377,5 @@ public sealed class NightmareMdbBridgeService
     private sealed record MappedRecord(string Family, string TargetId, JsonObject Fields);
     private enum TableKind { Rooms, Items, Monsters, Spells, Shops, Classes, Races, Messages, Textblocks, Actions, Abilities }
 }
-
-
 
 

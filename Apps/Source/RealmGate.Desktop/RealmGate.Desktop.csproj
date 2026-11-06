@@ -27,7 +27,9 @@
   <ItemGroup>
     <ProjectReference Include="../../../Core/Source/RealmGate.Client.Core/RealmGate.Client.Core.csproj" />
     <ProjectReference Include="../RealmGate.Server.Runtime/RealmGate.Server.Runtime.csproj" />
-    <ProjectReference Include="../../Compiler/RealmGate.Compiler.csproj" />
+    <ProjectReference Include="../../Compiler/RealmGate.Compiler.csproj"
+                      AdditionalProperties="CompilerAsLibrary=true" />
+    <ProjectReference Include="../RealmGate.Creator.Core/RealmGate.Creator.Core.csproj" />
   </ItemGroup>
 
   <ItemGroup>

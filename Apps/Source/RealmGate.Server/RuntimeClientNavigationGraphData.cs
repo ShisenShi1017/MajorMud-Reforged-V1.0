@@ -30,7 +30,7 @@ public sealed partial class RuntimeLiveGameplayFacade
                     ? worldValue.GetString()?.Trim() ?? string.Empty
                     : string.Empty;
                 if (!NormalizeWorldId(graphWorldId).Equals(
-                        NormalizeWorldId(resolved.WorldId),
+                        NormalizeWorldId(ServerDataRootResolver.ResolveDataWorldId(_characters.ProjectRoot, selectedWorldId)),
                         StringComparison.OrdinalIgnoreCase))
                 {
                     return NavigationGraphError(

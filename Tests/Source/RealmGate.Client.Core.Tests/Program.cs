@@ -1,8 +1,11 @@
 using RealmGate.Client.Automation;
+using RealmGate.Client.Diagnostics;
 using RealmGate.Client.Gameplay;
 using RealmGate.Client.Inventory;
 using RealmGate.Client.Navigation;
 using RealmGate.Client.Profiles;
+using RealmGate.Client.Settings;
+using RealmGate.Client.Security;
 using RealmGate.Client.Protocol;
 using RealmGate.Client.Terminal;
 using RealmGate.Client.Transport;
@@ -11,6 +14,7 @@ using System.Net.Sockets;
 using System.IO.Compression;
 using System.Security.Cryptography;
 using System.Text;
+using System.Text.Json;
 
 var checks = new List<string>();
 
@@ -587,6 +591,99 @@ finally
 }
 checks.Add("connection-profile-catalog-storage");
 
+var settingsTestRoot = Path.Combine(
+    Path.GetTempPath(),
+    "RealmGate.Client.Core.Tests",
+    Guid.NewGuid().ToString("N"));
+try
+{
+    Directory.CreateDirectory(settingsTestRoot);
+    var settingsPath = Path.Combine(settingsTestRoot, "application.json");
+    await File.WriteAllTextAsync(
+        settingsPath,
+        """
+        {
+          "Theme": "Dark",
+          "HostCleanup": { "Enabled": true },
+          "DefaultWorld": "Custom1",
+          "DefaultConnectionProfile": "Remote Test",
+          "HostBindAddress": "127.0.0.1",
+          "HostPort": 4242,
+          "HostMaximumSessions": 96
+        }
+        """);
+
+    var settingsStore = new ClientApplicationSettingsStore(settingsPath);
+    var settings = await settingsStore.LoadAsync();
+    Require(settings.DefaultWorld == "Custom1" &&
+            settings.DefaultConnectionProfile == "Remote Test" &&
+            settings.HostBindAddress == "127.0.0.1" &&
+            settings.HostPort == 4242 &&
+            settings.HostMaximumSessions == 96,
+            "application-settings-load");
+
+    settings.DefaultWorld = "Classic";
+    settings.HostPort = 2323;
+    await settingsStore.SaveAsync(settings);
+    using var settingsDocument = JsonDocument.Parse(await File.ReadAllTextAsync(settingsPath));
+    var settingsRoot = settingsDocument.RootElement;
+    Require(settingsRoot.GetProperty("Theme").GetString() == "Dark" &&
+            settingsRoot.GetProperty("HostCleanup").GetProperty("Enabled").GetBoolean() &&
+            settingsRoot.GetProperty("DefaultWorld").GetString() == "Classic" &&
+            settingsRoot.GetProperty("HostPort").GetInt32() == 2323,
+            "application-settings-preserve-unknown-fields");
+
+    settings.HostPort = -1;
+    settings.HostMaximumSessions = 5000;
+    await settingsStore.SaveAsync(settings);
+    var normalizedSettings = await settingsStore.LoadAsync();
+    Require(normalizedSettings.HostPort == 2323 &&
+            normalizedSettings.HostMaximumSessions == 64,
+            "application-settings-normalization");
+}
+finally
+{
+    if (Directory.Exists(settingsTestRoot))
+        Directory.Delete(settingsTestRoot, recursive: true);
+}
+checks.Add("application-settings-storage");
+
+var platformCredentials = PlatformSecureCredentialStore.CreateForCurrentPlatform();
+if (OperatingSystem.IsWindows())
+{
+    Require(platformCredentials is WindowsCredentialManagerStore &&
+            platformCredentials.IsAvailable &&
+            platformCredentials.BackendName == "Windows Credential Manager",
+            "secure-credential-windows-backend");
+}
+else if (OperatingSystem.IsLinux())
+{
+    Require(platformCredentials.BackendName == "Linux Secret Service" &&
+            platformCredentials is LinuxSecretServiceCredentialStore or UnavailableSecureCredentialStore,
+            "secure-credential-linux-backend");
+}
+else
+{
+    Require(platformCredentials is UnavailableSecureCredentialStore &&
+            !platformCredentials.IsAvailable,
+            "secure-credential-unsupported-backend");
+}
+
+var unavailableCredentials = new UnavailableSecureCredentialStore(
+    "Test vault",
+    "No test credential vault is configured.");
+var unavailableFailedClosed = false;
+try
+{
+    await unavailableCredentials.ReadAsync("RealmGate/Test");
+}
+catch (PlatformNotSupportedException)
+{
+    unavailableFailedClosed = true;
+}
+Require(unavailableFailedClosed, "secure-credential-unavailable-fails-closed");
+checks.Add("platform-secure-credential-abstraction");
+
 var automationTestRoot = Path.Combine(
     Path.GetTempPath(),
     "RealmGate.Client.Core.Tests",
@@ -1063,13 +1160,24 @@ var characterState = ClientCharacterStateDecoder.Decode("""
   "worldId":"Custom1", "characterId":"hero-1", "characterName":"Hero",
   "roomId":"room.map2.44", "raceName":"Dragon", "className":"Warrior",
   "sex":"Male", "level":8, "experience":12500, "nextLevelExperience":15000,
+  "currentLevelExperience":10000, "nextLevelCharacterPointAward":10,
+  "characterPointsAvailable":24, "lives":7, "maximumLives":9,
+  "classLevels":{"class.2":8}, "classExperience":{"class.2":12500},
   "baseStats":{"Strength":18,"Agility":12}, "skills":{"Sword":7},
+  "derivedStats":{"Accuracy":42}, "resistances":{"Fire":5}, "savingThrows":{"Spell":7},
   "alignment":"Neutral", "capturedAtUtc":"2026-10-22T12:00:00Z"
 }
 """);
 Require(characterState.WorldId == "Custom1" && characterState.RoomId == "room.map2.44" &&
-        characterState.BaseStats["Strength"] == 18 && characterState.NextLevelExperience == 15000,
+        characterState.BaseStats["Strength"] == 18 && characterState.NextLevelExperience == 15000 &&
+        characterState.CharacterPointsAvailable == 24 && characterState.Lives == 7 &&
+        characterState.DerivedStats!["Accuracy"] == 42,
     "character-state-decode");
+var progressionSummary = ClientCharacterProgressionSummary.From(characterState);
+Require(progressionSummary.HasLevelThresholds && progressionSummary.EarnedThisLevel == 2500 &&
+        progressionSummary.RequiredThisLevel == 5000 && progressionSummary.RemainingExperience == 2500 &&
+        progressionSummary.PercentComplete == 50d && progressionSummary.NextLevelCharacterPointAward == 10,
+    "character-progression-summary");
 var incompleteCharacterRejected = false;
 try
 {
@@ -1084,7 +1192,14 @@ try
 }
 catch (InvalidDataException) { malformedCharacterRoomRejected = true; }
 Require(malformedCharacterRoomRejected, "character-state-rejects-malformed-room");
-checks.Add("character-authoritative-state-decoder");
+var inconsistentProgressionRejected = false;
+try
+{
+    ClientCharacterStateDecoder.Decode("""{"worldId":"Custom1","characterId":"hero-1","characterName":"Hero","roomId":"room.map2.44","level":8,"experience":12500,"currentLevelExperience":15000,"nextLevelExperience":14000,"baseStats":{},"skills":{},"capturedAtUtc":"2026-10-22T12:00:00Z"}""");
+}
+catch (InvalidDataException) { inconsistentProgressionRejected = true; }
+Require(inconsistentProgressionRejected, "character-state-rejects-inconsistent-progression");
+checks.Add("character-authoritative-progression-state");
 
 var itemSearch = ClientWorkshopItemSearchDecoder.Decode("""
 {
@@ -1110,6 +1225,137 @@ catch (InvalidDataException) { malformedItemSearchRejected = true; }
 Require(malformedItemSearchRejected, "workshop-search-map-qualified");
 checks.Add("workshop-selected-world-item-search");
 
+var externalCatalogRoot = Path.Combine(Path.GetTempPath(), "realmgate-client-items-" + Guid.NewGuid().ToString("N"));
+Directory.CreateDirectory(externalCatalogRoot);
+try
+{
+    File.WriteAllText(Path.Combine(externalCatalogRoot, "items.json"), """
+    {"record_parts":["items-part.json"]}
+    """);
+    File.WriteAllText(Path.Combine(externalCatalogRoot, "items-part.json"), """
+    {"records":[
+      {"id":"item.1","name":"Base sword","classification":{"type":"weapon"},
+       "economy":{"weight":"4","cost":"10"},
+       "combat":{"minimum_damage":1,"maximum_damage":4,"accuracy":2},
+       "public_reference_0139":{"fields":{"abilities_named":[{"name":"Strength","value":"2"}]}}},
+      {"id":"item.2","name":"Base shield","classification":{"type":"armor"},
+       "economy":{"weight":"6","cost":"20"},"combat":{"armor_class_bonus":3}}
+    ]}
+    """);
+    File.WriteAllText(Path.Combine(externalCatalogRoot, "equipment.json"), """
+    {"records":[
+      {"item_id":"item.1","slot":"WIELD","minimum_level":2},
+      {"item_id":"item.2","slot":"OFFHAND"}
+    ]}
+    """);
+    var externalOverlayPath = Path.Combine(externalCatalogRoot, "overlay.json");
+    File.WriteAllText(externalOverlayPath, """
+    {"families":{
+      "Items":{
+        "item.1":{"importedFields":{"name":"Imported sword","economy.cost":50},
+                  "fields":{"name":"Manual sword","economy.cost":99}},
+        "item.3":{"importedRecord":{"id":"item.3","name":"MDB-only lantern",
+                  "classification":{"type":"light"},"economy":{"weight":1,"cost":25}}}
+      },
+      "Equipment":{
+        "item.1":{"fields":{"slot":"OFFHAND","minimum_level":3}},
+        "item.3":{"importedRecord":{"item_id":"item.3","slot":"LIGHT"}}
+      }
+    }}
+    """);
+
+    var externalCatalog = ClientExternalBbsItemCatalog.Load(externalCatalogRoot, externalOverlayPath);
+    var manualSword = externalCatalog.Items.Single(item => item.Id == "item.1");
+    var addedLantern = externalCatalog.Items.Single(item => item.Id == "item.3");
+    Require(manualSword.Name == "Manual sword" && manualSword.Cost == 99 &&
+            manualSword.Slot == "OFFHAND" && manualSword.MinimumLevel == 3 &&
+            manualSword.Abilities.Single().Value == 2,
+        "external-bbs-manual-import-base-precedence");
+    Require(addedLantern.Slot == "LIGHT" && addedLantern.Cost == 25,
+        "external-bbs-imported-record-addition");
+    var externalMatches = externalCatalog.Search("light", 75, out var externalTotal);
+    Require(externalCatalog.HasOverlay && externalTotal == 1 &&
+            externalMatches.Single().Id == "item.3" &&
+            externalCatalog.FindByDisplayName("an MDB-only lantern (Readied 100/100)")?.Id == "item.3",
+        "external-bbs-effective-search-and-display-match");
+    checks.Add("workshop-external-bbs-effective-item-data");
+
+    var itemScreenNow = new DateTimeOffset(2026, 10, 29, 12, 0, 0, TimeSpan.Zero);
+    var itemScreenTracker = new ClassicItemScreenTracker(() => itemScreenNow);
+    Require(itemScreenTracker.Append("Equipment:\r\nWeapon: incidental sword\r\n>").Count == 0,
+        "external-item-screen-requires-explicit-command");
+    itemScreenTracker.NoteOutboundCommand("eq");
+    Require(itemScreenTracker.Append("\x1b[36mEquipment:\x1b[0m\r\nWeapon: Manual").Count == 0,
+        "external-item-screen-preserves-chunk-tail");
+    var equipmentScreens = itemScreenTracker.Append(
+        " sword\r\nLight: MDB-only lantern (Readied 100/100)\r\nEncumbrance: 5 / 100 - Light [5%].\r\n");
+    var equipmentScreen = equipmentScreens.Single();
+    Require(equipmentScreen.Kind == ClassicItemScreenKind.Equipment &&
+            equipmentScreen.Entries.Count == 2 && equipmentScreen.CarriedWeight == 5 &&
+            equipmentScreen.Entries.Any(entry => entry.Name == "Manual sword" && entry.Slot == "Weapon") &&
+            equipmentScreen.Entries.Any(entry =>
+                externalCatalog.FindByDisplayName(entry.Name)?.Id == "item.3" && entry.Slot == "Light"),
+        "external-item-screen-equipment-capture");
+    itemScreenTracker.NoteOutboundCommand("inventory");
+    var inventoryScreens = itemScreenTracker.Append(
+        "Inventory:\r\n2x Base shield\r\nGold: 1,234 copper farthings\r\n");
+    Require(inventoryScreens.Single() is { Kind: ClassicItemScreenKind.Inventory, Currency: 1234 } inventoryScreen &&
+            inventoryScreen.Entries.Single().Quantity == 2,
+        "external-item-screen-inventory-capture");
+    itemScreenTracker.NoteOutboundCommand("equipment");
+    itemScreenNow = itemScreenNow.AddSeconds(9);
+    Require(itemScreenTracker.Append("Equipment:\r\nWeapon: Manual sword\r\n>" ).Count == 0,
+        "external-item-screen-expiry-fails-closed");
+    checks.Add("external-bbs-terminal-item-state");
+
+    var externalStateNow = new DateTimeOffset(2026, 10, 29, 13, 0, 0, TimeSpan.Zero);
+    var externalState = new ClassicExternalSessionTracker(() => externalStateNow);
+    externalState.NoteOutboundCommand("stat");
+    var statSnapshot = externalState.Append(
+        "Name: Hero          Lives/CP: 5/3\r\n" +
+        "Race: Human         Exp: 1,000          Perception: 4\r\n" +
+        "Class: Warrior      Level: 2            Stealth: 3\r\n" +
+        "Hits: 40/50         Armour Class: -2/1  Thievery: 2\r\n" +
+        "Strength: 12        Agility: 11         Tracking: 5\r\n" +
+        "Intellect: 8        Health: 13          Martial Arts: 6\r\n" +
+        "Willpower: 9        Charm: 10           MagicRes: 7\r\n" +
+        "[HP=40]:");
+    Require(statSnapshot is { CharacterName: "Hero", RaceName: "Human", ClassName: "Warrior", Level: 2 } &&
+            statSnapshot.HealthCurrent == 40 && statSnapshot.HealthMaximum == 50 &&
+            statSnapshot.Attributes["Strength"] == 12 && statSnapshot.Skills["Tracking"] == 5 &&
+            statSnapshot.DerivedStats["Armor Class"] == -2 && statSnapshot.Resistances["Magic"] == 7,
+        "external-session-stat-screen");
+    externalState.NoteOutboundCommand("experience");
+    var experienceSnapshot = externalState.Append(
+        "Exp: 1,000 Level: 2 Exp needed for next level: 500 (1,500) [66%].\r\n[HP=40]:");
+    Require(experienceSnapshot is { Experience: 1000, ExperienceNeeded: 1500, ExperienceRemaining: 500 },
+        "external-session-experience-screen");
+    externalState.NoteOutboundCommand("spells");
+    var spellSnapshot = externalState.Append(
+        "Spells:\r\nspell.7: Minor Heal mana=4 energy=0\r\n[HP=40]:");
+    Require(spellSnapshot?.Spells.Single() is { CanonicalId: "spell.7", Name: "Minor Heal", ManaCost: 4 },
+        "external-session-spell-screen");
+    externalState.NoteOutboundCommand("party");
+    var partySnapshot = externalState.Append(
+        "The following people are in your travel party:\r\nHero (Warrior) [H: 80%] - Frontrank\r\n\r\n[HP=40]:");
+    Require(partySnapshot?.Party.Single() is { Name: "Hero", HealthPercent: 80, Rank: "Frontrunner" },
+        "external-session-party-screen");
+    var roomSnapshot = externalState.Append(
+        "Newhaven Square\r\nA busy square surrounds the fountain.\r\nAlso here: town guard.\r\nObvious exits: north, east\r\n");
+    Require(roomSnapshot?.Room is { RoomName: "Newhaven Square", ExitsVerified: true } room &&
+            room.Exits.SequenceEqual(["north", "east"]) && room.Npcs.Single() == "town guard",
+        "external-session-room-display");
+    var combatSnapshot = externalState.Append("*Combat Engaged*\r\n");
+    Require(combatSnapshot?.InCombat == true, "external-session-combat-boundary");
+    externalState.Reset();
+    Require(externalState.Snapshot is null, "external-session-reset");
+    checks.Add("external-bbs-observed-session-state");
+}
+finally
+{
+    Directory.Delete(externalCatalogRoot, recursive: true);
+}
+
 var gameplayProfile = new ClientGameplayAutomationProfile
 {
     WorldId = "Custom1",
@@ -1132,10 +1378,35 @@ gameplayProfile.Buffs.Add(new ClientBuffRule { Name = "Bless", EffectName = "Ble
 var buffPlan = ClientGameplayAutomationPlanner.PlanRecovery(buffState, gameplayProfile, gameplayNow);
 Require(buffPlan.Kind == ClientGameplayActionKind.MaintainBuff && buffPlan.Command == "cast Bless",
     "gameplay-recovery-observed-buff");
+var expiringBuffPlan = ClientGameplayAutomationPlanner.PlanRecovery(buffState with
+{
+    ActiveEffects = [new ClientGameplayEffectState("effect.1", "spell.2", "Bless",
+        gameplayNow.AddMinutes(-1), gameplayNow.AddSeconds(20))]
+}, gameplayProfile, gameplayNow);
+Require(expiringBuffPlan.Kind == ClientGameplayActionKind.MaintainBuff &&
+        expiringBuffPlan.Reason.Contains("expires in 20", StringComparison.Ordinal),
+    "gameplay-recovery-refreshes-expiring-buff");
+var durableBuffPlan = ClientGameplayAutomationPlanner.PlanRecovery(buffState with
+{
+    ActiveEffects = [new ClientGameplayEffectState("effect.1", "spell.2", "Bless",
+        gameplayNow.AddMinutes(-1), gameplayNow.AddMinutes(5))]
+}, gameplayProfile, gameplayNow);
+Require(durableBuffPlan.Kind != ClientGameplayActionKind.MaintainBuff,
+    "gameplay-recovery-keeps-durable-buff");
 var stalePlan = ClientGameplayAutomationPlanner.PlanRecovery(
     gameplayState with { CapturedAtUtc = gameplayNow.AddMinutes(-1) }, gameplayProfile, gameplayNow);
 Require(stalePlan.Kind == ClientGameplayActionKind.RefreshState, "gameplay-recovery-stale-fails-closed");
 checks.Add("gameplay-recovery-planner");
+
+Require(ClientSpellActions.TryCreateCastCommand(gameplayState.LearnedSpells, "Heal", "Friend",
+        out var selectedSpellCommand, out _) && selectedSpellCommand == "cast Heal Friend",
+    "learned-spell-command");
+Require(!ClientSpellActions.TryCreateCastCommand(gameplayState.LearnedSpells, "Missing", string.Empty,
+        out _, out var unknownSpellError) && unknownSpellError.Contains("authoritative", StringComparison.Ordinal),
+    "learned-spell-rejects-unknown");
+Require(!ClientSpellActions.TryCreateCastCommand(gameplayState.LearnedSpells, "Heal", "Friend;quit",
+        out _, out _), "learned-spell-rejects-command-injection");
+checks.Add("gameplay-learned-spell-actions");
 
 gameplayProfile.Combat.Enabled = true;
 gameplayProfile.Combat.TargetMode = ClientCombatTargetMode.HighestExperience;
@@ -1161,6 +1432,69 @@ var unknownSpellPlan = ClientGameplayAutomationPlanner.PlanCombat(
 Require(!unknownSpellPlan.HasAction, "gameplay-combat-learned-spell-gate");
 checks.Add("gameplay-combat-planner");
 
+gameplayProfile.Combat.RoundCommand = string.Empty;
+gameplayProfile.Combat.DefaultEquipmentSetId = "set.default";
+gameplayProfile.Combat.MultiTargetEquipmentSetId = "set.multi";
+gameplayProfile.Combat.MultiTargetEquipmentSetAtCount = 3;
+gameplayProfile.Combat.DefensiveEquipmentSetId = "set.defensive";
+gameplayProfile.Combat.DefensiveEquipmentSetAtHealthPercent = 40;
+gameplayProfile.Combat.AutoDefensiveAction = true;
+gameplayProfile.Combat.DefensiveActionAtHealthPercent = 40;
+gameplayProfile.Combat.DefensiveActionCommand = "defend";
+gameplayProfile.Combat.DefensiveActionCooldownSeconds = 5;
+gameplayProfile.CombatActions.Add(new ClientCombatActionRule
+{
+    Id = "opening-bash",
+    Priority = 10,
+    Name = "Opening bash",
+    Command = "bash {target}",
+    OpeningOnly = true,
+    InCombatOnly = false,
+    CooldownSeconds = 10
+});
+var combatRuntime = new ClientGameplayAutomationRuntime();
+var combatEquipmentPlan = ClientGameplayAutomationPlanner.PlanCombat(
+    gameplayState with { HealthCurrent = 100 }, gameplayProfile, gameplayNow, combatRuntime);
+Require(combatEquipmentPlan.Kind == ClientGameplayActionKind.EquipSet &&
+        combatEquipmentPlan.EquipmentSetId == "set.default",
+    "gameplay-combat-default-equipment-selection");
+combatRuntime.MarkExecuted(combatEquipmentPlan, gameplayNow, gameplayState.RoomId);
+var openingPlan = ClientGameplayAutomationPlanner.PlanCombat(
+    gameplayState with { HealthCurrent = 100 }, gameplayProfile, gameplayNow, combatRuntime);
+Require(openingPlan.Kind == ClientGameplayActionKind.CombatRule &&
+        openingPlan.Command == "bash ogre-1" && openingPlan.ActionId == "opening-bash",
+    "gameplay-combat-opening-action");
+combatRuntime.MarkExecuted(openingPlan, gameplayNow, gameplayState.RoomId);
+Require(ClientGameplayAutomationPlanner.PlanCombat(
+        gameplayState with { HealthCurrent = 100 }, gameplayProfile, gameplayNow.AddSeconds(1), combatRuntime).Kind ==
+        ClientGameplayActionKind.Engage,
+    "gameplay-combat-opening-action-not-repeated");
+var defensiveEquipmentPlan = ClientGameplayAutomationPlanner.PlanCombat(
+    gameplayState with { InCombat = true, HealthCurrent = 35 }, gameplayProfile, gameplayNow, combatRuntime);
+Require(defensiveEquipmentPlan.Kind == ClientGameplayActionKind.EquipSet &&
+        defensiveEquipmentPlan.EquipmentSetId == "set.defensive",
+    "gameplay-combat-defensive-equipment-precedence");
+combatRuntime.MarkExecuted(defensiveEquipmentPlan, gameplayNow, gameplayState.RoomId);
+var defensiveActionPlan = ClientGameplayAutomationPlanner.PlanCombat(
+    gameplayState with { InCombat = true, HealthCurrent = 35 }, gameplayProfile, gameplayNow, combatRuntime);
+Require(defensiveActionPlan.Kind == ClientGameplayActionKind.DefensiveAction &&
+        defensiveActionPlan.Command == "defend",
+    "gameplay-combat-defensive-action");
+combatRuntime.MarkExecuted(defensiveActionPlan, gameplayNow, gameplayState.RoomId);
+Require(ClientGameplayAutomationPlanner.PlanCombat(
+        gameplayState with { InCombat = true, HealthCurrent = 35 }, gameplayProfile,
+        gameplayNow.AddSeconds(1), combatRuntime).Kind != ClientGameplayActionKind.DefensiveAction,
+    "gameplay-combat-defensive-cooldown");
+combatRuntime.ObserveRoom("room.map2.45");
+Require(combatRuntime.AppliedEquipmentSetId.Length == 0,
+    "gameplay-combat-room-change-resets-equipment-authority");
+checks.Add("gameplay-combat-action-equipment-rotation");
+gameplayProfile.Combat.DefaultEquipmentSetId = string.Empty;
+gameplayProfile.Combat.MultiTargetEquipmentSetId = string.Empty;
+gameplayProfile.Combat.DefensiveEquipmentSetId = string.Empty;
+gameplayProfile.Combat.AutoDefensiveAction = false;
+gameplayProfile.CombatActions.Clear();
+
 gameplayProfile.Party.Enabled = true;
 gameplayProfile.Party.LeaderName = "Leader";
 gameplayProfile.Party.AutoFollowLeader = true;
@@ -1184,6 +1518,55 @@ Require(partyHealPlan.Kind == ClientGameplayActionKind.PartyHeal && partyHealPla
     "gameplay-party-heal");
 checks.Add("gameplay-party-planner");
 
+gameplayProfile.Party.CurePoisonedMembers = true;
+gameplayProfile.Party.CurePoisonCommand = "cast Antidote {target}";
+var partyCurePlan = ClientGameplayAutomationPlanner.PlanParty(gameplayState with
+{
+    PartyMembers = [gameplayState.PartyMembers[0], gameplayState.PartyMembers[1] with { Conditions = ["poisoned"] }]
+}, gameplayProfile, gameplayNow);
+Require(partyCurePlan.Kind == ClientGameplayActionKind.PartyCure &&
+        partyCurePlan.Command == "cast Antidote Friend",
+    "gameplay-party-cure");
+gameplayProfile.Party.CurePoisonedMembers = false;
+gameplayProfile.Party.AutoRescueMembers = true;
+gameplayProfile.Party.RescueBelowPercent = 40;
+var partyRescuePlan = ClientGameplayAutomationPlanner.PlanParty(
+    gameplayState with { InCombat = true }, gameplayProfile, gameplayNow);
+Require(partyRescuePlan.Kind == ClientGameplayActionKind.PartyRescue &&
+        partyRescuePlan.Command == "rescue Friend",
+    "gameplay-party-rescue");
+gameplayProfile.Party.AutoRescueMembers = false;
+gameplayProfile.Party.AutoHealMembers = false;
+gameplayProfile.Party.RegroupWhenSeparated = true;
+Require(ClientGameplayAutomationPlanner.PlanParty(gameplayState, gameplayProfile, gameplayNow) is
+    { Kind: ClientGameplayActionKind.PartyRegroup, Command: "where" },
+    "gameplay-party-regroup");
+gameplayProfile.Party.RegroupWhenSeparated = false;
+gameplayProfile.Party.AutoInviteNamedMembers = true;
+gameplayProfile.Party.InviteNames = "Ally";
+var invitePlan = ClientGameplayAutomationPlanner.PlanParty(gameplayState with
+{
+    Players = [new ClientGameplayPlayerState("ally-1", "Ally", gameplayState.RoomId, 7)]
+}, gameplayProfile, gameplayNow);
+Require(invitePlan.Kind == ClientGameplayActionKind.PartyInvite && invitePlan.Command == "invite Ally",
+    "gameplay-party-visible-player-invite");
+gameplayProfile.Party.AutoInviteNamedMembers = false;
+gameplayProfile.Party.MaintainPreferredRank = true;
+gameplayProfile.Party.PreferredRank = "Backrank";
+var rankPlan = ClientGameplayAutomationPlanner.PlanParty(gameplayState with
+{
+    PartyMembers =
+    [
+        new ClientGameplayPartyMemberState("hero-1", "Hero", gameplayState.RoomId, true, false, false,
+            "Frontrank", 100, 60, []),
+        gameplayState.PartyMembers[0],
+        gameplayState.PartyMembers[1]
+    ]
+}, gameplayProfile, gameplayNow);
+Require(rankPlan.Kind == ClientGameplayActionKind.PartyRank && rankPlan.Command == "backrank",
+    "gameplay-party-preferred-rank");
+checks.Add("gameplay-party-regroup-rescue-invite-rank");
+
 var diagnosticChecks = ClientGameplayDiagnostics.Evaluate(
     gameplayState, "Custom1", true, true, false, true, gameplayNow);
 Require(diagnosticChecks.All(check => check.Passed), "gameplay-diagnostics-healthy");
@@ -1192,6 +1575,17 @@ Require(ClientGameplayDiagnostics.Evaluate(
     .Single(check => check.Name == "World identity").Passed == false,
     "gameplay-diagnostics-world-mismatch");
 checks.Add("gameplay-diagnostics");
+
+var supportSession = new ClientSessionStatisticsSnapshot(
+    gameplayNow.AddMinutes(-10), gameplayNow.AddMinutes(-5), gameplayNow,
+    TimeSpan.FromMinutes(5), true, "private.example.test", 4000,
+    1, 1, 0, 0, 12, 1, 2, 100, 200, 8, 5);
+var supportJson = ClientSupportSnapshot.Create("0.2.0", supportSession, diagnosticChecks).ToJson();
+Require(supportJson.Contains("\"endpointScope\": \"remote\"", StringComparison.Ordinal) &&
+        !supportJson.Contains("private.example.test", StringComparison.Ordinal) &&
+        supportJson.Contains("terminal conversation text", StringComparison.OrdinalIgnoreCase),
+    "support-snapshot-redacts-endpoint-and-content");
+checks.Add("client-support-snapshot-privacy");
 
 var gameplayStoreRoot = Path.Combine(Path.GetTempPath(), "realmgate-client-gameplay-" + Guid.NewGuid().ToString("N"));
 try
@@ -1203,10 +1597,21 @@ try
     var customGameplayProfile = ClientGameplayAutomationProfileStore.GetOrCreate(
         gameplayCatalog, "Custom1", "hero-1", "Hero");
     classicGameplayProfile.Recovery.Enabled = true;
+    classicGameplayProfile.Combat.DefaultEquipmentSetId = "set.persisted";
+    classicGameplayProfile.CombatActions.Add(new ClientCombatActionRule
+    {
+        Id = "persisted-action",
+        Name = "Persisted action",
+        Command = "bash {target}"
+    });
     await gameplayStore.SaveAsync(gameplayCatalog);
     var loadedGameplayCatalog = await gameplayStore.LoadAsync();
     Require(loadedGameplayCatalog.Profiles.Count == 2 &&
             loadedGameplayCatalog.Profiles.Single(profile => profile.WorldId == "Classic").Recovery.Enabled &&
+            loadedGameplayCatalog.Profiles.Single(profile => profile.WorldId == "Classic")
+                .Combat.DefaultEquipmentSetId == "set.persisted" &&
+            loadedGameplayCatalog.Profiles.Single(profile => profile.WorldId == "Classic")
+                .CombatActions.Single().Id == "persisted-action" &&
             !loadedGameplayCatalog.Profiles.Single(profile => profile.WorldId == "Custom1").Recovery.Enabled,
         "gameplay-profile-world-character-isolation");
 }

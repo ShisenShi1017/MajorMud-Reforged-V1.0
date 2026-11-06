@@ -17,6 +17,13 @@ public sealed class GeneratedProjectionValidator
     {
         var normalizedWorld = LibrariumCompilerOptions.NormalizeWorld(worldId);
         var outputRoot = Path.Combine(repositoryRoot, "Data", normalizedWorld);
+        return ValidateOutputRoot(outputRoot, normalizedWorld);
+    }
+
+    public ProjectionValidationResult ValidateOutputRoot(string outputRoot, string worldId)
+    {
+        var normalizedWorld = LibrariumCompilerOptions.NormalizeWorld(worldId);
+        outputRoot = Path.GetFullPath(outputRoot);
         var errors = new List<string>();
         var filesValidated = 0;
 

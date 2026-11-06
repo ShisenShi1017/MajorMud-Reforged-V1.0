@@ -24,19 +24,21 @@
       "strong": 0,
       "unknown": 0
     },
-    "validator": "PASS; 28/28 current-health gates (latest local post-closure run)",
+    "validator": "PASS; 29/29 current-health gates (latest local post-closure run)",
     "clientSmokes": "PASS; 14/14 accepted transitional WPF baseline",
     "releaseBuild": "RealmGate app Release build and full solution build verified at 0 warnings / 0 errors",
     "releaseIdentity": "RealmGate RG icon, explicit product metadata, and asInvoker manifest are embedded; trusted Authenticode signing remains pending a real certificate",
     "generatedWorldContract": "Every runtime world is standalone and complete; live Classic fallback is forbidden. Derived worlds identify their generation-time base.",
     "custom1Runtime": "Verified standalone with 962/962 resolved spawns and 1,015 live NPC instances while Data/Classic was unavailable.",
     "decodeExhaustion": "49/49 families; 2332/2332 fields connected or structural; 0 unresolved",
-    "crossPlatformClient": "Navigation/inventory/assistant batch passed 70/70 client-core checks and the full 28/28 validator. Subsequent local Character/item-planning slice passed 72/72 client-core checks and core/server smokes; Avalonia Release build succeeded with two known analyzer-version warnings. Full validator and Windows/Linux preview publishes predate this slice. Full WPF parity, native Linux UI testing, and pushed CI remain open.",
+    "crossPlatformClient": "Navigation/inventory/assistant passed 70/70 client-core checks and the then-current 28/28 validator; the current local client-core suite passes 81/81 after the Character/assistant/diagnostics, application-defaults, and secure-store slices. Cross-platform Creator/MDB authority and the Avalonia Custom1 workflow pass 30/30, including read-only global/where-used/key-door/monster/control-room/capability tools, guarded Custom1 maintenance, world settings, realm-scoped character administration, Classic local policy/SYSOP administration, executable quest/script editing, visual map management, isolated Test Realm generation, guarded publish/rollback, and the lazy read-only Classic Librarium browser. Avalonia application defaults preserve unknown WPF fields, use Windows/XDG user configuration roots, and persist the default world/profile plus Host bind/port/session limits without restoring the retired Settings tab or theme selector. Secure values route through Windows Credential Manager or Linux Secret Service with no file fallback; established Borin/NVIDIA target migration remains intact. Custom1 settings and Classic policy require exact typed confirmation, character deletion requires the exact display name, and administration mutations require stopped Hosts. The Librarium view exposes friendly gameplay categories and curated details while hiding raw evidence/provenance metadata. The current Test Realm contains 44 families, 112,691 objects, and 60 validated files. Avalonia now activates it as the distinct Custom1-Test runtime with isolated saves/world state and no world-selection ambiguity; the headless lifecycle smoke verified both listeners, Custom1 data authority, save isolation, and clean shutdown. Live Custom1 was not published, and verification changed no policy, character, or Custom1 data. The transitional WPF Release build passed with 0 errors and only restricted-network package-audit warnings; the final Avalonia Release build passes with 0 errors, the two known analyzer-version warnings, and restricted-network NU1900 package-audit warnings. The latest full validator remains 29/29 and predates this client-focused slice. Native Linux UI/keyring testing, manual Test Realm gameplay, a real reviewed live publish, real external-board and Creator matching-source field tests, and pushed CI remain open.",
+    "avaloniaTesterPackaging": "Local self-contained win-x64 package PASS: one RealmGate root, 264 entries, 83.39 MB, compact 57-family/114630-object Librarium, no generated Data, and no Borin/private dependency names. Exact staged Classic and clean Custom1 generation each produced 44 families, 112609 objects, and 60 files before Data removal. Native linux-x64 packaging and Linux GUI/Host/keyring testing remain unverified.",
     "postClosureRuntimeHardening": "Per-world and per-session failure containment, Host Sessions/Logs tabs, realm-scoped character deletion, and generated LIGHT equipment readiness are locally verified.",
     "remainingIntegrationTests": [
       "External non-RealmGate BBS MDB overlay/import end-to-end test",
       "Creator Studio custom-world MDB plus matching WCC/WGS import/runtime test",
-      "Trusted-signed RealmGate beta artifact and Microsoft Defender SmartScreen test"
+      "Trusted-signed RealmGate beta artifact and Microsoft Defender SmartScreen test",
+      "Native Linux Avalonia package, GUI, embedded Host, gameplay, and Secret Service test"
     ]
   },
   "handoffPolicy": {

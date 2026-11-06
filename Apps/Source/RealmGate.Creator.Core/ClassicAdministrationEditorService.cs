@@ -4,6 +4,8 @@ using RealmGate.Server;
 
 namespace RealmGate.App.Services;
 
+// Shared administration authority used by both WPF and Avalonia Creator Studio surfaces.
+
 public sealed record ClassicAdministrationCharacter(
     string CharacterId,
     string DisplayName,
@@ -34,14 +36,14 @@ public sealed record EditorCharacterRecord(
 public sealed class ClassicAdministrationEditorService
 {
     private readonly string _projectRoot;
-    private readonly IReforgedHostController? _host;
+    private readonly Func<IReadOnlyList<ClassicAdministrationCharacter>>? _activeCharacters;
 
     public ClassicAdministrationEditorService(
         string? startDirectory = null,
-        IReforgedHostController? host = null)
+        Func<IReadOnlyList<ClassicAdministrationCharacter>>? activeCharacters = null)
     {
         _projectRoot = ResolveProjectRoot(startDirectory);
-        _host = host;
+        _activeCharacters = activeCharacters;
     }
 
     public string ProjectRoot => _projectRoot;
@@ -93,8 +95,8 @@ public sealed class ClassicAdministrationEditorService
 
     public EditorCharacterRecord DeleteCharacter(EditorCharacterRecord character)
     {
-        if (_host?.ActiveSessions.Any(session =>
-                session.CharacterId.Equals(character.CharacterId, StringComparison.OrdinalIgnoreCase)) == true)
+        if (_activeCharacters?.Invoke().Any(active =>
+                active.CharacterId.Equals(character.CharacterId, StringComparison.OrdinalIgnoreCase)) == true)
         {
             throw new InvalidOperationException($"Character '{character.DisplayName}' is currently logged in and cannot be deleted.");
         }
@@ -199,21 +201,15 @@ public sealed class ClassicAdministrationEditorService
         IDictionary<string, ClassicAdministrationCharacter> characters,
         ICollection<string> warnings)
     {
-        if (_host is null) return;
+        if (_activeCharacters is null) return;
 
         try
         {
-            foreach (var session in _host.ActiveSessions)
+            foreach (var character in _activeCharacters())
             {
-                if (!session.WorldId.Equals("classic", StringComparison.OrdinalIgnoreCase)) continue;
-                if (string.IsNullOrWhiteSpace(session.CharacterId) || string.IsNullOrWhiteSpace(session.CharacterName)) continue;
-
-                Merge(characters, new ClassicAdministrationCharacter(
-                    session.CharacterId,
-                    session.CharacterName,
-                    session.AccountId,
-                    0,
-                    "Active session"));
+                if (string.IsNullOrWhiteSpace(character.CharacterId) ||
+                    string.IsNullOrWhiteSpace(character.DisplayName)) continue;
+                Merge(characters, character with { Source = "Active session" });
             }
         }
         catch (Exception exception)

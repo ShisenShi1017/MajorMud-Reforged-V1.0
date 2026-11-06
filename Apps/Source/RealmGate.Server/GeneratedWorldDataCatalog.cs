@@ -259,8 +259,15 @@ public sealed class GeneratedWorldDataCatalog
             return;
         }
 
-        if (!string.Equals(worldId.GetString(), definition.Id, StringComparison.OrdinalIgnoreCase))
-            diagnostics.Add($"Manifest world_id '{worldId.GetString()}' does not match configured world '{definition.Id}': {path}");
+        var expectedWorldId = string.IsNullOrWhiteSpace(definition.DataWorldId)
+            ? definition.Id
+            : definition.DataWorldId;
+        if (!string.Equals(worldId.GetString(), expectedWorldId, StringComparison.OrdinalIgnoreCase))
+        {
+            diagnostics.Add(
+                $"Manifest world_id '{worldId.GetString()}' does not match data authority '{expectedWorldId}' " +
+                $"for runtime world '{definition.Id}': {path}");
+        }
     }
 
     private static string ComputeSha256(string path)

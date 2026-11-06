@@ -5,6 +5,7 @@ using RealmGate.App.Forge;
 using RealmGate.App.Models;
 using RealmGate.App.Services;
 using RealmGate.Client.Transport;
+using RealmGate.Client.Navigation;
 using RealmGate.App.ViewModels;
 
 namespace RealmGate.App.Brains;

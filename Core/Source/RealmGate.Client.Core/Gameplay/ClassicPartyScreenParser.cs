@@ -1,13 +1,13 @@
 using System.Text.RegularExpressions;
 
-namespace RealmGate.App.Services;
+namespace RealmGate.Client.Gameplay;
 
-internal readonly record struct ClassicPartyMemberObservation(
+public readonly record struct ClassicPartyMemberObservation(
     string Name, string ClassName, int HealthPercent, int? ResourcePercent,
     string ResourceKind, string Rank, string State, bool Poisoned);
 
 /// <summary>Captures the native PAR travel-party table in an explicit response window.</summary>
-internal sealed partial class ClassicPartyScreenParser
+public sealed partial class ClassicPartyScreenParser
 {
     private readonly List<ClassicPartyMemberObservation> _members = [];
     private bool _armed;

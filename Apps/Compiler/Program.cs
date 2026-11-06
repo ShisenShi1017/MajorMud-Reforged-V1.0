@@ -72,7 +72,10 @@ try
 
     if (command == "validate")
     {
-        var validation = new GeneratedProjectionValidator().Validate(root, world);
+        var validator = new GeneratedProjectionValidator();
+        var validation = string.IsNullOrWhiteSpace(outputArg)
+            ? validator.Validate(root, world)
+            : validator.ValidateOutputRoot(Path.GetFullPath(Path.Combine(root, outputArg)), world);
         Console.WriteLine($"World: {validation.WorldId}");
         Console.WriteLine($"Output: {validation.OutputRoot}");
         Console.WriteLine($"Files validated: {validation.FilesValidated}");

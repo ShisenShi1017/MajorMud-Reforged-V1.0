@@ -1,14 +1,14 @@
 using System.Text.RegularExpressions;
 
-namespace RealmGate.App.Services;
+namespace RealmGate.Client.Automation;
 
-internal enum ClassicCombatEventKind
+public enum ClassicCombatEventKind
 {
     None, Engaged, Disengaged, PlayerHit, PlayerMiss, IncomingHit,
     IncomingMiss, Dodge, Block, ExperienceReward
 }
 
-internal readonly record struct ClassicCombatObservation(
+public readonly record struct ClassicCombatObservation(
     ClassicCombatEventKind Kind,
     bool InCombat,
     int Amount = 0);
@@ -18,7 +18,7 @@ internal readonly record struct ClassicCombatObservation(
 /// classify only between native engage/off markers, so unrelated prose cannot
 /// mutate combat state.
 /// </summary>
-internal sealed partial class ClassicCombatStreamParser
+public sealed partial class ClassicCombatStreamParser
 {
     public bool InCombat { get; private set; }
     public bool AutocombatActive { get; private set; }

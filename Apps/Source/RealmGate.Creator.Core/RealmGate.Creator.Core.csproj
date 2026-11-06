@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <AssemblyName>RealmGate.Creator.Core</AssemblyName>
+    <RootNamespace>RealmGate.Creator</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="../../Compiler/RealmGate.Compiler.csproj"
+                      AdditionalProperties="CompilerAsLibrary=true" />
+    <ProjectReference Include="../RealmGate.Server.Runtime/RealmGate.Server.Runtime.csproj" />
+    <ProjectReference Include="../RealmGate.Mdb.Core/RealmGate.Mdb.Core.csproj" />
+  </ItemGroup>
+</Project>

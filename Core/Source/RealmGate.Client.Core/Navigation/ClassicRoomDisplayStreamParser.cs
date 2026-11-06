@@ -1,8 +1,8 @@
 using System.Text.RegularExpressions;
 
-namespace RealmGate.App.Services;
+namespace RealmGate.Client.Navigation;
 
-internal readonly record struct ClassicRoomDisplayObservation(
+public readonly record struct ClassicRoomDisplayObservation(
     string RoomName,
     string RoomKey,
     IReadOnlyList<string> Exits,
@@ -19,7 +19,7 @@ internal readonly record struct ClassicRoomDisplayObservation(
 /// native Obvious exits line closes the display. This prevents arbitrary
 /// capitalized prose from becoming navigation authority.
 /// </summary>
-internal sealed partial class ClassicRoomDisplayStreamParser
+public sealed partial class ClassicRoomDisplayStreamParser
 {
     private const int BufferCapacity = 20;
     private readonly List<string> _buffer = [];

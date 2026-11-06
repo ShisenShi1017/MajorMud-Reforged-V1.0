@@ -53,19 +53,16 @@
 
   <ItemGroup>
     <ProjectReference Include="../RealmGate.Server.Runtime/RealmGate.Server.Runtime.csproj" />
-    <ProjectReference Include="../../Compiler/RealmGate.Compiler.csproj" />
+    <ProjectReference Include="../../Compiler/RealmGate.Compiler.csproj"
+                      AdditionalProperties="CompilerAsLibrary=true" />
     <ProjectReference Include="../../../Core/Source/RealmGate.Client.Core/RealmGate.Client.Core.csproj" />
+    <ProjectReference Include="../RealmGate.Creator.Core/RealmGate.Creator.Core.csproj" />
+    <ProjectReference Include="../RealmGate.Mdb.Core/RealmGate.Mdb.Core.csproj" />
   </ItemGroup>
 
   <!-- Keep the high-resolution icon master beside the embedded multi-resolution ICO. -->
   <ItemGroup>
     <None Update="Assets\Branding\RealmGateIcon.png" />
-  </ItemGroup>
-
-  <!-- Pure-managed MDB/ACCDB reader used only to compare an external BBS database
-       against the immutable Classic base and generate a small local overlay. -->
-  <ItemGroup>
-    <PackageReference Include="JackcessDotNet" Version="1.2.2" />
   </ItemGroup>
 
   <!-- Bundled Classic navigation graph used by Goto/Auto-Roam in clean builds. -->

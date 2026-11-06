@@ -7,6 +7,7 @@
         xmlns:gameplay="clr-namespace:RealmGate.Client.Gameplay;assembly=RealmGate.Client.Core"
         xmlns:inventory="clr-namespace:RealmGate.Client.Inventory;assembly=RealmGate.Client.Core"
         xmlns:navigation="clr-namespace:RealmGate.Client.Navigation;assembly=RealmGate.Client.Core"
+        xmlns:creator="clr-namespace:RealmGate.App.Services;assembly=RealmGate.Creator.Core"
         x:Class="RealmGate.Desktop.Views.MainWindow"
         x:DataType="vm:MainWindowViewModel"
         Title="RealmGate"
@@ -585,7 +586,7 @@
                           <TextBlock Text="{Binding GameplayPlanText}" FontFamily="Monospace" TextWrapping="Wrap" />
                         </StackPanel>
                       </ScrollViewer>
-                      <Grid Grid.Column="1" RowDefinitions="Auto,*,Auto,Auto,Auto,Auto" RowSpacing="6">
+                      <Grid Grid.Column="1" RowDefinitions="Auto,*,Auto,Auto,Auto,Auto,Auto,Auto" RowSpacing="6">
                         <TextBlock Text="Buff rules" FontSize="18" FontWeight="SemiBold" />
                         <ListBox Grid.Row="1" ItemsSource="{Binding BuffRules}" SelectedItem="{Binding SelectedBuffRule}">
                           <ListBox.ItemTemplate>
@@ -601,6 +602,15 @@
                         <TextBox Grid.Row="3" Text="{Binding SelectedBuffRule.Name}" PlaceholderText="Rule name" />
                         <TextBox Grid.Row="4" Text="{Binding SelectedBuffRule.EffectName}" PlaceholderText="Observed effect name" />
                         <TextBox Grid.Row="5" Text="{Binding SelectedBuffRule.Command}" PlaceholderText="Command" />
+                        <Grid Grid.Row="6" ColumnDefinitions="*,90" ColumnSpacing="6">
+                          <TextBlock Text="Minimum resource percent" VerticalAlignment="Center" />
+                          <TextBox Grid.Column="1" Text="{Binding SelectedBuffRule.MinimumManaPercent}" />
+                        </Grid>
+                        <Grid Grid.Row="7" ColumnDefinitions="*,90" ColumnSpacing="6">
+                          <CheckBox Content="Only outside combat" IsChecked="{Binding SelectedBuffRule.OnlyOutOfCombat}" />
+                          <TextBox Grid.Column="1" Text="{Binding SelectedBuffRule.RefreshBeforeExpirySeconds}"
+                                   PlaceholderText="Refresh sec" />
+                        </Grid>
                       </Grid>
                     </Grid>
                   </TabItem>
@@ -631,6 +641,56 @@
                           </Grid>
                           <TextBlock Text="Avoid names, separated by commas" />
                           <TextBox Text="{Binding GameplayProfile.Combat.AvoidNames}" />
+                          <TextBlock Text="Equipment rotation" FontSize="18" FontWeight="SemiBold" Margin="0,8,0,0" />
+                          <Grid ColumnDefinitions="*,*" ColumnSpacing="8">
+                            <StackPanel Spacing="4">
+                              <TextBlock Text="Default set" />
+                              <ComboBox ItemsSource="{Binding EquipmentSets}"
+                                        SelectedItem="{Binding DefaultCombatEquipmentSet}">
+                                <ComboBox.ItemTemplate>
+                                  <DataTemplate x:DataType="inventory:ClientEquipmentSet">
+                                    <TextBlock Text="{Binding Name}" />
+                                  </DataTemplate>
+                                </ComboBox.ItemTemplate>
+                              </ComboBox>
+                            </StackPanel>
+                            <StackPanel Grid.Column="1" Spacing="4">
+                              <TextBlock Text="Multi-target set" />
+                              <ComboBox ItemsSource="{Binding EquipmentSets}"
+                                        SelectedItem="{Binding MultiTargetCombatEquipmentSet}">
+                                <ComboBox.ItemTemplate>
+                                  <DataTemplate x:DataType="inventory:ClientEquipmentSet">
+                                    <TextBlock Text="{Binding Name}" />
+                                  </DataTemplate>
+                                </ComboBox.ItemTemplate>
+                              </ComboBox>
+                            </StackPanel>
+                          </Grid>
+                          <Grid ColumnDefinitions="*,100" RowDefinitions="Auto,Auto" ColumnSpacing="8" RowSpacing="6">
+                            <TextBlock Text="Use multi-target set at hostile count" VerticalAlignment="Center" />
+                            <TextBox Grid.Column="1" Text="{Binding GameplayProfile.Combat.MultiTargetEquipmentSetAtCount}" />
+                            <TextBlock Grid.Row="1" Text="Use defensive set below HP percent" VerticalAlignment="Center" />
+                            <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding GameplayProfile.Combat.DefensiveEquipmentSetAtHealthPercent}" />
+                          </Grid>
+                          <TextBlock Text="Defensive set" />
+                          <ComboBox ItemsSource="{Binding EquipmentSets}"
+                                    SelectedItem="{Binding DefensiveCombatEquipmentSet}">
+                            <ComboBox.ItemTemplate>
+                              <DataTemplate x:DataType="inventory:ClientEquipmentSet">
+                                <TextBlock Text="{Binding Name}" />
+                              </DataTemplate>
+                            </ComboBox.ItemTemplate>
+                          </ComboBox>
+                          <CheckBox Content="Use defensive action in combat"
+                                    IsChecked="{Binding GameplayProfile.Combat.AutoDefensiveAction}" />
+                          <Grid ColumnDefinitions="*,100" RowDefinitions="Auto,Auto" ColumnSpacing="8" RowSpacing="6">
+                            <TextBlock Text="Defensive action below HP percent" VerticalAlignment="Center" />
+                            <TextBox Grid.Column="1" Text="{Binding GameplayProfile.Combat.DefensiveActionAtHealthPercent}" />
+                            <TextBlock Grid.Row="1" Text="Defensive cooldown seconds" VerticalAlignment="Center" />
+                            <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding GameplayProfile.Combat.DefensiveActionCooldownSeconds}" />
+                          </Grid>
+                          <TextBlock Text="Defensive action command" />
+                          <TextBox Text="{Binding GameplayProfile.Combat.DefensiveActionCommand}" />
                           <StackPanel Orientation="Horizontal" Spacing="12">
                             <CheckBox Content="Stop when other players are present"
                                       IsChecked="{Binding GameplayProfile.Combat.StopWhenOtherPlayersPresent}" />
@@ -644,16 +704,61 @@
                           <TextBlock Text="{Binding GameplayPlanText}" FontFamily="Monospace" TextWrapping="Wrap" />
                         </StackPanel>
                       </ScrollViewer>
-                      <StackPanel Grid.Column="1" Spacing="6">
-                        <TextBlock Text="Observed room NPCs" FontSize="18" FontWeight="SemiBold" />
-                        <ListBox ItemsSource="{Binding GameplayNpcs}">
-                          <ListBox.ItemTemplate>
-                            <DataTemplate x:DataType="gameplay:ClientGameplayNpcState">
-                              <TextBlock Text="{Binding DisplayName}" TextWrapping="Wrap" />
-                            </DataTemplate>
-                          </ListBox.ItemTemplate>
-                        </ListBox>
-                      </StackPanel>
+                      <TabControl Grid.Column="1">
+                        <TabItem Header="NPCS">
+                          <StackPanel Margin="6" Spacing="6">
+                            <TextBlock Text="Observed room NPCs" FontSize="18" FontWeight="SemiBold" />
+                            <ListBox ItemsSource="{Binding GameplayNpcs}">
+                              <ListBox.ItemTemplate>
+                                <DataTemplate x:DataType="gameplay:ClientGameplayNpcState">
+                                  <TextBlock Text="{Binding DisplayName}" TextWrapping="Wrap" />
+                                </DataTemplate>
+                              </ListBox.ItemTemplate>
+                            </ListBox>
+                          </StackPanel>
+                        </TabItem>
+                        <TabItem Header="ACTIONS">
+                          <ScrollViewer>
+                            <StackPanel Margin="6" Spacing="6">
+                              <ListBox ItemsSource="{Binding CombatActionRules}"
+                                       SelectedItem="{Binding SelectedCombatActionRule}"
+                                       MinHeight="130">
+                                <ListBox.ItemTemplate>
+                                  <DataTemplate x:DataType="gameplay:ClientCombatActionRule">
+                                    <TextBlock Text="{Binding DisplayName}" TextWrapping="Wrap" />
+                                  </DataTemplate>
+                                </ListBox.ItemTemplate>
+                              </ListBox>
+                              <StackPanel Orientation="Horizontal" Spacing="6">
+                                <Button Content="Add" Command="{Binding AddCombatActionRuleCommand}" />
+                                <Button Content="Delete" Command="{Binding DeleteCombatActionRuleCommand}" />
+                              </StackPanel>
+                              <TextBox Text="{Binding SelectedCombatActionRule.Name}" PlaceholderText="Action name" />
+                              <TextBox Text="{Binding SelectedCombatActionRule.Command}" PlaceholderText="Command; use {target}" />
+                              <Grid ColumnDefinitions="*,90" RowDefinitions="Auto,Auto,Auto,Auto,Auto" ColumnSpacing="6" RowSpacing="5">
+                                <TextBlock Text="Priority" VerticalAlignment="Center" />
+                                <TextBox Grid.Column="1" Text="{Binding SelectedCombatActionRule.Priority}" />
+                                <TextBlock Grid.Row="1" Text="Minimum targets" VerticalAlignment="Center" />
+                                <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding SelectedCombatActionRule.MinimumTargets}" />
+                                <TextBlock Grid.Row="2" Text="Maximum targets" VerticalAlignment="Center" />
+                                <TextBox Grid.Row="2" Grid.Column="1" Text="{Binding SelectedCombatActionRule.MaximumTargets}" />
+                                <TextBlock Grid.Row="3" Text="Minimum resource percent" VerticalAlignment="Center" />
+                                <TextBox Grid.Row="3" Grid.Column="1" Text="{Binding SelectedCombatActionRule.MinimumManaPercent}" />
+                                <TextBlock Grid.Row="4" Text="Cooldown seconds" VerticalAlignment="Center" />
+                                <TextBox Grid.Row="4" Grid.Column="1" Text="{Binding SelectedCombatActionRule.CooldownSeconds}" />
+                              </Grid>
+                              <TextBox Text="{Binding SelectedCombatActionRule.TargetNameContains}"
+                                       PlaceholderText="Optional target name filter" />
+                              <CheckBox Content="Enabled" IsChecked="{Binding SelectedCombatActionRule.Enabled}" />
+                              <CheckBox Content="Opening only" IsChecked="{Binding SelectedCombatActionRule.OpeningOnly}" />
+                              <CheckBox Content="In combat only" IsChecked="{Binding SelectedCombatActionRule.InCombatOnly}" />
+                              <CheckBox Content="Area action" IsChecked="{Binding SelectedCombatActionRule.IsAreaAction}" />
+                              <CheckBox Content="Append target when placeholder is absent"
+                                        IsChecked="{Binding SelectedCombatActionRule.AppendTarget}" />
+                            </StackPanel>
+                          </ScrollViewer>
+                        </TabItem>
+                      </TabControl>
                     </Grid>
                   </TabItem>
                   <TabItem Header="PARTY">
@@ -669,9 +774,19 @@
                             <CheckBox Content="Assist leader" IsChecked="{Binding GameplayProfile.Party.AutoAssistLeader}" />
                             <CheckBox Content="Heal members" IsChecked="{Binding GameplayProfile.Party.AutoHealMembers}" />
                           </StackPanel>
-                          <Grid ColumnDefinitions="*,100" ColumnSpacing="8">
+                          <StackPanel Orientation="Horizontal" Spacing="12">
+                            <CheckBox Content="Cure poisoned members"
+                                      IsChecked="{Binding GameplayProfile.Party.CurePoisonedMembers}" />
+                            <CheckBox Content="Rescue members"
+                                      IsChecked="{Binding GameplayProfile.Party.AutoRescueMembers}" />
+                            <CheckBox Content="Regroup when separated"
+                                      IsChecked="{Binding GameplayProfile.Party.RegroupWhenSeparated}" />
+                          </StackPanel>
+                          <Grid ColumnDefinitions="*,100" RowDefinitions="Auto,Auto" ColumnSpacing="8" RowSpacing="6">
                             <TextBlock Text="Heal below HP percent" VerticalAlignment="Center" />
                             <TextBox Grid.Column="1" Text="{Binding GameplayProfile.Party.HealBelowPercent}" />
+                            <TextBlock Grid.Row="1" Text="Rescue below HP percent" VerticalAlignment="Center" />
+                            <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding GameplayProfile.Party.RescueBelowPercent}" />
                           </Grid>
                           <TextBlock Text="Follow command" />
                           <TextBox Text="{Binding GameplayProfile.Party.FollowCommand}" />
@@ -679,6 +794,40 @@
                           <TextBox Text="{Binding GameplayProfile.Party.AssistCommand}" />
                           <TextBlock Text="Heal command" />
                           <TextBox Text="{Binding GameplayProfile.Party.HealCommand}" />
+                          <Grid ColumnDefinitions="*,*" ColumnSpacing="8">
+                            <StackPanel Spacing="4">
+                              <TextBlock Text="Cure command" />
+                              <TextBox Text="{Binding GameplayProfile.Party.CurePoisonCommand}" />
+                            </StackPanel>
+                            <StackPanel Grid.Column="1" Spacing="4">
+                              <TextBlock Text="Rescue command" />
+                              <TextBox Text="{Binding GameplayProfile.Party.RescueCommand}" />
+                            </StackPanel>
+                          </Grid>
+                          <TextBlock Text="Regroup command" />
+                          <TextBox Text="{Binding GameplayProfile.Party.RegroupCommand}" />
+                          <CheckBox Content="Invite configured visible players"
+                                    IsChecked="{Binding GameplayProfile.Party.AutoInviteNamedMembers}" />
+                          <TextBlock Text="Invite names, separated by commas" />
+                          <TextBox Text="{Binding GameplayProfile.Party.InviteNames}" />
+                          <TextBlock Text="Invite command ({target})" />
+                          <TextBox Text="{Binding GameplayProfile.Party.InviteCommand}" />
+                          <CheckBox Content="Maintain preferred party rank"
+                                    IsChecked="{Binding GameplayProfile.Party.MaintainPreferredRank}" />
+                          <Grid ColumnDefinitions="*,*" ColumnSpacing="8">
+                            <StackPanel Spacing="4">
+                              <TextBlock Text="Preferred rank" />
+                              <ComboBox ItemsSource="{Binding PartyRanks}"
+                                        SelectedItem="{Binding GameplayProfile.Party.PreferredRank}" />
+                            </StackPanel>
+                            <StackPanel Grid.Column="1" Spacing="4">
+                              <TextBlock Text="Rank commands" />
+                              <Grid ColumnDefinitions="*,*" ColumnSpacing="6">
+                                <TextBox Text="{Binding GameplayProfile.Party.FrontRankCommand}" />
+                                <TextBox Grid.Column="1" Text="{Binding GameplayProfile.Party.BackRankCommand}" />
+                              </Grid>
+                            </StackPanel>
+                          </Grid>
                           <CheckBox Content="Require learned spells"
                                     IsChecked="{Binding GameplayProfile.Party.RequireLearnedSpellForCastCommands}" />
                           <StackPanel Orientation="Horizontal" Spacing="8">
@@ -715,11 +864,16 @@
                     </StackPanel>
                   </TabItem>
                   <TabItem Header="DIAGNOSTICS">
-                    <Grid Margin="10" RowDefinitions="Auto,*" RowSpacing="8">
+                    <Grid Margin="10" RowDefinitions="Auto,Auto,*" RowSpacing="8">
                       <StackPanel Orientation="Horizontal" Spacing="8">
                         <Button Content="Run checks" Command="{Binding RunDiagnosticsCommand}" />
+                        <Button Content="Export support snapshot" Command="{Binding ExportSupportSnapshotCommand}" />
                       </StackPanel>
-                      <ListBox Grid.Row="1" ItemsSource="{Binding GameplayDiagnosticChecks}">
+                      <Grid Grid.Row="1" ColumnDefinitions="*,*" ColumnSpacing="14">
+                        <TextBlock Text="{Binding SessionStatisticsText}" FontFamily="Monospace" TextWrapping="Wrap" />
+                        <TextBlock Grid.Column="1" Text="{Binding SupportBundleStatus}" TextWrapping="Wrap" />
+                      </Grid>
+                      <ListBox Grid.Row="2" ItemsSource="{Binding GameplayDiagnosticChecks}">
                         <ListBox.ItemTemplate>
                           <DataTemplate x:DataType="gameplay:ClientDiagnosticCheck">
                             <TextBlock Text="{Binding DisplayName}" TextWrapping="Wrap" />
@@ -772,7 +926,7 @@
               </ScrollViewer>
             </TabItem>
             <TabItem Header="STATISTICS">
-              <Grid Margin="12" ColumnDefinitions="*,*" ColumnSpacing="18">
+              <Grid Margin="12" ColumnDefinitions="*,*" RowDefinitions="*,*" ColumnSpacing="18" RowSpacing="18">
                 <ScrollViewer>
                   <StackPanel Spacing="8">
                     <TextBlock Text="Attributes" FontSize="18" FontWeight="SemiBold" />
@@ -785,22 +939,54 @@
                     <TextBlock Text="{Binding CharacterSkillsText}" TextWrapping="Wrap" />
                   </StackPanel>
                 </ScrollViewer>
+                <ScrollViewer Grid.Row="1">
+                  <StackPanel Spacing="8">
+                    <TextBlock Text="Derived statistics" FontSize="18" FontWeight="SemiBold" />
+                    <TextBlock Text="{Binding CharacterDerivedStatsText}" TextWrapping="Wrap" />
+                  </StackPanel>
+                </ScrollViewer>
+                <ScrollViewer Grid.Row="1" Grid.Column="1">
+                  <StackPanel Spacing="8">
+                    <TextBlock Text="Defenses" FontSize="18" FontWeight="SemiBold" />
+                    <TextBlock Text="{Binding CharacterDefensesText}" TextWrapping="Wrap" />
+                  </StackPanel>
+                </ScrollViewer>
               </Grid>
+            </TabItem>
+            <TabItem Header="PROGRESSION">
+              <ScrollViewer>
+                <Grid Margin="12" ColumnDefinitions="*,*" ColumnSpacing="24">
+                  <StackPanel Spacing="10">
+                    <TextBlock Text="Level progress" FontSize="18" FontWeight="SemiBold" />
+                    <ProgressBar Minimum="0" Maximum="100" Value="{Binding CharacterProgressPercent}" Height="14" />
+                    <TextBlock Text="{Binding CharacterProgressText}" TextWrapping="Wrap" />
+                    <TextBlock Text="{Binding CharacterProgressDetailsText}" TextWrapping="Wrap" />
+                  </StackPanel>
+                  <StackPanel Grid.Column="1" Spacing="10">
+                    <TextBlock Text="Class progression" FontSize="18" FontWeight="SemiBold" />
+                    <TextBlock Text="{Binding CharacterClassProgressText}" TextWrapping="Wrap" />
+                  </StackPanel>
+                </Grid>
+              </ScrollViewer>
             </TabItem>
             <TabItem Header="SPELLS &amp; EFFECTS">
               <Grid Margin="12" ColumnDefinitions="*,*" ColumnSpacing="18">
-                <Grid RowDefinitions="Auto,*" RowSpacing="8">
+                <Grid RowDefinitions="Auto,*,Auto,Auto,Auto" RowSpacing="8">
                   <TextBlock Text="Learned spells" FontSize="18" FontWeight="SemiBold" />
-                  <ListBox Grid.Row="1" ItemsSource="{Binding CharacterSpells}" />
+                  <ListBox Grid.Row="1" ItemsSource="{Binding CharacterSpells}"
+                           SelectedItem="{Binding SelectedCharacterSpell}" />
+                  <TextBox Grid.Row="2" Text="{Binding SpellTarget}" PlaceholderText="Optional target" />
+                  <Button Grid.Row="3" Content="Cast selected" Command="{Binding CastSelectedSpellCommand}"
+                          HorizontalAlignment="Left" />
+                  <TextBlock Grid.Row="4" Text="{Binding SpellActionStatus}" TextWrapping="Wrap" Opacity="0.72" />
                 </Grid>
-                <Grid Grid.Column="1" RowDefinitions="Auto,*" RowSpacing="8">
+                <Grid Grid.Column="1" RowDefinitions="Auto,*,Auto" RowSpacing="8">
                   <TextBlock Text="Active effects" FontSize="18" FontWeight="SemiBold" />
                   <ListBox Grid.Row="1" ItemsSource="{Binding CharacterEffects}">
                     <ListBox.ItemTemplate>
                       <DataTemplate x:DataType="gameplay:ClientGameplayEffectState">
                         <StackPanel Spacing="2">
-                          <TextBlock Text="{Binding Name}" />
-                          <TextBlock Text="{Binding ExpiresAtUtc, StringFormat='Expires: {0:g}'}" Opacity="0.68" />
+                          <TextBlock Text="{Binding DisplayName}" TextWrapping="Wrap" />
                         </StackPanel>
                       </DataTemplate>
                     </ListBox.ItemTemplate>
@@ -829,7 +1015,11 @@
                     </Grid>
                     <ScrollViewer Grid.Column="1">
                       <StackPanel Spacing="8" MaxWidth="680" HorizontalAlignment="Stretch">
-                        <TextBlock Text="Item details" FontSize="18" FontWeight="SemiBold" />
+                        <Grid ColumnDefinitions="*,Auto" ColumnSpacing="8">
+                          <TextBlock Text="Item details" FontSize="18" FontWeight="SemiBold" />
+                          <Button Grid.Column="1" Content="Refresh equipped" Command="{Binding CaptureExternalEquipmentCommand}" />
+                        </Grid>
+                        <TextBlock Text="{Binding ExternalEquipmentStatus}" TextWrapping="Wrap" Opacity="0.75" />
                         <TextBlock Text="{Binding WorkshopItemDetails}" TextWrapping="Wrap" />
                         <StackPanel Orientation="Horizontal" Spacing="8">
                           <Button Content="Add to plan" Command="{Binding AddPlannedWorkshopItemCommand}" />
@@ -892,10 +1082,978 @@
       </TabItem>
 
       <TabItem Header="CREATOR STUDIO">
-        <StackPanel Margin="20" Spacing="8">
-          <TextBlock Text="Creator Studio migration" FontSize="22" FontWeight="SemiBold" />
-          <TextBlock Text="MDB importing and Custom1 editing will be moved behind cross-platform services before this view replaces the WPF editor." TextWrapping="Wrap" />
-        </StackPanel>
+        <Grid Margin="16" RowDefinitions="Auto,Auto,*" RowSpacing="10">
+          <StackPanel Orientation="Horizontal" Spacing="10">
+            <TextBlock Text="Creator Studio" FontSize="22" FontWeight="SemiBold" VerticalAlignment="Center" />
+            <Button Content="Load workspace" Command="{Binding LoadCreatorStudioCommand}" />
+          </StackPanel>
+          <TextBlock Grid.Row="1" Text="{Binding CreatorStudioStatus}" TextWrapping="Wrap" Opacity="0.78" />
+          <TabControl Grid.Row="2">
+            <TabItem Header="BROWSE CUSTOM1">
+              <Grid Margin="10" ColumnDefinitions="240,320,*" ColumnSpacing="14">
+                <StackPanel Spacing="8">
+                  <TextBlock Text="Custom1 workspace" FontSize="18" FontWeight="SemiBold" />
+                  <TextBlock Text="{Binding CreatorWorkspaceText}" TextWrapping="Wrap" />
+                  <TextBlock Text="Content category" Margin="0,8,0,0" />
+                  <ComboBox ItemsSource="{Binding CreatorFamilies}" SelectedItem="{Binding SelectedCreatorFamily}">
+                    <ComboBox.ItemTemplate>
+                      <DataTemplate x:DataType="creator:CustomWorldSimpleFamilyOption">
+                        <TextBlock Text="{Binding Label}" />
+                      </DataTemplate>
+                    </ComboBox.ItemTemplate>
+                  </ComboBox>
+                  <TextBox Text="{Binding CreatorSearchText}" PlaceholderText="Name or ID" />
+                  <StackPanel Orientation="Horizontal" Spacing="8">
+                    <Button Content="Search" Command="{Binding SearchCreatorObjectsCommand}" />
+                    <Button Content="New record" Command="{Binding NewCreatorObjectCommand}" />
+                  </StackPanel>
+                </StackPanel>
+                <Grid Grid.Column="1" RowDefinitions="Auto,*" RowSpacing="8">
+                  <TextBlock Text="Records" FontSize="18" FontWeight="SemiBold" />
+                  <ListBox Grid.Row="1" ItemsSource="{Binding CreatorObjects}" SelectedItem="{Binding SelectedCreatorObject}">
+                    <ListBox.ItemTemplate>
+                      <DataTemplate x:DataType="creator:CustomWorldObjectSummary">
+                        <StackPanel Margin="2" Spacing="2">
+                          <TextBlock Text="{Binding Name}" TextWrapping="Wrap" />
+                          <TextBlock Text="{Binding Id}" Opacity="0.62" />
+                        </StackPanel>
+                      </DataTemplate>
+                    </ListBox.ItemTemplate>
+                  </ListBox>
+                  <Button Grid.Row="2" Content="Edit selected" Command="{Binding EditCreatorObjectCommand}" HorizontalAlignment="Left" Margin="0,8,0,0" />
+                </Grid>
+                <ScrollViewer Grid.Column="2">
+                  <StackPanel Spacing="8">
+                    <TextBlock Text="Gameplay fields" FontSize="18" FontWeight="SemiBold" />
+                    <TextBlock Text="{Binding CreatorObjectDetails}" TextWrapping="Wrap" />
+                    <TextBlock Text="Browse is read-only. Use Edit and Build to create a Custom1 override, validate the effective world, and generate standalone runtime data." TextWrapping="Wrap" Opacity="0.68" />
+                  </StackPanel>
+                </ScrollViewer>
+              </Grid>
+            </TabItem>
+
+            <TabItem Header="WORLD TOOLS">
+              <Grid Margin="10" RowDefinitions="Auto,Auto,*" RowSpacing="10">
+                <StackPanel Orientation="Horizontal" Spacing="8">
+                  <TextBox Width="360" Text="{Binding CreatorWorldToolSearchText}" PlaceholderText="Filter by name, ID, room, key, or gameplay value" />
+                  <Button Content="Search all content" Command="{Binding SearchCreatorWorldCommand}" />
+                  <Button Content="Where is Browse selection used?" Command="{Binding FindCreatorReferencesCommand}" />
+                </StackPanel>
+                <TextBlock Grid.Row="1" Text="{Binding CreatorWorldToolStatus}" TextWrapping="Wrap" Opacity="0.75" />
+                <TabControl Grid.Row="2">
+                  <TabItem Header="SEARCH">
+                    <Grid Margin="8" ColumnDefinitions="*,*" ColumnSpacing="14">
+                      <Grid RowDefinitions="Auto,*,Auto" RowSpacing="8">
+                        <TextBlock Text="Global Custom1 results" FontSize="17" FontWeight="SemiBold" />
+                        <ListBox Grid.Row="1" ItemsSource="{Binding CreatorGlobalSearchResults}" SelectedItem="{Binding SelectedCreatorGlobalSearchHit}">
+                          <ListBox.ItemTemplate>
+                            <DataTemplate x:DataType="creator:CustomWorldGlobalSearchHit">
+                              <StackPanel Margin="2" Spacing="2">
+                                <TextBlock Text="{Binding Name}" FontWeight="SemiBold" TextWrapping="Wrap" />
+                                <TextBlock Text="{Binding Id}" />
+                                <TextBlock Text="{Binding Family}" Opacity="0.68" />
+                                <TextBlock Text="{Binding Match}" TextWrapping="Wrap" Opacity="0.68" />
+                              </StackPanel>
+                            </DataTemplate>
+                          </ListBox.ItemTemplate>
+                        </ListBox>
+                        <Button Grid.Row="2" Content="Open selected record" Command="{Binding OpenCreatorSearchResultCommand}" HorizontalAlignment="Left" />
+                      </Grid>
+                      <Grid Grid.Column="1" RowDefinitions="Auto,*,Auto" RowSpacing="8">
+                        <TextBlock Text="Where the selected Browse record is used" FontSize="17" FontWeight="SemiBold" />
+                        <ListBox Grid.Row="1" ItemsSource="{Binding CreatorReferenceResults}" SelectedItem="{Binding SelectedCreatorReferenceHit}">
+                          <ListBox.ItemTemplate>
+                            <DataTemplate x:DataType="creator:CustomWorldReferenceHit">
+                              <StackPanel Margin="2" Spacing="2">
+                                <TextBlock Text="{Binding Name}" FontWeight="SemiBold" TextWrapping="Wrap" />
+                                <TextBlock Text="{Binding Id}" />
+                                <TextBlock Text="{Binding Family}" Opacity="0.68" />
+                                <TextBlock Text="{Binding Path}" TextWrapping="Wrap" />
+                                <TextBlock Text="{Binding Value}" TextWrapping="Wrap" Opacity="0.68" />
+                              </StackPanel>
+                            </DataTemplate>
+                          </ListBox.ItemTemplate>
+                        </ListBox>
+                        <Button Grid.Row="2" Content="Open referencing record" Command="{Binding OpenCreatorReferenceResultCommand}" HorizontalAlignment="Left" />
+                      </Grid>
+                    </Grid>
+                  </TabItem>
+
+                  <TabItem Header="KEYS &amp; DOORS">
+                    <Grid Margin="8" RowDefinitions="Auto,*,Auto" RowSpacing="8">
+                      <StackPanel Orientation="Horizontal" Spacing="8">
+                        <Button Content="Load keyed exits" Command="{Binding LoadCreatorKeyDoorsCommand}" />
+                        <TextBlock Text="Uses the shared filter above; blank shows all." VerticalAlignment="Center" Opacity="0.68" />
+                      </StackPanel>
+                      <ListBox Grid.Row="1" ItemsSource="{Binding CreatorKeyDoors}" SelectedItem="{Binding SelectedCreatorKeyDoor}">
+                        <ListBox.ItemTemplate>
+                          <DataTemplate x:DataType="creator:CustomWorldKeyDoorRow">
+                            <Grid Margin="2" ColumnDefinitions="180,70,180,180,*" ColumnSpacing="10">
+                              <TextBlock Text="{Binding FromRoomId}" TextWrapping="Wrap" />
+                              <TextBlock Grid.Column="1" Text="{Binding Direction}" />
+                              <TextBlock Grid.Column="2" Text="{Binding ToRoomId}" TextWrapping="Wrap" />
+                              <StackPanel Grid.Column="3">
+                                <TextBlock Text="{Binding KeyItemName}" FontWeight="SemiBold" TextWrapping="Wrap" />
+                                <TextBlock Text="{Binding KeyItemId}" Opacity="0.68" />
+                              </StackPanel>
+                              <TextBlock Grid.Column="4" Text="{Binding Qualifier}" TextWrapping="Wrap" Opacity="0.72" />
+                            </Grid>
+                          </DataTemplate>
+                        </ListBox.ItemTemplate>
+                      </ListBox>
+                      <StackPanel Grid.Row="2" Orientation="Horizontal" Spacing="8">
+                        <Button Content="Open exit" Command="{Binding OpenCreatorKeyDoorExitCommand}" />
+                        <Button Content="Open key item" Command="{Binding OpenCreatorKeyDoorItemCommand}" />
+                      </StackPanel>
+                    </Grid>
+                  </TabItem>
+
+                  <TabItem Header="MONSTER INDEX">
+                    <Grid Margin="8" RowDefinitions="Auto,*,Auto" RowSpacing="8">
+                      <Button Content="Build monster and spawn index" Command="{Binding LoadCreatorMonsterIndexCommand}" HorizontalAlignment="Left" />
+                      <ListBox Grid.Row="1" ItemsSource="{Binding CreatorMonsterIndex}" SelectedItem="{Binding SelectedCreatorMonsterIndex}">
+                        <ListBox.ItemTemplate>
+                          <DataTemplate x:DataType="creator:CustomWorldMonsterIndexRow">
+                            <Grid Margin="2" ColumnDefinitions="220,70,90,90,90,*" ColumnSpacing="10">
+                              <StackPanel>
+                                <TextBlock Text="{Binding Name}" FontWeight="SemiBold" TextWrapping="Wrap" />
+                                <TextBlock Text="{Binding NpcId}" Opacity="0.68" />
+                              </StackPanel>
+                              <TextBlock Grid.Column="1" Text="{Binding Level}" />
+                              <TextBlock Grid.Column="2" Text="{Binding HitPoints}" />
+                              <TextBlock Grid.Column="3" Text="{Binding Experience}" />
+                              <TextBlock Grid.Column="4" Text="{Binding SpawnCount}" />
+                              <TextBlock Grid.Column="5" Text="{Binding Rooms}" TextWrapping="Wrap" Opacity="0.72" />
+                            </Grid>
+                          </DataTemplate>
+                        </ListBox.ItemTemplate>
+                      </ListBox>
+                      <Button Grid.Row="2" Content="Open monster / NPC" Command="{Binding OpenCreatorMonsterCommand}" HorizontalAlignment="Left" />
+                    </Grid>
+                  </TabItem>
+
+                  <TabItem Header="CONTROL ROOMS">
+                    <Grid Margin="8" RowDefinitions="Auto,*,Auto" RowSpacing="8">
+                      <Button Content="Build interaction control-room index" Command="{Binding LoadCreatorControlRoomsCommand}" HorizontalAlignment="Left" />
+                      <ListBox Grid.Row="1" ItemsSource="{Binding CreatorControlRooms}" SelectedItem="{Binding SelectedCreatorControlRoom}">
+                        <ListBox.ItemTemplate>
+                          <DataTemplate x:DataType="creator:CustomWorldControlRoomRow">
+                            <Grid Margin="2" ColumnDefinitions="240,90,80,80,*" ColumnSpacing="10">
+                              <StackPanel>
+                                <TextBlock Text="{Binding RoomName}" FontWeight="SemiBold" TextWrapping="Wrap" />
+                                <TextBlock Text="{Binding RoomId}" Opacity="0.68" />
+                              </StackPanel>
+                              <TextBlock Grid.Column="1" Text="{Binding InteractionCount}" />
+                              <TextBlock Grid.Column="2" Text="{Binding TriggerCount}" />
+                              <TextBlock Grid.Column="3" Text="{Binding ScriptCount}" />
+                              <TextBlock Grid.Column="4" Text="{Binding Sources}" TextWrapping="Wrap" Opacity="0.72" />
+                            </Grid>
+                          </DataTemplate>
+                        </ListBox.ItemTemplate>
+                      </ListBox>
+                      <Button Grid.Row="2" Content="Open room" Command="{Binding OpenCreatorControlRoomCommand}" HorizontalAlignment="Left" />
+                    </Grid>
+                  </TabItem>
+                </TabControl>
+              </Grid>
+            </TabItem>
+
+            <TabItem Header="MAINTENANCE">
+              <Grid Margin="10" RowDefinitions="Auto,Auto,*" RowSpacing="10">
+                <Grid ColumnDefinitions="Auto,240,Auto,*" ColumnSpacing="10">
+                  <TextBlock Text="Confirmation" VerticalAlignment="Center" FontWeight="SemiBold" />
+                  <TextBox Grid.Column="1" Text="{Binding CreatorMaintenanceConfirmation}" PlaceholderText="Type CUSTOM1 before applying" />
+                  <TextBlock Grid.Column="2" Text="Search" VerticalAlignment="Center" FontWeight="SemiBold" />
+                  <TextBox Grid.Column="3" Text="{Binding CreatorMaintenanceSearch}" PlaceholderText="Optional room or shop filter" />
+                </Grid>
+                <TextBlock Grid.Row="1" Text="{Binding CreatorMaintenanceStatus}" TextWrapping="Wrap" Opacity="0.78" />
+                <TabControl Grid.Row="2">
+                  <TabItem Header="PARITY AUDIT">
+                    <Grid Margin="8" RowDefinitions="Auto,*" RowSpacing="8">
+                      <StackPanel Orientation="Horizontal" Spacing="8">
+                        <Button Content="Load capability audit" Command="{Binding LoadCreatorParityAuditCommand}" />
+                        <TextBlock Text="Read-only comparison of original editor capabilities and RealmGate replacements." VerticalAlignment="Center" Opacity="0.68" />
+                      </StackPanel>
+                      <ListBox Grid.Row="1" ItemsSource="{Binding CreatorParityAuditRows}">
+                        <ListBox.ItemTemplate>
+                          <DataTemplate x:DataType="creator:CustomWorldNightmareParityRow">
+                            <Grid Margin="3" ColumnDefinitions="220,140,240,*" ColumnSpacing="10">
+                              <TextBlock Text="{Binding NightmareFeature}" TextWrapping="Wrap" FontWeight="SemiBold" />
+                              <TextBlock Grid.Column="1" Text="{Binding Status}" TextWrapping="Wrap" />
+                              <TextBlock Grid.Column="2" Text="{Binding ReforgedEquivalent}" TextWrapping="Wrap" />
+                              <TextBlock Grid.Column="3" Text="{Binding Notes}" TextWrapping="Wrap" Opacity="0.72" />
+                            </Grid>
+                          </DataTemplate>
+                        </ListBox.ItemTemplate>
+                      </ListBox>
+                    </Grid>
+                  </TabItem>
+
+                  <TabItem Header="BULK OVERRIDES">
+                    <ScrollViewer>
+                      <Grid Margin="8" ColumnDefinitions="220,*" RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto" ColumnSpacing="10" RowSpacing="8">
+                        <TextBlock Text="Custom1 category" VerticalAlignment="Center" />
+                        <TextBox Grid.Column="1" Text="{Binding CreatorBulkFamily}" PlaceholderText="items" />
+                        <TextBlock Grid.Row="1" Text="Target IDs" VerticalAlignment="Top" />
+                        <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding CreatorBulkTargetIds}" AcceptsReturn="True" MinHeight="130" PlaceholderText="One qualified record ID per line" />
+                        <TextBlock Grid.Row="2" Text="Gameplay field path" VerticalAlignment="Center" />
+                        <TextBox Grid.Row="2" Grid.Column="1" Text="{Binding CreatorBulkFieldPath}" PlaceholderText="Example: combat.experience" />
+                        <TextBlock Grid.Row="3" Text="Value and type" VerticalAlignment="Center" />
+                        <StackPanel Grid.Row="3" Grid.Column="1" Orientation="Horizontal" Spacing="8">
+                          <TextBox Width="420" Text="{Binding CreatorBulkValue}" PlaceholderText="New value" />
+                          <ComboBox Width="150" ItemsSource="{Binding CreatorBulkValueKinds}" SelectedItem="{Binding CreatorBulkValueKind}" />
+                        </StackPanel>
+                        <TextBlock Grid.Row="4" Text="Copy source ID" VerticalAlignment="Center" />
+                        <TextBox Grid.Row="4" Grid.Column="1" Text="{Binding CreatorBulkSourceId}" PlaceholderText="Used only by Copy field" />
+                        <StackPanel Grid.Row="5" Grid.Column="1" Orientation="Horizontal" Spacing="8">
+                          <Button Content="Apply value to targets" Command="{Binding ApplyCreatorBulkSetCommand}" />
+                          <Button Content="Copy source field to targets" Command="{Binding ApplyCreatorBulkCopyCommand}" />
+                        </StackPanel>
+                      </Grid>
+                    </ScrollViewer>
+                  </TabItem>
+
+                  <TabItem Header="ROOM CURRENCY">
+                    <Grid Margin="8" ColumnDefinitions="320,*" ColumnSpacing="12">
+                      <Grid RowDefinitions="Auto,*,Auto" RowSpacing="8">
+                        <Button Content="Find rooms" Command="{Binding SearchCreatorCoinRoomsCommand}" HorizontalAlignment="Left" />
+                        <ListBox Grid.Row="1" ItemsSource="{Binding CreatorCoinRooms}" SelectedItem="{Binding SelectedCreatorCoinRoom}">
+                          <ListBox.ItemTemplate>
+                            <DataTemplate x:DataType="creator:CustomWorldObjectSummary">
+                              <StackPanel Margin="2">
+                                <TextBlock Text="{Binding Name}" FontWeight="SemiBold" TextWrapping="Wrap" />
+                                <TextBlock Text="{Binding Id}" Opacity="0.68" />
+                              </StackPanel>
+                            </DataTemplate>
+                          </ListBox.ItemTemplate>
+                        </ListBox>
+                        <Button Grid.Row="2" Content="Load current currency" Command="{Binding LoadCreatorRoomCurrencyCommand}" HorizontalAlignment="Left" />
+                      </Grid>
+                      <Grid Grid.Column="1" ColumnDefinitions="150,*" RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto" ColumnSpacing="10" RowSpacing="8">
+                        <TextBlock Text="Runic" VerticalAlignment="Center" />
+                        <TextBox Grid.Column="1" Text="{Binding CreatorCoinRunic}" />
+                        <TextBlock Grid.Row="1" Text="Platinum" VerticalAlignment="Center" />
+                        <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding CreatorCoinPlatinum}" />
+                        <TextBlock Grid.Row="2" Text="Gold" VerticalAlignment="Center" />
+                        <TextBox Grid.Row="2" Grid.Column="1" Text="{Binding CreatorCoinGold}" />
+                        <TextBlock Grid.Row="3" Text="Silver" VerticalAlignment="Center" />
+                        <TextBox Grid.Row="3" Grid.Column="1" Text="{Binding CreatorCoinSilver}" />
+                        <TextBlock Grid.Row="4" Text="Copper" VerticalAlignment="Center" />
+                        <TextBox Grid.Row="4" Grid.Column="1" Text="{Binding CreatorCoinCopper}" />
+                        <Button Grid.Row="5" Grid.Column="1" Content="Save stopped Custom1 state" Command="{Binding SaveCreatorRoomCurrencyCommand}" HorizontalAlignment="Left" />
+                      </Grid>
+                    </Grid>
+                  </TabItem>
+
+                  <TabItem Header="SHOP RESET">
+                    <Grid Margin="8" RowDefinitions="Auto,*,Auto" RowSpacing="8">
+                      <StackPanel Orientation="Horizontal" Spacing="8">
+                        <Button Content="Find shops" Command="{Binding SearchCreatorShopResetsCommand}" />
+                        <TextBlock Text="Resets persistent Custom1 stock from generated normal quantities; both Hosts must be stopped." VerticalAlignment="Center" Opacity="0.68" />
+                      </StackPanel>
+                      <ListBox Grid.Row="1" ItemsSource="{Binding CreatorShopResetRecords}" SelectedItem="{Binding SelectedCreatorShopReset}">
+                        <ListBox.ItemTemplate>
+                          <DataTemplate x:DataType="creator:CustomWorldObjectSummary">
+                            <StackPanel Margin="2">
+                              <TextBlock Text="{Binding Name}" FontWeight="SemiBold" TextWrapping="Wrap" />
+                              <TextBlock Text="{Binding Id}" Opacity="0.68" />
+                            </StackPanel>
+                          </DataTemplate>
+                        </ListBox.ItemTemplate>
+                      </ListBox>
+                      <Button Grid.Row="2" Content="Reset selected Custom1 shop" Command="{Binding ResetCreatorShopStockCommand}" HorizontalAlignment="Left" />
+                    </Grid>
+                  </TabItem>
+
+                  <TabItem Header="ROOM STACK CLEANUP">
+                    <Grid Margin="8" RowDefinitions="Auto,*,Auto" RowSpacing="8">
+                      <StackPanel Orientation="Horizontal" Spacing="8">
+                        <Button Content="Find rooms" Command="{Binding SearchCreatorCleanupRoomsCommand}" />
+                        <TextBlock Text="Combines duplicate dynamic saved stacks only; generated static placements are preserved." VerticalAlignment="Center" Opacity="0.68" />
+                      </StackPanel>
+                      <ListBox Grid.Row="1" ItemsSource="{Binding CreatorCleanupRooms}" SelectedItem="{Binding SelectedCreatorCleanupRoom}">
+                        <ListBox.ItemTemplate>
+                          <DataTemplate x:DataType="creator:CustomWorldObjectSummary">
+                            <StackPanel Margin="2">
+                              <TextBlock Text="{Binding Name}" FontWeight="SemiBold" TextWrapping="Wrap" />
+                              <TextBlock Text="{Binding Id}" Opacity="0.68" />
+                            </StackPanel>
+                          </DataTemplate>
+                        </ListBox.ItemTemplate>
+                      </ListBox>
+                      <Button Grid.Row="2" Content="Combine selected room stacks" Command="{Binding CombineCreatorRoomItemsCommand}" HorizontalAlignment="Left" />
+                    </Grid>
+                  </TabItem>
+
+                  <TabItem Header="TEXTBLOCK REPLACE">
+                    <Grid Margin="8" RowDefinitions="Auto,Auto,*,Auto" RowSpacing="8">
+                      <Grid ColumnDefinitions="Auto,*,Auto,*" ColumnSpacing="8">
+                        <TextBlock Text="Find exact text" VerticalAlignment="Center" />
+                        <TextBox Grid.Column="1" Text="{Binding CreatorTextblockFind}" />
+                        <TextBlock Grid.Column="2" Text="Replacement" VerticalAlignment="Center" />
+                        <TextBox Grid.Column="3" Text="{Binding CreatorTextblockReplacement}" />
+                      </Grid>
+                      <StackPanel Grid.Row="1" Orientation="Horizontal" Spacing="8">
+                        <CheckBox Content="Match suffix only" IsChecked="{Binding CreatorTextblockSuffixOnly}" />
+                        <Button Content="Preview changes" Command="{Binding PreviewCreatorTextblockStripCommand}" />
+                      </StackPanel>
+                      <ListBox Grid.Row="2" ItemsSource="{Binding CreatorTextblockPreviews}" SelectedItem="{Binding SelectedCreatorTextblockPreview}">
+                        <ListBox.ItemTemplate>
+                          <DataTemplate x:DataType="creator:CustomWorldTextblockStripPreviewRow">
+                            <Grid Margin="3" ColumnDefinitions="180,*,*,80" ColumnSpacing="10">
+                              <StackPanel>
+                                <TextBlock Text="{Binding Name}" FontWeight="SemiBold" TextWrapping="Wrap" />
+                                <TextBlock Text="{Binding TextblockId}" Opacity="0.68" />
+                              </StackPanel>
+                              <TextBlock Grid.Column="1" Text="{Binding BeforePreview}" TextWrapping="Wrap" />
+                              <TextBlock Grid.Column="2" Text="{Binding AfterPreview}" TextWrapping="Wrap" />
+                              <TextBlock Grid.Column="3" Text="{Binding MatchCount}" />
+                            </Grid>
+                          </DataTemplate>
+                        </ListBox.ItemTemplate>
+                      </ListBox>
+                      <Button Grid.Row="3" Content="Apply reviewed Custom1 changes" Command="{Binding ApplyCreatorTextblockStripCommand}" HorizontalAlignment="Left" />
+                    </Grid>
+                  </TabItem>
+                </TabControl>
+              </Grid>
+            </TabItem>
+
+            <TabItem Header="WORLD SETTINGS">
+              <ScrollViewer>
+                <Grid Margin="12" MaxWidth="1000" ColumnDefinitions="180,*" RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto,Auto" ColumnSpacing="12" RowSpacing="10" HorizontalAlignment="Left">
+                  <TextBlock Text="Custom1 world name" VerticalAlignment="Center" FontWeight="SemiBold" />
+                  <TextBox Grid.Column="1" Text="{Binding CreatorWorldName}" />
+                  <TextBlock Grid.Row="1" Text="Description" VerticalAlignment="Top" FontWeight="SemiBold" />
+                  <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding CreatorWorldDescription}" AcceptsReturn="True" TextWrapping="Wrap" MinHeight="90" />
+                  <TextBlock Grid.Row="2" Text="Login banner" VerticalAlignment="Center" FontWeight="SemiBold" />
+                  <TextBox Grid.Row="2" Grid.Column="1" Text="{Binding CreatorWorldLoginBanner}" />
+                  <TextBlock Grid.Row="3" Text="Message of the day" VerticalAlignment="Top" FontWeight="SemiBold" />
+                  <TextBox Grid.Row="3" Grid.Column="1" Text="{Binding CreatorWorldMotd}" AcceptsReturn="True" TextWrapping="Wrap" MinHeight="110" />
+                  <TextBlock Grid.Row="4" Text="World behavior" VerticalAlignment="Top" FontWeight="SemiBold" />
+                  <StackPanel Grid.Row="4" Grid.Column="1" Spacing="6">
+                    <CheckBox Content="Runtime enabled" IsChecked="{Binding CreatorWorldRuntimeEnabled}" />
+                    <CheckBox Content="Allow Custom-world transfers" IsChecked="{Binding CreatorWorldTransfersAllowed}" />
+                    <TextBlock Text="Classic remains protected. These settings describe Custom1 and do not change generated gameplay data." TextWrapping="Wrap" Opacity="0.68" />
+                  </StackPanel>
+                  <TextBlock Grid.Row="5" Text="Confirmation" VerticalAlignment="Center" FontWeight="SemiBold" />
+                  <StackPanel Grid.Row="5" Grid.Column="1" Orientation="Horizontal" Spacing="8">
+                    <TextBox Width="240" Text="{Binding CreatorAdministrationConfirmation}" PlaceholderText="Type CUSTOM1" />
+                    <Button Content="Save world settings" Command="{Binding SaveCreatorWorldSettingsCommand}" />
+                  </StackPanel>
+                  <TextBlock Grid.Row="6" Grid.ColumnSpan="2" Text="{Binding CreatorWorldSettingsStatus}" TextWrapping="Wrap" Opacity="0.78" />
+                </Grid>
+              </ScrollViewer>
+            </TabItem>
+
+            <TabItem Header="ADMINISTRATION">
+              <Grid Margin="10" RowDefinitions="Auto,Auto,*" RowSpacing="10">
+                <Grid ColumnDefinitions="Auto,300,*" ColumnSpacing="10">
+                  <TextBlock Text="Confirmation" VerticalAlignment="Center" FontWeight="SemiBold" />
+                  <TextBox Grid.Column="1" Text="{Binding CreatorAdministrationConfirmation}" PlaceholderText="CUSTOM1, CLASSIC, or exact character name" />
+                  <TextBlock Grid.Column="2" Text="All changes require the embedded Host and Test Realm to be stopped." VerticalAlignment="Center" TextWrapping="Wrap" Opacity="0.68" />
+                </Grid>
+                <TextBlock Grid.Row="1" Text="{Binding CreatorAdministrationStatus}" TextWrapping="Wrap" Opacity="0.78" />
+                <TabControl Grid.Row="2">
+                  <TabItem Header="CHARACTERS">
+                    <Grid Margin="8" RowDefinitions="Auto,*,Auto" RowSpacing="8">
+                      <StackPanel Orientation="Horizontal" Spacing="8">
+                        <Button Content="Load saved characters" Command="{Binding LoadCreatorCharactersCommand}" />
+                        <TextBlock Text="Character IDs, account ownership, and worlds are verified before deletion." VerticalAlignment="Center" Opacity="0.68" />
+                      </StackPanel>
+                      <ListBox Grid.Row="1" ItemsSource="{Binding CreatorManagedCharacters}" SelectedItem="{Binding SelectedCreatorManagedCharacter}">
+                        <ListBox.ItemTemplate>
+                          <DataTemplate x:DataType="vm:CreatorManagedCharacterRow">
+                            <Grid Margin="3" ColumnDefinitions="220,120,140,140,70,180,*" ColumnSpacing="10">
+                              <TextBlock Text="{Binding CharacterName}" FontWeight="SemiBold" TextWrapping="Wrap" />
+                              <TextBlock Grid.Column="1" Text="{Binding WorldId}" />
+                              <TextBlock Grid.Column="2" Text="{Binding RaceName}" TextWrapping="Wrap" />
+                              <TextBlock Grid.Column="3" Text="{Binding ClassName}" TextWrapping="Wrap" />
+                              <TextBlock Grid.Column="4" Text="{Binding Level}" />
+                              <TextBlock Grid.Column="5" Text="{Binding AccountId}" TextWrapping="Wrap" />
+                              <TextBlock Grid.Column="6" Text="{Binding CharacterId}" TextWrapping="Wrap" Opacity="0.68" />
+                            </Grid>
+                          </DataTemplate>
+                        </ListBox.ItemTemplate>
+                      </ListBox>
+                      <StackPanel Grid.Row="2" Orientation="Horizontal" Spacing="8">
+                        <Button Content="Delete selected character" Command="{Binding DeleteCreatorCharacterCommand}" />
+                        <TextBlock Text="Type the exact character name above. This permanent action affects only that account slot and realm." VerticalAlignment="Center" TextWrapping="Wrap" Opacity="0.68" />
+                      </StackPanel>
+                    </Grid>
+                  </TabItem>
+
+                  <TabItem Header="CLASSIC POLICY">
+                    <Grid Margin="8" RowDefinitions="Auto,Auto,*,Auto" RowSpacing="10">
+                      <StackPanel Orientation="Horizontal" Spacing="8">
+                        <Button Content="Load Classic policy" Command="{Binding LoadCreatorClassicAdministrationCommand}" />
+                        <TextBlock Text="Classic gameplay data remains immutable; this is local Host access and limit policy only." VerticalAlignment="Center" Opacity="0.68" />
+                      </StackPanel>
+                      <StackPanel Grid.Row="1" Spacing="6">
+                        <CheckBox Content="Unlimited Classic items enabled" IsChecked="{Binding CreatorClassicUnlimitedItems}" />
+                        <CheckBox Content="Allow every logged-in Classic character to use SYSOP GOTO" IsChecked="{Binding CreatorClassicEveryoneCanGoto}" />
+                      </StackPanel>
+                      <ListBox Grid.Row="2" ItemsSource="{Binding CreatorClassicAccessRows}">
+                        <ListBox.ItemTemplate>
+                          <DataTemplate x:DataType="vm:CreatorClassicAccessRow">
+                            <Grid Margin="3" ColumnDefinitions="110,220,70,180,*,160" ColumnSpacing="10">
+                              <CheckBox Content="SYSOP" IsChecked="{Binding HasSysopAccess}" />
+                              <TextBlock Grid.Column="1" Text="{Binding CharacterName}" FontWeight="SemiBold" TextWrapping="Wrap" />
+                              <TextBlock Grid.Column="2" Text="{Binding Level}" />
+                              <TextBlock Grid.Column="3" Text="{Binding AccountId}" TextWrapping="Wrap" />
+                              <TextBlock Grid.Column="4" Text="{Binding CharacterId}" TextWrapping="Wrap" Opacity="0.68" />
+                              <TextBlock Grid.Column="5" Text="{Binding Source}" TextWrapping="Wrap" Opacity="0.68" />
+                            </Grid>
+                          </DataTemplate>
+                        </ListBox.ItemTemplate>
+                      </ListBox>
+                      <StackPanel Grid.Row="3" Orientation="Horizontal" Spacing="8">
+                        <Button Content="Save Classic policy" Command="{Binding SaveCreatorClassicAdministrationCommand}" />
+                        <TextBlock Text="Type CLASSIC above. The saved policy is read back and verified before success is reported." VerticalAlignment="Center" Opacity="0.68" />
+                      </StackPanel>
+                    </Grid>
+                  </TabItem>
+                </TabControl>
+              </Grid>
+            </TabItem>
+
+            <TabItem Header="SOURCE IMPORT">
+              <ScrollViewer>
+                <StackPanel Margin="10" Spacing="10">
+                  <TextBlock Text="Custom realm source import" FontSize="18" FontWeight="SemiBold" />
+                  <TextBlock Text="Imports target Custom1 only. Classic cannot be selected or modified. Source MDB and WCC/WGS files are read-only evidence." TextWrapping="Wrap" />
+
+                  <Grid ColumnDefinitions="Auto,*" RowDefinitions="Auto,Auto" ColumnSpacing="10" RowSpacing="8">
+                    <Button Content="Choose MDB" Command="{Binding SelectCreatorMdbCommand}" />
+                    <TextBox Grid.Column="1" Text="{Binding CreatorMdbPath}" IsReadOnly="True" PlaceholderText="No MDB selected" />
+                    <Button Grid.Row="1" Content="Choose WCC/WGS folder" Command="{Binding SelectCreatorEvidenceFolderCommand}" />
+                    <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding CreatorEvidenceFolder}" IsReadOnly="True" PlaceholderText="No native source folder selected" />
+                  </Grid>
+
+                  <StackPanel Orientation="Horizontal" Spacing="8">
+                    <Button Content="Validate source pair" Command="{Binding ValidateCreatorSourcesCommand}" />
+                    <TextBlock Text="{Binding CreatorSourceStatus}" TextWrapping="Wrap" VerticalAlignment="Center" />
+                  </StackPanel>
+
+                  <TextBlock Text="{Binding CreatorSourceSummary}" TextWrapping="Wrap" Opacity="0.78" />
+
+                  <Grid ColumnDefinitions="*,*" ColumnSpacing="14">
+                    <Grid RowDefinitions="Auto,220" RowSpacing="6">
+                      <TextBlock Text="MDB tables" FontWeight="SemiBold" />
+                      <ListBox Grid.Row="1" ItemsSource="{Binding CreatorMdbTables}">
+                        <ListBox.ItemTemplate>
+                          <DataTemplate x:DataType="creator:NightmareMdbTableSummary">
+                            <Grid Margin="2" ColumnDefinitions="*,Auto" ColumnSpacing="8">
+                              <StackPanel>
+                                <TextBlock Text="{Binding TableName}" />
+                                <TextBlock Text="{Binding ReforgedFamily}" Opacity="0.62" />
+                              </StackPanel>
+                              <TextBlock Grid.Column="1" Text="{Binding Status}" VerticalAlignment="Center" />
+                            </Grid>
+                          </DataTemplate>
+                        </ListBox.ItemTemplate>
+                      </ListBox>
+                    </Grid>
+                    <Grid Grid.Column="1" RowDefinitions="Auto,220" RowSpacing="6">
+                      <TextBlock Text="Native evidence" FontWeight="SemiBold" />
+                      <ListBox Grid.Row="1" ItemsSource="{Binding CreatorEvidenceFiles}">
+                        <ListBox.ItemTemplate>
+                          <DataTemplate x:DataType="creator:NightmareWccEvidenceFile">
+                            <Grid Margin="2" ColumnDefinitions="*,Auto" ColumnSpacing="8">
+                              <StackPanel>
+                                <TextBlock Text="{Binding FileName}" />
+                                <TextBlock Text="{Binding Family}" Opacity="0.62" />
+                              </StackPanel>
+                              <TextBlock Grid.Column="1" Text="{Binding Status}" VerticalAlignment="Center" />
+                            </Grid>
+                          </DataTemplate>
+                        </ListBox.ItemTemplate>
+                      </ListBox>
+                    </Grid>
+                  </Grid>
+
+                  <CheckBox IsChecked="{Binding CreatorImportAcknowledged}"
+                            Content="I understand this writes verified records to Custom1 only and does not modify Classic or the selected source files." />
+                  <Button Content="Import verified source into Custom1"
+                          Command="{Binding ImportCreatorMdbCommand}"
+                          IsEnabled="{Binding CreatorImportReady}"
+                          HorizontalAlignment="Left" />
+                </StackPanel>
+              </ScrollViewer>
+            </TabItem>
+
+            <TabItem Header="EDIT AND BUILD">
+              <Grid Margin="10" ColumnDefinitions="3*,2*" ColumnSpacing="14">
+                <Grid RowDefinitions="Auto,Auto,*" RowSpacing="8">
+                  <TextBlock Text="{Binding CreatorEditTitle}" FontSize="18" FontWeight="SemiBold" />
+                  <Grid Grid.Row="1" ColumnDefinitions="Auto,*" ColumnSpacing="8">
+                    <TextBlock Text="Object ID" VerticalAlignment="Center" />
+                    <TextBox Grid.Column="1"
+                             Text="{Binding CreatorEditObjectId}"
+                             IsEnabled="{Binding CreatorEditIsNew}"
+                             PlaceholderText="Leave blank to generate a Custom1 ID" />
+                  </Grid>
+                  <ScrollViewer Grid.Row="2" IsVisible="{Binding CreatorEditorActive}">
+                    <ItemsControl ItemsSource="{Binding CreatorEditFields}">
+                      <ItemsControl.ItemTemplate>
+                        <DataTemplate x:DataType="vm:CreatorFieldEditorRow">
+                          <StackPanel Margin="0,4" Spacing="4">
+                            <TextBlock Text="{Binding Label}" IsVisible="{Binding IsText}" />
+                            <TextBox Text="{Binding TextValue}"
+                                     IsVisible="{Binding IsText}"
+                                     AcceptsReturn="{Binding IsMultiline}"
+                                     TextWrapping="Wrap"
+                                     MinHeight="{Binding EditorHeight}" />
+                            <TextBlock Text="{Binding Label}" IsVisible="{Binding IsChoice}" />
+                            <ComboBox ItemsSource="{Binding Options}"
+                                      SelectedItem="{Binding SelectedOption}"
+                                      IsVisible="{Binding IsChoice}">
+                              <ComboBox.ItemTemplate>
+                                <DataTemplate x:DataType="creator:CustomWorldSimpleOption">
+                                  <TextBlock Text="{Binding Label}" />
+                                </DataTemplate>
+                              </ComboBox.ItemTemplate>
+                            </ComboBox>
+                            <CheckBox Content="{Binding Label}"
+                                      IsChecked="{Binding BoolValue}"
+                                      IsVisible="{Binding IsBoolean}" />
+                            <TextBlock Text="{Binding HelpText}" TextWrapping="Wrap" Opacity="0.62" />
+                          </StackPanel>
+                        </DataTemplate>
+                      </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                  </ScrollViewer>
+                </Grid>
+
+                <StackPanel Grid.Column="1" Spacing="10">
+                  <TextBlock Text="Custom1 change set" FontSize="18" FontWeight="SemiBold" />
+                  <TextBlock Text="{Binding CreatorEditStatus}" TextWrapping="Wrap" />
+                  <Button Content="Save Custom1 override"
+                          Command="{Binding SaveCreatorObjectCommand}"
+                          IsEnabled="{Binding CreatorEditorActive}"
+                          HorizontalAlignment="Left" />
+                  <Separator />
+                  <TextBlock Text="Validation and generation" FontSize="18" FontWeight="SemiBold" />
+                  <TextBlock Text="{Binding CreatorValidationStatus}" TextWrapping="Wrap" />
+                  <StackPanel Orientation="Horizontal" Spacing="8">
+                    <Button Content="Validate Custom1" Command="{Binding ValidateCreatorWorldCommand}" />
+                    <Button Content="Build Test Realm" Command="{Binding BuildCreatorWorldCommand}" />
+                  </StackPanel>
+                  <TextBlock Text="Generation is blocked when validation reports errors. It writes the isolated Test Realm only; Classic and live Custom1 are not changed." TextWrapping="Wrap" Opacity="0.68" />
+                  <ListBox ItemsSource="{Binding CreatorValidationIssues}" MaxHeight="320">
+                    <ListBox.ItemTemplate>
+                      <DataTemplate x:DataType="creator:CustomWorldValidationIssue">
+                        <StackPanel Margin="2" Spacing="2">
+                          <TextBlock Text="{Binding Severity}" FontWeight="SemiBold" />
+                          <TextBlock Text="{Binding Name}" />
+                          <TextBlock Text="{Binding Message}" TextWrapping="Wrap" Opacity="0.72" />
+                        </StackPanel>
+                      </DataTemplate>
+                    </ListBox.ItemTemplate>
+                  </ListBox>
+                </StackPanel>
+              </Grid>
+            </TabItem>
+
+            <TabItem Header="TEST &amp; PUBLISH">
+              <ScrollViewer>
+                <StackPanel Margin="10" MaxWidth="820" HorizontalAlignment="Left" Spacing="12">
+                  <TextBlock Text="Custom1 publication" FontSize="18" FontWeight="SemiBold" />
+                  <TextBlock Text="{Binding CreatorPublishStatus}" TextWrapping="Wrap" />
+                  <StackPanel Orientation="Horizontal" Spacing="8">
+                    <Button Content="Start Test Realm" Command="{Binding StartCreatorTestRealmCommand}" />
+                    <Button Content="Stop Test Realm" Command="{Binding StopCreatorTestRealmCommand}" />
+                  </StackPanel>
+                  <TextBlock Text="The Test Realm runs the staged Custom1 build under an isolated runtime identity. Test characters and world state are kept separate from live Custom1." TextWrapping="Wrap" Opacity="0.68" />
+                  <Separator />
+                  <StackPanel Orientation="Horizontal" Spacing="8">
+                    <Button Content="Preview live-world diff" Command="{Binding PreviewCreatorPublishCommand}" />
+                    <Button Content="Publish reviewed Test Realm"
+                            Command="{Binding PublishCreatorTestRealmCommand}"
+                            IsEnabled="{Binding CreatorPublishReady}" />
+                  </StackPanel>
+                  <CheckBox IsChecked="{Binding CreatorPublishAcknowledged}">
+                    <TextBlock Text="I reviewed the current Test Realm diff. I understand publishing or rollback replaces the stopped live Custom1 dataset and retains a recovery snapshot."
+                               TextWrapping="Wrap" />
+                  </CheckBox>
+                  <Separator />
+                  <TextBlock Text="Recovery" FontSize="18" FontWeight="SemiBold" />
+                  <Button Content="Restore latest publish snapshot"
+                          Command="{Binding RollbackCreatorPublishCommand}"
+                          HorizontalAlignment="Left" />
+                  <TextBlock Text="The embedded Host must be stopped. Publishing rechecks the Test Realm fingerprint, uses a staged directory swap, records an audit entry, and keeps the previous live dataset for rollback." TextWrapping="Wrap" Opacity="0.68" />
+                </StackPanel>
+              </ScrollViewer>
+            </TabItem>
+
+            <TabItem Header="ROOMS AND SHOPS">
+              <Grid Margin="10" ColumnDefinitions="*,*" ColumnSpacing="16">
+                <Grid RowDefinitions="Auto,Auto,*,Auto" RowSpacing="8">
+                  <TextBlock Text="Room connections" FontSize="18" FontWeight="SemiBold" />
+                  <StackPanel Grid.Row="1" Orientation="Horizontal" Spacing="8">
+                    <Button Content="Load selected room" Command="{Binding LoadCreatorRoomLinksCommand}" />
+                    <Button Content="Save connections" Command="{Binding SaveCreatorRoomLinksCommand}" />
+                  </StackPanel>
+                  <ScrollViewer Grid.Row="2">
+                    <ItemsControl ItemsSource="{Binding CreatorRoomLinks}">
+                      <ItemsControl.ItemTemplate>
+                        <DataTemplate x:DataType="vm:CreatorRoomLinkRow">
+                          <Grid Margin="0,3" ColumnDefinitions="42,*" ColumnSpacing="8">
+                            <TextBlock Text="{Binding Direction}" FontWeight="SemiBold" VerticalAlignment="Center" />
+                            <StackPanel Grid.Column="1" Spacing="2">
+                              <TextBox Text="{Binding DestinationRoomId}" PlaceholderText="room.map1.123 or blank" />
+                              <TextBlock Text="{Binding DestinationName}" Opacity="0.62" />
+                            </StackPanel>
+                          </Grid>
+                        </DataTemplate>
+                      </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                  </ScrollViewer>
+                  <StackPanel Grid.Row="3" Spacing="4">
+                    <TextBlock Text="{Binding CreatorSpecializedRoomId}" Opacity="0.68" />
+                    <TextBlock Text="{Binding CreatorRoomLinksStatus}" TextWrapping="Wrap" />
+                    <TextBlock Text="Destinations must be full map-qualified room IDs. Missing destinations are rejected; blank destinations remove that Custom1 connection." TextWrapping="Wrap" Opacity="0.62" />
+                  </StackPanel>
+                </Grid>
+
+                <Grid Grid.Column="1" RowDefinitions="Auto,Auto,*,Auto" RowSpacing="8">
+                  <TextBlock Text="Shop inventory" FontSize="18" FontWeight="SemiBold" />
+                  <StackPanel Grid.Row="1" Orientation="Horizontal" Spacing="8">
+                    <Button Content="Load selected shop" Command="{Binding LoadCreatorShopInventoryCommand}" />
+                    <Button Content="Add stock row" Command="{Binding AddCreatorShopInventoryRowCommand}" />
+                    <Button Content="Remove selected" Command="{Binding RemoveCreatorShopInventoryRowCommand}" />
+                    <Button Content="Save inventory" Command="{Binding SaveCreatorShopInventoryCommand}" />
+                  </StackPanel>
+                  <ListBox Grid.Row="2"
+                           ItemsSource="{Binding CreatorShopInventory}"
+                           SelectedItem="{Binding SelectedCreatorShopInventoryRow}">
+                    <ListBox.ItemTemplate>
+                      <DataTemplate x:DataType="vm:CreatorShopInventoryRow">
+                        <StackPanel Margin="2,4" Spacing="4">
+                          <TextBox Text="{Binding ItemRef}" PlaceholderText="item.123" />
+                          <Grid ColumnDefinitions="*,*,*" RowDefinitions="Auto,Auto" ColumnSpacing="6" RowSpacing="4">
+                            <TextBox Text="{Binding NormalQty}" PlaceholderText="Normal qty" />
+                            <TextBox Grid.Column="1" Text="{Binding MaxQty}" PlaceholderText="Maximum qty" />
+                            <TextBox Grid.Column="2" Text="{Binding RegenQty}" PlaceholderText="Regen qty" />
+                            <TextBox Grid.Row="1" Text="{Binding RegenTime}" PlaceholderText="Regen time" />
+                            <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding RegenPercent}" PlaceholderText="Regen percent" />
+                          </Grid>
+                        </StackPanel>
+                      </DataTemplate>
+                    </ListBox.ItemTemplate>
+                  </ListBox>
+                  <StackPanel Grid.Row="3" Spacing="4">
+                    <TextBlock Text="{Binding CreatorSpecializedShopId}" Opacity="0.68" />
+                    <TextBlock Text="{Binding CreatorShopInventoryStatus}" TextWrapping="Wrap" />
+                    <TextBlock Text="Quantities are normalized by the shared Creator service. Item references remain subject to effective-world validation before generation." TextWrapping="Wrap" Opacity="0.62" />
+                  </StackPanel>
+                </Grid>
+              </Grid>
+            </TabItem>
+
+            <TabItem Header="NPC EDITOR">
+              <Grid Margin="10" RowDefinitions="Auto,Auto,*" RowSpacing="8">
+                <StackPanel Orientation="Horizontal" Spacing="8">
+                  <Button Content="Load selected NPC" Command="{Binding LoadCreatorNpcEditorCommand}" />
+                  <TextBlock Text="{Binding CreatorSpecializedNpcId}" VerticalAlignment="Center" Opacity="0.68" />
+                </StackPanel>
+                <TextBlock Grid.Row="1" Text="{Binding CreatorNpcEditorStatus}" TextWrapping="Wrap" />
+                <Grid Grid.Row="2" ColumnDefinitions="2*,*" ColumnSpacing="16">
+                  <Grid RowDefinitions="Auto,Auto,*" RowSpacing="8">
+                    <TextBlock Text="Attack slots" FontSize="18" FontWeight="SemiBold" />
+                    <StackPanel Grid.Row="1" Orientation="Horizontal" Spacing="8">
+                      <Button Content="Add attack" Command="{Binding AddCreatorNpcAttackCommand}" />
+                      <Button Content="Remove selected" Command="{Binding RemoveCreatorNpcAttackCommand}" />
+                      <Button Content="Save attacks" Command="{Binding SaveCreatorNpcAttacksCommand}" />
+                    </StackPanel>
+                    <ListBox Grid.Row="2"
+                             ItemsSource="{Binding CreatorNpcAttacks}"
+                             SelectedItem="{Binding SelectedCreatorNpcAttackRow}">
+                      <ListBox.ItemTemplate>
+                        <DataTemplate x:DataType="vm:CreatorNpcAttackRow">
+                          <StackPanel Margin="2,5" Spacing="5">
+                            <Grid ColumnDefinitions="70,70,95,90,90" RowDefinitions="Auto,Auto" ColumnSpacing="6" RowSpacing="3">
+                              <TextBlock Text="Slot" />
+                              <TextBlock Grid.Column="1" Text="Type" />
+                              <TextBlock Grid.Column="2" Text="Selection %" />
+                              <TextBlock Grid.Column="3" Text="Energy" />
+                              <TextBlock Grid.Column="4" Text="Accuracy" />
+                              <NumericUpDown Grid.Row="1" Value="{Binding Slot}" Minimum="1" Maximum="255" />
+                              <NumericUpDown Grid.Row="1" Grid.Column="1" Value="{Binding Type}" Minimum="0" Maximum="255" />
+                              <NumericUpDown Grid.Row="1" Grid.Column="2" Value="{Binding SelectionPercent}" Minimum="0" Maximum="100" />
+                              <NumericUpDown Grid.Row="1" Grid.Column="3" Value="{Binding EnergyCost}" Minimum="0" Maximum="999999" />
+                              <NumericUpDown Grid.Row="1" Grid.Column="4" Value="{Binding Accuracy}" Minimum="-9999" Maximum="9999" />
+                            </Grid>
+                            <Grid ColumnDefinitions="90,90,110" RowDefinitions="Auto,Auto" ColumnSpacing="6" RowSpacing="3">
+                              <TextBlock Text="Min damage" />
+                              <TextBlock Grid.Column="1" Text="Max damage" />
+                              <TextBlock Grid.Column="2" Text="Hit spell ID" />
+                              <NumericUpDown Grid.Row="1" Value="{Binding MinimumDamage}" Minimum="-999999" Maximum="999999" />
+                              <NumericUpDown Grid.Row="1" Grid.Column="1" Value="{Binding MaximumDamage}" Minimum="-999999" Maximum="999999" />
+                              <NumericUpDown Grid.Row="1" Grid.Column="2" Value="{Binding HitSpellLegacyId}" Minimum="0" Maximum="999999" />
+                            </Grid>
+                            <Grid ColumnDefinitions="*,*,*" RowDefinitions="Auto,Auto" ColumnSpacing="6" RowSpacing="3">
+                              <TextBlock Text="Hit message" />
+                              <TextBlock Grid.Column="1" Text="Miss message" />
+                              <TextBlock Grid.Column="2" Text="Dodge message" />
+                              <NumericUpDown Grid.Row="1" Value="{Binding HitMessageLegacyId}" Minimum="0" Maximum="999999" />
+                              <NumericUpDown Grid.Row="1" Grid.Column="1" Value="{Binding MissMessageLegacyId}" Minimum="0" Maximum="999999" />
+                              <NumericUpDown Grid.Row="1" Grid.Column="2" Value="{Binding DodgeMessageLegacyId}" Minimum="0" Maximum="999999" />
+                            </Grid>
+                            <Grid ColumnDefinitions="*,*,*" RowDefinitions="Auto,Auto" ColumnSpacing="6" RowSpacing="3">
+                              <TextBlock Text="Attack phrase" />
+                              <TextBlock Grid.Column="1" Text="Miss phrase" />
+                              <TextBlock Grid.Column="2" Text="Weapon name" />
+                              <TextBox Grid.Row="1" Text="{Binding AttackVerb}" />
+                              <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding MissVerb}" />
+                              <TextBox Grid.Row="1" Grid.Column="2" Text="{Binding WeaponName}" />
+                            </Grid>
+                            <CheckBox Content="Native empty miss arguments are verified"
+                                      IsChecked="{Binding NativeEmptyMissArgumentsVerified}" />
+                          </StackPanel>
+                        </DataTemplate>
+                      </ListBox.ItemTemplate>
+                    </ListBox>
+                  </Grid>
+
+                  <Grid Grid.Column="1" RowDefinitions="Auto,Auto,*,Auto" RowSpacing="8">
+                    <TextBlock Text="Abilities" FontSize="18" FontWeight="SemiBold" />
+                    <StackPanel Grid.Row="1" Orientation="Horizontal" Spacing="8">
+                      <Button Content="Add ability" Command="{Binding AddCreatorNpcAbilityCommand}" />
+                      <Button Content="Remove selected" Command="{Binding RemoveCreatorNpcAbilityCommand}" />
+                      <Button Content="Save abilities" Command="{Binding SaveCreatorNpcAbilitiesCommand}" />
+                    </StackPanel>
+                    <ListBox Grid.Row="2"
+                             ItemsSource="{Binding CreatorNpcAbilities}"
+                             SelectedItem="{Binding SelectedCreatorNpcAbilityRow}">
+                      <ListBox.ItemTemplate>
+                        <DataTemplate x:DataType="vm:CreatorNpcAbilityRow">
+                          <Grid Margin="2,5" ColumnDefinitions="90,*,90" RowDefinitions="Auto,Auto" ColumnSpacing="6" RowSpacing="3">
+                            <TextBlock Text="Ability ID" />
+                            <TextBlock Grid.Column="1" Text="Name" />
+                            <TextBlock Grid.Column="2" Text="Value" />
+                            <NumericUpDown Grid.Row="1" Value="{Binding AbilityId}" Minimum="-999999" Maximum="999999" />
+                            <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding Name}" />
+                            <NumericUpDown Grid.Row="1" Grid.Column="2" Value="{Binding Value}" Minimum="-999999" Maximum="999999" />
+                          </Grid>
+                        </DataTemplate>
+                      </ListBox.ItemTemplate>
+                    </ListBox>
+                    <TextBlock Grid.Row="3"
+                               Text="Repeated ability numbers are preserved because some native NPC behaviors use multiple values. Saving updates the Custom1 runtime collection and compatibility mirror together."
+                               TextWrapping="Wrap"
+                               Opacity="0.62" />
+                  </Grid>
+                </Grid>
+              </Grid>
+            </TabItem>
+
+            <TabItem Header="QUESTS &amp; SCRIPTS">
+              <Grid Margin="10" RowDefinitions="Auto,*" RowSpacing="8">
+                <StackPanel Spacing="3">
+                  <TextBlock Text="Quest stages and runtime scripts" FontSize="18" FontWeight="SemiBold" />
+                  <TextBlock Text="{Binding CreatorQuestScriptStatus}" TextWrapping="Wrap" />
+                </StackPanel>
+                <Grid Grid.Row="1" ColumnDefinitions="*,1.35*" ColumnSpacing="16">
+                  <Grid RowDefinitions="Auto,Auto,*" RowSpacing="8">
+                    <StackPanel Orientation="Horizontal" Spacing="8">
+                      <Button Content="Load selected quest" Command="{Binding LoadCreatorQuestStagesCommand}" />
+                      <Button Content="Open stage script" Command="{Binding LoadCreatorQuestStageScriptCommand}" />
+                    </StackPanel>
+                    <TextBlock Grid.Row="1"
+                               Text="{Binding CreatorSpecializedQuestId}"
+                               Opacity="0.68" />
+                    <ListBox Grid.Row="2"
+                             ItemsSource="{Binding CreatorQuestStages}"
+                             SelectedItem="{Binding SelectedCreatorQuestStageRow}">
+                      <ListBox.ItemTemplate>
+                        <DataTemplate x:DataType="vm:CreatorQuestStageRow">
+                          <StackPanel Margin="3,5" Spacing="3">
+                            <Grid ColumnDefinitions="Auto,*,Auto" ColumnSpacing="8">
+                              <TextBlock Text="{Binding StageLabel}" FontWeight="SemiBold" />
+                              <TextBlock Grid.Column="1" Text="{Binding TextblockRef}" />
+                              <TextBlock Grid.Column="2" Text="{Binding OperationCountLabel}" Opacity="0.68" />
+                            </Grid>
+                            <TextBlock Text="{Binding ScriptId}" Opacity="0.68" />
+                            <TextBlock Text="{Binding OperationSummary}" TextWrapping="Wrap" />
+                            <TextBlock Text="{Binding SourceScript}"
+                                       MaxHeight="82"
+                                       TextWrapping="Wrap"
+                                       Opacity="0.62" />
+                          </StackPanel>
+                        </DataTemplate>
+                      </ListBox.ItemTemplate>
+                    </ListBox>
+                  </Grid>
+
+                  <Grid Grid.Column="1" RowDefinitions="Auto,Auto,*" RowSpacing="8">
+                    <StackPanel Orientation="Horizontal" Spacing="8">
+                      <Button Content="Load selected script" Command="{Binding LoadCreatorSelectedScriptCommand}" />
+                      <Button Content="Add operation" Command="{Binding AddCreatorScriptOperationCommand}" />
+                      <Button Content="Remove selected" Command="{Binding RemoveCreatorScriptOperationCommand}" />
+                      <Button Content="Save operations" Command="{Binding SaveCreatorScriptOperationsCommand}" />
+                    </StackPanel>
+                    <StackPanel Grid.Row="1" Spacing="3">
+                      <TextBlock Text="{Binding CreatorSpecializedScriptId}" Opacity="0.68" />
+                      <TextBlock Text="Only operations supported by the current server runtime can be saved. Classic remains protected." TextWrapping="Wrap" Opacity="0.62" />
+                    </StackPanel>
+                    <ListBox Grid.Row="2"
+                             ItemsSource="{Binding CreatorScriptOperations}"
+                             SelectedItem="{Binding SelectedCreatorScriptOperationRow}">
+                      <ListBox.ItemTemplate>
+                        <DataTemplate x:DataType="vm:CreatorScriptOperationRow">
+                          <Grid Margin="3,5" ColumnDefinitions="82,92,150,*" RowDefinitions="Auto,Auto,Auto" ColumnSpacing="8" RowSpacing="4">
+                            <TextBlock Text="Line" />
+                            <TextBlock Grid.Column="1" Text="Order" />
+                            <TextBlock Grid.Column="2" Text="Action" />
+                            <TextBlock Grid.Column="3" Text="Values" />
+                            <NumericUpDown Grid.Row="1" Value="{Binding Line}" Minimum="1" Maximum="999999" />
+                            <NumericUpDown Grid.Row="1" Grid.Column="1" Value="{Binding Sequence}" Minimum="1" Maximum="999999" />
+                            <ComboBox Grid.Row="1"
+                                      Grid.Column="2"
+                                      ItemsSource="{Binding AvailableOpcodes}"
+                                      SelectedItem="{Binding Opcode}" />
+                            <TextBox Grid.Row="1" Grid.Column="3" Text="{Binding Arguments}" />
+                            <TextBlock Grid.Row="2" Grid.ColumnSpan="2" Text="{Binding OperationKind}" Opacity="0.62" />
+                            <TextBlock Grid.Row="2" Grid.Column="2" Grid.ColumnSpan="2" Text="{Binding Raw}" TextWrapping="Wrap" Opacity="0.62" />
+                          </Grid>
+                        </DataTemplate>
+                      </ListBox.ItemTemplate>
+                    </ListBox>
+                  </Grid>
+                </Grid>
+              </Grid>
+            </TabItem>
+
+            <TabItem Header="COMBAT TOOLS">
+              <Grid Margin="10" ColumnDefinitions="*,*" ColumnSpacing="16">
+                <Grid RowDefinitions="Auto,Auto,Auto,*,Auto" RowSpacing="8">
+                  <TextBlock Text="NPC combat simulator" FontSize="18" FontWeight="SemiBold" />
+                  <TextBlock Grid.Row="1" Text="Select an NPC in Browse. This deterministic calculator calls the shared recovered runtime cadence and combat resolver." TextWrapping="Wrap" Opacity="0.68" />
+                  <Grid Grid.Row="2" ColumnDefinitions="*,*,*" RowDefinitions="Auto,Auto,Auto,Auto" ColumnSpacing="6" RowSpacing="4">
+                    <TextBlock Text="Defense" />
+                    <TextBlock Grid.Column="1" Text="Armor class" />
+                    <TextBlock Grid.Column="2" Text="Damage resistance" />
+                    <NumericUpDown Grid.Row="1" Value="{Binding CreatorNpcTargetDefense}" Minimum="0" Maximum="9999" />
+                    <NumericUpDown Grid.Row="1" Grid.Column="1" Value="{Binding CreatorNpcTargetArmorClass}" Minimum="0" Maximum="9999" />
+                    <NumericUpDown Grid.Row="1" Grid.Column="2" Value="{Binding CreatorNpcTargetDamageResistance}" Minimum="0" Maximum="9999" />
+                    <TextBlock Grid.Row="2" Text="Dodge bonus" />
+                    <TextBlock Grid.Row="2" Grid.Column="1" Text="Rounds" />
+                    <NumericUpDown Grid.Row="3" Value="{Binding CreatorNpcTargetDodge}" Minimum="0" Maximum="9999" />
+                    <NumericUpDown Grid.Row="3" Grid.Column="1" Value="{Binding CreatorNpcSimulationRounds}" Minimum="1" Maximum="100000" />
+                    <Button Grid.Row="3" Grid.Column="2" Content="Run NPC simulation" Command="{Binding RunCreatorNpcSimulationCommand}" />
+                  </Grid>
+                  <ListBox Grid.Row="3" ItemsSource="{Binding CreatorNpcSimulationRows}">
+                    <ListBox.ItemTemplate>
+                      <DataTemplate x:DataType="creator:CustomWorldNpcAttackSimulationRow">
+                        <StackPanel Margin="2" Spacing="2">
+                          <TextBlock Text="{Binding Kind}" FontWeight="SemiBold" />
+                          <TextBlock Text="{Binding Attempts, StringFormat='Attempts: {0:N0}'}" />
+                          <TextBlock Text="{Binding TotalDamage, StringFormat='Damage: {0:N0}'}" />
+                        </StackPanel>
+                      </DataTemplate>
+                    </ListBox.ItemTemplate>
+                  </ListBox>
+                  <TextBlock Grid.Row="4" Text="{Binding CreatorNpcSimulationStatus}" TextWrapping="Wrap" />
+                </Grid>
+
+                <Grid Grid.Column="1" RowDefinitions="Auto,Auto,Auto,*" RowSpacing="8">
+                  <TextBlock Text="Weapon calculator" FontSize="18" FontWeight="SemiBold" />
+                  <TextBlock Grid.Row="1" Text="Select an item in Browse. Damage, accuracy, speed, hit, critical, dodge, and resistance behavior come from the shared runtime resolver." TextWrapping="Wrap" Opacity="0.68" />
+                  <Grid Grid.Row="2" ColumnDefinitions="*,*,*" RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto" ColumnSpacing="6" RowSpacing="4">
+                    <TextBlock Text="Base attack" />
+                    <TextBlock Grid.Column="1" Text="Defense" />
+                    <TextBlock Grid.Column="2" Text="Armor class" />
+                    <NumericUpDown Grid.Row="1" Value="{Binding CreatorWeaponBaseAttack}" Minimum="1" Maximum="9999" />
+                    <NumericUpDown Grid.Row="1" Grid.Column="1" Value="{Binding CreatorWeaponTargetDefense}" Minimum="0" Maximum="9999" />
+                    <NumericUpDown Grid.Row="1" Grid.Column="2" Value="{Binding CreatorWeaponTargetArmorClass}" Minimum="0" Maximum="9999" />
+                    <TextBlock Grid.Row="2" Text="Damage resistance" />
+                    <TextBlock Grid.Row="2" Grid.Column="1" Text="Dodge bonus" />
+                    <TextBlock Grid.Row="2" Grid.Column="2" Text="Critical chance" />
+                    <NumericUpDown Grid.Row="3" Value="{Binding CreatorWeaponTargetDamageResistance}" Minimum="0" Maximum="9999" />
+                    <NumericUpDown Grid.Row="3" Grid.Column="1" Value="{Binding CreatorWeaponTargetDodge}" Minimum="0" Maximum="9999" />
+                    <NumericUpDown Grid.Row="3" Grid.Column="2" Value="{Binding CreatorWeaponCriticalChance}" Minimum="0" Maximum="100" />
+                    <TextBlock Grid.Row="4" Text="Swings" />
+                    <NumericUpDown Grid.Row="5" Value="{Binding CreatorWeaponSimulationSwings}" Minimum="1" Maximum="100000" />
+                    <Button Grid.Row="5" Grid.Column="2" Content="Run weapon simulation" Command="{Binding RunCreatorWeaponSimulationCommand}" />
+                  </Grid>
+                  <TextBlock Grid.Row="3" Text="{Binding CreatorWeaponSimulationStatus}" TextWrapping="Wrap" />
+                </Grid>
+              </Grid>
+            </TabItem>
+
+            <TabItem Header="MAP LAYOUT">
+              <Grid Margin="10" RowDefinitions="Auto,Auto,*" RowSpacing="8">
+                <StackPanel Orientation="Horizontal" Spacing="8">
+                  <TextBlock Text="Map" VerticalAlignment="Center" />
+                  <ComboBox Width="120"
+                            ItemsSource="{Binding CreatorMapNumbers}"
+                            SelectedItem="{Binding CreatorSelectedMapNumber}" />
+                  <Button Content="Load map" Command="{Binding LoadCreatorMapLayoutCommand}" />
+                  <Button Content="Preview auto-arrange" Command="{Binding PreviewCreatorMapAutoArrangeCommand}" />
+                  <Button Content="Save coordinates" Command="{Binding SaveCreatorMapLayoutCommand}" />
+                </StackPanel>
+                <StackPanel Grid.Row="1" Spacing="4">
+                  <TextBlock Text="{Binding CreatorMapLayoutStatus}" TextWrapping="Wrap" />
+                  <TextBlock Text="Drag rooms to arrange them. Scroll to zoom and drag empty space to pan. Changes remain a preview until Save coordinates is selected." TextWrapping="Wrap" Opacity="0.62" />
+                </StackPanel>
+                <Grid Grid.Row="2" ColumnDefinitions="3*,*" ColumnSpacing="10">
+                  <Border BorderBrush="#465569" BorderThickness="1">
+                    <controls:CreatorMapCanvas Rooms="{Binding CreatorMapRooms}"
+                                               Edges="{Binding CreatorMapEdges}" />
+                  </Border>
+                  <ListBox Grid.Column="1" ItemsSource="{Binding CreatorMapRooms}">
+                    <ListBox.ItemTemplate>
+                      <DataTemplate x:DataType="vm:CreatorMapRoomRow">
+                        <StackPanel Margin="2,4" Spacing="3">
+                          <TextBlock Text="{Binding Name}" FontWeight="SemiBold" TextWrapping="Wrap" />
+                          <TextBlock Text="{Binding RoomId}" Opacity="0.62" />
+                          <Grid ColumnDefinitions="*,*" ColumnSpacing="6">
+                            <NumericUpDown Value="{Binding X}" Minimum="0" Maximum="100000" Increment="10" />
+                            <NumericUpDown Grid.Column="1" Value="{Binding Y}" Minimum="0" Maximum="100000" Increment="10" />
+                          </Grid>
+                        </StackPanel>
+                      </DataTemplate>
+                    </ListBox.ItemTemplate>
+                  </ListBox>
+                </Grid>
+              </Grid>
+            </TabItem>
+
+            <TabItem Header="CHANGE PACKAGES">
+              <ScrollViewer>
+                <StackPanel Margin="10" MaxWidth="820" HorizontalAlignment="Left" Spacing="12">
+                  <TextBlock Text="Portable Custom1 changes" FontSize="18" FontWeight="SemiBold" />
+                  <TextBlock Text="Export Custom1 overrides for review or transfer. Packages do not contain generated runtime data and do not publish directly to a live world." TextWrapping="Wrap" />
+
+                  <TextBlock Text="Export" FontWeight="SemiBold" />
+                  <StackPanel Orientation="Horizontal" Spacing="8">
+                    <Button Content="Export all changes" Command="{Binding ExportAllCreatorChangesCommand}" />
+                    <Button Content="Export selected category" Command="{Binding ExportCreatorFamilyCommand}" />
+                    <Button Content="Export selected record" Command="{Binding ExportCreatorRecordCommand}" />
+                  </StackPanel>
+
+                  <Separator />
+                  <TextBlock Text="Guarded package import" FontWeight="SemiBold" />
+                  <Button Content="Choose package and preview"
+                          Command="{Binding PreviewCreatorPackageCommand}"
+                          HorizontalAlignment="Left" />
+                  <TextBox Text="{Binding CreatorPendingPackagePath}"
+                           IsReadOnly="True"
+                           PlaceholderText="No package previewed" />
+                  <TextBlock Text="{Binding CreatorPackageStatus}" TextWrapping="Wrap" />
+                  <CheckBox IsChecked="{Binding CreatorPackageApplyAcknowledged}"
+                            Content="I reviewed this preview and understand conflicting Custom1 overrides will be replaced. Classic and live worlds are not modified." />
+                  <Button Content="Apply previewed package to Custom1"
+                          Command="{Binding ApplyCreatorPackageCommand}"
+                          IsEnabled="{Binding CreatorPackageApplyReady}"
+                          HorizontalAlignment="Left" />
+                  <TextBlock Text="Applying retains a timestamped pre-import backup. Validation and standalone generation remain separate explicit steps under Edit and Build." TextWrapping="Wrap" Opacity="0.68" />
+                </StackPanel>
+              </ScrollViewer>
+            </TabItem>
+          </TabControl>
+        </Grid>
       </TabItem>
 
       <TabItem Header="SERVER">
@@ -910,21 +2068,37 @@
               <Button Content="Refresh LAN" Command="{Binding RefreshLanCommand}" />
             </StackPanel>
 
-            <Grid ColumnDefinitions="150,240" RowDefinitions="Auto,Auto,Auto" ColumnSpacing="12" RowSpacing="10">
-              <TextBlock Grid.Row="0" Grid.Column="0" Text="Bind Address" VerticalAlignment="Center" />
-              <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding BindAddress}" PlaceholderText="0.0.0.0" />
+            <Grid ColumnDefinitions="150,300" RowDefinitions="Auto,Auto,Auto,Auto,Auto" ColumnSpacing="12" RowSpacing="10">
+              <TextBlock Grid.Row="0" Grid.Column="0" Text="Default World" VerticalAlignment="Center" />
+              <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding DefaultHostWorld}" PlaceholderText="Classic" />
 
-              <TextBlock Grid.Row="1" Grid.Column="0" Text="Port" VerticalAlignment="Center" />
-              <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding PortText}" PlaceholderText="2323" />
+              <TextBlock Grid.Row="1" Grid.Column="0" Text="Default Profile" VerticalAlignment="Center" />
+              <ComboBox Grid.Row="1" Grid.Column="1"
+                        ItemsSource="{Binding ConnectionProfiles}"
+                        SelectedItem="{Binding SelectedConnectionProfile}">
+                <ComboBox.ItemTemplate>
+                  <DataTemplate x:DataType="profiles:ClientConnectionProfile">
+                    <TextBlock Text="{Binding ProfileName}" />
+                  </DataTemplate>
+                </ComboBox.ItemTemplate>
+              </ComboBox>
 
-              <TextBlock Grid.Row="2" Grid.Column="0" Text="Max Sessions" VerticalAlignment="Center" />
-              <TextBox Grid.Row="2" Grid.Column="1" Text="{Binding MaximumSessionsText}" PlaceholderText="64" />
+              <TextBlock Grid.Row="2" Grid.Column="0" Text="Bind Address" VerticalAlignment="Center" />
+              <TextBox Grid.Row="2" Grid.Column="1" Text="{Binding BindAddress}" PlaceholderText="0.0.0.0" />
+
+              <TextBlock Grid.Row="3" Grid.Column="0" Text="Port" VerticalAlignment="Center" />
+              <TextBox Grid.Row="3" Grid.Column="1" Text="{Binding PortText}" PlaceholderText="2323" />
+
+              <TextBlock Grid.Row="4" Grid.Column="0" Text="Max Sessions" VerticalAlignment="Center" />
+              <TextBox Grid.Row="4" Grid.Column="1" Text="{Binding MaximumSessionsText}" PlaceholderText="64" />
             </Grid>
 
             <StackPanel Orientation="Horizontal" Spacing="8">
+              <Button Content="Save Defaults" Command="{Binding SaveApplicationSettingsCommand}" />
               <Button Content="Start Server" Command="{Binding StartServerCommand}" />
               <Button Content="Stop Server" Command="{Binding StopServerCommand}" />
             </StackPanel>
+            <TextBlock Text="{Binding ApplicationSettingsStatus}" TextWrapping="Wrap" Opacity="0.72" />
 
             <Border Padding="12" CornerRadius="6" BorderThickness="1" BorderBrush="#3A4353">
               <StackPanel Spacing="5">
@@ -952,10 +2126,63 @@
       </TabItem>
 
       <TabItem Header="LIBRARIUM">
-        <StackPanel Margin="20" Spacing="8">
-          <TextBlock Text="Librarium migration" FontSize="22" FontWeight="SemiBold" />
-          <TextBlock Text="Librarium remains authoritative; generated Data stays disposable on Windows and Linux." TextWrapping="Wrap" />
-        </StackPanel>
+        <Grid Margin="16" RowDefinitions="Auto,Auto,Auto,*" RowSpacing="10">
+          <StackPanel Grid.Row="0" Spacing="4">
+            <TextBlock Text="Librarium" FontSize="22" FontWeight="SemiBold" />
+            <TextBlock Text="Read-only Classic gameplay records from the generated runtime projection. Evidence metadata and raw files stay hidden." TextWrapping="Wrap" Opacity="0.72" />
+          </StackPanel>
+
+          <TabStrip Grid.Row="1"
+                    ItemsSource="{Binding LibrariumCategories}"
+                    SelectedItem="{Binding SelectedLibrariumCategory}">
+            <TabStrip.ItemTemplate>
+              <DataTemplate x:DataType="creator:ClassicLibrariumCategory">
+                <TextBlock Text="{Binding DisplayName}" Margin="8,4" />
+              </DataTemplate>
+            </TabStrip.ItemTemplate>
+          </TabStrip>
+
+          <Grid Grid.Row="2" ColumnDefinitions="*,Auto" ColumnSpacing="8">
+            <TextBox Grid.Column="0"
+                     Text="{Binding LibrariumSearchText}"
+                     PlaceholderText="Search the selected category by name, ID, or gameplay text" />
+            <Button Grid.Column="1" Content="Search" Command="{Binding LoadLibrariumCommand}" />
+          </Grid>
+
+          <Grid Grid.Row="3" ColumnDefinitions="340,*" RowDefinitions="Auto,*" ColumnSpacing="12" RowSpacing="8">
+            <TextBlock Grid.Row="0" Grid.ColumnSpan="2" Text="{Binding LibrariumStatus}" TextWrapping="Wrap" Opacity="0.72" />
+
+            <Border Grid.Row="1" Grid.Column="0" BorderBrush="#3A4353" BorderThickness="1" CornerRadius="5" Padding="4">
+              <ListBox ItemsSource="{Binding LibrariumRecords}"
+                       SelectedItem="{Binding SelectedLibrariumRecord}">
+                <ListBox.ItemTemplate>
+                  <DataTemplate x:DataType="creator:ClassicLibrariumRecordSummary">
+                    <TextBlock Text="{Binding Name}" TextWrapping="Wrap" Margin="6" />
+                  </DataTemplate>
+                </ListBox.ItemTemplate>
+              </ListBox>
+            </Border>
+
+            <Border Grid.Row="1" Grid.Column="1" BorderBrush="#3A4353" BorderThickness="1" CornerRadius="5" Padding="12">
+              <Grid RowDefinitions="Auto,Auto,*" RowSpacing="6">
+                <TextBlock Grid.Row="0" Text="{Binding LibrariumSelectedTitle}" FontSize="20" FontWeight="SemiBold" TextWrapping="Wrap" />
+                <TextBlock Grid.Row="1" Text="{Binding LibrariumSelectedSubheading}" TextWrapping="Wrap" Opacity="0.68" />
+                <ScrollViewer Grid.Row="2">
+                  <ItemsControl ItemsSource="{Binding LibrariumFields}">
+                    <ItemsControl.ItemTemplate>
+                      <DataTemplate x:DataType="creator:ClassicLibrariumField">
+                        <Grid ColumnDefinitions="220,*" Margin="0,0,0,8" ColumnSpacing="10">
+                          <TextBlock Grid.Column="0" Text="{Binding Name}" FontWeight="SemiBold" TextWrapping="Wrap" />
+                          <TextBlock Grid.Column="1" Text="{Binding Value}" TextWrapping="Wrap" />
+                        </Grid>
+                      </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                  </ItemsControl>
+                </ScrollViewer>
+              </Grid>
+            </Border>
+          </Grid>
+        </Grid>
       </TabItem>
     </TabControl>
   </Grid>

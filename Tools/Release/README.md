@@ -1,5 +1,26 @@
 # RealmGate Release Packaging
 
+## Cross-platform tester preview
+
+`Build-RealmGateDesktopPackage.ps1` creates the public Avalonia desktop preview for either
+Windows or Linux. The archives are self-contained, Borin-free, and contain the compact
+authoritative Librarium rather than generated `Data/`. Before packaging, the script proves that
+the staged Librarium can regenerate every enabled world without being modified.
+
+```powershell
+./Tools/Release/Build-RealmGateDesktopPackage.ps1 -Version 0.2.0-beta.1 -RuntimeIdentifier win-x64
+./Tools/Release/Build-RealmGateDesktopPackage.ps1 -Version 0.2.0-beta.1 -RuntimeIdentifier linux-x64
+```
+
+Native packages should be built on their matching operating system so executable permissions and
+platform assets are retained. Output is written to `Release/DesktopPackages/` as a Windows ZIP or
+Linux `tar.gz`, with a SHA-256 checksum beside it.
+
+The `RealmGate Desktop Tester Release` GitHub workflow builds both packages on native runners. A
+manual run can either leave them as 30-day workflow artifacts or create a GitHub prerelease with
+both packages attached. The Linux tester does not need to install .NET; instructions are included
+inside the archive.
+
 ## Public beta
 
 Build a normal Windows public beta package with:
@@ -25,3 +46,6 @@ The installer installs per-user under `%LOCALAPPDATA%\Programs\RealmGate`, creat
 ## GitHub Actions
 
 The `RealmGate Public Beta Installer` workflow builds and uploads the installer, portable ZIP, and checksums as a workflow artifact. Run it manually and supply the beta version when preparing a release.
+
+That workflow remains the transitional WPF/Windows release. New Windows/Linux tester previews use
+`RealmGate Desktop Tester Release`.

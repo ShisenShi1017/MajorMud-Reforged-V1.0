@@ -1,5 +1,6 @@
 using System.Net.Sockets;
 using System.Text;
+using RealmGate.Client.Diagnostics;
 using RealmGate.Client.Protocol;
 using RealmGate.Client.Terminal;
 
@@ -17,6 +18,23 @@ public sealed class ClassicTerminalSession : IAsyncDisposable
     private long _generation;
     private int _columns = 80;
     private int _rows = 25;
+    private readonly DateTimeOffset _statisticsStartedAtUtc = DateTimeOffset.UtcNow;
+    private DateTimeOffset? _statisticsConnectedAtUtc;
+    private DateTimeOffset? _statisticsLastActivityAtUtc;
+    private TimeSpan _statisticsCompletedConnectionDuration;
+    private string _statisticsHostName = string.Empty;
+    private int _statisticsPort;
+    private long _statisticsConnectionAttempts;
+    private long _statisticsSuccessfulConnections;
+    private long _statisticsDisconnects;
+    private long _statisticsTransportErrors;
+    private long _statisticsLinesSent;
+    private long _statisticsSensitiveLinesSent;
+    private long _statisticsRawWrites;
+    private long _statisticsSentCharacters;
+    private long _statisticsReceivedCharacters;
+    private long _statisticsVisibleTextChunks;
+    private long _statisticsProtocolMessages;
 
     public ClassicTerminalSession()
     {
@@ -33,6 +51,25 @@ public sealed class ClassicTerminalSession : IAsyncDisposable
     public bool IsConnected
     {
         get { lock (_sync) return _transport is not null; }
+    }
+    public ClientSessionStatisticsSnapshot Statistics
+    {
+        get
+        {
+            lock (_sync)
+            {
+                var duration = _statisticsCompletedConnectionDuration;
+                if (_transport is not null && _statisticsConnectedAtUtc is { } connectedAt)
+                    duration += DateTimeOffset.UtcNow - connectedAt;
+                return new ClientSessionStatisticsSnapshot(
+                    _statisticsStartedAtUtc, _statisticsConnectedAtUtc, _statisticsLastActivityAtUtc,
+                    duration, _transport is not null, _statisticsHostName, _statisticsPort,
+                    _statisticsConnectionAttempts, _statisticsSuccessfulConnections, _statisticsDisconnects,
+                    _statisticsTransportErrors, _statisticsLinesSent, _statisticsSensitiveLinesSent,
+                    _statisticsRawWrites, _statisticsSentCharacters, _statisticsReceivedCharacters,
+                    _statisticsVisibleTextChunks, _statisticsProtocolMessages);
+            }
+        }
     }
 
     public Task ConnectAsync(
@@ -55,16 +92,37 @@ public sealed class ClassicTerminalSession : IAsyncDisposable
         await DisconnectAsync(notify: false).ConfigureAwait(false);
         StatusChanged?.Invoke($"Connecting to {hostName}:{port}");
 
-        var transport = await ClientTransportConnection.ConnectAsync(
-                hostName,
-                port,
-                options with
-                {
-                    Columns = _columns,
-                    Rows = _rows
-                },
-                cancellationToken: cancellationToken)
-            .ConfigureAwait(false);
+        lock (_sync)
+        {
+            _statisticsConnectionAttempts++;
+            _statisticsHostName = hostName.Trim();
+            _statisticsPort = port;
+            _statisticsLastActivityAtUtc = DateTimeOffset.UtcNow;
+        }
+
+        ClientTransportConnection transport;
+        try
+        {
+            transport = await ClientTransportConnection.ConnectAsync(
+                    hostName,
+                    port,
+                    options with
+                    {
+                        Columns = _columns,
+                        Rows = _rows
+                    },
+                    cancellationToken: cancellationToken)
+                .ConfigureAwait(false);
+        }
+        catch
+        {
+            lock (_sync)
+            {
+                _statisticsTransportErrors++;
+                _statisticsLastActivityAtUtc = DateTimeOffset.UtcNow;
+            }
+            throw;
+        }
 
         var readCancellation = new CancellationTokenSource();
         var generation = Interlocked.Increment(ref _generation);
@@ -82,6 +140,9 @@ public sealed class ClassicTerminalSession : IAsyncDisposable
                 transport,
                 generation,
                 readCancellation.Token));
+            _statisticsSuccessfulConnections++;
+            _statisticsConnectedAtUtc = DateTimeOffset.UtcNow;
+            _statisticsLastActivityAtUtc = _statisticsConnectedAtUtc;
         }
 
         StatusChanged?.Invoke($"Connected to {hostName}:{port}");
@@ -99,14 +160,30 @@ public sealed class ClassicTerminalSession : IAsyncDisposable
                 cancellationToken)
             .ConfigureAwait(false);
 
+        lock (_sync)
+        {
+            _statisticsLinesSent++;
+            if (sensitive) _statisticsSensitiveLinesSent++;
+            _statisticsSentCharacters += value.Length + Environment.NewLine.Length;
+            _statisticsLastActivityAtUtc = DateTimeOffset.UtcNow;
+        }
+
         if (sensitive)
             PasswordModeChanged?.Invoke(false);
     }
 
-    public Task SendRawAsync(
+    public async Task SendRawAsync(
         string value,
-        CancellationToken cancellationToken = default) =>
-        GetConnectedTransport().WriteAsync(value, cancellationToken);
+        CancellationToken cancellationToken = default)
+    {
+        await GetConnectedTransport().WriteAsync(value, cancellationToken).ConfigureAwait(false);
+        lock (_sync)
+        {
+            _statisticsRawWrites++;
+            _statisticsSentCharacters += value.Length;
+            _statisticsLastActivityAtUtc = DateTimeOffset.UtcNow;
+        }
+    }
 
     public void NotePrivateCommand(string command) =>
         _protocolFilter.NoteOutboundCommand(command);
@@ -145,6 +222,7 @@ public sealed class ClassicTerminalSession : IAsyncDisposable
             _transport = null;
             _readCancellation = null;
             _readTask = null;
+            if (transport is not null) EndStatisticsConnectionLocked();
         }
 
         try { readCancellation?.Cancel(); } catch { }
@@ -183,13 +261,23 @@ public sealed class ClassicTerminalSession : IAsyncDisposable
                 if (count == 0)
                     break;
 
+                lock (_sync)
+                {
+                    _statisticsReceivedCharacters += count;
+                    _statisticsLastActivityAtUtc = DateTimeOffset.UtcNow;
+                }
+
                 var protocolResult = _protocolFilter.Process(new string(buffer, 0, count));
                 foreach (var message in protocolResult.Messages)
+                {
+                    lock (_sync) _statisticsProtocolMessages++;
                     ProtocolMessageReceived?.Invoke(message);
+                }
 
                 if (protocolResult.VisibleText.Length == 0)
                     continue;
 
+                lock (_sync) _statisticsVisibleTextChunks++;
                 VisibleTextReceived?.Invoke(protocolResult.VisibleText);
                 UpdateSnapshot(_terminal.Process(protocolResult.VisibleText));
                 UpdatePasswordMode(protocolResult.VisibleText);
@@ -197,10 +285,13 @@ public sealed class ClassicTerminalSession : IAsyncDisposable
         }
         catch (Exception exception) when (exception is IOException or SocketException or OperationCanceledException or ObjectDisposedException)
         {
+            if (exception is IOException or SocketException)
+                lock (_sync) _statisticsTransportErrors++;
         }
         catch (Exception exception)
         {
             disconnectedStatus = $"Connection error: {exception.Message}";
+            lock (_sync) _statisticsTransportErrors++;
         }
         finally
         {
@@ -215,6 +306,7 @@ public sealed class ClassicTerminalSession : IAsyncDisposable
                         _transport = null;
                         _readCancellation = null;
                         _readTask = null;
+                        EndStatisticsConnectionLocked();
                     }
                 }
 
@@ -251,6 +343,15 @@ public sealed class ClassicTerminalSession : IAsyncDisposable
     {
         lock (_sync)
             return _transport ?? throw new InvalidOperationException("The Play terminal is not connected.");
+    }
+
+    private void EndStatisticsConnectionLocked()
+    {
+        if (_statisticsConnectedAtUtc is { } connectedAt)
+            _statisticsCompletedConnectionDuration += DateTimeOffset.UtcNow - connectedAt;
+        _statisticsConnectedAtUtc = null;
+        _statisticsDisconnects++;
+        _statisticsLastActivityAtUtc = DateTimeOffset.UtcNow;
     }
 
     public async ValueTask DisposeAsync() =>

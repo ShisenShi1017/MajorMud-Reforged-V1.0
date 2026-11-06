@@ -1,12 +1,13 @@
 using System.Text.RegularExpressions;
-using RealmGate.App.Models;
+namespace RealmGate.Client.Gameplay;
 
-namespace RealmGate.App.Services;
+public sealed record ClassicLearnedSpellObservation(
+    string CanonicalId, string Name, int ManaCost, int EnergyCost);
 
 /// <summary>Captures learned spells only inside a bounded outbound SPELLS response.</summary>
-internal sealed partial class ClassicSpellbookParser
+public sealed partial class ClassicSpellbookParser
 {
-    private readonly List<ClientLearnedSpellState> _spells = [];
+    private readonly List<ClassicLearnedSpellObservation> _spells = [];
     private bool _armed;
     private bool _started;
     private DateTimeOffset _expiresAt;
@@ -20,7 +21,7 @@ internal sealed partial class ClassicSpellbookParser
         _expiresAt = _armed ? DateTimeOffset.UtcNow.AddSeconds(8) : DateTimeOffset.MinValue;
     }
 
-    public IReadOnlyList<ClientLearnedSpellState>? Observe(string? line)
+    public IReadOnlyList<ClassicLearnedSpellObservation>? Observe(string? line)
     {
         if (!_armed || DateTimeOffset.UtcNow > _expiresAt) { Reset(); return null; }
         var text = line?.Trim() ?? string.Empty;
@@ -30,7 +31,7 @@ internal sealed partial class ClassicSpellbookParser
         if (Prompt().IsMatch(text) || Footer().IsMatch(text)) return Complete();
         var match = Entry().Match(text);
         if (match.Success)
-            _spells.Add(new ClientLearnedSpellState(
+            _spells.Add(new ClassicLearnedSpellObservation(
                 match.Groups["id"].Value.Trim(), match.Groups["name"].Value.Trim(),
                 ParseCost(match.Groups["mana"].Value), ParseCost(match.Groups["energy"].Value)));
         return null;
@@ -43,7 +44,7 @@ internal sealed partial class ClassicSpellbookParser
         _expiresAt = DateTimeOffset.MinValue;
     }
 
-    private IReadOnlyList<ClientLearnedSpellState> Complete()
+    private IReadOnlyList<ClassicLearnedSpellObservation> Complete()
     {
         var result = _spells.GroupBy(spell => spell.CanonicalId, StringComparer.OrdinalIgnoreCase)
             .Select(group => group.First()).ToArray();

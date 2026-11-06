@@ -1,15 +1,17 @@
+using System.Text;
 using System.Text.RegularExpressions;
+using RealmGate.Client.Terminal;
 
-namespace RealmGate.App.Services;
+namespace RealmGate.Client.Inventory;
 
-internal enum ClassicItemScreenKind { Inventory, Equipment, Wealth }
+public enum ClassicItemScreenKind { Inventory, Equipment, Wealth }
 
-internal readonly record struct ClassicItemScreenEntry(string Name, int Quantity, string Slot = "")
+public readonly record struct ClassicItemScreenEntry(string Name, int Quantity, string Slot = "")
 {
     public string DisplayText => Quantity > 1 ? $"{Quantity}x {Name}" : Name;
 }
 
-internal sealed record ClassicItemScreenObservation(
+public sealed record ClassicItemScreenObservation(
     ClassicItemScreenKind Kind,
     IReadOnlyList<ClassicItemScreenEntry> Entries,
     long? Currency = null,
@@ -19,9 +21,10 @@ internal sealed record ClassicItemScreenObservation(
     string EncumbranceBand = "");
 
 /// <summary>Captures inventory/equipment only inside a bounded, explicitly requested screen.</summary>
-internal sealed partial class ClassicInventoryEquipmentParser
+public sealed partial class ClassicInventoryEquipmentParser
 {
     private readonly List<ClassicItemScreenEntry> _entries = [];
+    private readonly Func<DateTimeOffset> _utcNow;
     private ClassicItemScreenKind? _armed;
     private DateTimeOffset _expiresAt;
     private bool _started;
@@ -31,6 +34,9 @@ internal sealed partial class ClassicInventoryEquipmentParser
     private int? _encumbrancePercent;
     private string _encumbranceBand = string.Empty;
 
+    public ClassicInventoryEquipmentParser(Func<DateTimeOffset>? utcNow = null) =>
+        _utcNow = utcNow ?? (() => DateTimeOffset.UtcNow);
+
     public void NoteOutboundCommand(string? command)
     {
         var text = command?.Trim() ?? string.Empty;
@@ -38,7 +44,7 @@ internal sealed partial class ClassicInventoryEquipmentParser
             : IsEquipmentCommand(text) ? ClassicItemScreenKind.Equipment
             : IsWealthCommand(text) ? ClassicItemScreenKind.Wealth
             : null;
-        _expiresAt = _armed is null ? DateTimeOffset.MinValue : DateTimeOffset.UtcNow.AddSeconds(8);
+        _expiresAt = _armed is null ? DateTimeOffset.MinValue : _utcNow().AddSeconds(8);
         _started = false;
         _entries.Clear();
         ClearMetrics();
@@ -46,7 +52,7 @@ internal sealed partial class ClassicInventoryEquipmentParser
 
     public ClassicItemScreenObservation? Observe(string? line)
     {
-        if (_armed is null || DateTimeOffset.UtcNow > _expiresAt) { Reset(); return null; }
+        if (_armed is null || _utcNow() > _expiresAt) { Reset(); return null; }
         var text = line?.Trim() ?? string.Empty;
         return _armed == ClassicItemScreenKind.Inventory ? ObserveInventory(text)
             : _armed == ClassicItemScreenKind.Equipment ? ObserveEquipment(text)
@@ -220,5 +226,71 @@ internal sealed partial class ClassicInventoryEquipmentParser
     [GeneratedRegex(@"\s*\((?<slot>One handed|Two handed|Off hand|Arms|Torso|Back|Wrist|Finger|Waist|Feet|Hands|Head|Legs|Neck|Shield|[^()]*(?:hand|body|weapon|wield|equipped)[^()]*)\)$", RegexOptions.IgnoreCase)] private static partial Regex TrailingSlot();
     [GeneratedRegex(@"^(?:<|\[)?(?<slot>Head|Body|Torso|Hands|Feet|Waist|Back|Neck|Finger|Wrist|Weapon|Shield|Held|Light|Arms|Legs|Face|About body|Primary|Secondary)(?:>|\])?\s*:\s*", RegexOptions.IgnoreCase)] private static partial Regex SlotPrefix();
     [GeneratedRegex(@"^(?:Nothing|Total|Weight|Encumbrance|Gold|Coins|Cash|Wealth)\b", RegexOptions.IgnoreCase)] private static partial Regex Noise();
-    [GeneratedRegex(@"^\s*\[(?:HP|H)\s*=", RegexOptions.IgnoreCase)] private static partial Regex Prompt();
+    [GeneratedRegex(@"^(?:>\s*|\[(?:HP|H)\s*=)", RegexOptions.IgnoreCase)] private static partial Regex Prompt();
+}
+
+/// <summary>Turns a chunked terminal stream into bounded item-screen observations.</summary>
+public sealed class ClassicItemScreenTracker
+{
+    private readonly object _sync = new();
+    private readonly ClassicInventoryEquipmentParser _parser;
+    private readonly StringBuilder _buffer = new();
+
+    public ClassicItemScreenTracker(Func<DateTimeOffset>? utcNow = null) =>
+        _parser = new ClassicInventoryEquipmentParser(utcNow);
+
+    public void NoteOutboundCommand(string? command)
+    {
+        lock (_sync)
+        {
+            _buffer.Clear();
+            _parser.NoteOutboundCommand(command);
+        }
+    }
+
+    public IReadOnlyList<ClassicItemScreenObservation> Append(string? text)
+    {
+        if (string.IsNullOrEmpty(text)) return [];
+        lock (_sync)
+        {
+            _buffer.Append(text);
+            var observations = new List<ClassicItemScreenObservation>();
+            var buffered = _buffer.ToString();
+            var start = 0;
+            for (var index = 0; index < buffered.Length; index++)
+            {
+                if (buffered[index] is not ('\r' or '\n')) continue;
+                Observe(buffered[start..index], observations);
+                if (buffered[index] == '\r' && index + 1 < buffered.Length && buffered[index + 1] == '\n') index++;
+                start = index + 1;
+            }
+
+            _buffer.Clear();
+            if (start < buffered.Length) _buffer.Append(buffered[start..]);
+            var tail = AnsiTextParser.StripFormatting(_buffer.ToString()).Trim();
+            if (tail == ">" || tail.StartsWith("[HP=", StringComparison.OrdinalIgnoreCase) ||
+                tail.StartsWith("[H=", StringComparison.OrdinalIgnoreCase))
+            {
+                Observe(tail, observations);
+                _buffer.Clear();
+            }
+            if (_buffer.Length > 8192) _buffer.Remove(0, _buffer.Length - 8192);
+            return observations;
+        }
+    }
+
+    public void Reset()
+    {
+        lock (_sync)
+        {
+            _buffer.Clear();
+            _parser.Reset();
+        }
+    }
+
+    private void Observe(string line, ICollection<ClassicItemScreenObservation> observations)
+    {
+        if (_parser.Observe(AnsiTextParser.StripFormatting(line)) is { } observation)
+            observations.Add(observation);
+    }
 }

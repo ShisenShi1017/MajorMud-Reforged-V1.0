@@ -16,7 +16,52 @@ public sealed record ClientCharacterState(
     IReadOnlyDictionary<string, int> BaseStats,
     IReadOnlyDictionary<string, int> Skills,
     string Alignment,
-    DateTimeOffset CapturedAtUtc);
+    DateTimeOffset CapturedAtUtc,
+    long? CurrentLevelExperience = null,
+    int? NextLevelCharacterPointAward = null,
+    int CharacterPointsAvailable = 0,
+    int Lives = 0,
+    int MaximumLives = 0,
+    IReadOnlyDictionary<string, int>? ClassLevels = null,
+    IReadOnlyDictionary<string, long>? ClassExperience = null,
+    IReadOnlyDictionary<string, int>? DerivedStats = null,
+    IReadOnlyDictionary<string, int>? Resistances = null,
+    IReadOnlyDictionary<string, int>? SavingThrows = null);
+
+public sealed record ClientCharacterProgressionSummary(
+    bool HasLevelThresholds,
+    long CurrentExperience,
+    long LevelStartExperience,
+    long NextLevelExperience,
+    long EarnedThisLevel,
+    long RequiredThisLevel,
+    long RemainingExperience,
+    double PercentComplete,
+    int? NextLevelCharacterPointAward,
+    int CharacterPointsAvailable,
+    int Lives,
+    int MaximumLives)
+{
+    public static ClientCharacterProgressionSummary From(ClientCharacterState state)
+    {
+        ArgumentNullException.ThrowIfNull(state);
+        var hasThresholds = state.CurrentLevelExperience is long start &&
+                            state.NextLevelExperience is long next && next > start;
+        if (!hasThresholds)
+            return new(false, state.Experience, 0, 0, 0, 0, 0, 0,
+                state.NextLevelCharacterPointAward, state.CharacterPointsAvailable, state.Lives, state.MaximumLives);
+
+        var levelStart = state.CurrentLevelExperience!.Value;
+        var levelEnd = state.NextLevelExperience!.Value;
+        var required = levelEnd - levelStart;
+        var earned = Math.Clamp(state.Experience - levelStart, 0, required);
+        var remaining = Math.Max(0, levelEnd - state.Experience);
+        var percent = required == 0 ? 100d : earned * 100d / required;
+        return new(true, state.Experience, levelStart, levelEnd, earned, required, remaining,
+            Math.Clamp(percent, 0d, 100d), state.NextLevelCharacterPointAward,
+            state.CharacterPointsAvailable, state.Lives, state.MaximumLives);
+    }
+}
 
 public static class ClientCharacterStateDecoder
 {
@@ -46,10 +91,19 @@ public static class ClientCharacterStateDecoder
             string.IsNullOrWhiteSpace(state.CharacterName) ||
             !IsQualifiedRoom(state.RoomId) ||
             state.Level < 1 || state.Experience < 0 ||
-            state.NextLevelExperience is < 0 || state.BaseStats is null || state.Skills is null ||
+            state.NextLevelExperience is < 0 || state.CurrentLevelExperience is < 0 ||
+            state.NextLevelCharacterPointAward is < 0 || state.CharacterPointsAvailable < 0 ||
+            state.Lives < 0 || state.MaximumLives < 0 ||
+            state.MaximumLives > 0 && state.Lives > state.MaximumLives ||
+            state.CurrentLevelExperience is long currentThreshold && currentThreshold > state.Experience ||
+            state.CurrentLevelExperience is long current && state.NextLevelExperience is long next && next <= current ||
+            state.BaseStats is null || state.Skills is null ||
             state.CapturedAtUtc == default ||
             state.BaseStats.Any(pair => string.IsNullOrWhiteSpace(pair.Key)) ||
-            state.Skills.Any(pair => string.IsNullOrWhiteSpace(pair.Key)))
+            state.Skills.Any(pair => string.IsNullOrWhiteSpace(pair.Key)) ||
+            Invalid(state.ClassLevels, value => value < 1) ||
+            Invalid(state.ClassExperience, value => value < 0) ||
+            Invalid(state.DerivedStats) || Invalid(state.Resistances) || Invalid(state.SavingThrows))
             throw new InvalidDataException("Character state contains invalid identity or progression data.");
 
         return state with
@@ -61,9 +115,22 @@ public static class ClientCharacterStateDecoder
             RaceName = state.RaceName?.Trim() ?? string.Empty,
             ClassName = state.ClassName?.Trim() ?? string.Empty,
             Sex = state.Sex?.Trim() ?? string.Empty,
-            Alignment = state.Alignment?.Trim() ?? string.Empty
+            Alignment = state.Alignment?.Trim() ?? string.Empty,
+            ClassLevels = Normalize(state.ClassLevels),
+            ClassExperience = Normalize(state.ClassExperience),
+            DerivedStats = Normalize(state.DerivedStats),
+            Resistances = Normalize(state.Resistances),
+            SavingThrows = Normalize(state.SavingThrows)
         };
     }
+
+    private static bool Invalid<T>(IReadOnlyDictionary<string, T>? values, Func<T, bool>? invalidValue = null) =>
+        values?.Any(pair => string.IsNullOrWhiteSpace(pair.Key) || invalidValue?.Invoke(pair.Value) == true) == true;
+
+    private static IReadOnlyDictionary<string, T> Normalize<T>(IReadOnlyDictionary<string, T>? values) =>
+        (values ?? new Dictionary<string, T>())
+        .OrderBy(pair => pair.Key, StringComparer.OrdinalIgnoreCase)
+        .ToDictionary(pair => pair.Key.Trim(), pair => pair.Value, StringComparer.OrdinalIgnoreCase);
 
     internal static bool IsQualifiedRoom(string? roomId)
     {

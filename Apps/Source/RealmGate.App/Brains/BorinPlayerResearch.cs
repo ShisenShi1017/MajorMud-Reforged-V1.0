@@ -726,7 +726,7 @@ public sealed class BorinPlayerResearch : IBorinPlayerResearch
             : sessionConnected
                 ? "Borin's existing session is connected. Waiting for the current login or menu prompt."
                 : passwordSaved
-                    ? $"{sessionResolutionDetail} The password is saved in Windows Credential Manager."
+                    ? $"{sessionResolutionDetail} The password is saved in the operating system credential vault."
                     : $"{sessionResolutionDetail} Save the password securely before connecting.";
         SetLoginStatus(configuredLoginState, configuredLoginDetail, passwordSaved);
         RefreshStatus(normalized.Enabled
@@ -766,7 +766,7 @@ public sealed class BorinPlayerResearch : IBorinPlayerResearch
     {
         ThrowIfDisposed();
         await _credentialStore.SavePasswordAsync(_settings.SessionId, _settings.LoginName, password, token);
-        SetLoginStatus(_loginStatus.State, "Borin's password is saved securely in Windows Credential Manager.", true);
+        SetLoginStatus(_loginStatus.State, "Borin's password is saved securely in the operating system credential vault.", true);
     }
 
     public async Task ClearPasswordAsync(CancellationToken token = default)
@@ -2275,7 +2275,7 @@ Recent command/result evidence:
             var password = await _credentialStore.ReadPasswordAsync(_settings.SessionId, token);
             if (string.IsNullOrEmpty(password))
             {
-                SetLoginStatus(BorinLoginState.Failed, "The password prompt was detected, but the saved password could not be retrieved from Windows Credential Manager.", false);
+                SetLoginStatus(BorinLoginState.Failed, "The password prompt was detected, but the saved password could not be retrieved from the operating system credential vault.", false);
                 return true;
             }
 

@@ -23,11 +23,19 @@ public enum ClientGameplayActionKind
     RestoreMana,
     MaintainBuff,
     Rest,
+    EquipSet,
     Engage,
     CombatAction,
+    DefensiveAction,
+    CombatRule,
     Follow,
     Assist,
-    PartyHeal
+    PartyHeal,
+    PartyCure,
+    PartyRescue,
+    PartyRegroup,
+    PartyInvite,
+    PartyRank
 }
 
 public sealed record ClientGameplayEffectState(
@@ -35,7 +43,12 @@ public sealed record ClientGameplayEffectState(
     string SpellId,
     string Name,
     DateTimeOffset AppliedAtUtc,
-    DateTimeOffset? ExpiresAtUtc);
+    DateTimeOffset? ExpiresAtUtc)
+{
+    public string DisplayName => ExpiresAtUtc is { } expires
+        ? $"{Name} - expires {expires.ToLocalTime():g}"
+        : $"{Name} - duration not reported";
+}
 
 public sealed record ClientGameplayNpcState(
     string InstanceId,
@@ -117,6 +130,7 @@ public sealed class ClientBuffRule
     public string Command { get; set; } = string.Empty;
     public int MinimumManaPercent { get; set; } = 25;
     public bool OnlyOutOfCombat { get; set; } = true;
+    public int RefreshBeforeExpirySeconds { get; set; } = 30;
     public string DisplayName => $"{Priority:0000} - {Name}";
 }
 
@@ -151,6 +165,36 @@ public sealed class ClientCombatAutomationPreferences
     public bool StopWhenOtherPlayersPresent { get; set; } = true;
     public bool RequireLearnedSpellForCastCommands { get; set; } = true;
     public string AvoidNames { get; set; } = string.Empty;
+    public string DefaultEquipmentSetId { get; set; } = string.Empty;
+    public string MultiTargetEquipmentSetId { get; set; } = string.Empty;
+    public int MultiTargetEquipmentSetAtCount { get; set; } = 3;
+    public string DefensiveEquipmentSetId { get; set; } = string.Empty;
+    public int DefensiveEquipmentSetAtHealthPercent { get; set; } = 40;
+    public bool AutoDefensiveAction { get; set; }
+    public int DefensiveActionAtHealthPercent { get; set; } = 40;
+    public string DefensiveActionCommand { get; set; } = "defend";
+    public int DefensiveActionCooldownSeconds { get; set; } = 5;
+}
+
+public sealed class ClientCombatActionRule
+{
+    public string Id { get; set; } = Guid.NewGuid().ToString("N");
+    public bool Enabled { get; set; } = true;
+    public int Priority { get; set; } = 100;
+    public string Name { get; set; } = "Combat action";
+    public string Command { get; set; } = string.Empty;
+    public bool AppendTarget { get; set; } = true;
+    public bool OpeningOnly { get; set; }
+    public bool InCombatOnly { get; set; } = true;
+    public bool IsAreaAction { get; set; }
+    public int MinimumTargets { get; set; } = 1;
+    public int MaximumTargets { get; set; } = 99;
+    public int MinimumHealthPercent { get; set; }
+    public int MinimumManaPercent { get; set; }
+    public int CooldownSeconds { get; set; } = 3;
+    public string TargetNameContains { get; set; } = string.Empty;
+    public string EquipmentSetId { get; set; } = string.Empty;
+    public string DisplayName => $"{Priority:0000} - {Name}";
 }
 
 public sealed class ClientPartyAutomationPreferences
@@ -164,6 +208,20 @@ public sealed class ClientPartyAutomationPreferences
     public string FollowCommand { get; set; } = "follow {target}";
     public string AssistCommand { get; set; } = "assist {target}";
     public string HealCommand { get; set; } = string.Empty;
+    public bool CurePoisonedMembers { get; set; }
+    public string CurePoisonCommand { get; set; } = "cast cure poison {target}";
+    public bool AutoRescueMembers { get; set; }
+    public int RescueBelowPercent { get; set; } = 40;
+    public string RescueCommand { get; set; } = "rescue {target}";
+    public bool RegroupWhenSeparated { get; set; }
+    public string RegroupCommand { get; set; } = "where";
+    public bool AutoInviteNamedMembers { get; set; }
+    public string InviteNames { get; set; } = string.Empty;
+    public string InviteCommand { get; set; } = "invite {target}";
+    public bool MaintainPreferredRank { get; set; }
+    public string PreferredRank { get; set; } = "Backrank";
+    public string FrontRankCommand { get; set; } = "frontrank";
+    public string BackRankCommand { get; set; } = "backrank";
     public bool RequireLearnedSpellForCastCommands { get; set; } = true;
 }
 
@@ -180,6 +238,7 @@ public sealed class ClientGameplayAutomationProfile
     public ClientCombatAutomationPreferences Combat { get; set; } = new();
     public ClientPartyAutomationPreferences Party { get; set; } = new();
     public ObservableCollection<ClientBuffRule> Buffs { get; set; } = [];
+    public ObservableCollection<ClientCombatActionRule> CombatActions { get; set; } = [];
     public DateTimeOffset UpdatedAtUtc { get; set; } = DateTimeOffset.UtcNow;
 }
 
@@ -193,10 +252,15 @@ public sealed record ClientGameplayActionPlan(
     ClientGameplayActionKind Kind,
     string Command,
     string Reason,
-    string Target = "")
+    string Target = "",
+    string EquipmentSetId = "",
+    string ActionId = "",
+    int CooldownSeconds = 0)
 {
-    public bool HasAction => Kind is not ClientGameplayActionKind.None and not ClientGameplayActionKind.RefreshState
-                             && !string.IsNullOrWhiteSpace(Command);
+    public bool HasAction => Kind == ClientGameplayActionKind.EquipSet
+        ? !string.IsNullOrWhiteSpace(EquipmentSetId)
+        : Kind is not ClientGameplayActionKind.None and not ClientGameplayActionKind.RefreshState
+          && !string.IsNullOrWhiteSpace(Command);
     public static ClientGameplayActionPlan None(string reason) =>
         new(ClientGameplayActionKind.None, string.Empty, reason);
     public static ClientGameplayActionPlan Refresh(string reason) =>

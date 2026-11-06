@@ -277,7 +277,17 @@ public partial class App : Application
             });
 
             var editorViewModel = new Lazy<EditorViewModel>(() => new EditorViewModel(
-                new ClassicAdministrationEditorService(repositoryRoot, host),
+                new ClassicAdministrationEditorService(repositoryRoot, () => host.ActiveSessions
+                    .Where(session => session.WorldId.Equals("classic", StringComparison.OrdinalIgnoreCase))
+                    .Where(session => !string.IsNullOrWhiteSpace(session.CharacterId) &&
+                                      !string.IsNullOrWhiteSpace(session.CharacterName))
+                    .Select(session => new ClassicAdministrationCharacter(
+                        session.CharacterId,
+                        session.CharacterName,
+                        session.AccountId,
+                        0,
+                        "Active session"))
+                    .ToArray()),
                 customWorldEditorService));
 
             manager.Register(new LazyWorkspace("home", "Dashboard", () => new DashboardView { DataContext = dashboardViewModel }));

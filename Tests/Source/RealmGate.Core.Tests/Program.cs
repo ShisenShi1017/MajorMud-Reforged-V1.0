@@ -770,8 +770,19 @@ void ServerAutomationStateSmoke()
             characterState.GetProperty("RaceName").GetString() != character.RaceName ||
             characterState.GetProperty("ClassName").GetString() != character.ClassName ||
             characterState.GetProperty("Experience").GetInt64() != character.Experience ||
+            characterState.GetProperty("CurrentLevelExperience").GetInt64() > character.Experience ||
+            characterState.GetProperty("NextLevelExperience").GetInt64() <= character.Experience ||
+            characterState.GetProperty("NextLevelCharacterPointAward").GetInt32() <= 0 ||
+            characterState.GetProperty("CharacterPointsAvailable").GetInt32() < 0 ||
+            characterState.GetProperty("Lives").GetInt32() <= 0 ||
+            characterState.GetProperty("MaximumLives").GetInt32() < characterState.GetProperty("Lives").GetInt32() ||
+            characterState.GetProperty("ClassLevels").ValueKind != JsonValueKind.Object ||
+            characterState.GetProperty("ClassExperience").ValueKind != JsonValueKind.Object ||
             characterState.GetProperty("BaseStats").ValueKind != JsonValueKind.Object ||
-            characterState.GetProperty("Skills").ValueKind != JsonValueKind.Object)
+            characterState.GetProperty("Skills").ValueKind != JsonValueKind.Object ||
+            characterState.GetProperty("DerivedStats").ValueKind != JsonValueKind.Object ||
+            characterState.GetProperty("Resistances").ValueKind != JsonValueKind.Object ||
+            characterState.GetProperty("SavingThrows").ValueKind != JsonValueKind.Object)
             throw new InvalidOperationException("Character snapshot lost saved selected-world identity or statistics.");
         var itemId = RuntimeItemCatalog.Load(temporary, world.Definition.Id).Items
             .First(item => !string.IsNullOrWhiteSpace(item.Name)).Id;

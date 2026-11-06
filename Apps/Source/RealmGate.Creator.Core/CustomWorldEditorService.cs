@@ -1,5 +1,7 @@
 using System.Diagnostics;
 using System.IO;
+using System.Security.Cryptography;
+using System.Text;
 using System.Text.Json;
 using System.Text.Json.Nodes;
 using RealmGate.Compiler;
@@ -70,6 +72,48 @@ public sealed record CustomWorldShopInventoryEntry(
     int RegenTime,
     int RegenPercent);
 
+public sealed record CustomWorldNpcAttackEntry(
+    int SourceIndex,
+    int Slot,
+    int Type,
+    int MinimumDamage,
+    int MaximumDamage,
+    int SelectionPercent,
+    int Accuracy,
+    int HitSpellLegacyId,
+    int EnergyCost,
+    int HitMessageLegacyId,
+    int MissMessageLegacyId,
+    int DodgeMessageLegacyId,
+    string AttackVerb,
+    string MissVerb,
+    string WeaponName,
+    bool NativeEmptyMissArgumentsVerified);
+
+public sealed record CustomWorldNpcAbilityEntry(
+    int SourceIndex,
+    int AbilityId,
+    string Name,
+    int Value);
+
+public sealed record CustomWorldQuestStageEntry(
+    int StageIndex,
+    int TextblockId,
+    string TextblockRef,
+    string ScriptId,
+    string SourceScript,
+    int OperationCount,
+    string OperationSummary);
+
+public sealed record CustomWorldScriptOperationEntry(
+    int SourceIndex,
+    int Line,
+    int Sequence,
+    string Opcode,
+    string Arguments,
+    string OperationKind,
+    string Raw);
+
 public sealed record CustomWorldEditorSnapshot(
     CustomWorldEditorSettings Settings,
     IReadOnlyList<CustomWorldOverrideSummary> Overrides,
@@ -86,6 +130,33 @@ public sealed record CustomWorldBuildResult(
     int Objects,
     int Files,
     IReadOnlyList<string> Diagnostics);
+
+public sealed record CustomWorldPublishPreview(
+    string WorldId,
+    string TestRealmPath,
+    string LivePath,
+    string TestRealmFingerprint,
+    int AddedFiles,
+    int ChangedFiles,
+    int RemovedFiles,
+    IReadOnlyList<string> Added,
+    IReadOnlyList<string> Changed,
+    IReadOnlyList<string> Removed,
+    bool LiveWorldExists);
+
+public sealed record CustomWorldPublishResult(
+    string WorldId,
+    string TestRealmFingerprint,
+    string LivePath,
+    string? RollbackPath,
+    int PublishedFiles,
+    DateTimeOffset PublishedAtUtc);
+
+public sealed record CustomWorldRollbackResult(
+    string WorldId,
+    string RestoredFrom,
+    string DisplacedLivePath,
+    DateTimeOffset RestoredAtUtc);
 
 public sealed record CustomWorldReferenceHit(
     string Family,
@@ -246,6 +317,38 @@ public sealed class CustomWorldEditorService
             "conflicts", "events", "evidence_records", "guilds", "regions", "validation_rules", "world_overlays"
         ],
         StringComparer.OrdinalIgnoreCase);
+    private static readonly IReadOnlyDictionary<string, string> EditableNarrativeOpcodeKinds =
+        new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase)
+        {
+            ["checkability"] = "condition",
+            ["testability"] = "condition",
+            ["failability"] = "condition",
+            ["checkitem"] = "condition",
+            ["failitem"] = "condition",
+            ["minlevel"] = "condition",
+            ["maxlevel"] = "condition",
+            ["class"] = "condition",
+            ["goodaligned"] = "condition",
+            ["evilaligned"] = "condition",
+            ["price"] = "condition",
+            ["check"] = "condition",
+            ["giveability"] = "effect",
+            ["addability"] = "effect",
+            ["giveitem"] = "effect",
+            ["takeitem"] = "effect",
+            ["addexp"] = "effect",
+            ["addevil"] = "effect",
+            ["message"] = "presentation",
+            ["text"] = "branch",
+            ["cast"] = "effect",
+            ["summon"] = "effect",
+            ["teleport"] = "effect",
+            ["remoteaction"] = "effect",
+            ["random"] = "branch"
+        };
+
+    public IReadOnlyList<string> GetEditableNarrativeOpcodes() =>
+        EditableNarrativeOpcodeKinds.Keys.OrderBy(value => value, StringComparer.OrdinalIgnoreCase).ToArray();
 
     public CustomWorldEditorService(string? startDirectory = null)
     {
@@ -255,7 +358,10 @@ public sealed class CustomWorldEditorService
     public string ProjectRoot => _projectRoot;
     public string ConfigPath => Path.Combine(_projectRoot, "Config", "server.worlds.json");
     public string OverridePath => WorldOverrideEngine.ResolveOverridePath(_projectRoot, CustomWorldId);
-    public string GeneratedDataPath => Path.Combine(_projectRoot, "Data", CustomWorldId);
+    public string LiveDataPath => Path.Combine(_projectRoot, "Data", CustomWorldId);
+    public string TestRealmDataPath => Path.Combine(_projectRoot, "Data", "TestRealms", CustomWorldId);
+    public string GeneratedDataPath => TestRealmDataPath;
+    public string PublishingRoot => Path.Combine(_projectRoot, "Data", "Publishing", CustomWorldId);
     public string MapLayoutPath => Path.Combine(Path.GetDirectoryName(OverridePath)!, "map-layout.json");
 
     public void WarmOverrideCache()
@@ -524,31 +630,89 @@ public sealed class CustomWorldEditorService
         var query = search?.Trim() ?? string.Empty;
         if (query.Length == 0) return [];
         limit = Math.Clamp(limit, 1, 5000);
+
+        // Exact qualified IDs are the common navigation path. Resolve them before
+        // scanning record values so opening room.map1.2140 does not traverse the
+        // entire effective world.
+        foreach (var familyOption in GetEditableFamilies())
+        {
+            foreach (var (id, record) in EnumerateEffectiveSearchRecords(familyOption.Value))
+            {
+                if (!id.Equals(query, StringComparison.OrdinalIgnoreCase)) continue;
+                return [new CustomWorldGlobalSearchHit(
+                    familyOption.Value,
+                    id,
+                    ReadRecordName(record),
+                    "Exact ID")];
+            }
+        }
+
         var result = new List<CustomWorldGlobalSearchHit>();
         foreach (var familyOption in GetEditableFamilies())
         {
-            foreach (var summary in BrowseObjects(familyOption.Value, null, 10000))
+            foreach (var (id, record) in EnumerateEffectiveSearchRecords(familyOption.Value))
             {
                 if (result.Count >= limit) return result;
-                if (summary.Id.Contains(query, StringComparison.OrdinalIgnoreCase) || summary.Name.Contains(query, StringComparison.OrdinalIgnoreCase))
+                var name = ReadRecordName(record);
+                if (id.Contains(query, StringComparison.OrdinalIgnoreCase) ||
+                    name.Contains(query, StringComparison.OrdinalIgnoreCase))
                 {
-                    result.Add(new CustomWorldGlobalSearchHit(summary.Family, summary.Id, summary.Name, "Name / ID"));
+                    result.Add(new CustomWorldGlobalSearchHit(familyOption.Value, id, name, "Name / ID"));
                     continue;
                 }
 
-                try
-                {
-                    var effective = ReadEffectiveRecord(summary.Family, summary.Id);
-                    if (TryFindSearchMatch(effective, query, string.Empty, out var match))
-                        result.Add(new CustomWorldGlobalSearchHit(summary.Family, summary.Id, summary.Name, match));
-                }
-                catch
-                {
-                    // Search is a creator convenience tool. One malformed legacy record must not stop the scan.
-                }
+                if (TryFindSearchMatch(record, query, string.Empty, out var match))
+                    result.Add(new CustomWorldGlobalSearchHit(familyOption.Value, id, name, match));
             }
         }
         return result;
+    }
+
+    private IEnumerable<(string Id, JsonObject Record)> EnumerateEffectiveSearchRecords(string family)
+    {
+        var overrides = new Dictionary<string, JsonObject>(StringComparer.OrdinalIgnoreCase);
+        var root = ReadOverrideRoot(createIfMissing: true);
+        if (root["overrides"] is JsonArray entries)
+        {
+            foreach (var entry in entries.OfType<JsonObject>())
+            {
+                if (!string.Equals(entry["family"]?.GetValue<string>(), family, StringComparison.OrdinalIgnoreCase))
+                    continue;
+                var id = entry["target_id"]?.GetValue<string>()?.Trim() ?? string.Empty;
+                if (id.Length > 0) overrides[id] = entry;
+            }
+        }
+
+        var seen = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+        foreach (var baseRecord in GetFamily(family).Records)
+        {
+            var id = ReadRecordId(baseRecord);
+            if (id.Length == 0) continue;
+            seen.Add(id);
+            if (!overrides.TryGetValue(id, out var entry))
+            {
+                yield return (id, baseRecord);
+                continue;
+            }
+
+            var operation = entry["operation"]?.GetValue<string>()?.Trim().ToLowerInvariant() ?? "patch";
+            if (operation == "delete") continue;
+            var effective = (JsonObject)baseRecord.DeepClone();
+            if (entry["fields"] is JsonObject fields) MergeObject(effective, fields);
+            yield return (id, effective);
+        }
+
+        foreach (var pair in overrides)
+        {
+            if (seen.Contains(pair.Key)) continue;
+            var operation = pair.Value["operation"]?.GetValue<string>()?.Trim().ToLowerInvariant() ?? "patch";
+            if (operation == "delete") continue;
+            var effective = pair.Value["fields"] is JsonObject fields
+                ? (JsonObject)fields.DeepClone()
+                : new JsonObject();
+            if (ReadRecordId(effective).Length == 0) effective["id"] = pair.Key;
+            yield return (pair.Key, effective);
+        }
     }
 
     public int ExportCustomChanges(string path, string? family = null, IEnumerable<string>? targetIds = null)
@@ -2150,6 +2314,395 @@ public sealed class CustomWorldEditorService
         return true;
     }
 
+    public IReadOnlyList<CustomWorldNpcAttackEntry> LoadNpcAttacks(string npcId)
+    {
+        npcId = NormalizeRequired(npcId, "NPC ID");
+        var npc = ReadEffectiveRecord("npcs", npcId);
+        var attacks = npc["attacks"] as JsonArray ?? new JsonArray();
+        var publicAttacks = ReadPath(npc, "public_reference_0139.fields.attacks") as JsonArray;
+        var result = new List<CustomWorldNpcAttackEntry>();
+        var sourceIndex = 0;
+        foreach (var attack in attacks.OfType<JsonObject>())
+        {
+            var slot = ReadNodeInt(attack["slot"], sourceIndex + 1);
+            var publicAttack = publicAttacks?.OfType<JsonObject>().FirstOrDefault(candidate =>
+                    ReadNodeInt(candidate["slot"], 0) == slot)
+                ?? publicAttacks?.ElementAtOrDefault(sourceIndex) as JsonObject;
+            result.Add(new CustomWorldNpcAttackEntry(
+                sourceIndex,
+                slot,
+                ReadNodeInt(attack["type"], 0),
+                ReadNodeInt(attack["minimum_damage"], 0),
+                ReadNodeInt(attack["maximum_damage"], 0),
+                ReadNodeInt(attack["selection_percent"], 0),
+                ReadNodeInt(attack["accuracy"], 0),
+                ReadNodeInt(attack["hit_spell_legacy_id"], 0),
+                ReadNodeInt(attack["energy_cost"], 0),
+                ReadNodeInt(attack["hit_message_legacy_id"], 0),
+                ReadNodeInt(attack["miss_message_legacy_id"], 0),
+                ReadNodeInt(attack["dodge_message_legacy_id"], 0),
+                (publicAttack?["atk_verb3"]?.ToString() ?? attack["attack_verb3"]?.ToString() ?? string.Empty).Trim(),
+                (attack["miss_verb3"]?.ToString() ?? publicAttack?["miss_verb3"]?.ToString() ?? string.Empty).Trim(),
+                (attack["weapon_name"]?.ToString() ?? publicAttack?["weapon_name"]?.ToString() ?? string.Empty).Trim(),
+                ReadNodeBool(attack["native_empty_miss_arguments_verified"], false)));
+            sourceIndex++;
+        }
+        return result.OrderBy(entry => entry.Slot).ThenBy(entry => entry.SourceIndex).ToArray();
+    }
+
+    public void SaveNpcAttacks(string npcId, IEnumerable<CustomWorldNpcAttackEntry> entries)
+    {
+        npcId = NormalizeRequired(npcId, "NPC ID");
+        var rows = entries.OrderBy(entry => entry.Slot).ToArray();
+        if (rows.Any(entry => entry.Slot <= 0))
+            throw new InvalidOperationException("Every NPC attack needs a positive slot number.");
+        if (rows.GroupBy(entry => entry.Slot).Any(group => group.Count() > 1))
+            throw new InvalidOperationException("NPC attack slot numbers must be unique.");
+        if (rows.Any(entry => entry.SelectionPercent is < 0 or > 100))
+            throw new InvalidOperationException("NPC attack selection percentages must be between 0 and 100.");
+        if (rows.Any(entry => entry.EnergyCost < 0))
+            throw new InvalidOperationException("NPC attack energy costs cannot be negative.");
+
+        var effective = ReadEffectiveRecord("npcs", npcId);
+        var originalAttacks = (effective["attacks"] as JsonArray)?.OfType<JsonObject>().ToArray() ?? [];
+        var originalPublicAttacks = (ReadPath(effective, "public_reference_0139.fields.attacks") as JsonArray)?
+            .OfType<JsonObject>().ToArray() ?? [];
+        var attacks = new JsonArray();
+        var publicAttacks = new JsonArray();
+        foreach (var entry in rows)
+        {
+            var attack = entry.SourceIndex >= 0 && entry.SourceIndex < originalAttacks.Length
+                ? (JsonObject)originalAttacks[entry.SourceIndex].DeepClone()
+                : new JsonObject();
+            attack["slot"] = entry.Slot;
+            attack["type"] = entry.Type;
+            attack["minimum_damage"] = entry.MinimumDamage;
+            attack["maximum_damage"] = entry.MaximumDamage;
+            attack["selection_percent"] = entry.SelectionPercent;
+            attack["accuracy"] = entry.Accuracy;
+            attack["hit_spell_legacy_id"] = entry.HitSpellLegacyId;
+            attack["energy_cost"] = entry.EnergyCost;
+            attack["hit_message_legacy_id"] = entry.HitMessageLegacyId;
+            attack["miss_message_legacy_id"] = entry.MissMessageLegacyId;
+            attack["dodge_message_legacy_id"] = entry.DodgeMessageLegacyId;
+            attack["miss_verb3"] = entry.MissVerb?.Trim() ?? string.Empty;
+            attack["weapon_name"] = entry.WeaponName?.Trim() ?? string.Empty;
+            attack["native_empty_miss_arguments_verified"] = entry.NativeEmptyMissArgumentsVerified;
+            attacks.Add(attack);
+
+            var publicAttack = entry.SourceIndex >= 0 && entry.SourceIndex < originalPublicAttacks.Length
+                ? (JsonObject)originalPublicAttacks[entry.SourceIndex].DeepClone()
+                : new JsonObject();
+            publicAttack["slot"] = entry.Slot;
+            publicAttack["type"] = entry.Type;
+            publicAttack["minimum_damage"] = entry.MinimumDamage;
+            publicAttack["maximum_damage"] = entry.MaximumDamage;
+            publicAttack["selection_percent"] = entry.SelectionPercent;
+            publicAttack["accuracy"] = entry.Accuracy;
+            publicAttack["hit_spell_legacy_id"] = entry.HitSpellLegacyId;
+            publicAttack["energy_cost"] = entry.EnergyCost;
+            publicAttack["hit_message_legacy_id"] = entry.HitMessageLegacyId;
+            publicAttack["miss_message_legacy_id"] = entry.MissMessageLegacyId;
+            publicAttack["dodge_message_legacy_id"] = entry.DodgeMessageLegacyId;
+            publicAttack["atk_verb3"] = entry.AttackVerb?.Trim() ?? string.Empty;
+            publicAttack["miss_verb3"] = entry.MissVerb?.Trim() ?? string.Empty;
+            publicAttack["weapon_name"] = entry.WeaponName?.Trim() ?? string.Empty;
+            publicAttacks.Add(publicAttack);
+        }
+
+        var (fields, operation) = BeginNpcCollectionOverride(npcId);
+        fields["attacks"] = attacks;
+        SetPath(fields, "combat.attack_count", JsonValue.Create(rows.Length));
+        SetPath(fields, "public_reference_0139.fields.attacks", publicAttacks);
+        SaveOverride("npcs", npcId, operation, fields.ToJsonString(JsonOptions));
+    }
+
+    public IReadOnlyList<CustomWorldNpcAbilityEntry> LoadNpcAbilities(string npcId)
+    {
+        npcId = NormalizeRequired(npcId, "NPC ID");
+        var npc = ReadEffectiveRecord("npcs", npcId);
+        var abilities = npc["abilities"] as JsonArray;
+        if (abilities is null || abilities.Count == 0)
+            abilities = ReadPath(npc, "public_reference_0139.fields.abilities_named") as JsonArray ?? new JsonArray();
+
+        var abilityNames = BuildEffectiveRecordIndex("abilities").Values
+            .Select(record => (Id: ReadNodeInt(record["legacy_id"], 0), Name: ReadRecordName(record)))
+            .Where(entry => entry.Id != 0)
+            .GroupBy(entry => entry.Id)
+            .ToDictionary(group => group.Key, group => group.First().Name);
+        return abilities.OfType<JsonObject>().Select((ability, index) =>
+        {
+            var abilityId = ReadNodeInt(ability["ability_id"], 0);
+            var name = (ability["ability"]?.ToString() ?? ability["name"]?.ToString() ?? string.Empty).Trim();
+            if (name.Length == 0 && abilityNames.TryGetValue(abilityId, out var resolved)) name = resolved;
+            return new CustomWorldNpcAbilityEntry(index, abilityId, name, ReadNodeInt(ability["value"], 0));
+        }).ToArray();
+    }
+
+    public void SaveNpcAbilities(string npcId, IEnumerable<CustomWorldNpcAbilityEntry> entries)
+    {
+        npcId = NormalizeRequired(npcId, "NPC ID");
+        var rows = entries.ToArray();
+        if (rows.Any(entry => entry.AbilityId == 0))
+            throw new InvalidOperationException("Every NPC ability needs a nonzero ability number.");
+
+        var effective = ReadEffectiveRecord("npcs", npcId);
+        var original = (effective["abilities"] as JsonArray)?.OfType<JsonObject>().ToArray() ?? [];
+        var originalPublic = (ReadPath(effective, "public_reference_0139.fields.abilities_named") as JsonArray)?
+            .OfType<JsonObject>().ToArray() ?? [];
+        var abilities = new JsonArray();
+        var publicAbilities = new JsonArray();
+        foreach (var entry in rows)
+        {
+            var ability = entry.SourceIndex >= 0 && entry.SourceIndex < original.Length
+                ? (JsonObject)original[entry.SourceIndex].DeepClone()
+                : new JsonObject();
+            ability["ability_id"] = entry.AbilityId;
+            ability["ability"] = entry.Name?.Trim() ?? string.Empty;
+            ability["value"] = entry.Value;
+            abilities.Add(ability);
+
+            var publicAbility = entry.SourceIndex >= 0 && entry.SourceIndex < originalPublic.Length
+                ? (JsonObject)originalPublic[entry.SourceIndex].DeepClone()
+                : new JsonObject();
+            publicAbility["ability_id"] = entry.AbilityId;
+            publicAbility["name"] = entry.Name?.Trim() ?? string.Empty;
+            publicAbility["value"] = entry.Value;
+            publicAbilities.Add(publicAbility);
+        }
+
+        var (fields, operation) = BeginNpcCollectionOverride(npcId);
+        fields["abilities"] = abilities;
+        SetPath(fields, "public_reference_0139.fields.abilities_named", publicAbilities);
+        SaveOverride("npcs", npcId, operation, fields.ToJsonString(JsonOptions));
+    }
+
+    private (JsonObject Fields, string Operation) BeginNpcCollectionOverride(string npcId)
+    {
+        var existsInBase = GetFamily("npcs").Records.Any(record =>
+            ReadRecordId(record).Equals(npcId, StringComparison.OrdinalIgnoreCase));
+        var existingOverride = FindOverride("npcs", npcId);
+        var fields = existingOverride?["fields"] is JsonObject prior
+            ? (JsonObject)prior.DeepClone()
+            : new JsonObject();
+        return (fields, existsInBase ? "patch" : "upsert");
+    }
+
+    public IReadOnlyList<CustomWorldQuestStageEntry> LoadQuestStages(string questId)
+    {
+        questId = NormalizeRequired(questId, "Quest ID");
+        var quest = ReadEffectiveRecord("quests", questId);
+        var stages = ReadPath(quest, "script_flow.stages") as JsonArray ?? quest["stages"] as JsonArray ?? new JsonArray();
+        var scripts = BuildEffectiveRecordIndex("scripts").Values
+            .Where(script => (ReadPath(script, "relationships.quest")?.ToString() ?? string.Empty)
+                .Equals(questId, StringComparison.OrdinalIgnoreCase))
+            .ToArray();
+
+        var result = new List<CustomWorldQuestStageEntry>();
+        var index = 0;
+        foreach (var stage in stages.OfType<JsonObject>())
+        {
+            index++;
+            var textblockId = ReadNodeInt(stage["textblock_id"], 0);
+            var textblockRef = (stage["textblock_ref"]?.ToString() ?? string.Empty).Trim();
+            if (textblockRef.Length == 0 && textblockId > 0) textblockRef = $"textblock.{textblockId}";
+            var linkedScript = scripts.FirstOrDefault(script =>
+            {
+                var candidateRef = (ReadPath(script, "relationships.textblock")?.ToString() ?? string.Empty).Trim();
+                return candidateRef.Equals(textblockRef, StringComparison.OrdinalIgnoreCase) ||
+                       (textblockId > 0 && candidateRef.Equals($"textblock.{textblockId}", StringComparison.OrdinalIgnoreCase));
+            });
+            var operations = linkedScript?["operations"] as JsonArray ?? stage["operations"] as JsonArray ?? new JsonArray();
+            var opcodes = operations.OfType<JsonObject>()
+                .Select(operation => (operation["opcode"]?.ToString() ?? string.Empty).Trim())
+                .Where(opcode => opcode.Length > 0)
+                .GroupBy(opcode => opcode, StringComparer.OrdinalIgnoreCase)
+                .OrderBy(group => group.Key, StringComparer.OrdinalIgnoreCase)
+                .Select(group => group.Count() == 1 ? group.Key : $"{group.Key} x{group.Count()}")
+                .ToArray();
+            result.Add(new CustomWorldQuestStageEntry(
+                linkedScript is null ? index : ReadNodeInt(ReadPath(linkedScript, "relationships.stage_index"), index),
+                textblockId,
+                textblockRef,
+                linkedScript is null ? string.Empty : ReadRecordId(linkedScript),
+                (linkedScript?["source_script"]?.ToString() ?? stage["script"]?.ToString() ?? string.Empty).TrimEnd(),
+                operations.Count,
+                string.Join(", ", opcodes)));
+        }
+        return result.OrderBy(stage => stage.StageIndex).ThenBy(stage => stage.TextblockId).ToArray();
+    }
+
+    public IReadOnlyList<CustomWorldScriptOperationEntry> LoadScriptOperations(string scriptId)
+    {
+        scriptId = NormalizeRequired(scriptId, "Script ID");
+        var script = ReadEffectiveRecord("scripts", scriptId);
+        var operations = script["operations"] as JsonArray ?? new JsonArray();
+        return operations.OfType<JsonObject>().Select((operation, index) =>
+        {
+            var arguments = operation["arguments"] as JsonArray;
+            var argumentText = arguments is null
+                ? string.Empty
+                : string.Join(" ", arguments.Select(argument => argument?.ToString() ?? string.Empty));
+            return new CustomWorldScriptOperationEntry(
+                index,
+                ReadNodeInt(operation["line"], 1),
+                ReadNodeInt(operation["sequence"], index + 1),
+                (operation["opcode"]?.ToString() ?? string.Empty).Trim(),
+                argumentText,
+                (operation["operation_kind"]?.ToString() ?? string.Empty).Trim(),
+                (operation["raw"]?.ToString() ?? string.Empty).Trim());
+        }).OrderBy(operation => operation.Line).ThenBy(operation => operation.Sequence).ToArray();
+    }
+
+    public void SaveScriptOperations(string scriptId, IEnumerable<CustomWorldScriptOperationEntry> entries)
+    {
+        scriptId = NormalizeRequired(scriptId, "Script ID");
+        var rows = entries.OrderBy(entry => entry.Line).ThenBy(entry => entry.Sequence).ToArray();
+        if (rows.Count(entry => entry.Line <= 0 || entry.Sequence <= 0) > 0)
+            throw new InvalidOperationException("Every script operation needs a positive line and sequence number.");
+        if (rows.GroupBy(entry => (entry.Line, entry.Sequence)).Any(group => group.Count() > 1))
+            throw new InvalidOperationException("Script line/sequence pairs must be unique.");
+
+        var effective = ReadEffectiveRecord("scripts", scriptId);
+        var original = (effective["operations"] as JsonArray)?.OfType<JsonObject>().ToArray() ?? [];
+        var operations = new JsonArray();
+        foreach (var entry in rows)
+        {
+            var opcode = (entry.Opcode ?? string.Empty).Trim().ToLowerInvariant();
+            if (!EditableNarrativeOpcodeKinds.TryGetValue(opcode, out var operationKind))
+                throw new InvalidOperationException($"Opcode '{entry.Opcode}' is not bound to the current quest-dialogue runtime.");
+            if (opcode.Equals("random", StringComparison.OrdinalIgnoreCase) &&
+                (entry.SourceIndex < 0 || entry.SourceIndex >= original.Length ||
+                 !(original[entry.SourceIndex]["opcode"]?.ToString() ?? string.Empty).Equals("random", StringComparison.OrdinalIgnoreCase)))
+                throw new InvalidOperationException("New random-table operations require a dedicated random-table editor and cannot be created here.");
+
+            var operation = entry.SourceIndex >= 0 && entry.SourceIndex < original.Length
+                ? (JsonObject)original[entry.SourceIndex].DeepClone()
+                : new JsonObject();
+            RemoveTypedOperationFields(operation);
+            var arguments = SplitOperationArguments(entry.Arguments);
+            operation["line"] = entry.Line;
+            operation["sequence"] = entry.Sequence;
+            operation["opcode"] = opcode;
+            operation["arguments"] = new JsonArray(arguments.Select(value => (JsonNode?)JsonValue.Create(value)).ToArray());
+            operation["operation_kind"] = operationKind;
+            operation["status"] = "host_authored_custom";
+            operation["numeric_arguments"] = new JsonArray(arguments
+                .Where(value => int.TryParse(value, out _))
+                .Select(value => (JsonNode?)JsonValue.Create(int.Parse(value, System.Globalization.CultureInfo.InvariantCulture))).ToArray());
+            operation["raw"] = string.Join(' ', new[] { opcode }.Concat(arguments));
+            ApplyTypedOperationFields(operation, opcode, arguments);
+            operations.Add(operation);
+        }
+
+        var clauses = BuildCustomScriptClauses(scriptId, operations);
+        var sourceScript = string.Join("\n", operations.OfType<JsonObject>()
+            .GroupBy(operation => ReadNodeInt(operation["line"], 1))
+            .OrderBy(group => group.Key)
+            .Select(group => string.Join(':', group.OrderBy(operation => ReadNodeInt(operation["sequence"], 1))
+                .Select(operation => operation["raw"]?.ToString() ?? string.Empty)))) + (operations.Count > 0 ? "\n" : string.Empty);
+
+        var existsInBase = GetFamily("scripts").Records.Any(record =>
+            ReadRecordId(record).Equals(scriptId, StringComparison.OrdinalIgnoreCase));
+        var existingOverride = FindOverride("scripts", scriptId);
+        var fields = existingOverride?["fields"] is JsonObject prior
+            ? (JsonObject)prior.DeepClone()
+            : new JsonObject();
+        fields["operations"] = operations;
+        fields["compiled_clauses_0200"] = clauses;
+        fields["source_script"] = sourceScript;
+        SaveOverride("scripts", scriptId, existsInBase ? "patch" : "upsert", fields.ToJsonString(JsonOptions));
+    }
+
+    private static string[] SplitOperationArguments(string? text) =>
+        (text ?? string.Empty).Split((char[]?)null, StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries);
+
+    private static void RemoveTypedOperationFields(JsonObject operation)
+    {
+        foreach (var key in new[]
+        {
+            "ability_id", "ability_ref", "ability_value", "item_id", "item_ref",
+            "target_textblock_id", "target_textblock_ref", "spell_id", "spell_ref",
+            "npc_id", "npc_ref", "room_number", "map_number", "room_ref", "amount"
+        }) operation.Remove(key);
+    }
+
+    private static void ApplyTypedOperationFields(JsonObject operation, string opcode, IReadOnlyList<string> arguments)
+    {
+        int IntAt(int index) => index < arguments.Count && int.TryParse(arguments[index], out var value) ? value : 0;
+        var first = IntAt(0);
+        var second = IntAt(1);
+        if (opcode is "checkability" or "testability" or "failability" or "giveability" or "addability")
+        {
+            operation["ability_id"] = first;
+            operation["ability_ref"] = $"ability.{first}";
+            if (arguments.Count > 1) operation["ability_value"] = second;
+        }
+        if (opcode is "checkitem" or "failitem" or "giveitem" or "takeitem")
+        {
+            operation["item_id"] = first;
+            operation["item_ref"] = $"item.{first}";
+        }
+        if (opcode is "message" or "text")
+        {
+            operation["target_textblock_id"] = first;
+            operation["target_textblock_ref"] = $"textblock.{first}";
+        }
+        if (opcode == "cast")
+        {
+            operation["spell_id"] = first;
+            operation["spell_ref"] = $"spell.{first}";
+        }
+        if (opcode == "summon")
+        {
+            operation["npc_id"] = first;
+            operation["npc_ref"] = $"npc.{first}";
+        }
+        if (opcode == "teleport")
+        {
+            operation["room_number"] = first;
+            operation["map_number"] = second;
+            operation["room_ref"] = $"room.map{second}.{first}";
+        }
+        if (opcode is "price" or "addexp" or "addevil") operation["amount"] = first;
+    }
+
+    private static JsonArray BuildCustomScriptClauses(string scriptId, JsonArray operations)
+    {
+        var clauses = new JsonArray();
+        foreach (var group in operations.OfType<JsonObject>()
+                     .GroupBy(operation => ReadNodeInt(operation["line"], 1))
+                     .OrderBy(group => group.Key))
+        {
+            var ordered = group.OrderBy(operation => ReadNodeInt(operation["sequence"], 1)).ToArray();
+            JsonObject Reference(JsonObject operation) => new()
+            {
+                ["line"] = ReadNodeInt(operation["line"], 1),
+                ["sequence"] = ReadNodeInt(operation["sequence"], 1),
+                ["opcode"] = operation["opcode"]?.ToString() ?? string.Empty,
+                ["raw"] = operation["raw"]?.ToString() ?? string.Empty,
+                ["operation_kind"] = operation["operation_kind"]?.ToString() ?? string.Empty
+            };
+            var conditions = ordered.Where(operation =>
+                (operation["operation_kind"]?.ToString() ?? string.Empty).Equals("condition", StringComparison.OrdinalIgnoreCase)).ToArray();
+            var steps = ordered.Except(conditions).ToArray();
+            clauses.Add(new JsonObject
+            {
+                ["clause_id"] = $"{scriptId}.line{group.Key}",
+                ["source_line"] = group.Key,
+                ["evaluation_model"] = "atomic_condition_preflight_then_source_order_execution",
+                ["condition_combiner"] = "all",
+                ["conditions"] = new JsonArray(conditions.Select(operation => (JsonNode?)Reference(operation)).ToArray()),
+                ["execution_steps"] = new JsonArray(steps.Select(operation => (JsonNode?)Reference(operation)).ToArray()),
+                ["state_mutating"] = steps.Any(operation =>
+                    (operation["operation_kind"]?.ToString() ?? string.Empty).Equals("effect", StringComparison.OrdinalIgnoreCase)),
+                ["transaction_policy"] = "no_effects_before_all_conditions_pass",
+                ["failure_policy"] = "execute_no_effects_and_select_native_failure_or_fallback_response"
+            });
+        }
+        return clauses;
+    }
+
     public IReadOnlyList<CustomWorldRoomMapLink> LoadRoomMapLinks(string roomId)
     {
         roomId = NormalizeRequired(roomId, "Room ID");
@@ -2306,7 +2859,10 @@ public sealed class CustomWorldEditorService
         SaveOverride("rooms", roomId, roomExistsInBase ? "patch" : "upsert", roomFields.ToJsonString(JsonOptions));
     }
 
-    public CustomWorldVisualMapSnapshot LoadVisualMap(string? focusRoomId = null, int? requestedMapNumber = null)
+    public CustomWorldVisualMapSnapshot LoadVisualMap(
+        string? focusRoomId = null,
+        int? requestedMapNumber = null,
+        bool includeSavedLayout = true)
     {
         // Build each effective family once. A full map can contain thousands of rooms/exits, so
         // repeatedly reopening overrides for every record would make the editor feel frozen.
@@ -2355,7 +2911,9 @@ public sealed class CustomWorldEditorService
             edges.Add(new CustomWorldVisualMapEdge(exitId, fromRoom, toRoom, direction));
         }
 
-        var saved = ReadVisualMapLayout(selectedMap);
+        var saved = includeSavedLayout
+            ? ReadVisualMapLayout(selectedMap)
+            : new Dictionary<string, (double X, double Y)>(StringComparer.OrdinalIgnoreCase);
         var positions = AutoArrangeVisualMap(selectedRooms.Select(row => row.Id), edges, focusRoomId, saved);
         var rooms = selectedRooms.Select(row =>
         {
@@ -2637,7 +3195,8 @@ public sealed class CustomWorldEditorService
         var result = new LibrariumDataWriter().Compile(new LibrariumCompilerOptions(
             _projectRoot,
             CustomWorldId,
-            Clean: true));
+            Clean: true,
+            OutputRootOverride: TestRealmDataPath));
 
         var diagnostics = result.Diagnostics
             .Select(diagnostic => $"{diagnostic.Severity} {diagnostic.Code}: {diagnostic.Message}")
@@ -2649,7 +3208,7 @@ public sealed class CustomWorldEditorService
         }
 
         if (!IsGeneratedDataReady())
-            throw new IOException($"Custom1 compiler completed but required generated files were not found in {GeneratedDataPath}.");
+            throw new IOException($"Custom1 Test Realm compiler completed but required generated files were not found in {GeneratedDataPath}.");
 
         return new CustomWorldBuildResult(
             result.WorldId,
@@ -2658,6 +3217,167 @@ public sealed class CustomWorldEditorService
             result.ObjectsCompiled,
             result.FilesWritten,
             diagnostics);
+    }
+
+    public CustomWorldPublishPreview PreviewTestRealmPublish()
+    {
+        if (!IsGeneratedDataReady(TestRealmDataPath))
+            throw new InvalidOperationException("Build and validate the Custom1 Test Realm before publishing.");
+        var projection = new GeneratedProjectionValidator().ValidateOutputRoot(TestRealmDataPath, CustomWorldId);
+        if (!projection.Success)
+            throw new InvalidOperationException(
+                "The Test Realm generated projection is not publishable. " + string.Join(" | ", projection.Errors.Take(5)));
+
+        var testFiles = IndexFiles(TestRealmDataPath);
+        var liveFiles = Directory.Exists(LiveDataPath)
+            ? IndexFiles(LiveDataPath)
+            : new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase);
+        var added = testFiles.Keys.Except(liveFiles.Keys, StringComparer.OrdinalIgnoreCase)
+            .OrderBy(value => value, StringComparer.OrdinalIgnoreCase).ToArray();
+        var removed = liveFiles.Keys.Except(testFiles.Keys, StringComparer.OrdinalIgnoreCase)
+            .OrderBy(value => value, StringComparer.OrdinalIgnoreCase).ToArray();
+        var changed = testFiles.Keys.Intersect(liveFiles.Keys, StringComparer.OrdinalIgnoreCase)
+            .Where(path => !testFiles[path].Equals(liveFiles[path], StringComparison.OrdinalIgnoreCase))
+            .OrderBy(value => value, StringComparer.OrdinalIgnoreCase).ToArray();
+
+        return new CustomWorldPublishPreview(
+            CustomWorldId,
+            TestRealmDataPath,
+            LiveDataPath,
+            ComputeDirectoryFingerprint(testFiles),
+            added.Length,
+            changed.Length,
+            removed.Length,
+            added,
+            changed,
+            removed,
+            Directory.Exists(LiveDataPath));
+    }
+
+    public CustomWorldPublishResult PublishTestRealm(string expectedFingerprint, bool acknowledged)
+    {
+        if (!acknowledged)
+            throw new InvalidOperationException("Publishing requires explicit acknowledgement of the reviewed Test Realm diff.");
+        var preview = PreviewTestRealmPublish();
+        if (!preview.TestRealmFingerprint.Equals(expectedFingerprint, StringComparison.OrdinalIgnoreCase))
+            throw new InvalidOperationException("The Test Realm changed after preview. Preview the publish again before continuing.");
+
+        var now = DateTimeOffset.UtcNow;
+        var stamp = now.ToString("yyyyMMdd-HHmmssfff");
+        var stagingRoot = Path.Combine(PublishingRoot, "Staging", $"{stamp}-{Guid.NewGuid():N}");
+        var backupRoot = Path.Combine(PublishingRoot, "Backups");
+        var rollbackPath = preview.LiveWorldExists
+            ? Path.Combine(backupRoot, $"{stamp}-{preview.TestRealmFingerprint[..12]}")
+            : null;
+        Directory.CreateDirectory(Path.GetDirectoryName(stagingRoot)!);
+        CopyDirectory(TestRealmDataPath, stagingRoot);
+        var stagedFingerprint = ComputeDirectoryFingerprint(IndexFiles(stagingRoot));
+        if (!stagedFingerprint.Equals(expectedFingerprint, StringComparison.OrdinalIgnoreCase))
+            throw new InvalidOperationException("The Test Realm changed while staging. Live Custom1 was not modified; preview again before publishing.");
+
+        try
+        {
+            if (rollbackPath is not null)
+            {
+                Directory.CreateDirectory(backupRoot);
+                Directory.Move(LiveDataPath, rollbackPath);
+            }
+            Directory.CreateDirectory(Path.GetDirectoryName(LiveDataPath)!);
+            Directory.Move(stagingRoot, LiveDataPath);
+        }
+        catch
+        {
+            if (!Directory.Exists(LiveDataPath) && rollbackPath is not null && Directory.Exists(rollbackPath))
+                Directory.Move(rollbackPath, LiveDataPath);
+            throw;
+        }
+
+        var result = new CustomWorldPublishResult(
+            CustomWorldId,
+            preview.TestRealmFingerprint,
+            LiveDataPath,
+            rollbackPath,
+            Directory.EnumerateFiles(LiveDataPath, "*", SearchOption.AllDirectories).Count(),
+            now);
+        AppendPublishAudit("publish", result.TestRealmFingerprint, rollbackPath, now);
+        return result;
+    }
+
+    public CustomWorldRollbackResult RollbackLatestPublish(bool acknowledged)
+    {
+        if (!acknowledged)
+            throw new InvalidOperationException("Rollback requires explicit acknowledgement.");
+        var backupRoot = Path.Combine(PublishingRoot, "Backups");
+        var backup = Directory.Exists(backupRoot)
+            ? Directory.EnumerateDirectories(backupRoot).OrderByDescending(path => path, StringComparer.OrdinalIgnoreCase).FirstOrDefault()
+            : null;
+        if (backup is null)
+            throw new InvalidOperationException("No Custom1 publish rollback snapshot is available.");
+
+        var now = DateTimeOffset.UtcNow;
+        var displacedRoot = Path.Combine(PublishingRoot, "DisplacedLive");
+        var displaced = Path.Combine(displacedRoot, now.ToString("yyyyMMdd-HHmmssfff"));
+        Directory.CreateDirectory(displacedRoot);
+        if (Directory.Exists(LiveDataPath)) Directory.Move(LiveDataPath, displaced);
+        try
+        {
+            Directory.Move(backup, LiveDataPath);
+        }
+        catch
+        {
+            if (!Directory.Exists(LiveDataPath) && Directory.Exists(displaced)) Directory.Move(displaced, LiveDataPath);
+            throw;
+        }
+
+        AppendPublishAudit("rollback", string.Empty, backup, now);
+        return new CustomWorldRollbackResult(CustomWorldId, backup, displaced, now);
+    }
+
+    private static Dictionary<string, string> IndexFiles(string root)
+    {
+        var result = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase);
+        foreach (var path in Directory.EnumerateFiles(root, "*", SearchOption.AllDirectories))
+        {
+            var relative = Path.GetRelativePath(root, path).Replace('\\', '/');
+            using var stream = File.OpenRead(path);
+            result[relative] = Convert.ToHexString(SHA256.HashData(stream)).ToLowerInvariant();
+        }
+        return result;
+    }
+
+    private static string ComputeDirectoryFingerprint(IReadOnlyDictionary<string, string> files)
+    {
+        var text = string.Join('\n', files.OrderBy(pair => pair.Key, StringComparer.OrdinalIgnoreCase)
+            .Select(pair => $"{pair.Key}\t{pair.Value}"));
+        return Convert.ToHexString(SHA256.HashData(Encoding.UTF8.GetBytes(text))).ToLowerInvariant();
+    }
+
+    private static void CopyDirectory(string source, string destination)
+    {
+        Directory.CreateDirectory(destination);
+        foreach (var directory in Directory.EnumerateDirectories(source, "*", SearchOption.AllDirectories))
+            Directory.CreateDirectory(Path.Combine(destination, Path.GetRelativePath(source, directory)));
+        foreach (var file in Directory.EnumerateFiles(source, "*", SearchOption.AllDirectories))
+        {
+            var target = Path.Combine(destination, Path.GetRelativePath(source, file));
+            Directory.CreateDirectory(Path.GetDirectoryName(target)!);
+            File.Copy(file, target, overwrite: false);
+        }
+    }
+
+    private void AppendPublishAudit(string action, string fingerprint, string? snapshotPath, DateTimeOffset timestamp)
+    {
+        var auditRoot = Path.Combine(PublishingRoot, "Audit");
+        Directory.CreateDirectory(auditRoot);
+        var row = new JsonObject
+        {
+            ["timestamp_utc"] = timestamp.ToString("O"),
+            ["action"] = action,
+            ["world_id"] = CustomWorldId,
+            ["test_realm_fingerprint"] = fingerprint,
+            ["snapshot_path"] = snapshotPath is null ? null : Path.GetRelativePath(_projectRoot, snapshotPath).Replace('\\', '/')
+        };
+        File.AppendAllText(Path.Combine(auditRoot, "publish_audit.jsonl"), row.ToJsonString() + Environment.NewLine);
     }
 
     private void EnsureCustomWorldConfigured()
@@ -4021,12 +4741,16 @@ var referenceFamily = InferReferenceFamilyFromPath(path);
         }
     }
 
-    private bool IsGeneratedDataReady() =>
-        File.Exists(Path.Combine(GeneratedDataPath, "rooms.json")) &&
-        File.Exists(Path.Combine(GeneratedDataPath, "exits.json")) &&
-        File.Exists(Path.Combine(GeneratedDataPath, "npcs.json")) &&
-        File.Exists(Path.Combine(GeneratedDataPath, "spawns.json")) &&
-        File.Exists(Path.Combine(GeneratedDataPath, "world_manifest.json"));
+    private bool IsGeneratedDataReady() => IsGeneratedDataReady(GeneratedDataPath);
+
+    private static bool IsGeneratedDataReady(string path) =>
+        File.Exists(Path.Combine(path, "rooms.json")) &&
+        File.Exists(Path.Combine(path, "exits.json")) &&
+        File.Exists(Path.Combine(path, "npcs.json")) &&
+        File.Exists(Path.Combine(path, "spawns.json")) &&
+        File.Exists(Path.Combine(path, "world_manifest.json")) &&
+        File.Exists(Path.Combine(path, "compile_manifest.json")) &&
+        File.Exists(Path.Combine(path, "navigation_graph.json"));
 
     private static JsonObject CreateOverrideRoot() => new()
     {

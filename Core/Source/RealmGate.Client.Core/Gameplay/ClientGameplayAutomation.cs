@@ -2,6 +2,53 @@ using System.Text.Json;
 
 namespace RealmGate.Client.Gameplay;
 
+public sealed class ClientGameplayAutomationRuntime
+{
+    private readonly Dictionary<string, DateTimeOffset> _lastActions = new(StringComparer.OrdinalIgnoreCase);
+    private readonly HashSet<string> _openingActions = new(StringComparer.OrdinalIgnoreCase);
+    private string _roomId = string.Empty;
+
+    public string AppliedEquipmentSetId { get; private set; } = string.Empty;
+
+    public void ObserveRoom(string roomId)
+    {
+        var normalized = roomId?.Trim() ?? string.Empty;
+        if (_roomId.Equals(normalized, StringComparison.OrdinalIgnoreCase)) return;
+        _roomId = normalized;
+        AppliedEquipmentSetId = string.Empty;
+        _lastActions.Clear();
+        _openingActions.Clear();
+    }
+
+    public bool IsReady(string actionId, int cooldownSeconds, DateTimeOffset now) =>
+        !_lastActions.TryGetValue(actionId, out var last) ||
+        now - last >= TimeSpan.FromSeconds(Math.Clamp(cooldownSeconds, 1, 3600));
+
+    public bool OpeningActionWasSent(string actionId) => _openingActions.Contains(actionId);
+
+    public void MarkExecuted(ClientGameplayActionPlan plan, DateTimeOffset now, string roomId)
+    {
+        ObserveRoom(roomId);
+        if (plan.Kind == ClientGameplayActionKind.EquipSet)
+        {
+            AppliedEquipmentSetId = plan.EquipmentSetId.Trim();
+            return;
+        }
+        if (string.IsNullOrWhiteSpace(plan.ActionId)) return;
+        _lastActions[plan.ActionId] = now;
+        if (plan.Kind == ClientGameplayActionKind.CombatRule)
+            _openingActions.Add(plan.ActionId);
+    }
+
+    public void Reset()
+    {
+        _roomId = string.Empty;
+        AppliedEquipmentSetId = string.Empty;
+        _lastActions.Clear();
+        _openingActions.Clear();
+    }
+}
+
 public static class ClientGameplayAutomationStateDecoder
 {
     public const int MaximumPayloadCharacters = 2 * 1024 * 1024;
@@ -110,10 +157,17 @@ public static class ClientGameplayAutomationPlanner
                 if (buff.OnlyOutOfCombat && state.InCombat || state.ManaPercent < buff.MinimumManaPercent) continue;
                 var match = string.IsNullOrWhiteSpace(buff.EffectName) ? buff.Name : buff.EffectName;
                 if (string.IsNullOrWhiteSpace(match)) continue;
-                if (state.ActiveEffects.Any(effect => effect.Name.Equals(match, StringComparison.OrdinalIgnoreCase) &&
-                    (effect.ExpiresAtUtc is null || effect.ExpiresAtUtc > now))) continue;
+                var refreshLead = TimeSpan.FromSeconds(Math.Clamp(buff.RefreshBeforeExpirySeconds, 0, 3600));
+                var active = state.ActiveEffects.FirstOrDefault(effect =>
+                    effect.Name.Equals(match, StringComparison.OrdinalIgnoreCase) &&
+                    (effect.ExpiresAtUtc is null || effect.ExpiresAtUtc > now));
+                if (active is not null &&
+                    (active.ExpiresAtUtc is null || active.ExpiresAtUtc - now > refreshLead)) continue;
+                var reason = active?.ExpiresAtUtc is { } expiry
+                    ? $"Configured effect '{match}' expires in {Math.Max(0, (int)(expiry - now).TotalSeconds)} second(s)."
+                    : $"Configured effect '{match}' is not active.";
                 var plan = Action(ClientGameplayActionKind.MaintainBuff, buff.Command,
-                    $"Configured effect '{match}' is not active.", state, options.RequireLearnedSpellForCastCommands);
+                    reason, state, options.RequireLearnedSpellForCastCommands);
                 if (plan.HasAction) return plan;
             }
         }
@@ -133,7 +187,8 @@ public static class ClientGameplayAutomationPlanner
     public static ClientGameplayActionPlan PlanCombat(
         ClientGameplayAutomationSnapshot state,
         ClientGameplayAutomationProfile profile,
-        DateTimeOffset now)
+        DateTimeOffset now,
+        ClientGameplayAutomationRuntime? runtime = null)
     {
         ArgumentNullException.ThrowIfNull(state);
         ArgumentNullException.ThrowIfNull(profile);
@@ -142,6 +197,7 @@ public static class ClientGameplayAutomationPlanner
         if (!Fresh(state, profile, now)) return ClientGameplayActionPlan.Refresh("Combat state is stale.");
         if (state.HealthCurrent <= 0) return ClientGameplayActionPlan.None("Character is incapacitated.");
         var options = profile.Combat;
+        runtime?.ObserveRoom(state.RoomId);
         if (state.InCombat && state.HealthPercent <= options.EscapeBelowHealthPercent)
             return Action(ClientGameplayActionKind.Emergency, options.EscapeCommand,
                 $"Escape threshold reached at {state.HealthPercent}% HP.", state, options.RequireLearnedSpellForCastCommands);
@@ -163,9 +219,73 @@ public static class ClientGameplayAutomationPlanner
         var candidates = hostiles.Where(npc => !avoided.Any(name =>
             npc.Name.Contains(name, StringComparison.OrdinalIgnoreCase))).ToArray();
         if (candidates.Length == 0) return ClientGameplayActionPlan.None("All observed hostiles match the avoid list.");
+        var target = SelectTarget(candidates, options.TargetMode);
+
+        var equipmentSetId = state.InCombat && state.HealthPercent <= options.DefensiveEquipmentSetAtHealthPercent &&
+                             !string.IsNullOrWhiteSpace(options.DefensiveEquipmentSetId)
+            ? options.DefensiveEquipmentSetId
+            : hostiles.Length >= options.MultiTargetEquipmentSetAtCount &&
+              !string.IsNullOrWhiteSpace(options.MultiTargetEquipmentSetId)
+                ? options.MultiTargetEquipmentSetId
+                : options.DefaultEquipmentSetId;
+        if (!string.IsNullOrWhiteSpace(equipmentSetId) &&
+            !(runtime?.AppliedEquipmentSetId.Equals(equipmentSetId, StringComparison.OrdinalIgnoreCase) ?? false))
+            return new ClientGameplayActionPlan(
+                ClientGameplayActionKind.EquipSet,
+                string.Empty,
+                $"Applying the selected combat equipment set before acting on {target.Name}.",
+                target.Name,
+                equipmentSetId.Trim());
+
+        const string defensiveActionId = "combat:defensive";
+        if (state.InCombat && options.AutoDefensiveAction &&
+            state.HealthPercent <= options.DefensiveActionAtHealthPercent &&
+            (runtime?.IsReady(defensiveActionId, options.DefensiveActionCooldownSeconds, now) ?? true))
+        {
+            var defensive = Action(ClientGameplayActionKind.DefensiveAction, options.DefensiveActionCommand,
+                $"Defensive threshold reached at {state.HealthPercent}% HP.", state,
+                options.RequireLearnedSpellForCastCommands, target.Name, options.MinimumManaPercent);
+            if (defensive.HasAction)
+                return defensive with
+                {
+                    ActionId = defensiveActionId,
+                    CooldownSeconds = options.DefensiveActionCooldownSeconds
+                };
+        }
+
+        foreach (var rule in profile.CombatActions.Where(rule => rule.Enabled)
+                     .OrderBy(rule => rule.Priority).ThenBy(rule => rule.Id, StringComparer.OrdinalIgnoreCase))
+        {
+            if (rule.OpeningOnly && (state.InCombat || (runtime?.OpeningActionWasSent(rule.Id) ?? false))) continue;
+            if (rule.InCombatOnly && !state.InCombat) continue;
+            if (hostiles.Length < rule.MinimumTargets || hostiles.Length > rule.MaximumTargets) continue;
+            if (state.HealthPercent < rule.MinimumHealthPercent || state.ManaPercent < rule.MinimumManaPercent) continue;
+            if (rule.TargetNameContains.Length > 0 &&
+                !target.Name.Contains(rule.TargetNameContains, StringComparison.OrdinalIgnoreCase)) continue;
+            if (!(runtime?.IsReady(rule.Id, rule.CooldownSeconds, now) ?? true)) continue;
+            if (!string.IsNullOrWhiteSpace(rule.EquipmentSetId) &&
+                !(runtime?.AppliedEquipmentSetId.Equals(rule.EquipmentSetId, StringComparison.OrdinalIgnoreCase) ?? false))
+                return new ClientGameplayActionPlan(
+                    ClientGameplayActionKind.EquipSet,
+                    string.Empty,
+                    $"Applying equipment set for combat action '{rule.Name}'.",
+                    target.Name,
+                    rule.EquipmentSetId.Trim());
+
+            var ruleCommand = ApplyCombatRuleCommand(rule, target.InstanceId);
+            var plan = Action(ClientGameplayActionKind.CombatRule, ruleCommand,
+                $"Combat rule '{rule.Name}' selected for {target.Name}.", state,
+                options.RequireLearnedSpellForCastCommands, target.Name, rule.MinimumManaPercent);
+            if (plan.HasAction)
+                return plan with
+                {
+                    ActionId = rule.Id,
+                    CooldownSeconds = rule.CooldownSeconds
+                };
+        }
+
         if (state.InCombat && string.IsNullOrWhiteSpace(options.RoundCommand))
             return ClientGameplayActionPlan.None("Combat is active; the server is handling normal attacks.");
-        var target = SelectTarget(candidates, options.TargetMode);
         // Instance IDs avoid redirecting an attack to a same-named neutral NPC or player.
         var template = state.InCombat ? options.RoundCommand : options.EngageCommand;
         var kind = state.InCombat ? ClientGameplayActionKind.CombatAction : ClientGameplayActionKind.Engage;
@@ -187,25 +307,82 @@ public static class ClientGameplayAutomationPlanner
         if (!Fresh(state, profile, now)) return ClientGameplayActionPlan.Refresh("Party state is stale.");
         if (state.HealthCurrent <= 0) return ClientGameplayActionPlan.None("Character is incapacitated.");
         var options = profile.Party;
-        if (options.AutoHealMembers && !string.IsNullOrWhiteSpace(options.HealCommand))
+        var sameRoomMembers = state.PartyMembers.Where(member => member.Online && !member.Invited &&
+                member.RoomId.Equals(state.RoomId, StringComparison.OrdinalIgnoreCase) &&
+                member.HealthPercent > 0 &&
+                !member.CharacterId.Equals(state.CharacterId, StringComparison.OrdinalIgnoreCase))
+            .OrderBy(member => member.HealthPercent).ThenBy(member => member.Name, StringComparer.OrdinalIgnoreCase)
+            .ToArray();
+        var poisoned = sameRoomMembers.FirstOrDefault(member =>
+            member.Conditions.Any(condition => condition.Equals("poisoned", StringComparison.OrdinalIgnoreCase)));
+        if (poisoned is not null && options.CurePoisonedMembers)
         {
-            var wounded = state.PartyMembers.Where(member => member.Online && !member.Invited &&
-                    member.RoomId.Equals(state.RoomId, StringComparison.OrdinalIgnoreCase) &&
-                    member.HealthPercent > 0 &&
-                    !member.CharacterId.Equals(state.CharacterId, StringComparison.OrdinalIgnoreCase))
-                .OrderBy(member => member.HealthPercent).ThenBy(member => member.Name, StringComparer.OrdinalIgnoreCase)
-                .FirstOrDefault();
-            if (wounded is not null && wounded.HealthPercent <= options.HealBelowPercent)
-                return Action(ClientGameplayActionKind.PartyHeal,
-                    ApplyTarget(options.HealCommand, wounded.Name),
-                    $"Party member {wounded.Name} is at {wounded.HealthPercent}% HP.", state,
-                    options.RequireLearnedSpellForCastCommands, wounded.Name);
+            var cure = Action(ClientGameplayActionKind.PartyCure,
+                ApplyTarget(options.CurePoisonCommand, poisoned.Name),
+                $"Party member {poisoned.Name} is poisoned in the current room.", state,
+                options.RequireLearnedSpellForCastCommands, poisoned.Name);
+            if (cure.HasAction) return cure;
         }
+        var wounded = sameRoomMembers.FirstOrDefault();
+        if (wounded is not null && options.AutoRescueMembers && state.InCombat &&
+            wounded.HealthPercent <= options.RescueBelowPercent)
+            return Action(ClientGameplayActionKind.PartyRescue,
+                ApplyTarget(options.RescueCommand, wounded.Name),
+                $"Party member {wounded.Name} reached the {options.RescueBelowPercent}% rescue threshold.", state,
+                options.RequireLearnedSpellForCastCommands, wounded.Name);
+        if (wounded is not null && options.AutoHealMembers &&
+            wounded.HealthPercent <= options.HealBelowPercent)
+            return Action(ClientGameplayActionKind.PartyHeal,
+                ApplyTarget(options.HealCommand, wounded.Name),
+                $"Party member {wounded.Name} is at {wounded.HealthPercent}% HP.", state,
+                options.RequireLearnedSpellForCastCommands, wounded.Name);
+
+        if (options.MaintainPreferredRank)
+        {
+            var self = state.PartyMembers.FirstOrDefault(member =>
+                member.CharacterId.Equals(state.CharacterId, StringComparison.OrdinalIgnoreCase));
+            var preferred = options.PreferredRank.Trim();
+            if (self is not null && preferred.Length > 0 &&
+                !self.Rank.Contains(preferred, StringComparison.OrdinalIgnoreCase))
+            {
+                var command = preferred.Contains("back", StringComparison.OrdinalIgnoreCase)
+                    ? options.BackRankCommand
+                    : options.FrontRankCommand;
+                return Action(ClientGameplayActionKind.PartyRank, command,
+                    $"Observed rank '{self.Rank}' differs from preferred rank '{preferred}'.", state,
+                    options.RequireLearnedSpellForCastCommands, state.CharacterName);
+            }
+        }
+
+        if (options.AutoInviteNamedMembers)
+        {
+            var configured = SplitNames(options.InviteNames);
+            var grouped = state.PartyMembers.Select(member => member.Name)
+                .ToHashSet(StringComparer.OrdinalIgnoreCase);
+            var target = state.Players
+                .Where(player => !grouped.Contains(player.Name) &&
+                                 player.RoomId.Equals(state.RoomId, StringComparison.OrdinalIgnoreCase))
+                .Select(player => player.Name)
+                .FirstOrDefault(name => configured.Contains(name, StringComparer.OrdinalIgnoreCase));
+            if (!string.IsNullOrWhiteSpace(target))
+                return Action(ClientGameplayActionKind.PartyInvite,
+                    ApplyTarget(options.InviteCommand, target),
+                    $"Inviting configured player {target}, who is visible in the current room.", state,
+                    options.RequireLearnedSpellForCastCommands, target);
+        }
+
         var leader = options.LeaderName.Trim();
         if (leader.Length == 0) return ClientGameplayActionPlan.None("No party leader is configured.");
         var member = state.PartyMembers.FirstOrDefault(candidate =>
             candidate.Name.Equals(leader, StringComparison.OrdinalIgnoreCase) && candidate.Online && !candidate.Invited);
-        if (member is null) return ClientGameplayActionPlan.None($"Configured leader {leader} is not in the observed party.");
+        if (member is null || !member.RoomId.Equals(state.RoomId, StringComparison.OrdinalIgnoreCase))
+        {
+            if (options.RegroupWhenSeparated)
+                return Action(ClientGameplayActionKind.PartyRegroup, options.RegroupCommand,
+                    $"Configured leader {leader} is absent or in another room; requesting regroup information.", state,
+                    options.RequireLearnedSpellForCastCommands, leader);
+            return ClientGameplayActionPlan.None($"Configured leader {leader} is not present in the current room.");
+        }
         if (options.AutoAssistLeader && !state.InCombat && member.InCombat &&
             member.RoomId.Equals(state.RoomId, StringComparison.OrdinalIgnoreCase))
             return Action(ClientGameplayActionKind.Assist, ApplyTarget(options.AssistCommand, leader),
@@ -254,12 +431,15 @@ public static class ClientGameplayAutomationPlanner
     private static bool KnowsCommandSpell(ClientGameplayAutomationSnapshot state, string command)
     {
         var arguments = command[(command.IndexOf(' ') + 1)..].Trim();
-        var spell = arguments.StartsWith('"')
-            ? arguments.Split('"').ElementAtOrDefault(1) ?? string.Empty
-            : arguments.Split(' ', StringSplitOptions.RemoveEmptyEntries).FirstOrDefault() ?? string.Empty;
         return state.LearnedSpells.Any(known =>
-            known.Equals(spell, StringComparison.OrdinalIgnoreCase) ||
-            known.EndsWith(":" + spell, StringComparison.OrdinalIgnoreCase));
+        {
+            var separator = known.IndexOf(':');
+            var name = (separator >= 0 ? known[(separator + 1)..] : known).Trim();
+            return name.Length > 0 &&
+                   (arguments.Equals(name, StringComparison.OrdinalIgnoreCase) ||
+                    arguments.StartsWith(name + " ", StringComparison.OrdinalIgnoreCase) ||
+                    arguments.StartsWith('"' + name + '"', StringComparison.OrdinalIgnoreCase));
+        });
     }
 
     private static ClientGameplayNpcState SelectTarget(
@@ -275,6 +455,15 @@ public static class ClientGameplayAutomationPlanner
 
     private static string ApplyTarget(string template, string target) =>
         (template ?? string.Empty).Replace("{target}", target, StringComparison.OrdinalIgnoreCase).Trim();
+
+    private static string ApplyCombatRuleCommand(ClientCombatActionRule rule, string target)
+    {
+        var command = rule.Command?.Trim() ?? string.Empty;
+        if (command.Length == 0) return string.Empty;
+        if (command.Contains("{target}", StringComparison.OrdinalIgnoreCase))
+            return ApplyTarget(command, target);
+        return rule.AppendTarget && !rule.IsAreaAction ? $"{command} {target}" : command;
+    }
 
     private static IReadOnlyList<string> SplitNames(string value) =>
         (value ?? string.Empty).Split([',', ';', '|'], StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries);

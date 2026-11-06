@@ -35,9 +35,11 @@ public sealed class ServerRuntimeOptions
             {
                 foreach (var world in worldsElement.EnumerateArray())
                 {
+                    var worldId = ReadString(world, "id", "classic");
                     worlds.Add(new WorldRuntimeDefinition
                     {
-                        Id = ReadString(world, "id", "classic"),
+                        Id = worldId,
+                        DataWorldId = ReadString(world, "dataWorldId", worldId),
                         Name = ReadString(world, "name", "Classic World"),
                         Description = ReadString(world, "description", "Original MajorMUD-compatible Classic world."),
                         Type = ReadString(world, "type", "Classic"),
@@ -97,6 +99,7 @@ public sealed class ServerRuntimeOptions
                 new WorldRuntimeDefinition
                 {
                     Id = "classic",
+                    DataWorldId = "classic",
                     Name = "Classic World",
                     Description = "Original MajorMUD-compatible Classic world.",
                     Type = "Classic",
@@ -192,6 +195,7 @@ public sealed class NetworkRuntimeOptions
 public sealed class WorldRuntimeDefinition
 {
     public string Id { get; init; } = "classic";
+    public string DataWorldId { get; init; } = string.Empty;
     public string Name { get; init; } = "Classic World";
     public string Description { get; init; } = string.Empty;
     public string Type { get; init; } = "Classic";

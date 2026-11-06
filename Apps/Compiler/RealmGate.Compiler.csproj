@@ -1,10 +1,15 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <OutputType>Exe</OutputType>
+    <OutputType Condition="'$(CompilerAsLibrary)' != 'true'">Exe</OutputType>
+    <OutputType Condition="'$(CompilerAsLibrary)' == 'true'">Library</OutputType>
     <TargetFramework>net8.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
     <AssemblyName>RealmGate.Compiler</AssemblyName>
     <RootNamespace>RealmGate.Compiler</RootNamespace>
   </PropertyGroup>
+
+  <ItemGroup Condition="'$(CompilerAsLibrary)' == 'true'">
+    <Compile Remove="Program.cs" />
+  </ItemGroup>
 </Project>

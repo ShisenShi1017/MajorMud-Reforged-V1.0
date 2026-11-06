@@ -6,7 +6,7 @@
         Background="#101518" Foreground="#F1E5D0">
  <Grid Margin="20">
   <Grid.RowDefinitions><RowDefinition Height="Auto"/><RowDefinition Height="Auto"/><RowDefinition Height="*"/><RowDefinition Height="Auto"/></Grid.RowDefinitions>
-  <TextBlock Text="Enter the NVIDIA NIM API key. It will be stored in Windows Credential Manager and will not be saved in Forge settings." TextWrapping="Wrap"/>
+  <TextBlock Text="Enter the NVIDIA NIM API key. It will be stored in the operating system credential vault and will not be saved in Forge settings." TextWrapping="Wrap"/>
   <PasswordBox x:Name="ApiKeyBox" Grid.Row="1" Margin="0,14,0,0" Padding="9" Background="#080C0E" Foreground="White"/>
   <TextBlock Grid.Row="2" Margin="0,10,0,0" Text="The existing key is never displayed again." Foreground="#BDA57F"/>
   <StackPanel Grid.Row="3" Orientation="Horizontal" HorizontalAlignment="Right">

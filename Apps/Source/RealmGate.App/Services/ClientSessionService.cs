@@ -3,7 +3,11 @@ using System.Collections.ObjectModel;
 using System.IO;
 using System.Net.Sockets;
 using System.Text;
+using RealmGate.Client.Automation;
+using RealmGate.Client.Gameplay;
+using RealmGate.Client.Navigation;
 using RealmGate.Client.Protocol;
+using RealmGate.Client.Inventory;
 using System.Text.Json;
 using System.Text.RegularExpressions;
 using System.Windows;
@@ -1069,7 +1073,8 @@ public sealed partial class ClientSessionService : IClientSessionService
             foreach (var spell in spells)
             {
                 session.LearnedSpells.Add(spell.Name);
-                session.LearnedSpellDetails.Add(spell);
+                session.LearnedSpellDetails.Add(new ClientLearnedSpellState(
+                    spell.CanonicalId, spell.Name, spell.ManaCost, spell.EnergyCost));
             }
             session.SpellbookUpdatedAt = DateTimeOffset.Now;
         }

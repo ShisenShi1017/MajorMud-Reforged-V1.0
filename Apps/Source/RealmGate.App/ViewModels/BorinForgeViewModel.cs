@@ -278,7 +278,7 @@ public sealed class BorinForgeViewModel : ViewModelBase
     public string PlayerLoginStatusSummary => _playerLoginStatus.Summary;
     public string PlayerLoginStatusDetail => _playerLoginStatus.Detail;
     public string PlayerPasswordStatus => _playerLoginStatus.PasswordSaved
-        ? "Password saved securely in Windows Credential Manager"
+        ? "Password saved securely in the operating system credential vault"
         : "Password not saved";
     public string PlayerDecisionSummary => _playerDecision.Summary;
     public string PlayerEnvironmentSummary => _playerResearch.CurrentGameState.EnvironmentSummary;
@@ -1672,7 +1672,7 @@ TAIL OF PRIOR PAGE:
         await PersistAsync();
         Raise(nameof(Configuration)); Raise(nameof(ModeSummary)); Raise(nameof(KnowledgeSummary));
         await ScanAsync();
-        Add("Borin", "Aye, the settings are stored. The NVIDIA key remains outside the file in Windows Credential Manager.");
+        Add("Borin", "Aye, the settings are stored. The NVIDIA key remains outside the file in the operating system credential vault.");
         await PersistAsync();
     }
 
@@ -1684,7 +1684,7 @@ TAIL OF PRIOR PAGE:
         LightningConnectionStatus = "Lightning: shared key configured; connection not yet tested";
         SuperConnectionStatus = "Super: shared key configured; connection not yet tested";
         UltraConnectionStatus = "Ultra: shared key configured; connection not yet tested";
-        Add("Borin", "Aye, the one shared NVIDIA key is secured in Windows Credential Manager for Lightning, Super, and Ultra. It was not written to Forge settings or chat.");
+        Add("Borin", "Aye, the one shared NVIDIA key is secured in the operating system credential vault for Lightning, Super, and Ultra. It was not written to Forge settings or chat.");
         await PersistAsync();
     }
 
@@ -4841,7 +4841,7 @@ Treat this block as authoritative current client-session state. Reforged is the 
             await ConfigurePlayerAsync();
             await _playerResearch.SavePasswordAsync(password);
             _playerLoginStatus = _playerResearch.CurrentLoginStatus;
-            Add("Borin", "My password is saved securely in Windows Credential Manager. It was not written to the repository, logs, memory, journal, or model prompt.");
+            Add("Borin", "My password is saved securely in the operating system credential vault. It was not written to the repository, logs, memory, journal, or model prompt.");
             Status = "Borin password saved securely.";
         }
         catch (Exception exception)
@@ -4862,7 +4862,7 @@ Treat this block as authoritative current client-session state. Reforged is the 
             await ConfigurePlayerAsync();
             await _playerResearch.ClearPasswordAsync();
             _playerLoginStatus = _playerResearch.CurrentLoginStatus;
-            Add("Borin", "My saved external-server password has been cleared from Windows Credential Manager.");
+            Add("Borin", "My saved external-server password has been cleared from the operating system credential vault.");
             Status = "Borin saved password cleared.";
         }
         catch (Exception exception)
@@ -4901,7 +4901,7 @@ Treat this block as authoritative current client-session state. Reforged is the 
         try
         {
             await ConfigurePlayerAsync();
-            Add("Borin", "Aye. My existing Borin session profile is saved. The password remains separate in Windows Credential Manager, and autonomous commands remain disabled.");
+            Add("Borin", "Aye. My existing Borin session profile is saved. The password remains separate in the operating system credential vault, and autonomous commands remain disabled.");
             Status = "Borin player profile saved.";
         }
         catch (Exception exception)

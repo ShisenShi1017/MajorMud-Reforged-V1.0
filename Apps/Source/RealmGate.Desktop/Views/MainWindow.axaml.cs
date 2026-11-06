@@ -1,6 +1,7 @@
 using Avalonia.Controls;
 using Avalonia.Markup.Xaml;
 using RealmGate.Desktop.Controls;
+using RealmGate.Desktop.Services;
 using RealmGate.Desktop.ViewModels;
 
 namespace RealmGate.Desktop.Views;
@@ -10,7 +11,7 @@ public partial class MainWindow : Window
     public MainWindow()
     {
         AvaloniaXamlLoader.Load(this);
-        DataContext = new MainWindowViewModel();
+        DataContext = new MainWindowViewModel(new AvaloniaCreatorStudioFilePicker(this));
         var terminal = this.FindControl<ClassicTerminalView>("PlayTerminal")
             ?? throw new InvalidOperationException("The Play terminal control was not created.");
         terminal.CommandSubmitted += OnTerminalCommandSubmitted;

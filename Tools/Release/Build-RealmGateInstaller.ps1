@@ -9,6 +9,8 @@ param(
 $ErrorActionPreference = "Stop"
 $repoRoot = (Resolve-Path (Join-Path $PSScriptRoot "..\..")).Path
 $publisher = Join-Path $PSScriptRoot "Publish-RealmGate.ps1"
+$compilerProject = Join-Path $repoRoot "Apps\Compiler\RealmGate.Compiler.csproj"
+$compilerCliDll = Join-Path $repoRoot "Apps\Compiler\bin\Release\net8.0\RealmGate.Compiler.dll"
 $installerDefinition = Join-Path $PSScriptRoot "RealmGate.iss"
 $publishDirectory = Join-Path $repoRoot "Release\RealmGate-Public"
 $packageDirectory = Join-Path $repoRoot "Release\Packages"
@@ -120,9 +122,17 @@ if (-not (Test-Path -LiteralPath $compilerDll)) {
     throw "RealmGate.Compiler.dll was not staged before Librarium bundling."
 }
 
+& dotnet build $compilerProject --configuration Release --no-restore -p:NuGetAudit=false
+if ($LASTEXITCODE -ne 0) {
+    throw "RealmGate compiler CLI build failed with exit code $LASTEXITCODE."
+}
+if (-not (Test-Path -LiteralPath $compilerCliDll)) {
+    throw "RealmGate compiler CLI was not produced at '$compilerCliDll'."
+}
+
 $bundlePath = Join-Path $librariumRoot "RealmGate.librarium"
 Write-Host "Creating compact authoritative Librarium bundle..."
-& dotnet $compilerDll bundle --root $repoRoot --output $bundlePath
+& dotnet $compilerCliDll bundle --root $repoRoot --output $bundlePath
 if ($LASTEXITCODE -ne 0) {
     throw "Compact Librarium bundle creation failed with exit code $LASTEXITCODE."
 }
@@ -153,7 +163,10 @@ $runtimeBridgeFiles = @(
     "Librarium\Objects\native_textblock_payloads\native_textblock_payload_records.json",
     "Librarium\Objects\items\item_records.json",
     "Librarium\Objects\quests\quest_walkthrough_guides.txt",
-    "Librarium\Objects\character_foundation\native_runtime_promoted_0137.json"
+    "Librarium\Objects\character_foundation\native_runtime_promoted_0137.json",
+    "Librarium\NativeEvidence\classic_native_room_spawn_index.br64",
+    "Librarium\NativeEvidence\classic_native_monster_group_index.br64",
+    "Librarium\NativeEvidence\classic_native_room_local_caps.br64"
 )
 foreach ($relativePath in $runtimeBridgeFiles) {
     Copy-RuntimeLibrariumFile -RelativePath $relativePath
@@ -180,6 +193,9 @@ $requiredRuntimePaths = @(
     "Librarium\Objects\items\item_records.json",
     "Librarium\Objects\quests\quest_walkthrough_guides.txt",
     "Librarium\Objects\character_foundation\native_runtime_promoted_0137.json",
+    "Librarium\NativeEvidence\classic_native_room_spawn_index.br64",
+    "Librarium\NativeEvidence\classic_native_monster_group_index.br64",
+    "Librarium\NativeEvidence\classic_native_room_local_caps.br64",
     "Librarium\WorldOverrides"
 )
 foreach ($relativePath in $requiredRuntimePaths) {
@@ -228,7 +244,7 @@ foreach ($world in $enabledWorlds) {
     }
 
     Write-Host "  Generating $($world.id) into $configuredOutputRoot from compact staged Librarium..."
-    & dotnet $compilerDll build --root $runtimeRoot --world $world.id --clean --output $configuredOutputRoot
+    & dotnet $compilerCliDll build --root $runtimeRoot --world $world.id --clean --output $configuredOutputRoot
     if ($LASTEXITCODE -ne 0) {
         throw "Compact packaged Librarium failed to generate world '$($world.id)' (exit $LASTEXITCODE)."
     }

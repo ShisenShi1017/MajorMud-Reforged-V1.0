@@ -401,7 +401,7 @@
         <TextBox Text="{Binding PlayerMentorAiName, UpdateSourceTrigger=PropertyChanged}" ToolTip="Known AI mentor subject to the three-reply loop guard" Style="{StaticResource ForgeTextBox}" MinHeight="28" Margin="3,0,3,4"/>
 
         <TextBlock Text="SECURE PASSWORD" Foreground="#9EAAA5" FontSize="10" FontWeight="Bold" Margin="3,2,3,2"/>
-        <PasswordBox x:Name="BorinPlayerPasswordBox" ToolTip="Saved only in Windows Credential Manager; never stored in RealmGate files or sent to Qwen"
+        <PasswordBox x:Name="BorinPlayerPasswordBox" ToolTip="Saved only in the operating system credential vault; never stored in RealmGate files or sent to Qwen"
                      Foreground="{StaticResource ForgeText}" Background="#111619" BorderBrush="#5A6870" BorderThickness="1" Padding="9"
                      MinHeight="30" Margin="3,0,3,3" PasswordChar="*"/>
         <TextBlock Text="{Binding PlayerPasswordStatus}" TextWrapping="Wrap" Foreground="#AFC7B7" FontSize="10" Margin="3,0,3,3"/>

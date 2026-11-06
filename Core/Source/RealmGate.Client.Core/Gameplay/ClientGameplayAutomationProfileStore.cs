@@ -94,6 +94,7 @@ public sealed class ClientGameplayAutomationProfileStore
             profile.Combat ??= new();
             profile.Party ??= new();
             profile.Buffs ??= [];
+            profile.CombatActions ??= [];
             profile.Recovery.EmergencyHealthPercent = Percent(profile.Recovery.EmergencyHealthPercent);
             profile.Recovery.HealBelowPercent = Percent(profile.Recovery.HealBelowPercent);
             profile.Recovery.RestBelowHealthPercent = Percent(profile.Recovery.RestBelowHealthPercent);
@@ -102,7 +103,12 @@ public sealed class ClientGameplayAutomationProfileStore
             profile.Combat.MinimumManaPercent = Percent(profile.Combat.MinimumManaPercent);
             profile.Combat.MaximumHostiles = Math.Clamp(profile.Combat.MaximumHostiles, 1, 100);
             profile.Combat.MaximumTargetLevelAboveCharacter = Math.Clamp(profile.Combat.MaximumTargetLevelAboveCharacter, 0, 1000);
+            profile.Combat.MultiTargetEquipmentSetAtCount = Math.Clamp(profile.Combat.MultiTargetEquipmentSetAtCount, 2, 100);
+            profile.Combat.DefensiveEquipmentSetAtHealthPercent = Percent(profile.Combat.DefensiveEquipmentSetAtHealthPercent);
+            profile.Combat.DefensiveActionAtHealthPercent = Percent(profile.Combat.DefensiveActionAtHealthPercent);
+            profile.Combat.DefensiveActionCooldownSeconds = Math.Clamp(profile.Combat.DefensiveActionCooldownSeconds, 1, 3600);
             profile.Party.HealBelowPercent = Percent(profile.Party.HealBelowPercent);
+            profile.Party.RescueBelowPercent = Percent(profile.Party.RescueBelowPercent);
             foreach (var buff in profile.Buffs)
             {
                 buff.Id = string.IsNullOrWhiteSpace(buff.Id) ? Guid.NewGuid().ToString("N") : buff.Id.Trim();
@@ -111,6 +117,20 @@ public sealed class ClientGameplayAutomationProfileStore
                 buff.Name = string.IsNullOrWhiteSpace(buff.Name) ? "Buff" : buff.Name.Trim();
                 buff.EffectName = buff.EffectName?.Trim() ?? string.Empty;
                 buff.Command = buff.Command?.Trim() ?? string.Empty;
+            }
+            foreach (var action in profile.CombatActions)
+            {
+                action.Id = string.IsNullOrWhiteSpace(action.Id) ? Guid.NewGuid().ToString("N") : action.Id.Trim();
+                action.Priority = Math.Clamp(action.Priority, -100000, 100000);
+                action.Name = string.IsNullOrWhiteSpace(action.Name) ? "Combat action" : action.Name.Trim();
+                action.Command = action.Command?.Trim() ?? string.Empty;
+                action.MinimumTargets = Math.Clamp(action.MinimumTargets, 1, 100);
+                action.MaximumTargets = Math.Clamp(action.MaximumTargets, action.MinimumTargets, 100);
+                action.MinimumHealthPercent = Percent(action.MinimumHealthPercent);
+                action.MinimumManaPercent = Percent(action.MinimumManaPercent);
+                action.CooldownSeconds = Math.Clamp(action.CooldownSeconds, 1, 3600);
+                action.TargetNameContains = action.TargetNameContains?.Trim() ?? string.Empty;
+                action.EquipmentSetId = action.EquipmentSetId?.Trim() ?? string.Empty;
             }
         }
     }
