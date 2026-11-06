@@ -348,7 +348,12 @@ public sealed partial class RuntimeLiveGameplayFacade
                     && e.Target.Kind.Equals("character", StringComparison.OrdinalIgnoreCase)
                     && e.Target.Id.Equals(actor.Id, StringComparison.OrdinalIgnoreCase))
                 .Sum(e => e.Magnitude);
-            SaveCharacterPowerResources(character, checked(remaining.Mana + selfManaDelta), remaining.Energy);
+            // Re-read the authoritative target after sink mutations. Writing
+            // the pre-cast character here erased self-target HP/status changes.
+            var casterAfterOperations = _characters.LoadCharacter(actor.Id)
+                ?? throw new InvalidOperationException("Caster disappeared during spell execution.");
+            SaveCharacterPowerResources(casterAfterOperations,
+                checked(remaining.Mana + selfManaDelta), remaining.Energy);
             PersistDecodedTeleportTargets(result.Events);
             var appliedEffects = result.AppliedEffects ?? (result.Cast.Effect is null ? [] : [result.Cast.Effect]);
             var normalizedEffects = appliedEffects.Select(effect =>
