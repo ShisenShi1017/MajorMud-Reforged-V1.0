@@ -281,6 +281,11 @@ public sealed partial class RuntimeLiveGameplayFacade
         var castSummonIds = new List<string>();
         var castRoomBefore = new Dictionary<string, (RuntimeSession Session, RuntimeRoom Room)>(StringComparer.OrdinalIgnoreCase);
         var hadCooldownBefore = _liveSpellCooldowns.TryGetValue(cooldownKey, out var cooldownBefore);
+        // The caster is always a mutated participant: resource persistence
+        // follows every successful cast, even one targeting an NPC or another
+        // player. A post-cast error must restore the caster as well.
+        castCharacterBefore[actor.Id] = character;
+        castRoomBefore[actor.Id] = (session, session.CurrentRoom);
         try
         {
             var partyTargets = spell.TargetType == "13" ? ResolveClassicPartySpellTargets(session) : null;
