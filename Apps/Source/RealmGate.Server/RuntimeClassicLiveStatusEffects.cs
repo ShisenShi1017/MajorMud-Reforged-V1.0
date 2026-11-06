@@ -96,7 +96,8 @@ public sealed class RuntimeClassicLiveStatusCatalog
         // The source-authoritative 1,350-spell Classic corpus has zero
         // negative authored durations. Do not silently interpret an imported
         // negative value as a permanent native effect.
-        if (isClassic && records.EnumerateArray().Any(record =>
+        if (worldId.Equals("Classic", StringComparison.OrdinalIgnoreCase)
+            && records.EnumerateArray().Any(record =>
                 ReadInt(record.TryGetProperty("effect", out var effect) ? effect : default, "duration") < 0))
             throw new InvalidDataException("CLASSIC_NEGATIVE_SPELL_DURATION_UNVERIFIED");
 
