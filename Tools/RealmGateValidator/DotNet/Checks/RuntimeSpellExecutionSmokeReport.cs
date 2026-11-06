@@ -14,6 +14,17 @@ public static class RuntimeSpellExecutionSmokeReport
         public IReadOnlyList<RuntimeSpellExecutionEvent> ResolveOperations(RuntimeSpellDefinition spell, RuntimeSpellCastRequest request, RuntimeActiveSpellEffect effect)
             => new[] { new RuntimeSpellExecutionEvent(Guid.NewGuid().ToString("N"), spell.Id, request.CasterId, request.Target, "generated-effect", spell.MinimumEffect, request.RequestedAtUtc, effect.EffectId) };
     }
+    private sealed class FailingRollbackSink : IRuntimeSpellEventSink
+    {
+        private int _applies;
+        public void Apply(RuntimeSpellExecutionEvent spellEvent)
+        {
+            if (++_applies == 2)
+                throw new InvalidOperationException("SPELL_SMOKE_SECOND_APPLY");
+        }
+        public void Revert(RuntimeSpellExecutionEvent spellEvent) =>
+            throw new InvalidOperationException("SPELL_SMOKE_UNABLE_TO_REVERT");
+    }
     private sealed class FailingOperations : IRuntimeSpellOperationPolicy
     {
         public IReadOnlyList<RuntimeSpellExecutionEvent> ResolveOperations(RuntimeSpellDefinition spell,
@@ -108,6 +119,37 @@ public static class RuntimeSpellExecutionSmokeReport
                 || !after.ActiveEffects.Select(effect => effect.EffectId)
                     .SequenceEqual(before.ActiveEffects.Select(effect => effect.EffectId)))
                 throw new InvalidOperationException("Periodic event failure left a partial mutation or changed spell state.");
+        });
+        Check("failed-sink-rollback-is-explicitly-uncertain", () =>
+        {
+            var isolated = new RuntimeSpellEngine(catalog);
+            isolated.Learn(caster, spell.Id);
+            isolated.SetResources(caster, new RuntimeSpellResources(spell.ManaCost + 20, spell.EnergyCost + 20));
+            var cast = isolated.Cast(new(caster, spell.Id, target, DateTimeOffset.UtcNow));
+            if (!cast.Succeeded || cast.Effect is null)
+                throw new InvalidOperationException("Rollback failure fixture cast failed.");
+            var before = isolated.Snapshot();
+            var executor = new RuntimeSpellExecutionEngine(catalog, isolated, new Operations(), new FailingRollbackSink());
+            var now = DateTimeOffset.UtcNow;
+            var observed = false;
+            try
+            {
+                executor.Tick(now, effect =>
+                [
+                    new RuntimeSpellExecutionEvent("rollback.1", effect.SpellId, effect.CasterId,
+                        effect.Target, "generated-effect", 1, now, effect.EffectId),
+                    new RuntimeSpellExecutionEvent("rollback.2", effect.SpellId, effect.CasterId,
+                        effect.Target, "generated-effect", 1, now, effect.EffectId)
+                ]);
+            }
+            catch (AggregateException ex) when (
+                ex.Message.Contains("SPELL_EXECUTION_ROLLBACK_UNCERTAIN", StringComparison.Ordinal))
+            {
+                observed = true;
+            }
+            // No active tick effects means no sink dispatch; fixture one active
+            // spell so an attempted mutation and rollback are guaranteed.
+            if (!observed) throw new InvalidOperationException("Uncertain rollback was not surfaced.");
         });
         Check("validator", () => { if (!engine.Validate().Passed) throw new InvalidOperationException("Spell engine invalid after execution."); });
         return new RuntimeSpellExecutionSmokeResult(failures.Count == 0, checks, failures);

@@ -94,13 +94,9 @@ public sealed class RuntimeSpellExecutionEngine
                 }
                 return new RuntimeSpellExecutionResult(true, null, null, cast, events);
             }
-            catch
+            catch (Exception original)
             {
-                for (var index = applied.Count - 1; index >= 0; index--)
-                {
-                    try { _sink.Revert(applied[index]); } catch { }
-                }
-                _spells.RestoreSnapshot(before);
+                RestoreAppliedEventsOrThrow(original, applied, before);
                 throw;
             }
         }
@@ -138,10 +134,9 @@ public sealed class RuntimeSpellExecutionEngine
                 }
                 return new(true, null, null, primary, events, effects);
             }
-            catch
+            catch (Exception original)
             {
-                for (var index = applied.Count - 1; index >= 0; index--) try { _sink.Revert(applied[index]); } catch { }
-                _spells.RestoreSnapshot(before);
+                RestoreAppliedEventsOrThrow(original, applied, before);
                 throw;
             }
         }
@@ -166,18 +161,29 @@ public sealed class RuntimeSpellExecutionEngine
                 _spells.Expire(nowUtc);
                 return events;
             }
-            catch
+            catch (Exception original)
             {
-                // Managed transactional recovery, not a claim about original
-                // MajorMUD periodic ordering. Sinks revert completed events.
-                for (var index = events.Count - 1; index >= 0; index--)
-                {
-                    try { _sink.Revert(events[index]); } catch { }
-                }
-                _spells.RestoreSnapshot(before);
+                // Managed transactional recovery, not native tick ordering.
+                RestoreAppliedEventsOrThrow(original, events, before);
                 throw;
             }
         }
+    }
+
+    private void RestoreAppliedEventsOrThrow(Exception original,
+        IReadOnlyList<RuntimeSpellExecutionEvent> applied, RuntimeSpellState before)
+    {
+        var rollbackErrors = new List<Exception>();
+        for (var index = applied.Count - 1; index >= 0; index--)
+        {
+            try { _sink.Revert(applied[index]); }
+            catch (Exception error) { rollbackErrors.Add(error); }
+        }
+        try { _spells.RestoreSnapshot(before); }
+        catch (Exception error) { rollbackErrors.Add(error); }
+        if (rollbackErrors.Count != 0)
+            throw new AggregateException("SPELL_EXECUTION_ROLLBACK_UNCERTAIN",
+                new[] { original }.Concat(rollbackErrors));
     }
 
     public RuntimeActiveSpellEffect Dispel(string effectId) => _spells.RemoveEffect(effectId);
