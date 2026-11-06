@@ -2657,6 +2657,19 @@ public sealed class RuntimeLiveCombatRoundSmokeReport
                     && liveStatusCatalog.TryGet("spell.997", out var blackwoodOpenTextblock),
                 "npc-native-special-slot-catalog-vectors-exist");
             report.Checks.Add("npc-native-special-slot-catalog-vectors-exist");
+            var playerFourSummons = RuntimeLiveGameplayFacade.ResolveClassicPlayerSelfSummonSlots(
+                allBallSummon.Abilities, 0);
+            var playerZeroSummons = RuntimeLiveGameplayFacade.ResolveClassicPlayerSelfSummonSlots(
+                duergarSummon.Abilities, 1112);
+            Require(playerFourSummons.Count == 4
+                && playerFourSummons.Select(slot => slot.EffectiveId)
+                    .SequenceEqual(new[] { 1080, 1081, 1082, 1083 })
+                && playerFourSummons.All(slot => slot.NativeTargetAdmitted && slot.ResolvedId)
+                && playerZeroSummons.Count == 3
+                && playerZeroSummons.All(slot => slot.RawValue == 0 &&
+                    slot.EffectiveId == 1112 && slot.ResolvedId),
+                "player-classic-self-summon-ordered-slots-and-zero-fallback");
+            report.Checks.Add("player-classic-self-summon-ordered-slots-and-zero-fallback");
             var fourSummons = RuntimeLiveGameplayFacade.ResolveClassicNativeSpecialSpellSlots(
                 RuntimeLiveGameplayFacade.ResolveClassicNpcEffectSlots(allBallSummon.Abilities, 0), 2);
             var threeZeroSummons = RuntimeLiveGameplayFacade.ResolveClassicNativeSpecialSpellSlots(

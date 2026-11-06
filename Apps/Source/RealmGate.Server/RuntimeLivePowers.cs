@@ -334,9 +334,8 @@ public sealed partial class RuntimeLiveGameplayFacade
                             $"CLASSIC_PLAYER_SUMMON_MAGNITUDE_UNRESOLVED:{spell.Id}");
                     baseMagnitude = spell.MinimumEffect;
                 }
-                var ordered = ResolveClassicNpcEffectSlots(spell.DecodedAbilities, baseMagnitude.Value);
-                var summonSlots = ResolveClassicNativeSpecialSpellSlots(
-                    ordered, nativeTargetTypeRaw: 1, nativeAreaDispatcher: true);
+                var summonSlots = ResolveClassicPlayerSelfSummonSlots(
+                    spell.DecodedAbilities, baseMagnitude.Value);
                 foreach (var summonSlot in summonSlots.Where(slot =>
                              slot.AbilityId == 12 && slot.NativeTargetAdmitted && slot.ResolvedId))
                 {
@@ -1177,6 +1176,18 @@ public sealed partial class RuntimeLiveGameplayFacade
             .ToArray();
         if (npcMatches.Length == 1) return new RuntimeSpellTarget("npc", npcMatches[0].InstanceId);
         throw new InvalidOperationException($"No valid live target uniquely matches '{query}'.");
+    }
+
+    internal static IReadOnlyList<RuntimeClassicNativeSpecialSpellSlot> ResolveClassicPlayerSelfSummonSlots(
+        IReadOnlyList<RuntimeClassicLiveStatusAbility> abilities, int baseMagnitude)
+    {
+        // Original _cast_no_target resolves each populated summon(12) slot in
+        // order. An authored zero inherits the spell's single base roll.
+        return ResolveClassicNativeSpecialSpellSlots(
+                ResolveClassicNpcEffectSlots(abilities, baseMagnitude),
+                nativeTargetTypeRaw: 1, nativeAreaDispatcher: true)
+            .Where(slot => slot.AbilityId == 12 && slot.NativeTargetAdmitted)
+            .ToArray();
     }
 
     internal static bool IsClassicNativeSelfSpellTarget(string worldType, string targetType) =>
