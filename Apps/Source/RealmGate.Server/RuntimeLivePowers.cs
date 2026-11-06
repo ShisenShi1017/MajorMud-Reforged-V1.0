@@ -274,9 +274,26 @@ public sealed partial class RuntimeLiveGameplayFacade
         var execution = new RuntimeSpellExecutionEngine(_liveSpellCatalog!, _liveSpellEngine,
             new GeneratedLiveSpellOperationPolicy(this, session), new LiveSpellEventSink(this, session));
         var before = _liveSpellEngine.Snapshot();
+        // Preserve the durable target saves and live locations, not only
+        // RuntimeSpellEngine state. A later cast side effect can throw after
+        // successful HP/mana/status application.
+        var castCharacterBefore = new Dictionary<string, RuntimeCharacterRecord>(StringComparer.OrdinalIgnoreCase);
+        var castRoomBefore = new Dictionary<string, (RuntimeSession Session, RuntimeRoom Room)>(StringComparer.OrdinalIgnoreCase);
+        var hadCooldownBefore = _liveSpellCooldowns.TryGetValue(cooldownKey, out var cooldownBefore);
         try
         {
             var partyTargets = spell.TargetType == "13" ? ResolveClassicPartySpellTargets(session) : null;
+            foreach (var recipient in (partyTargets ?? [target])
+                         .Where(recipient => recipient.Kind.Equals("character", StringComparison.OrdinalIgnoreCase))
+                         .Select(recipient => recipient.Id).Distinct(StringComparer.OrdinalIgnoreCase))
+            {
+                castCharacterBefore[recipient] = _characters.LoadCharacter(recipient)
+                    ?? throw new InvalidOperationException($"Cast target character '{recipient}' is unavailable.");
+                var recipientSession = _sessions.ActiveSessions.FirstOrDefault(candidate =>
+                    candidate.Actor.Id.Equals(recipient, StringComparison.OrdinalIgnoreCase));
+                if (recipientSession is not null)
+                    castRoomBefore[recipient] = (recipientSession, recipientSession.CurrentRoom);
+            }
             var result = partyTargets is null
                 // Original direct user-cast caller 0x44595A passes refresh=1.
                 // CastMany constructs default-true requests for every target.
@@ -358,10 +375,41 @@ public sealed partial class RuntimeLiveGameplayFacade
                     : eventOutput + $" {removedCurses} cursed item{(removedCurses == 1 ? "" : "s")} fall free.";
             return string.IsNullOrWhiteSpace(eventOutput) ? castOutput : castOutput + " " + eventOutput;
         }
-        catch
+        catch (Exception castFailure)
         {
-            if (wizardKnockDoor is not null) Living(session).SetWizardKnockDoorState(wizardKnockDoor, opened: false);
-            _liveSpellEngine.RestoreSnapshot(before);
+            var rollbackErrors = new List<Exception>();
+            // A failed post-cast step must not retain a cooldown or a
+            // partially persisted character/teleport target mutation.
+            if (hadCooldownBefore) _liveSpellCooldowns[cooldownKey] = cooldownBefore;
+            else _liveSpellCooldowns.Remove(cooldownKey);
+            if (wizardKnockDoor is not null)
+            {
+                try { Living(session).SetWizardKnockDoorState(wizardKnockDoor, opened: false); }
+                catch (Exception ex) { rollbackErrors.Add(ex); }
+            }
+            foreach (var (_, savedRoom) in castRoomBefore)
+            {
+                try
+                {
+                    if (!savedRoom.Session.CurrentRoom.Id.Equals(savedRoom.Room.Id, StringComparison.OrdinalIgnoreCase))
+                        savedRoom.Session.MoveToWorld(savedRoom.Session.World, savedRoom.Room, "decoded-spell-late-failure-rollback");
+                }
+                catch (Exception ex) { rollbackErrors.Add(ex); }
+            }
+            foreach (var previous in castCharacterBefore.Values)
+            {
+                try { _characters.SaveCharacter(previous, "decoded-spell-late-failure-rollback"); }
+                catch (Exception ex) { rollbackErrors.Add(ex); }
+            }
+            try
+            {
+                _liveSpellEngine.RestoreSnapshot(before);
+                PersistLivePowers(session.World.Definition.Id);
+            }
+            catch (Exception ex) { rollbackErrors.Add(ex); }
+            if (rollbackErrors.Count != 0)
+                throw new AggregateException("CLASSIC_PLAYER_CAST_ROLLBACK_UNCERTAIN",
+                    new[] { castFailure }.Concat(rollbackErrors));
             throw;
         }
     }
