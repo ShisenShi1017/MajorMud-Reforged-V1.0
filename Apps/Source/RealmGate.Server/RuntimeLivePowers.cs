@@ -1900,11 +1900,11 @@ public sealed class RuntimeLivePowersSmokeReport
             var empty = new RuntimeLivePowerState(new RuntimeSpellState(Array.Empty<RuntimeKnownSpell>(), Array.Empty<RuntimeActiveSpellEffect>(), new Dictionary<string, RuntimeSpellResources>()), new Dictionary<string, RuntimeActorAbilitySnapshot>(), new Dictionary<string, DateTimeOffset>(), DateTimeOffset.UtcNow);
             repo.Save(empty); Check(repo.Load().Spells.ActiveEffects.Count == 0, "persistence", r); Check(repo.Load().Abilities.Count == 0, "reconnect", r);
             Check(typeof(RuntimeSpellEngine).GetMethod(nameof(RuntimeSpellEngine.Expire)) is not null, "duration-expiration", r); Check(typeof(RuntimeSpellExecutionEngine).GetMethod(nameof(RuntimeSpellExecutionEngine.Dispel)) is not null, "dispel", r);
-            Check(IsClassicNativeSelfSpellTarget("Classic", "1")
-            && !IsClassicNativeSelfSpellTarget("Classic", "8")
-            && !IsClassicNativeSelfSpellTarget("Custom1", "1"),
-            "native-classic-self-only-target-1-does-not-affect-custom", r);
-        Check(typeof(RuntimeSpellEngine).GetMethod(nameof(RuntimeSpellEngine.Validate)) is not null, "validator", r); Check(typeof(RuntimeAbilityEngine).GetMethod(nameof(RuntimeAbilityEngine.Execute)) is not null, "rollback", r);
+            Check(RuntimeLiveGameplayFacade.IsClassicNativeSelfSpellTarget("Classic", "1")
+                && !RuntimeLiveGameplayFacade.IsClassicNativeSelfSpellTarget("Classic", "8")
+                && !RuntimeLiveGameplayFacade.IsClassicNativeSelfSpellTarget("Custom1", "1"),
+                "native-classic-self-only-target-1-does-not-affect-custom", r);
+            Check(typeof(RuntimeSpellEngine).GetMethod(nameof(RuntimeSpellEngine.Validate)) is not null, "validator", r); Check(typeof(RuntimeAbilityEngine).GetMethod(nameof(RuntimeAbilityEngine.Execute)) is not null, "rollback", r);
             if(!worldId.Equals("Classic",StringComparison.OrdinalIgnoreCase))
             {
                 var derivedStatusCatalog=RuntimeClassicLiveStatusCatalog.Load(root,worldId);
