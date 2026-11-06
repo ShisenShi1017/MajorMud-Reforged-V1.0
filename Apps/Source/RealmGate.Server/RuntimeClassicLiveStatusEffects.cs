@@ -1454,6 +1454,22 @@ public sealed class RuntimeClassicLiveStatusEffectsSmokeReport
                     && blackwoodOpen.MaximumEffect == 9384,
                     "classic-native-zero-value-textblock-inherits-spell-magnitude");
                 report.Checks.Add("classic-native-zero-value-textblock-inherits-spell-magnitude");
+                // The five Classic shape-shift spells use TextBlock(148) as
+                // script hooks, not combat-stat modifiers. The native special
+                // command interpreter remains separately gated; preserving
+                // its raw IDs and durations prevents accidental stat casting.
+                var nativeForms = new (int SpellId, int Textblock, int Duration)[]
+                {
+                    (838, 2911, 300), (839, 2910, 1), (840, 2912, 300),
+                    (841, 2913, 300), (842, 2914, 300)
+                };
+                Require(nativeForms.All(form =>
+                    catalog.TryGet($"spell.{form.SpellId}", out var definition)
+                    && definition.DurationRounds == form.Duration
+                    && definition.TextblockIds.SequenceEqual(new[] { form.Textblock })
+                    && !definition.HasCombatModifiers),
+                    "classic-native-five-transform-textblock-hooks-remain-scripted");
+                report.Checks.Add("classic-native-five-transform-textblock-hooks-remain-scripted");
                 var originalOrderedSlots = nativeSpells.Require("spell.4").DecodedAbilities;
                 var orderedSlotMetadata = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase);
                 RuntimeLiveGameplayFacade.AddClassicOrderedAbilitySlotMetadata(
