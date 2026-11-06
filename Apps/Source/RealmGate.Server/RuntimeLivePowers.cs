@@ -1924,6 +1924,8 @@ public sealed class RuntimeLivePowersSmokeReport
                 Check(derivedNativeMessages.Count>0&&derivedNativeMessages.NativeMessageCount>0,"derived-native-message-loading",r);
                 return r;
             }
+            Check(spells.Spells.Count == 1350 && spells.Spells.All(spell => spell.Duration >= 0),
+                "classic-authored-1350-spells-have-no-negative-durations", r);
             var nativeSpellTable = RuntimeLiveGameplayFacade.FormatMajorMudSpellTable(new[]
             {
                 new RuntimeSpellDefinition("spell.test", "9999", "major healing", "mahe", 8, "", "", "", 6, 0, 0, 0, 0, Array.Empty<string>(), Array.Empty<RuntimeClassicLiveStatusAbility>())

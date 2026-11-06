@@ -116,6 +116,12 @@ public sealed class RuntimeSpellCatalog
             var classification = record.GetProperty("classification");
             var costs = record.GetProperty("costs");
             var effect = record.GetProperty("effect");
+            // Native Classic defines no negative authored durations in the
+            // complete 1,350-spell corpus. Reject unknown semantics at the
+            // primary catalog boundary, not only when loading timed statuses.
+            if (worldId.Equals("Classic", StringComparison.OrdinalIgnoreCase)
+                && Integer(effect, "duration") < 0)
+                throw new InvalidDataException($"CLASSIC_NEGATIVE_SPELL_DURATION_UNVERIFIED:{id}");
             var formulas = record.TryGetProperty("formula_refs", out var refs) && refs.ValueKind == JsonValueKind.Array
                 ? refs.EnumerateArray().Select(x => x.GetString()).Where(x => !string.IsNullOrWhiteSpace(x)).Select(x => x!).ToArray()
                 : Array.Empty<string>();
