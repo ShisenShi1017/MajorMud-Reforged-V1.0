@@ -19,6 +19,7 @@ var tests = new List<(string Name, Action Body)>
     ("startup diagnostics run", StartupDiagnosticsSmoke),
     ("server startup diagnostics run", ServerStartupDiagnosticsSmoke),
     ("server bootstrap runs", ServerBootstrapSmoke),
+    ("server resolves absent generated data only for generation", ServerGenerationTargetSmoke),
     ("server host configuration enables runtime", ServerHostConfigurationAuditSmoke),
     ("server data catalog loads canonical data", ServerDataCatalogAuditSmoke),
     ("server world projection indexes map-qualified rooms", ServerWorldProjectionAuditSmoke),
@@ -322,6 +323,50 @@ void ServerBootstrapSmoke()
     if (failedReport.IssueCount == 0 || failedReport.ErrorCount + failedReport.FatalCount == 0)
     {
         throw new InvalidOperationException("Server bootstrap failure did not expose expected validation error counts.");
+    }
+}
+
+void ServerGenerationTargetSmoke()
+{
+    var temporary = Path.Combine(Path.GetTempPath(), "realmgate-generation-root-" + Guid.NewGuid().ToString("N"));
+    Directory.CreateDirectory(Path.Combine(temporary, "Config"));
+    try
+    {
+        File.WriteAllText(
+            Path.Combine(temporary, "Config", "server.worlds.json"),
+            """
+            {
+              "defaultWorldId": "classic",
+              "worlds": [
+                {
+                  "id": "classic",
+                  "dataRoot": "Data/Classic",
+                  "runtimeEnabled": true
+                }
+              ]
+            }
+            """);
+
+        var expected = Path.GetFullPath(Path.Combine(temporary, "Data", "Classic"));
+        var target = ServerDataRootResolver.ResolveForGeneration(temporary, "classic");
+        if (!target.WorldId.Equals("classic", StringComparison.OrdinalIgnoreCase) || target.DataRoot != expected)
+            throw new InvalidOperationException("Generation target did not preserve the configured world path.");
+        if (Directory.Exists(target.DataRoot))
+            throw new InvalidOperationException("Resolving a generation target unexpectedly created generated data.");
+
+        try
+        {
+            _ = ServerDataRootResolver.Resolve(temporary, "classic");
+            throw new InvalidOperationException("Live runtime resolution accepted an absent generated world root.");
+        }
+        catch (InvalidOperationException exception) when (
+            exception.Message.Contains("Generated data root", StringComparison.Ordinal))
+        {
+        }
+    }
+    finally
+    {
+        Directory.Delete(temporary, recursive: true);
     }
 }
 

@@ -17,7 +17,7 @@ $project = Join-Path $repoRoot "Apps/Source/RealmGate.Desktop/RealmGate.Desktop.
 $compilerProject = Join-Path $repoRoot "Apps/Compiler/RealmGate.Compiler.csproj"
 $compilerCliDll = Join-Path $repoRoot "Apps/Compiler/bin/$Configuration/net8.0/RealmGate.Compiler.dll"
 $safeVersion = ($Version -replace '[^0-9A-Za-z._-]', '-')
-$workRoot = Join-Path $repoRoot "Release/DesktopPackaging/$RuntimeIdentifier"
+$workRoot = Join-Path $repoRoot "Release/DesktopPackaging/$RuntimeIdentifier-$safeVersion"
 $publishRoot = Join-Path $workRoot "publish"
 $stageRoot = Join-Path $workRoot "stage"
 $runtimeRoot = Join-Path $stageRoot "RealmGate"
@@ -39,6 +39,36 @@ function Invoke-Checked {
     & $Command @ArgumentList
     if ($LASTEXITCODE -ne 0) {
         throw "Command '$Command' failed with exit code $LASTEXITCODE."
+    }
+}
+
+function Invoke-PackagedHostSmoke {
+    param(
+        [Parameter(Mandatory = $true)][string]$ApplicationPath,
+        [Parameter(Mandatory = $true)][string]$WorkingDirectory
+    )
+
+    $startInfo = [Diagnostics.ProcessStartInfo]::new()
+    $startInfo.FileName = $ApplicationPath
+    $startInfo.WorkingDirectory = $WorkingDirectory
+    $startInfo.UseShellExecute = $false
+    $startInfo.Arguments = "--smoke-packaged-host-first-run"
+    $process = [Diagnostics.Process]::Start($startInfo)
+    if ($null -eq $process) {
+        throw "Packaged first-run Host smoke could not be started."
+    }
+
+    try {
+        if (-not $process.WaitForExit(600000)) {
+            $process.Kill()
+            throw "Packaged first-run Host smoke exceeded 10 minutes."
+        }
+        if ($process.ExitCode -ne 0) {
+            throw "Packaged first-run Host smoke failed with exit code $($process.ExitCode)."
+        }
+    }
+    finally {
+        $process.Dispose()
     }
 }
 
@@ -282,6 +312,15 @@ if ($librariumChanges.Count -ne 0) {
 }
 
 # Generated Data is intentionally excluded. The embedded Host reproduces it locally on first run.
+Get-ChildItem -LiteralPath (Join-Path $runtimeRoot "Data") -Force | Remove-Item -Recurse -Force
+
+Write-Host "Verifying packaged first-run Host generation from an empty Data folder..."
+Invoke-PackagedHostSmoke `
+    -ApplicationPath (Join-Path $runtimeRoot $applicationName) `
+    -WorkingDirectory $runtimeRoot
+
+# The first-run smoke proves the installed application can regenerate and start its Host. Keep the
+# public archive Librarium-first by removing the disposable generated output once more.
 Get-ChildItem -LiteralPath (Join-Path $runtimeRoot "Data") -Force | Remove-Item -Recurse -Force
 
 Write-TesterInstructions

@@ -5,11 +5,13 @@
 `Build-RealmGateDesktopPackage.ps1` creates the public Avalonia desktop preview for either
 Windows or Linux. The archives are self-contained, Borin-free, and contain the compact
 authoritative Librarium rather than generated `Data/`. Before packaging, the script proves that
-the staged Librarium can regenerate every enabled world without being modified.
+the staged Librarium can regenerate every enabled world without being modified. It then removes
+generated data, launches the packaged application, waits for the embedded Host to regenerate all
+enabled worlds and start both listeners, verifies clean shutdown, and removes disposable data again.
 
 ```powershell
-./Tools/Release/Build-RealmGateDesktopPackage.ps1 -Version 0.2.0-beta.1 -RuntimeIdentifier win-x64
-./Tools/Release/Build-RealmGateDesktopPackage.ps1 -Version 0.2.0-beta.1 -RuntimeIdentifier linux-x64
+./Tools/Release/Build-RealmGateDesktopPackage.ps1 -Version 0.2.0-beta.2 -RuntimeIdentifier win-x64
+./Tools/Release/Build-RealmGateDesktopPackage.ps1 -Version 0.2.0-beta.2 -RuntimeIdentifier linux-x64
 ```
 
 Native packages should be built on their matching operating system so executable permissions and

@@ -206,7 +206,7 @@ public sealed class EmbeddedServerHostController : IAsyncDisposable
         var configured = ServerRuntimeOptions.Load(projectRoot);
         foreach (var world in configured.Worlds.Where(world => world.RuntimeEnabled))
         {
-            var outputRoot = ServerDataRootResolver.Resolve(projectRoot, world.Id).DataRoot;
+            var outputRoot = ServerDataRootResolver.ResolveForGeneration(projectRoot, world.Id).DataRoot;
             var roomsPath = Path.Combine(outputRoot, world.RoomsFile);
             var manifestPath = Path.Combine(outputRoot, "world_manifest.json");
             if (File.Exists(roomsPath) && File.Exists(manifestPath))

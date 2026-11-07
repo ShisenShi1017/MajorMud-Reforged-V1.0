@@ -88,13 +88,14 @@ checksums and start instructions, and can attach both archives to a GitHub prere
 package build establishes archive integrity, not native Linux UI certification. Real Linux window,
 terminal, embedded-Host, Secret Service, and gameplay checks remain required from the tester.
 
-The local Windows package gate passed. Its single `RealmGate` root contains 264 entries and is
-83.39 MB; the application, start instructions, license notices, configuration, and compact
-Librarium are present, while Borin/private dependency names and generated world files are absent.
-The staged compact Librarium contains 57 families and 114,630 objects. Before archive creation it
-regenerated both Classic and clean Custom1 at 44 families, 112,609 objects, and 60 files each, then
-removed disposable `Data/`. The transitional WPF build remained clean at 0 warnings / 0 errors.
-The Linux native-runner package and real Linux operation are not yet observed.
+The original `v0.2.0-beta.1` archives exposed a first-run ordering defect: generation asked the
+strict live resolver for `Data/<World>` before that directory existed, so the Host never reached
+the compiler. The corrected local Windows package gate now starts from empty `Data/`, regenerates
+Classic and clean Custom1 at 44 families, 112,609 objects, and 60 files each, starts the Telnet and
+private client-data listeners, and shuts down cleanly before archive creation. The final archive
+contains one `RealmGate` root, 269 entries, the 57-family/114,630-object compact Librarium, no
+generated world files, and no Borin/private dependency names. The corrected native Linux package
+and real Linux operation remain unverified until `v0.2.0-beta.2` is built by GitHub and field-tested.
 
 This is a usable RealmGate-host assistant slice, not full WPF feature parity. External-BBS automation authority remains deliberately gated until real-board evidence can support it. Native Linux GUI interaction still needs verification on Linux; a Windows cross-publish alone does not establish that result. Creator Studio now has a direct isolated Test Realm session and a passing lifecycle smoke; it still needs manual gameplay review, real publish certification, and matching-source certification.
 

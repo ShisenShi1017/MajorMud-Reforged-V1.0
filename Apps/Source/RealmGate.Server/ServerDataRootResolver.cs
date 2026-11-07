@@ -85,6 +85,26 @@ public static class ServerDataRootResolver
         if (TryGetOverride(root, worldId, out var runtimeOverride))
             return (runtimeOverride.RuntimeWorldId, runtimeOverride.DataRoot);
 
+        return ResolveConfigured(root, worldId, requireExistingDataRoot: true);
+    }
+
+    /// <summary>
+    /// Resolves a configured output location before generated data exists. This is reserved for
+    /// compiler/generation workflows; live runtime callers must continue to use <see cref="Resolve"/>.
+    /// </summary>
+    public static (string WorldId, string DataRoot) ResolveForGeneration(string projectRoot, string worldId)
+    {
+        ArgumentException.ThrowIfNullOrWhiteSpace(projectRoot);
+        ArgumentException.ThrowIfNullOrWhiteSpace(worldId);
+
+        return ResolveConfigured(Path.GetFullPath(projectRoot), worldId, requireExistingDataRoot: false);
+    }
+
+    private static (string WorldId, string DataRoot) ResolveConfigured(
+        string root,
+        string worldId,
+        bool requireExistingDataRoot)
+    {
         var configurationPath = Path.Combine(root, "Config", "server.worlds.json");
         if (!File.Exists(configurationPath))
             throw new InvalidOperationException($"Server world configuration was not found: {configurationPath}");
@@ -116,7 +136,7 @@ public static class ServerDataRootResolver
             if (relative == ".." || relative.StartsWith($"..{Path.DirectorySeparatorChar}", StringComparison.Ordinal))
                 throw new InvalidOperationException($"Configured dataRoot escapes the repository root: {configuredDataRoot}");
 
-            if (!Directory.Exists(resolvedDataRoot))
+            if (requireExistingDataRoot && !Directory.Exists(resolvedDataRoot))
                 throw new InvalidOperationException($"Generated data root for world '{configuredWorldId}' was not found: {resolvedDataRoot}");
 
             return (configuredWorldId ?? worldId, resolvedDataRoot);

@@ -131,7 +131,7 @@ archives on matching native runners, verifies that their compact Librarium regen
 enabled world, and writes SHA-256 checksums. Testers do not need to install .NET.
 
 From GitHub: open **Actions**, select **RealmGate Desktop Tester Release**, choose **Run
-workflow**, enter a version such as `0.2.0-beta.1`, and choose whether to create a prerelease.
+workflow**, enter a version such as `0.2.0-beta.2`, and choose whether to create a prerelease.
 Without prerelease creation, download the two packages from the completed workflow's Artifacts
 section. With it enabled, download them from the repository's Releases page.
 
@@ -143,13 +143,15 @@ chmod +x RealmGate.Desktop Start-RealmGate.sh
 ```
 
 The archive includes `START-HERE.txt`. The first Host start generates local runtime worlds from
-the packaged Librarium and can take longer than later starts. Native Linux GUI and Secret Service
+the packaged Librarium and can take longer than later starts. The release gate proves this exact
+empty-`Data` startup path before creating either archive. The `v0.2.0-beta.1` archives predate that
+gate and should not be used. Native Linux GUI and Secret Service
 behavior still require real tester verification before the Avalonia build can replace WPF.
 
 Create a local package with:
 
 ```powershell
-./Tools/Release/Build-RealmGateDesktopPackage.ps1 -Version 0.2.0-beta.1 -RuntimeIdentifier win-x64
+./Tools/Release/Build-RealmGateDesktopPackage.ps1 -Version 0.2.0-beta.2 -RuntimeIdentifier win-x64
 ```
 
 Build the Linux archive on Linux or use the GitHub workflow so Unix executable permissions are
