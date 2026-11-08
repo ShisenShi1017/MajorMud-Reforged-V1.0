@@ -106,8 +106,13 @@ public sealed class EmbeddedServerHostController : IAsyncDisposable
             {
                 if (task.IsFaulted)
                 {
-                    StatusMessage = task.Exception?.GetBaseException().Message ?? "Server failed.";
-                    Log?.Invoke(StatusMessage);
+                    var exception = task.Exception?.GetBaseException();
+                    StatusMessage = exception?.Message ?? "Server failed.";
+                    var diagnostic = exception?.ToString() ?? StatusMessage;
+                    // Log the full exception to stderr as well as the UI, so
+                    // Linux terminal captures include actionable stack traces.
+                    Console.Error.WriteLine("RealmGate embedded Host failure: " + diagnostic);
+                    Log?.Invoke(diagnostic);
                 }
                 else
                 {
