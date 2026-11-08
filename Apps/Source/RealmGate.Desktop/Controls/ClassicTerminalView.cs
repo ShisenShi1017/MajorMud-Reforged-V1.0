@@ -303,8 +303,26 @@ public sealed class ClassicTerminalView : Control
 
             if (!run.Concealed && (!run.Blink || _blinkVisible))
             {
+                // ASCII runs share the same monospaced advance. Rendering one
+                // text layout per run avoids allocating thousands of FormattedText
+                // objects for each blink, terminal update, and user keystroke.
+                // Keep per-cell clipping for CP437/fallback glyphs so wide or
+                // unusually shaped characters cannot shift adjacent cells.
+                var printableAscii = true;
                 for (var index = 0; index < length; index++)
-                    DrawCellGlyph(context, run.Text[index], column + index, row, foreground);
+                {
+                    if (run.Text[index] is < ' ' or > '~')
+                    {
+                        printableAscii = false;
+                        break;
+                    }
+                }
+
+                if (printableAscii)
+                    DrawAsciiRun(context, run.Text[..length], column, row, foreground);
+                else
+                    for (var index = 0; index < length; index++)
+                        DrawCellGlyph(context, run.Text[index], column + index, row, foreground);
 
                 if (run.Underline)
                 {
@@ -318,6 +336,40 @@ public sealed class ClassicTerminalView : Control
 
             column += length;
         }
+    }
+
+    private static void DrawAsciiRun(
+        DrawingContext context,
+        string text,
+        int column,
+        int row,
+        IBrush foreground)
+    {
+        if (string.IsNullOrWhiteSpace(text))
+            return;
+
+        var bounds = new Rect(
+            column * CellWidth,
+            row * CellHeight,
+            text.Length * CellWidth,
+            CellHeight);
+        var formatted = new FormattedText(
+            text,
+            CultureInfo.InvariantCulture,
+            FlowDirection.LeftToRight,
+            TerminalTypeface,
+            TerminalFontSize,
+            foreground)
+        {
+            MaxLineCount = 1,
+            // Allow a spare cell for platform-specific glyph metric rounding;
+            // the clip below still constrains output to the actual cells.
+            MaxTextWidth = bounds.Width + CellWidth,
+            TextAlignment = TextAlignment.Left
+        };
+
+        using (context.PushClip(bounds))
+            context.DrawText(formatted, bounds.Position);
     }
 
     private static void DrawCellGlyph(
