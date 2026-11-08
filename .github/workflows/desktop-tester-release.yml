@@ -6,7 +6,7 @@ on:
       version:
         description: 'Preview version, for example 0.2.0-beta.1'
         required: true
-        default: '0.2.0-beta.1'
+        default: '0.2.0-beta.3'
       create_release:
         description: 'Create a prerelease and attach both tester packages'
         required: true
@@ -15,12 +15,45 @@ on:
   push:
     tags:
       - 'v*-beta.*'
+    branches:
+      - main
+    paths:
+      # Updating this file is a deliberate one-time main-release request.
+      - 'Tools/Release/release-request.txt'
 
 permissions:
   contents: write
 
 jobs:
+  version:
+    runs-on: ubuntu-latest
+    outputs:
+      release_version: ${{ steps.resolve.outputs.version }}
+    steps:
+      - name: Checkout release request
+        uses: actions/checkout@v4
+      - name: Resolve requested version
+        id: resolve
+        shell: bash
+        env:
+          REQUESTED_VERSION: ${{ inputs.version }}
+        run: |
+          if [ "$GITHUB_EVENT_NAME" = "workflow_dispatch" ]; then
+            version="$REQUESTED_VERSION"
+          elif [ "$GITHUB_REF_TYPE" = "tag" ]; then
+            version="$GITHUB_REF_NAME"
+          else
+            version="$(cat Tools/Release/release-request.txt)"
+          fi
+          version="$(printf '%s' "$version" | tr -d '[:space:]' | sed 's/^v//')"
+          if ! printf '%s' "$version" | grep -Eq '^[0-9]+\.[0-9]+\.[0-9]+-beta\.[0-9]+$'; then
+            echo "Invalid release version: $version" >&2
+            exit 1
+          fi
+          printf 'version=%s\n' "$version" >> "$GITHUB_OUTPUT"
+
   package:
+    needs: version
     strategy:
       fail-fast: false
       matrix:
@@ -31,7 +64,7 @@ jobs:
             rid: linux-x64
     runs-on: ${{ matrix.os }}
     env:
-      RELEASE_VERSION: ${{ github.event_name == 'workflow_dispatch' && inputs.version || github.ref_name }}
+      RELEASE_VERSION: ${{ needs.version.outputs.release_version }}
 
     steps:
       - name: Checkout
@@ -62,12 +95,12 @@ jobs:
           retention-days: 30
 
   release:
-    if: ${{ startsWith(github.ref, 'refs/tags/') || (github.event_name == 'workflow_dispatch' && inputs.create_release) }}
-    needs: package
+    if: ${{ startsWith(github.ref, 'refs/tags/') || (github.event_name == 'workflow_dispatch' && inputs.create_release) || (github.event_name == 'push' && github.ref == 'refs/heads/main') }}
+    needs: [version, package]
     runs-on: ubuntu-latest
     env:
       GH_TOKEN: ${{ github.token }}
-      RELEASE_VERSION: ${{ github.event_name == 'workflow_dispatch' && inputs.version || github.ref_name }}
+      RELEASE_VERSION: ${{ needs.version.outputs.release_version }}
 
     steps:
       - name: Download tester packages
