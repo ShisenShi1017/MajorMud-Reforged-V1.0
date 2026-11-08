@@ -328,8 +328,9 @@ public sealed class ServerNetworkHost
         catch (Exception exception)
         {
             var message = $"Telnet session {sessionId} failed without stopping the Host: {exception.Message}";
-            _diagnosticSink?.Invoke(message);
-            Console.Error.WriteLine(message);
+            var diagnostic = message + Environment.NewLine + exception;
+            _diagnosticSink?.Invoke(diagnostic);
+            Console.Error.WriteLine(diagnostic);
             try
             {
                 await telnet.WriteLineAsync(
