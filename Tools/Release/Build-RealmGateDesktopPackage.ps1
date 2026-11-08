@@ -123,6 +123,11 @@ RealmGate Linux Preview $Version
 3. Run: chmod +x RealmGate.Desktop Start-RealmGate.sh
 4. Run: ./Start-RealmGate.sh
 5. Open Server, start the local Host, then connect from Play.
+6. To diagnose a crash or missing monsters, open another terminal in this folder and run:
+   bash ./diag.sh
+   Run RealmGate through that script rather than launching the game separately.
+   It creates a RealmGate-Diagnostics-date folder alongside the application.
+   Review application.log before sharing; it may include character names or commands.
 
 This package is self-contained; a separate .NET installation is not required.
 The first Host start generates disposable world data from the packaged Librarium and can take longer than later starts.
@@ -179,6 +184,16 @@ Copy-Item -Path (Join-Path $publishRoot "*") -Destination $runtimeRoot -Recurse 
 Copy-Item -LiteralPath (Join-Path $repoRoot "ProjectManifest.json") -Destination $runtimeRoot -Force
 Copy-Item -LiteralPath (Join-Path $repoRoot "Config") -Destination (Join-Path $runtimeRoot "Config") -Recurse -Force
 Copy-Item -LiteralPath (Join-Path $repoRoot "ThirdPartyLicenses") -Destination (Join-Path $runtimeRoot "ThirdPartyLicenses") -Recurse -Force
+
+# The Linux diagnostic runner ships inside the regular RealmGate archive, not as a
+# separate download. Testers can run "bash ./diag.sh" from the extracted game folder.
+if (-not $isWindowsPackage) {
+    $diagnosticsSource = Join-Path $repoRoot "Tools/Diagnostics/diag.sh"
+    if (-not (Test-Path -LiteralPath $diagnosticsSource)) {
+        throw "Required Linux diagnostic runner is missing: '$diagnosticsSource'."
+    }
+    Copy-Item -LiteralPath $diagnosticsSource -Destination (Join-Path $runtimeRoot "diag.sh") -Force
+}
 
 # Server bootstrap deliberately checks the product-root layout. Runtime packages keep these
 # directories without shipping the development source trees.
@@ -260,6 +275,7 @@ $requiredPaths = @(
     "Librarium/NativeEvidence/classic_native_room_local_caps.br64",
     "Librarium/WorldOverrides/Custom1"
 )
+if (-not $isWindowsPackage) { $requiredPaths += "diag.sh" }
 foreach ($relativePath in $requiredPaths) {
     if (-not (Test-Path -LiteralPath (Join-Path $runtimeRoot $relativePath))) {
         throw "Tester runtime staging is missing '$relativePath'."
@@ -328,7 +344,7 @@ if (-not $isWindowsPackage) {
     $launcherPath = Join-Path $runtimeRoot "Start-RealmGate.sh"
     $launcher = "#!/usr/bin/env sh`nSCRIPT_DIR=`$(CDPATH= cd -- `"`$(dirname -- `"`$0`")`" && pwd)`nexec `"`$SCRIPT_DIR/RealmGate.Desktop`" `"`$@`"`n"
     [IO.File]::WriteAllText($launcherPath, $launcher, [Text.UTF8Encoding]::new($false))
-    Invoke-Checked -Command chmod -ArgumentList @("+x", (Join-Path $runtimeRoot "RealmGate.Desktop"), $launcherPath)
+    Invoke-Checked -Command chmod -ArgumentList @("+x", (Join-Path $runtimeRoot "RealmGate.Desktop"), $launcherPath, (Join-Path $runtimeRoot "diag.sh"))
 }
 
 Write-Host "Creating tester archive..."
